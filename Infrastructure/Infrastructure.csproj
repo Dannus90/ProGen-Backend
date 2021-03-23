@@ -4,4 +4,12 @@
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Identity\Repositories" />
+      <Folder Include="Identity\Services" />
+      <Folder Include="Persistence\Repositories" />
+      <Folder Include="Persistence\Services" />
+      <Folder Include="Security" />
+    </ItemGroup>
+
 </Project>
