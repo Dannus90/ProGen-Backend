@@ -17,5 +17,26 @@ namespace API.Controllers.Identity
         {
             return Ok("Hello");
         }
+        
+        [HttpPost]
+        [Route("login")]
+        public async Task<ActionResult> Login()
+        {
+            return Ok("Hello");
+        }
+        
+        [HttpPost]
+        [Route("refresh")]
+        public async Task<ActionResult> refresh()
+        {
+            return Ok("Hello");
+        }
+        
+        [HttpPost]
+        [Route("logout")]
+        public async Task<ActionResult> logout()
+        {
+            return Ok("Hello");
+        }
     }
 }

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace API.Controllers.Identity
 {
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [Route("")]
     public class EntryController : ControllerBase
     {
         [HttpGet]
