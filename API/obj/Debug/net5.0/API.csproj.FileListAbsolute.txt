@@ -34,3 +34,13 @@
 /Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/API/obj/Debug/net5.0/API.dll
 /Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/API/obj/Debug/net5.0/ref/API.dll
 /Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/API/obj/Debug/net5.0/API.pdb
+/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/API/bin/Debug/net5.0/API.deps.json
+/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/API/bin/Debug/net5.0/API.runtimeconfig.json
+/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/API/bin/Debug/net5.0/API.runtimeconfig.dev.json
+/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/API/bin/Debug/net5.0/ref/API.dll
+/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/API/bin/Debug/net5.0/Microsoft.OpenApi.dll
+/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/API/bin/Debug/net5.0/Swashbuckle.AspNetCore.Swagger.dll
+/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/API/bin/Debug/net5.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/API/bin/Debug/net5.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/API/obj/Debug/net5.0/API.csproj.CopyComplete
+/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/API/obj/Debug/net5.0/API.genruntimeconfig.cache
