@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Infrastructure.Identity.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -11,11 +12,18 @@ namespace API.Controllers.Identity
     [Route("api/v1/user/[controller]")]
     public class AuthController : ControllerBase
     {
+        private readonly IUserAuthService _userAuthService;
+
+        public AuthController(IUserAuthService userAuthService)
+        {
+            _userAuthService = userAuthService;
+        }
+        
         [HttpPost]
         [Route("register")]
         public async Task<ActionResult> Register()
         {
-            return Ok("Hello");
+            return Ok(_userAuthService.Test());
         }
         
         [HttpPost]

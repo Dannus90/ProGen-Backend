@@ -5,8 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Identity\Repositories" />
-      <Folder Include="Identity\Services" />
+      <Folder Include="Identity\Repositories\Interfaces" />
       <Folder Include="Persistence\Repositories" />
       <Folder Include="Persistence\Services" />
       <Folder Include="Security" />

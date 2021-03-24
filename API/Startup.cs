@@ -16,21 +16,24 @@ namespace API
 {
     public class Startup
     {
+        private IConfiguration Configuration { get; }
+        private readonly DependencyInjection _dependencyInjection;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            _dependencyInjection = new DependencyInjection();
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            _dependencyInjection.AddDependencyInjectionServices(services);
+            _dependencyInjection.AddDependencyInjectionRepositories(services);
             services.AddControllers();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "API", Version = "v1"}); });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        // This method gets called by the runtime. We use this method to configure the pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
