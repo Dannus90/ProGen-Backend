@@ -6,7 +6,13 @@
 
     <ItemGroup>
       <Folder Include="Application" />
-      <Folder Include="Domain" />
+      <Folder Include="Domain\Dtos" />
+      <Folder Include="Domain\Models" />
+      <Folder Include="Domain\ViewModels" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="EntityFramework" Version="6.4.4" />
     </ItemGroup>
 
 </Project>

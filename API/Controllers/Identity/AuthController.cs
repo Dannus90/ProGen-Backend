@@ -19,20 +19,29 @@ namespace API.Controllers.Identity
             _userAuthService = userAuthService;
         }
         
-        [HttpPost]
+        /**
+         * Responsible for registering users.
+         */
+        [HttpPost] //api/v1/user/auth/register
         [Route("register")]
         public async Task<ActionResult> Register()
         {
             return Ok(_userAuthService.Test());
         }
         
-        [HttpPost]
+        /**
+         * Responsible for logging an user into the application.
+         */
+        [HttpPost] //api/v1/user/auth/login
         [Route("login")]
         public async Task<ActionResult> Login()
         {
             return Ok("Hello");
         }
         
+        /**
+         * Responsible for generating a new access token with refresh token.
+         */
         [HttpPost]
         [Route("refresh")]
         public async Task<ActionResult> refresh()
@@ -40,6 +49,9 @@ namespace API.Controllers.Identity
             return Ok("Hello");
         }
         
+        /**
+         * Responsible for logging a user out from an application. 
+         */
         [HttpPost]
         [Route("logout")]
         public async Task<ActionResult> logout()
