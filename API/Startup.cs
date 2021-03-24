@@ -17,6 +17,8 @@ namespace API
     public class Startup
     {
         private IConfiguration Configuration { get; }
+        private const string _allowedSpecificOrigins = "_allowedSpecificOrigins";
+        private readonly string _connectionString;
         private readonly DependencyInjection _dependencyInjection;
         public Startup(IConfiguration configuration)
         {
@@ -27,6 +29,21 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy(
+                    name: _allowedSpecificOrigins,
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:3000",
+                            "https://localhost:3000")
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                            .AllowCredentials();
+                    }
+                );
+            });
+            
             _dependencyInjection.AddDependencyInjectionServices(services);
             _dependencyInjection.AddDependencyInjectionRepositories(services);
             services.AddControllers();
