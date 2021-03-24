@@ -24,6 +24,15 @@
           "buildTransitive/netcoreapp3.0/EntityFramework.targets": {}
         }
       },
+      "EntityFramework.Core/7.0.0-rc1-final": {
+        "type": "package",
+        "compile": {
+          "lib/net451/EntityFramework.Core.dll": {}
+        },
+        "runtime": {
+          "lib/net451/EntityFramework.Core.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.7.0": {
         "type": "package",
         "compile": {
@@ -338,6 +347,25 @@
         "tools/netcoreapp3.0/any/ef6.dll",
         "tools/netcoreapp3.0/any/ef6.pdb",
         "tools/netcoreapp3.0/any/ef6.runtimeconfig.json"
+      ]
+    },
+    "EntityFramework.Core/7.0.0-rc1-final": {
+      "sha512": "afwsjOF4xM5KiwAxKMz9R0H8TigWE/jX0FwGBO/QtuA1ElEVLqlQVH4+7PyZaA35HguYRm0wOCmUq9RVTmiAfA==",
+      "type": "package",
+      "path": "entityframework.core/7.0.0-rc1-final",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "entityframework.core.7.0.0-rc1-final.nupkg.sha512",
+        "entityframework.core.nuspec",
+        "lib/dnx451/EntityFramework.Core.dll",
+        "lib/dnx451/EntityFramework.Core.xml",
+        "lib/dotnet5.4/EntityFramework.Core.dll",
+        "lib/dotnet5.4/EntityFramework.Core.xml",
+        "lib/net451/EntityFramework.Core.dll",
+        "lib/net451/EntityFramework.Core.xml",
+        "lib/netcore50/EntityFramework.Core.dll",
+        "lib/netcore50/EntityFramework.Core.xml"
       ]
     },
     "Microsoft.CSharp/4.7.0": {
@@ -1021,7 +1049,8 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "EntityFramework >= 6.4.4"
+      "EntityFramework >= 6.4.4",
+      "EntityFramework.Core >= 7.0.0-rc1-final"
     ]
   },
   "packageFolders": {
@@ -1064,6 +1093,10 @@
           "EntityFramework": {
             "target": "Package",
             "version": "[6.4.4, )"
+          },
+          "EntityFramework.Core": {
+            "target": "Package",
+            "version": "[7.0.0-rc1-final, )"
           }
         },
         "imports": [
@@ -1084,5 +1117,17 @@
         "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.201/RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'EntityFramework.Core 7.0.0-rc1-final' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
+      "libraryId": "EntityFramework.Core",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
 }

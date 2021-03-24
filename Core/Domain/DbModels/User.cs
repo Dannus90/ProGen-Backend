@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using Microsoft.Data.Entity.Metadata.Builders;
 
 namespace Core.Domain.Models
 {
@@ -20,17 +21,24 @@ namespace Core.Domain.Models
         [Column("password", TypeName = "CHAR(500)")]
         public string Password { get; set; }
         
+        [Column("last_login")] public DateTime? LastLogin { get; set; } = null;
+        
         [Column("created_at")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime CreatedAt { get; set; }
         
         [Column("updated_at")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime UpdatedAt { get; set; }
-
-        [Column("last_login")] public DateTime? LastLogin { get; set; } = null;
-
-        public static void Configure(DbModelBuilder builder)
+        
+        /**
+         * Model configurations. 
+         */
+        public static void Configure(DbModelBuilder modelBuilder)
         {
-            
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Email)
+                .IsUnique();
         }
     }
 }

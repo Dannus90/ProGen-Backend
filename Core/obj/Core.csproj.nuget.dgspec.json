@@ -41,6 +41,10 @@
             "EntityFramework": {
               "target": "Package",
               "version": "[6.4.4, )"
+            },
+            "EntityFramework.Core": {
+              "target": "Package",
+              "version": "[7.0.0-rc1-final, )"
             }
           },
           "imports": [
