@@ -53,6 +53,8 @@ namespace API
                     }
                 );
             });
+
+            Console.WriteLine("Testing commit connection");
             
             services.AddControllers();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1",
