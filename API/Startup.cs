@@ -15,8 +15,14 @@ namespace API
         private const string _allowedSpecificOrigins = "_allowedSpecificOrigins";
         private readonly string _connectionString;
         private readonly DependencyInjection _dependencyInjection;
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
+            IConfigurationBuilder configurationBuilder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("Properties/appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"Properties/appsettings.{env.EnvironmentName}.json", optional: false,
+                    reloadOnChange: true).AddEnvironmentVariables();
+            
             Configuration = configuration;
             _dependencyInjection = new DependencyInjection();
         }
