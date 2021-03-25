@@ -1,4 +1,3 @@
-using System.Data.Entity.Infrastructure;
 using Core.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,7 +5,7 @@ namespace Core.Context
 {
     public class AppDbContext: DbContext
     {
-        protected AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
 
