@@ -1,7 +1,9 @@
+using System.Threading.Tasks;
+
 namespace Infrastructure.Identity.Repositories.Interfaces
 {
-    public class IUserAuthRepository
+    public interface IUserAuthRepository
     {
-        
+        Task RegisterUser();
     }
 }

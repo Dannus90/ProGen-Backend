@@ -35,7 +35,6 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            Console.WriteLine(_connectionString);
             // Register database.
             services.AddDbContext<AppDbContext>(opt =>
                 opt.UseNpgsql(_connectionString, b => 
@@ -63,7 +62,7 @@ namespace API
             // Dependency injection.
             services.Configure<ProGenConfig>(_proGenConfig);
             _dependencyInjection.AddDependencyInjectionServices(services);
-            _dependencyInjection.AddDependencyInjectionRepositories(services);
+            _dependencyInjection.AddDependencyInjectionRepositories(services, _connectionString);
         }
 
         // This method gets called by the runtime. We use this method to configure the pipeline.
