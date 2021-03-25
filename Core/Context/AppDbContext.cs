@@ -1,3 +1,4 @@
+using System;
 using Core.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +15,14 @@ namespace Core.Context
 
         protected override void OnModelCreating(ModelBuilder dbModelBuilder)
         {
+            // Seeding depending on environment
+            string environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            
+            if (environment == "Development")
+            {
+                Seed.SeedDataBase(dbModelBuilder);
+            }
+            
             Domain.Models.User.Configure(dbModelBuilder);
             Domain.Models.RefreshToken.Configure(dbModelBuilder);
         }
