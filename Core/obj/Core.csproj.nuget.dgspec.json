@@ -38,13 +38,13 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
-            "EntityFramework": {
-              "target": "Package",
-              "version": "[6.4.4, )"
-            },
             "EntityFramework.Core": {
               "target": "Package",
               "version": "[7.0.0-rc1-final, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.0-preview.2.21154.2, )"
             }
           },
           "imports": [

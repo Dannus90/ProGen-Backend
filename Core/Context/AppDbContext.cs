@@ -1,20 +1,22 @@
-using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using Core.Domain.Models;
-using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Metadata.Builders;
-using DbContext = System.Data.Entity.DbContext;
+using Microsoft.EntityFrameworkCore;
 
 namespace Core.Context
 {
     public class AppDbContext: DbContext
     {
-        public System.Data.Entity.DbSet<User> Users { get; set; }
-        public System.Data.Entity.DbSet<RefreshToken> RefreshTokens { get; set; }
-
-        protected override void OnModelCreating(DbModelBuilder dbModelBuilder)
+        protected AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-            User.Configure(dbModelBuilder);
-            RefreshToken.Configure(dbModelBuilder);
+        }
+
+        public DbSet<User> User { get; set; }
+        public DbSet<RefreshToken> RefreshToken { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder dbModelBuilder)
+        {
+            Domain.Models.User.Configure(dbModelBuilder);
+            Domain.Models.RefreshToken.Configure(dbModelBuilder);
         }
     }
 }
