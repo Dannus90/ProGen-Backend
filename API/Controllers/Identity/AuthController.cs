@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Infrastructure.Identity.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace API.Controllers.Identity
 {
@@ -26,7 +22,7 @@ namespace API.Controllers.Identity
         [Route("register")]
         public async Task<ActionResult> Register()
         {
-            return Ok(_userAuthService.Test());
+            return Ok(_userAuthService.RegisterUser());
         }
         
         /**

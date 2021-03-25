@@ -1,7 +1,9 @@
+using System.Threading.Tasks;
+
 namespace Infrastructure.Identity.Services.Interfaces
 {
     public interface IUserAuthService
     {
-        string Test();
+        Task RegisterUser();
     }
 }
