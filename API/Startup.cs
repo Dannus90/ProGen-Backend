@@ -54,8 +54,6 @@ namespace API
                 );
             });
 
-            Console.WriteLine("Testing commit connection again");
-            
             services.AddControllers();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1",
                 new OpenApiInfo {Title = "API", Version = "v1"}); });
