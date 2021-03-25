@@ -11,4 +11,8 @@
       <Folder Include="Security" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.0-preview2" />
+    </ItemGroup>
+
 </Project>

@@ -35,9 +35,11 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            Console.WriteLine(_connectionString);
             // Register database.
             services.AddDbContext<AppDbContext>(opt =>
-                opt.UseNpgsql(_configuration.GetConnectionString(_connectionString)));
+                opt.UseNpgsql(_connectionString, b => 
+                    b.MigrationsAssembly("API")));
             
             services.AddCors(opt =>
             {
