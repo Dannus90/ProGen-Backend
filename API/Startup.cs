@@ -1,3 +1,5 @@
+using System;
+using Core.Configurations;
 using Core.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,9 +13,10 @@ namespace API
 {
     public class Startup
     {
-        private IConfiguration Configuration { get; }
+        private IConfiguration _configuration { get; }
         private const string _allowedSpecificOrigins = "_allowedSpecificOrigins";
         private readonly string _connectionString;
+        private readonly IConfigurationSection _proGenConfig;
         private readonly DependencyInjection _dependencyInjection;
         public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
@@ -23,7 +26,9 @@ namespace API
                 .AddJsonFile($"Properties/appsettings.{env.EnvironmentName}.json", optional: false,
                     reloadOnChange: true).AddEnvironmentVariables();
             
-            Configuration = configuration;
+            _configuration = configurationBuilder.Build();
+            _proGenConfig = _configuration.GetSection("ProGenConfig");
+            _connectionString = _proGenConfig.Get<ProGenConfig>().DbConnectionString;
             _dependencyInjection = new DependencyInjection();
         }
 
@@ -32,7 +37,7 @@ namespace API
         {
             // Register database.
             services.AddDbContext<AppDbContext>(opt =>
-                opt.UseNpgsql(Configuration.GetConnectionString(_connectionString)));
+                opt.UseNpgsql(_configuration.GetConnectionString(_connectionString)));
             
             services.AddCors(opt =>
             {
@@ -49,11 +54,14 @@ namespace API
                 );
             });
             
-            _dependencyInjection.AddDependencyInjectionServices(services);
-            _dependencyInjection.AddDependencyInjectionRepositories(services);
             services.AddControllers();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1",
                 new OpenApiInfo {Title = "API", Version = "v1"}); });
+            
+            // Dependency injection.
+            services.Configure<ProGenConfig>(_proGenConfig);
+            _dependencyInjection.AddDependencyInjectionServices(services);
+            _dependencyInjection.AddDependencyInjectionRepositories(services);
         }
 
         // This method gets called by the runtime. We use this method to configure the pipeline.
