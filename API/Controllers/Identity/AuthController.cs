@@ -1,4 +1,6 @@
 using System.Threading.Tasks;
+using API.helpers;
+using Core.Domain.Dtos;
 using Infrastructure.Identity.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,9 +22,11 @@ namespace API.Controllers.Identity
          */
         [HttpPost] //api/v1/user/auth/register
         [Route("register")]
-        public async Task<ActionResult> Register()
+        public async Task<ActionResult> Register(UserCredentialDto userCredentials)
         {
-            return Ok(_userAuthService.RegisterUser());
+            CredentialsValidation.ValidateCredentials(userCredentials.Password, userCredentials.Email);
+            await _userAuthService.RegisterUser(userCredentials);
+            return StatusCode(201);
         }
         
         /**

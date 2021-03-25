@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "z95tBjysab5XHy9+crBStTXpNrrIQWbHrklBnP7zoOLvD7/EWS/KJIpFZDS/3jeVHOKIzdn97j33dU6S9PVAJw==",
+  "dgSpecHash": "pvyfIlaH/eUgK/S/rgnfVQze3OBW/PSsbQ8Az787tqKAPm6FDpSs/0SsJqIUyTtHjS84GXhRMVKMdLDRt8Krrg==",
   "success": true,
-  "projectFilePath": "/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/API/API.csproj",
+  "projectFilePath": "/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/API/API.csproj",
   "expectedPackageFiles": [
     "/Users/danielpersson/.nuget/packages/entityframework.core/7.0.0-rc1-final/entityframework.core.7.0.0-rc1-final.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
@@ -113,6 +113,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
+      "filePath": "/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/API/API.csproj",
       "message": "Package 'EntityFramework.Core 7.0.0-rc1-final' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
       "libraryId": "EntityFramework.Core",
       "targetGraphs": [

@@ -1573,6 +1573,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
+          "Core": "1.0.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "6.0.0-preview2"
         },
         "compile": {
@@ -5472,12 +5473,12 @@
     "Core/1.0.0": {
       "type": "project",
       "path": "../Core/Core.csproj",
-      "msbuildProject": "../Core/Core.csproj"
+      "msbuildProject": "../../../../../LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/Core/Core.csproj"
     },
     "Infrastructure/1.0.0": {
       "type": "project",
       "path": "../Infrastructure/Infrastructure.csproj",
-      "msbuildProject": "../Infrastructure/Infrastructure.csproj"
+      "msbuildProject": "../../../../../LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/Infrastructure/Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {

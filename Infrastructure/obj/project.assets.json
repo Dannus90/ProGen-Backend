@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     "net5.0": {
+      "EntityFramework.Core/7.0.0-rc1-final": {
+        "type": "package",
+        "compile": {
+          "lib/net451/EntityFramework.Core.dll": {}
+        },
+        "runtime": {
+          "lib/net451/EntityFramework.Core.dll": {}
+        }
+      },
       "Microsoft.EntityFrameworkCore/6.0.0-preview.2.21154.2": {
         "type": "package",
         "dependencies": {
@@ -231,10 +240,43 @@
         "runtime": {
           "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
         }
+      },
+      "Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "EntityFramework.Core": "7.0.0-rc1-final",
+          "Microsoft.EntityFrameworkCore": "6.0.0-preview.2.21154.2"
+        },
+        "compile": {
+          "bin/placeholder/Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Core.dll": {}
+        }
       }
     }
   },
   "libraries": {
+    "EntityFramework.Core/7.0.0-rc1-final": {
+      "sha512": "afwsjOF4xM5KiwAxKMz9R0H8TigWE/jX0FwGBO/QtuA1ElEVLqlQVH4+7PyZaA35HguYRm0wOCmUq9RVTmiAfA==",
+      "type": "package",
+      "path": "entityframework.core/7.0.0-rc1-final",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "entityframework.core.7.0.0-rc1-final.nupkg.sha512",
+        "entityframework.core.nuspec",
+        "lib/dnx451/EntityFramework.Core.dll",
+        "lib/dnx451/EntityFramework.Core.xml",
+        "lib/dotnet5.4/EntityFramework.Core.dll",
+        "lib/dotnet5.4/EntityFramework.Core.xml",
+        "lib/net451/EntityFramework.Core.dll",
+        "lib/net451/EntityFramework.Core.xml",
+        "lib/netcore50/EntityFramework.Core.dll",
+        "lib/netcore50/EntityFramework.Core.xml"
+      ]
+    },
     "Microsoft.EntityFrameworkCore/6.0.0-preview.2.21154.2": {
       "sha512": "QMRv2SudwyMITVecCv/1GBP/F0WWv/Gt0J1hOMGNZgqUd6p4v9jARBNBIu25chTj/F3EeL5t1LQ/YIAhymts8Q==",
       "type": "package",
@@ -661,10 +703,16 @@
         "system.runtime.compilerservices.unsafe.6.0.0-preview.2.21154.6.nupkg.sha512",
         "system.runtime.compilerservices.unsafe.nuspec"
       ]
+    },
+    "Core/1.0.0": {
+      "type": "project",
+      "path": "../Core/Core.csproj",
+      "msbuildProject": "../../../../../LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/Core/Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "Core >= 1.0.0",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 6.0.0-preview2"
     ]
   },
@@ -692,7 +740,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/Core/Core.csproj": {
+              "projectPath": "/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/Core/Core.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -728,5 +780,17 @@
         "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.201/RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'EntityFramework.Core 7.0.0-rc1-final' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
+      "libraryId": "EntityFramework.Core",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
 }
