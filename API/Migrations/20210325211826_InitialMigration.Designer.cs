@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210325201759_InitialMigration")]
+    [Migration("20210325211826_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace API.Migrations
                 {
                     b.Property<string>("Token")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT(500)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("refresh_token");
 
                     b.Property<string>("Id")

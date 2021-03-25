@@ -15,7 +15,7 @@ namespace Core.Domain.Models
         [Column("user_id", TypeName = "Char(36)")]
         public Guid UserId { get; set; }
         
-        [Column("refresh_token", TypeName = "TEXT(500)")]
+        [Column("refresh_token", TypeName = "TEXT")]
         [Required]
         public Guid Token { get; set; }
         

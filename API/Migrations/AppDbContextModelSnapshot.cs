@@ -23,7 +23,7 @@ namespace API.Migrations
                 {
                     b.Property<string>("Token")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT(500)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("refresh_token");
 
                     b.Property<string>("Id")
