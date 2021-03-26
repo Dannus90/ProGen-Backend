@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "F+5joaGu11pIz8IDy6dUMyy+IVDH5gHXlqnBD002fPF8BJMRwpSMrOzy5dATXCzxNhM3I8vyN0r04CezD6Mvnw==",
+  "dgSpecHash": "6EMYa8qKbE+LrBtTnSVJYUi3K24WHgE+gzIGor+Kk5XzkGhc5BrcL5cduizT5b+Wwq3+W/mSpQ/3xxJUu/efdg==",
   "success": true,
-  "projectFilePath": "/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/Infrastructure/Infrastructure.csproj",
+  "projectFilePath": "/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/Infrastructure/Infrastructure.csproj",
   "expectedPackageFiles": [
     "/Users/danielpersson/.nuget/packages/automapper/10.1.1/automapper.10.1.1.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/8.1.1/automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/bcrypt.net-next/4.0.2/bcrypt.net-next.4.0.2.nupkg.sha512",
+    "/Users/danielpersson/.nuget/packages/dapper/2.0.78/dapper.2.0.78.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/entityframework.core/7.0.0-rc1-final/entityframework.core.7.0.0-rc1-final.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/microsoft.aspnet.mvc/5.2.7/microsoft.aspnet.mvc.5.2.7.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/microsoft.aspnet.mvc.core/6.0.0-rc1-final/microsoft.aspnet.mvc.core.6.0.0-rc1-final.nupkg.sha512",
@@ -147,7 +148,6 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "filePath": "/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/Infrastructure/Infrastructure.csproj",
       "message": "Package 'EntityFramework.Core 7.0.0-rc1-final' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
       "libraryId": "EntityFramework.Core",
       "targetGraphs": [
@@ -158,7 +158,6 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "filePath": "/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/Infrastructure/Infrastructure.csproj",
       "message": "Package 'Microsoft.AspNet.Mvc 5.2.7' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.AspNet.Mvc",
       "targetGraphs": [
@@ -169,7 +168,6 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "filePath": "/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/Infrastructure/Infrastructure.csproj",
       "message": "Package 'Microsoft.AspNet.Mvc.Core 6.0.0-rc1-final' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.AspNet.Mvc.Core",
       "targetGraphs": [
@@ -180,7 +178,6 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "filePath": "/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/Infrastructure/Infrastructure.csproj",
       "message": "Package 'Microsoft.AspNet.Razor 3.2.7' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.AspNet.Razor",
       "targetGraphs": [
@@ -191,7 +188,6 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "filePath": "/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/Infrastructure/Infrastructure.csproj",
       "message": "Package 'Microsoft.AspNet.WebApi.Core 5.2.7' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.AspNet.WebApi.Core",
       "targetGraphs": [
@@ -202,7 +198,6 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "filePath": "/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/Infrastructure/Infrastructure.csproj",
       "message": "Package 'Microsoft.AspNet.WebPages 3.2.7' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.AspNet.WebPages",
       "targetGraphs": [
@@ -213,7 +208,6 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "filePath": "/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/Infrastructure/Infrastructure.csproj",
       "message": "Package 'Microsoft.Web.Infrastructure 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.Web.Infrastructure",
       "targetGraphs": [

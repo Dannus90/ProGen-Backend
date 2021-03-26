@@ -8,7 +8,7 @@ namespace API.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "RefreshToken",
+                name: "refresh_token",
                 columns: table => new
                 {
                     refresh_token = table.Column<string>(type: "TEXT", nullable: false),
@@ -18,11 +18,11 @@ namespace API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RefreshToken", x => x.refresh_token);
+                    table.PrimaryKey("PK_refresh_token", x => x.refresh_token);
                 });
 
             migrationBuilder.CreateTable(
-                name: "User",
+                name: "user",
                 columns: table => new
                 {
                     id = table.Column<string>(type: "CHAR(36)", nullable: false),
@@ -34,12 +34,12 @@ namespace API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.id);
+                    table.PrimaryKey("PK_user", x => x.id);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_User_email",
-                table: "User",
+                name: "IX_user_email",
+                table: "user",
                 column: "email",
                 unique: true);
         }
@@ -47,10 +47,10 @@ namespace API.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "RefreshToken");
+                name: "refresh_token");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "user");
         }
     }
 }

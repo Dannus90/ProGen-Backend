@@ -86,3 +86,6 @@
 /Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/API/bin/Debug/net5.0/Microsoft.DotNet.PlatformAbstractions.dll
 /Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/API/bin/Debug/net5.0/Microsoft.Extensions.DependencyModel.dll
 /Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/API/bin/Debug/net5.0/Microsoft.Web.Infrastructure.dll
+/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/API/bin/Debug/net5.0/AutoMapper.dll
+/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/API/bin/Debug/net5.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/API/bin/Debug/net5.0/Dapper.dll

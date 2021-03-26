@@ -44,7 +44,7 @@ namespace API.Migrations
 
                     b.HasKey("Token");
 
-                    b.ToTable("RefreshToken");
+                    b.ToTable("refresh_token");
                 });
 
             modelBuilder.Entity("Core.Domain.Models.User", b =>
@@ -83,7 +83,7 @@ namespace API.Migrations
                     b.HasIndex("Email")
                         .IsUnique();
 
-                    b.ToTable("User");
+                    b.ToTable("user");
                 });
 #pragma warning restore 612, 618
         }

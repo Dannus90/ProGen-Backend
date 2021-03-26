@@ -23,8 +23,8 @@ namespace Infrastructure.Identity.Services
         public async Task RegisterUser(UserCredentialsDto userCredentialsDto)
         {
             var userCredentials = _mapper.Map<UserCredentials>(userCredentialsDto);
-            CredentialsValidation.ValidateCredentials(userCredentials.Email,
-                userCredentials.Password);
+            CredentialsValidation.ValidateCredentials(userCredentials.Password,
+                userCredentials.Email);
             
             var hashedPassword = PasswordHandler.HashPassword(userCredentials.Password);
             await _userAuthRepository.RegisterUser(hashedPassword, userCredentials.Email);

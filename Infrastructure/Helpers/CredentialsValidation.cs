@@ -1,3 +1,4 @@
+using System;
 using System.Text.RegularExpressions;
 using Core.Application.Exceptions;
 using Microsoft.AspNetCore.Http;

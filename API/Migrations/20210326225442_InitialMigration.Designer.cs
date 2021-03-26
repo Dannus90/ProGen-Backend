@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210325211826_InitialMigration")]
+    [Migration("20210326225442_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,7 +46,7 @@ namespace API.Migrations
 
                     b.HasKey("Token");
 
-                    b.ToTable("RefreshToken");
+                    b.ToTable("refresh_token");
                 });
 
             modelBuilder.Entity("Core.Domain.Models.User", b =>
@@ -85,7 +85,7 @@ namespace API.Migrations
                     b.HasIndex("Email")
                         .IsUnique();
 
-                    b.ToTable("User");
+                    b.ToTable("user");
                 });
 #pragma warning restore 612, 618
         }

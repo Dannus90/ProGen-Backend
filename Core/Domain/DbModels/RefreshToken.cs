@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.Domain.Models
 {
+    [Table("refresh_token")]
     public class RefreshToken
     {
         [Key]
