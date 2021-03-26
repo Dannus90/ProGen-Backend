@@ -20,20 +20,18 @@ namespace Infrastructure.Identity.Repositories
             const string query =
                 @"
                     INSERT INTO `user`
-                    (`email`, `password`)
+                    (email, password)
                     VALUES (@Email, @Password);
                 ";
 
-            await using (var dbCon = new NpgsqlConnection(_connectionString))
+            await using var dbCon = new NpgsqlConnection(_connectionString);
+            await dbCon.ExecuteScalarAsync(query, new
             {
-                dbCon.ExecuteScalarAsync(query, new
-                {
-                    Email = email,
-                    Password = hashedPassword
-                });
+                Email = email,
+                Password = hashedPassword
+            });
                 
-                await dbCon.CloseAsync();
-            }
+            await dbCon.CloseAsync();
         }
     }
 }
