@@ -7,10 +7,10 @@
     <ItemGroup>
       <Folder Include="Business\Services" />
       <Folder Include="Persistence\Repositories" />
-      <Folder Include="Security" />
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="BCrypt.Net-Next" Version="4.0.2" />
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.0-preview2" />
     </ItemGroup>
 

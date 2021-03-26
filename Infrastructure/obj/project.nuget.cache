@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "czkAeoI8N6FFTFZ4Yfr8JJmw4W4xQ7edsFZtlzguWbTreKGpxFJxWHSZSvf11hyBhWP0/vXNuKeiuGbzuNtkww==",
+  "dgSpecHash": "82zFOBPeb82AVGsnzBL9ffFPEEEBWjxGV5DtJA3j7WzTFpiAJgB9cUGb8zNwB+cSOuhSEFHKByELrcF6n5lZ4Q==",
   "success": true,
   "projectFilePath": "/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/Infrastructure/Infrastructure.csproj",
   "expectedPackageFiles": [
+    "/Users/danielpersson/.nuget/packages/bcrypt.net-next/4.0.2/bcrypt.net-next.4.0.2.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/entityframework.core/7.0.0-rc1-final/entityframework.core.7.0.0-rc1-final.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/microsoft.entityframeworkcore/6.0.0-preview.2.21154.2/microsoft.entityframeworkcore.6.0.0-preview.2.21154.2.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/microsoft.entityframeworkcore.abstractions/6.0.0-preview.2.21154.2/microsoft.entityframeworkcore.abstractions.6.0.0-preview.2.21154.2.nupkg.sha512",

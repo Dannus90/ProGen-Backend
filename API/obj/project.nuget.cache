@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "pvyfIlaH/eUgK/S/rgnfVQze3OBW/PSsbQ8Az787tqKAPm6FDpSs/0SsJqIUyTtHjS84GXhRMVKMdLDRt8Krrg==",
+  "dgSpecHash": "7ARZlrjpCxbeVJ3O6+2PxjC5na4N1p31mLHbnrmVn91/IKrIhBOH8VTCo480XmdA7x/7pEvtogjeIh5780EjRQ==",
   "success": true,
   "projectFilePath": "/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/API/API.csproj",
   "expectedPackageFiles": [
+    "/Users/danielpersson/.nuget/packages/bcrypt.net-next/4.0.2/bcrypt.net-next.4.0.2.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/entityframework.core/7.0.0-rc1-final/entityframework.core.7.0.0-rc1-final.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/microsoft.entityframeworkcore/6.0.0-preview.2.21154.2/microsoft.entityframeworkcore.6.0.0-preview.2.21154.2.nupkg.sha512",
