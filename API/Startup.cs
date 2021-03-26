@@ -1,4 +1,5 @@
 using System;
+using Core.Application.Exceptions;
 using Core.Configurations;
 using Core.Context;
 using Microsoft.AspNetCore.Builder;
@@ -55,7 +56,7 @@ namespace API
                 );
             });
 
-            services.AddControllers();
+            services.AddControllers(opt => opt.Filters.Add(new ExceptionFilter()));
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1",
                 new OpenApiInfo {Title = "API", Version = "v1"}); });
             

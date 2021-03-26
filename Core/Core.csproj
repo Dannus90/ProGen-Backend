@@ -5,13 +5,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Application" />
       <Folder Include="Domain\Models" />
       <Folder Include="Domain\ViewModels" />
+      <Folder Include="Enums" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="EntityFramework.Core" Version="7.0.0-rc1-final" />
+      <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
+      <PackageReference Include="Microsoft.AspNet.Mvc.Core" Version="6.0.0-rc1-final" />
+      <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0-preview.2.21154.2" />
     </ItemGroup>
 

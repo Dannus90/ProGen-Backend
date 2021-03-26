@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using API.helpers;
 using Core.Domain.Dtos;
 using Infrastructure.Identity.Repositories.Interfaces;
 using Infrastructure.Identity.Services.Interfaces;
@@ -17,6 +18,9 @@ namespace Infrastructure.Identity.Services
 
         public async Task RegisterUser(UserCredentialDto userCredentials)
         {
+            CredentialsValidation.ValidateCredentials(userCredentials.Email,
+                userCredentials.Password);
+            
             var hashedPassword = PasswordHandler.HashPassword(userCredentials.Password);
             await _userAuthRepository.RegisterUser();
         }

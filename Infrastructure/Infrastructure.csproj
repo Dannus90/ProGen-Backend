@@ -6,11 +6,14 @@
 
     <ItemGroup>
       <Folder Include="Business\Services" />
+      <Folder Include="Identity\Business" />
+      <Folder Include="Identity\Persistence" />
       <Folder Include="Persistence\Repositories" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="BCrypt.Net-Next" Version="4.0.2" />
+      <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.0-preview2" />
     </ItemGroup>
 

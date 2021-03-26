@@ -2,7 +2,7 @@ using BC = BCrypt.Net.BCrypt;
 
 namespace Infrastructure.Security
 {
-    public class PasswordHandler
+    public static class PasswordHandler
     {
         public static string HashPassword(string password)
         {
