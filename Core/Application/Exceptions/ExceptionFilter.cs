@@ -1,5 +1,4 @@
 using System;
-using System.Net;
 using Core.Application.Exceptions.ResponseHandlers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -8,9 +7,12 @@ namespace Core.Application.Exceptions
 {
     public class ExceptionFilter : IExceptionFilter
     {
+        /**
+         * Called when an exception is thrown. Configured through startup.cs.
+         */
         public void OnException(ExceptionContext context)
         {
-            Exception exception = context.Exception;
+            var exception = context.Exception;
             ExceptionResponse response;
             switch (exception)
             {
@@ -29,10 +31,13 @@ namespace Core.Application.Exceptions
             context.ExceptionHandled = true;
             context.Result = response.CreateObjectResult();
         }
-
+        
+        /**
+         * The default fallback exception.
+         */
         private static ExceptionResponse DefaultExceptionResponse()
         {
-            return new ExceptionResponse(
+            return new(
                 StatusCodes.Status500InternalServerError,
                 "Unspecified error",
                 ExceptionTypes.DatabaseError

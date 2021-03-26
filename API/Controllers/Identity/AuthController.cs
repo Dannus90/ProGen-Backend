@@ -22,7 +22,7 @@ namespace API.Controllers.Identity
          */
         [HttpPost] //api/v1/user/auth/register
         [Route("register")]
-        public async Task<ActionResult> Register(UserCredentialDto userCredentials)
+        public async Task<ActionResult> Register(UserCredentialsDto userCredentials)
         {
             CredentialsValidation.ValidateCredentials(userCredentials.Password, userCredentials.Email);
             await _userAuthService.RegisterUser(userCredentials);

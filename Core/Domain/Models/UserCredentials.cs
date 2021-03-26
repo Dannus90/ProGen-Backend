@@ -1,6 +1,6 @@
-namespace Core.Domain.Dtos
+namespace Core.Domain.Models
 {
-    public class UserCredentialsDto
+    public class UserCredentials
     {
         public string Email { get; set; }
         public string Password { get; set; }

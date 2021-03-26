@@ -56,6 +56,7 @@ namespace API
                 );
             });
 
+            services.AddAutoMapper(GetType().Assembly);
             services.AddControllers(opt => opt.Filters.Add(new ExceptionFilter()));
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1",
                 new OpenApiInfo {Title = "API", Version = "v1"}); });

@@ -14,7 +14,7 @@ namespace Infrastructure.Identity.Repositories
             _connectionString = connectionString;
         }
 
-        public async Task RegisterUser()
+        public async Task RegisterUser(string password, string email)
         {
             const string query =
                 @"
