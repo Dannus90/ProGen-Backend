@@ -1,7 +1,7 @@
 using System;
 using System.Data;
 using System.Threading.Tasks;
-using Core.Domain.Models;
+
 using Dapper;
 using Infrastructure.Identity.Repositories.Interfaces;
 using Npgsql;

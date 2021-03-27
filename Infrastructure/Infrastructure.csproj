@@ -8,7 +8,6 @@
       <Folder Include="Business\Services" />
       <Folder Include="Identity\Business" />
       <Folder Include="Identity\Persistence" />
-      <Folder Include="Persistence\Repositories" />
     </ItemGroup>
 
     <ItemGroup>
