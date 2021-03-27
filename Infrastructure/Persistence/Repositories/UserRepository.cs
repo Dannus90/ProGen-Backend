@@ -1,3 +1,4 @@
+using System;
 using System.Data;
 using System.Threading.Tasks;
 using Core.Domain.DbModels;
@@ -7,11 +8,11 @@ using Npgsql;
 
 namespace Infrastructure.Persistence.Repositories
 {
-    public class UserAuthRepository : IUserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly string _connectionString;
 
-        public UserAuthRepository(string connectionString)
+        public UserRepository(string connectionString)
         {
             _connectionString = connectionString;
         }
@@ -25,8 +26,7 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<User> GetUserByEmail(string email)
         {
-            var query = 
-                @"
+            const string query = @"
                     SELECT `id` AS Id,
                             `email` AS Email,
                             `password` AS Password,
@@ -41,6 +41,25 @@ namespace Infrastructure.Persistence.Repositories
             return await conn.QueryFirstOrDefaultAsync<User>(query, new
             {
                 Email = email
+            });
+        }
+        
+        public async Task UpdateLastLoggedIn(Guid userId)
+        {
+            const string query = @"
+                    UPDATE `user` 
+                    SET `last_login` = @CurrentTime
+                    WHERE `id` = @UserId;  
+                ";
+            
+            using var conn = connectDb(_connectionString);
+
+            var currentTime = DateTime.Now;
+
+            await conn.QueryFirstOrDefaultAsync<User>(query, new
+            {
+                UserId = userId,
+                CurrentTime = currentTime
             });
         }
     }

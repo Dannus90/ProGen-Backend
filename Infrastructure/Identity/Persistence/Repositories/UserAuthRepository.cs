@@ -26,8 +26,7 @@ namespace Infrastructure.Identity.Repositories
 
         public async Task RegisterUser(string hashedPassword, string email)
         {
-            var query = 
-                @"
+            const string query = @"
                     Insert into user_base(id, email, password)
                     VALUES (@Id, @Email, @Password);  
                 ";
