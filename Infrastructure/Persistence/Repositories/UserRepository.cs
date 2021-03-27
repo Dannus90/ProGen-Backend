@@ -27,12 +27,12 @@ namespace Infrastructure.Persistence.Repositories
         public async Task<User> GetUserByEmail(string email)
         {
             const string query = @"
-                    SELECT `id` AS Id,
-                            `email` AS Email,
-                            `password` AS Password,
-                            `last_login` AS LastLogin,
-                            `created_at` AS CreatedAt,
-                            `updated_at` AS UpdatedAt   
+                    SELECT id AS IdString,
+                            email AS Email,
+                            password AS Password,
+                            last_login AS LastLogin,
+                            created_at AS CreatedAt,
+                            updated_at AS UpdatedAt   
                     FROM user_base WHERE email = @Email;  
                 ";
             
@@ -47,18 +47,18 @@ namespace Infrastructure.Persistence.Repositories
         public async Task UpdateLastLoggedIn(Guid userId)
         {
             const string query = @"
-                    UPDATE `user` 
-                    SET `last_login` = @CurrentTime
-                    WHERE `id` = @UserId;  
+                    UPDATE user_base
+                    SET last_login = @CurrentTime
+                    WHERE id = @UserId;  
                 ";
             
             using var conn = connectDb(_connectionString);
 
             var currentTime = DateTime.Now;
 
-            await conn.QueryFirstOrDefaultAsync<User>(query, new
+            await conn.ExecuteScalarAsync(query, new
             {
-                UserId = userId,
+                UserId = userId.ToString(),
                 CurrentTime = currentTime
             });
         }

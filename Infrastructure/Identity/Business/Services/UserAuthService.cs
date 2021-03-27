@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using API.helpers;
 using AutoMapper;
+using Core.Application.Exceptions;
 using Core.Domain.Dtos;
 using Core.Domain.Models;
 using Infrastructure.Identity.Repositories.Interfaces;
@@ -33,7 +34,10 @@ namespace Infrastructure.Identity.Services
                 userCredentials.Email);
             
             var hashedPassword = PasswordHandler.HashPassword(userCredentials.Password);
-            await _userAuthRepository.RegisterUser(hashedPassword, userCredentials.Email);
+            await _userAuthRepository.RegisterUser(hashedPassword.Trim(), 
+                userCredentials.Email
+                    .Trim()
+                    .ToLower());
         }
         
         public async Task LoginUser(UserCredentialsDto userCredentialsDto)
@@ -41,11 +45,18 @@ namespace Infrastructure.Identity.Services
             var userCredentials = _mapper.Map<UserCredentials>(userCredentialsDto);
             var user = await _userRepository.GetUserByEmail(userCredentials.Email);
             
+            // If no user we send unauthorized to not give information regarding if email exist or not.
+            // Not found would give information that the email is not in use at the moment. 
+            if (user == null)
+            {
+                throw new HttpExceptionResponse(401, "Incorrect email or password");
+            }
+
             // Password verification.
             if (!PasswordHandler.VerifyPassword(userCredentials.Password,
-                user.Password))
+                user.Password.Trim()))
             {
-                throw new Exception("Hello world");
+                throw new HttpExceptionResponse(401, "Incorrect email or password");
             }
 
             await _userRepository.UpdateLastLoggedIn(user.Id);

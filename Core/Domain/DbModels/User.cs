@@ -10,8 +10,10 @@ namespace Core.Domain.DbModels
     {
         [Key]
         [Column("id", TypeName = "CHAR(36)")]
-        public Guid Id { get; set; }
-        
+        public Guid Id { get ; set; }
+
+        public string IdString => Id.ToString("N");
+
         [Required]
         [Column("email", TypeName = "CHAR(128)")]
         public string Email { get; set; }
