@@ -1,5 +1,5 @@
 using System;
-using Core.Domain.Models;
+using Core.Domain.DbModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace Core.Context
@@ -17,14 +17,14 @@ namespace Core.Context
         {
             // Seeding depending on environment
             string environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-            
+
             if (environment == "Development")
             {
                 Seed.SeedDataBase(dbModelBuilder);
             }
             
-            Domain.Models.User.Configure(dbModelBuilder);
-            Domain.Models.RefreshToken.Configure(dbModelBuilder);
+            Domain.DbModels.User.Configure(dbModelBuilder);
+            Domain.DbModels.RefreshToken.Configure(dbModelBuilder);
         }
     }
 }

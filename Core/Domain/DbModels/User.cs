@@ -3,14 +3,13 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace Core.Domain.Models
+namespace Core.Domain.DbModels
 {
-    [Table("user")]
+    [Table("user_base")]
     public class User
     {
         [Key]
         [Column("id", TypeName = "CHAR(36)")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         
         [Required]
@@ -24,11 +23,9 @@ namespace Core.Domain.Models
         [Column("last_login")] public DateTime? LastLogin { get; set; } = null;
         
         [Column("created_at")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime CreatedAt { get; set; }
         
         [Column("updated_at")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime UpdatedAt { get; set; }
         
         /**
@@ -39,6 +36,14 @@ namespace Core.Domain.Models
             modelBuilder.Entity<User>()
                 .HasIndex(u => u.Email)
                 .IsUnique();
+
+            modelBuilder.Entity<User>().Property(u => u.CreatedAt)
+                .HasDefaultValueSql("NOW()")
+                .ValueGeneratedOnAdd();
+            
+            modelBuilder.Entity<User>().Property(u => u.UpdatedAt)
+                .HasDefaultValueSql("NOW()")
+                .ValueGeneratedOnAddOrUpdate();
         }
     }
 }

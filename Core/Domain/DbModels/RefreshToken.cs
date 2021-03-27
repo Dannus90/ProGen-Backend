@@ -3,14 +3,13 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace Core.Domain.Models
+namespace Core.Domain.DbModels
 {
     [Table("refresh_token")]
     public class RefreshToken
     {
         [Key]
         [Column("id", TypeName = "CHAR(36)")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         
         [Column("user_id", TypeName = "Char(36)")]

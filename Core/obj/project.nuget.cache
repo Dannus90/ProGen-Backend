@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "1rLtHFjLf8xSkkfec3ymuSDxdko3APWQmZbULfeVoxe0LkRgjxLq7HhNalXIw0/mE+8f8f+Gcsys3qpfnA1z0A==",
+  "dgSpecHash": "jMwXk9UqtMg7eTYOC547ch2B2aNg1UW/R9zZ+AEBa92ZuRxkowx9bdKSEhjCQHowWgjFP/tVpS5/wiOIBJNEyw==",
   "success": true,
   "projectFilePath": "/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/Core/Core.csproj",
   "expectedPackageFiles": [
@@ -34,9 +34,10 @@
     "/Users/danielpersson/.nuget/packages/microsoft.entityframeworkcore/6.0.0-preview.2.21154.2/microsoft.entityframeworkcore.6.0.0-preview.2.21154.2.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/microsoft.entityframeworkcore.abstractions/6.0.0-preview.2.21154.2/microsoft.entityframeworkcore.abstractions.6.0.0-preview.2.21154.2.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/microsoft.entityframeworkcore.analyzers/6.0.0-preview.2.21154.2/microsoft.entityframeworkcore.analyzers.6.0.0-preview.2.21154.2.nupkg.sha512",
+    "/Users/danielpersson/.nuget/packages/microsoft.entityframeworkcore.relational/6.0.0-preview.2.21154.2/microsoft.entityframeworkcore.relational.6.0.0-preview.2.21154.2.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/microsoft.extensions.caching.abstractions/6.0.0-preview.2.21154.6/microsoft.extensions.caching.abstractions.6.0.0-preview.2.21154.6.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/microsoft.extensions.caching.memory/6.0.0-preview.2.21154.6/microsoft.extensions.caching.memory.6.0.0-preview.2.21154.6.nupkg.sha512",
-    "/Users/danielpersson/.nuget/packages/microsoft.extensions.configuration.abstractions/2.2.0/microsoft.extensions.configuration.abstractions.2.2.0.nupkg.sha512",
+    "/Users/danielpersson/.nuget/packages/microsoft.extensions.configuration.abstractions/6.0.0-preview.2.21154.6/microsoft.extensions.configuration.abstractions.6.0.0-preview.2.21154.6.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/microsoft.extensions.dependencyinjection/6.0.0-preview.2.21154.6/microsoft.extensions.dependencyinjection.6.0.0-preview.2.21154.6.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/6.0.0-preview.2.21154.6/microsoft.extensions.dependencyinjection.abstractions.6.0.0-preview.2.21154.6.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/microsoft.extensions.dependencymodel/2.1.0/microsoft.extensions.dependencymodel.2.1.0.nupkg.sha512",
@@ -55,6 +56,8 @@
     "/Users/danielpersson/.nuget/packages/netstandard.library/1.6.1/netstandard.library.1.6.1.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/newtonsoft.json/10.0.1/newtonsoft.json.10.0.1.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/newtonsoft.json.bson/1.0.1/newtonsoft.json.bson.1.0.1.nupkg.sha512",
+    "/Users/danielpersson/.nuget/packages/npgsql/6.0.0-preview2/npgsql.6.0.0-preview2.nupkg.sha512",
+    "/Users/danielpersson/.nuget/packages/npgsql.entityframeworkcore.postgresql/6.0.0-preview2/npgsql.entityframeworkcore.postgresql.6.0.0-preview2.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl/4.3.0/runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl/4.3.0/runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl/4.3.0/runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",

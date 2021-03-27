@@ -13,13 +13,14 @@ namespace Core.Application.Exceptions
         public void OnException(ExceptionContext context)
         {
             var exception = context.Exception;
+
             ExceptionResponse response;
             switch (exception)
             {
                 case HttpExceptionResponse e:
                     response = HttpResponseHandler.respond(e);
                     break;
-                
+
                 default:
                     Console.WriteLine($"[{exception.GetType().FullName}] {exception.Message}");
                     Console.WriteLine(exception.StackTrace);

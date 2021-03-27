@@ -18,13 +18,16 @@ you will need to have a user configured with the username and password stated ab
 **Instructions Mac**
 - [How to setup](https://www.codementor.io/@engineerapart/getting-started-with-postgresql-on-mac-osx-are8jcopb)
 - [Troubles connection?](https://stackoverflow.com/questions/7695962/postgresql-password-authentication-failed-for-user-postgres/7696398#7696398)
-
+- [Make superuser](https://stackoverflow.com/questions/10757431/postgres-upgrade-a-user-to-be-a-superuser)
 ### Migrations
 **OBS ALWAYS ADD MIGRATIONS IN PROD ENVIRONMENT!** 
 * `ASPNETCORE_ENVIRONMENT=dotnet ef migrations add NewMigration`
 * `dotnet ef database update`
 
 ### Seeding
+In order to successfully run the command down below you have to make progen to a 
+super user. See the link up above to make progen a superuser. 
+
 * Local drop and reseed `dotnet ef database drop -f && dotnet run`
 
 ### Reset database

@@ -2218,7 +2218,8 @@
           "Microsoft.AspNet.Mvc.Core": "6.0.0-rc1-final",
           "Microsoft.AspNet.WebApi.Core": "5.2.7",
           "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
-          "Microsoft.EntityFrameworkCore": "6.0.0-preview.2.21154.2"
+          "Microsoft.EntityFrameworkCore": "6.0.0-preview.2.21154.2",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "6.0.0-preview2"
         },
         "compile": {
           "bin/placeholder/Core.dll": {}

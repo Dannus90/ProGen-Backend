@@ -7,7 +7,7 @@ namespace Core.Context
     {
         public static void SeedDataBase(ModelBuilder modelBuilder)
         {
-            Console.WriteLine("Hello derererer!");
+            Console.WriteLine("Seeding will be placed here!");
         }
     }
 }

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210326225442_InitialMigration")]
+    [Migration("20210327175433_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,7 +21,7 @@ namespace API.Migrations
                 .HasAnnotation("ProductVersion", "6.0.0-preview.2.21154.2")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-            modelBuilder.Entity("Core.Domain.Models.RefreshToken", b =>
+            modelBuilder.Entity("Core.Domain.DbModels.RefreshToken", b =>
                 {
                     b.Property<string>("Token")
                         .ValueGeneratedOnAdd()
@@ -30,7 +30,6 @@ namespace API.Migrations
 
                     b.Property<string>("Id")
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("CHAR(36)")
                         .HasColumnName("id");
 
@@ -49,7 +48,7 @@ namespace API.Migrations
                     b.ToTable("refresh_token");
                 });
 
-            modelBuilder.Entity("Core.Domain.Models.User", b =>
+            modelBuilder.Entity("Core.Domain.DbModels.User", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
@@ -59,7 +58,8 @@ namespace API.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp without time zone")
-                        .HasColumnName("created_at");
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("NOW()");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -78,14 +78,15 @@ namespace API.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("timestamp without time zone")
-                        .HasColumnName("updated_at");
+                        .HasColumnName("updated_at")
+                        .HasDefaultValueSql("NOW()");
 
                     b.HasKey("Id");
 
                     b.HasIndex("Email")
                         .IsUnique();
 
-                    b.ToTable("user");
+                    b.ToTable("user_base");
                 });
 #pragma warning restore 612, 618
         }
