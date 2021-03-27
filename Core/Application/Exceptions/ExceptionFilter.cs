@@ -1,7 +1,9 @@
 using System;
+using System.Data.Common;
 using Core.Application.Exceptions.ResponseHandlers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Npgsql;
 
 namespace Core.Application.Exceptions
 {
@@ -17,8 +19,12 @@ namespace Core.Application.Exceptions
             ExceptionResponse response;
             switch (exception)
             {
+                case NpgsqlException e:
+                    response = DbResponseHandler.Respond(e);
+                    break;
+                
                 case HttpExceptionResponse e:
-                    response = HttpResponseHandler.respond(e);
+                    response = HttpResponseHandler.Respond(e);
                     break;
 
                 default:
