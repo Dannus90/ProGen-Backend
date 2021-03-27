@@ -6,5 +6,6 @@ namespace Infrastructure.Identity.Services.Interfaces
     public interface IUserAuthService
     {
         Task RegisterUser(UserCredentialsDto userCredentials);
+        Task LoginUser(UserCredentialsDto userCredentialsDto);
     }
 }

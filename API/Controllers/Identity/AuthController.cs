@@ -32,9 +32,10 @@ namespace API.Controllers.Identity
          */
         [HttpPost] //api/v1/user/auth/login
         [Route("login")]
-        public async Task<ActionResult> Login()
+        public async Task<ActionResult> Login(UserCredentialsDto userCredentials)
         {
-            return Ok("Hello");
+            await _userAuthService.LoginUser(userCredentials);
+            return Ok();
         }
         
         /**

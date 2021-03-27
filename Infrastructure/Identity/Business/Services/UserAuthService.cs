@@ -29,5 +29,15 @@ namespace Infrastructure.Identity.Services
             var hashedPassword = PasswordHandler.HashPassword(userCredentials.Password);
             await _userAuthRepository.RegisterUser(hashedPassword, userCredentials.Email);
         }
+        
+        public async Task LoginUser(UserCredentialsDto userCredentialsDto)
+        {
+            var userCredentials = _mapper.Map<UserCredentials>(userCredentialsDto);
+            CredentialsValidation.ValidateCredentials(userCredentials.Password,
+                userCredentials.Email);
+            
+            var hashedPassword = PasswordHandler.HashPassword(userCredentials.Password);
+            await _userAuthRepository.RegisterUser(hashedPassword, userCredentials.Email);
+        }
     }
 }
