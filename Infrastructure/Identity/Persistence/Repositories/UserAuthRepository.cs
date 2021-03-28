@@ -26,7 +26,7 @@ namespace Infrastructure.Identity.Repositories
 
             var userId = Guid.NewGuid();
 
-            using var conn = connectDb(_connectionString);
+            using var conn = await connectDb(_connectionString);
 
             await conn.ExecuteScalarAsync(query, new
             {
@@ -45,7 +45,7 @@ namespace Infrastructure.Identity.Repositories
 
             var tokenId = Guid.NewGuid();
 
-            using var conn = connectDb(_connectionString);
+            using var conn = await connectDb(_connectionString);
 
             await conn.ExecuteScalarAsync(query, new
             {
@@ -63,7 +63,7 @@ namespace Infrastructure.Identity.Repositories
                     WHERE user_id = @UserId;
                 ";
 
-            using var conn = connectDb(_connectionString);
+            using var conn = await connectDb(_connectionString);
 
             await conn.ExecuteScalarAsync(query, new
             {
@@ -82,7 +82,7 @@ namespace Infrastructure.Identity.Repositories
                     FROM refresh_token WHERE user_id = @UserId;  
                 ";
 
-            using var conn = connectDb(_connectionString);
+            using var conn = await connectDb(_connectionString);
 
             return await conn.QueryFirstOrDefaultAsync<RefreshToken>(query, new
             {
@@ -97,7 +97,7 @@ namespace Infrastructure.Identity.Repositories
                     WHERE refresh_token.user_id = @UserId;
                 ";
 
-            using var conn = connectDb(_connectionString);
+            using var conn = await connectDb(_connectionString);
 
             await conn.ExecuteScalarAsync(query, new
             {
@@ -115,7 +115,7 @@ namespace Infrastructure.Identity.Repositories
 
             var lastLogin = DateTime.Now;
 
-            using var conn = connectDb(_connectionString);
+            using var conn = await connectDb(_connectionString);
 
             await conn.ExecuteScalarAsync(query, new
             {
@@ -124,10 +124,10 @@ namespace Infrastructure.Identity.Repositories
             });
         }
 
-        private static IDbConnection connectDb(string connectionString)
+        private static async Task<IDbConnection> connectDb(string connectionString)
         {
             var connection = new NpgsqlConnection(connectionString);
-            connection.OpenAsync();
+            await connection.OpenAsync();
             return connection;
         }
     }

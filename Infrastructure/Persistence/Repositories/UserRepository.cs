@@ -29,38 +29,12 @@ namespace Infrastructure.Persistence.Repositories
                     FROM user_base WHERE email = @Email;  
                 ";
 
-            using var conn = connectDb(_connectionString);
+            using var conn = await connectDb(_connectionString);
 
             return await conn.QueryFirstOrDefaultAsync<User>(query, new
             {
                 Email = email
             });
-        }
-
-        public async Task UpdateLastLoggedIn(Guid userId)
-        {
-            const string query = @"
-                    UPDATE user_base
-                    SET last_login = @CurrentTime
-                    WHERE id = @UserId;  
-                ";
-
-            using var conn = connectDb(_connectionString);
-
-            var currentTime = DateTime.Now;
-
-            await conn.ExecuteScalarAsync(query, new
-            {
-                UserId = userId.ToString(),
-                CurrentTime = currentTime
-            });
-        }
-
-        private static IDbConnection connectDb(string connectionString)
-        {
-            var connection = new NpgsqlConnection(connectionString);
-            connection.OpenAsync();
-            return connection;
         }
 
         public async Task<User> GetUserByUserId(string userId)
@@ -75,12 +49,34 @@ namespace Infrastructure.Persistence.Repositories
                     FROM user_base WHERE id = @UserId;  
                 ";
 
-            using var conn = connectDb(_connectionString);
+            using var conn = await connectDb(_connectionString);
 
             return await conn.QueryFirstOrDefaultAsync<User>(query, new
             {
                 UserID = userId
             });
+        }
+
+        public async Task DeleteUserByUserId(Guid userId)
+        {
+            const string query = @"
+                    DELETE FROM user_base
+                    WHERE id = @UserId;
+                ";
+
+            using var conn = await connectDb(_connectionString);
+
+            await conn.ExecuteScalarAsync(query, new
+            {
+                UserID = userId.ToString()
+            });
+        }
+        
+        private static async Task<IDbConnection> connectDb(string connectionString)
+        {
+            var connection = new NpgsqlConnection(connectionString);
+            await connection.OpenAsync();
+            return connection;
         }
     }
 }

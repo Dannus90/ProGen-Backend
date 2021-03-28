@@ -12,8 +12,13 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="IntegrationsTests" />
+        <Folder Include="IntegrationsTests\Repositories" />
         <Folder Include="UnitTests" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Core\Core.csproj" />
+      <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

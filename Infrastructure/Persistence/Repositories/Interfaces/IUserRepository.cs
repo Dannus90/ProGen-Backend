@@ -7,6 +7,6 @@ namespace Infrastructure.Persistence.Repositories.Interfaces
     public interface IUserRepository
     {
         Task<User> GetUserByEmail(string email);
-        Task UpdateLastLoggedIn(Guid userId);
+        Task DeleteUserByUserId(Guid userId);
     }
 }
