@@ -100,6 +100,7 @@ namespace API
             
             // Dependency injection.
             services.Configure<ProGenConfig>(_proGenConfig);
+            services.Configure<TokenConfig>(_tokenConfig);
             _dependencyInjection.AddDependencyInjectionServices(services);
             _dependencyInjection.AddDependencyInjectionRepositories(services, _connectionString);
         }
