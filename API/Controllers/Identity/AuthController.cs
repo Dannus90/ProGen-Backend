@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Core.Domain.Dtos;
+using Core.Domain.ViewModels;
 using Infrastructure.Identity.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,13 +30,16 @@ namespace API.Controllers.Identity
         
         /**
          * Responsible for logging an user into the application.
+         *
+         * @Param Takes in a UserCredentialsDTO with user credentials. 
+         * 
+         * @Returns a TokenResponseViewModel containing the a DTO representing the token data. 
          */
         [HttpPost] //api/v1/user/auth/login
         [Route("login")]
-        public async Task<ActionResult> Login(UserCredentialsDto userCredentials)
+        public async Task<ActionResult<TokenResponseViewModel>> Login(UserCredentialsDto userCredentials)
         {
-            await _userAuthService.LoginUser(userCredentials);
-            return Ok();
+            return Ok(await _userAuthService.LoginUser(userCredentials));
         }
         
         /**

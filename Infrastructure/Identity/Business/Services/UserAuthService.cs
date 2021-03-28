@@ -5,6 +5,7 @@ using AutoMapper;
 using Core.Application.Exceptions;
 using Core.Domain.Dtos;
 using Core.Domain.Models;
+using Core.Domain.ViewModels;
 using Infrastructure.Identity.Repositories.Interfaces;
 using Infrastructure.Identity.Services.Interfaces;
 using Infrastructure.Persistence.Repositories.Interfaces;
@@ -44,7 +45,7 @@ namespace Infrastructure.Identity.Services
                     .ToLower());
         }
         
-        public async Task LoginUser(UserCredentialsDto userCredentialsDto)
+        public async Task<TokenResponseViewModel> LoginUser(UserCredentialsDto userCredentialsDto)
         {
             var userCredentials = _mapper.Map<UserCredentials>(userCredentialsDto);
             var user = await _userRepository.GetUserByEmail(userCredentials.Email);
@@ -63,9 +64,17 @@ namespace Infrastructure.Identity.Services
                 throw new HttpExceptionResponse(401, "Incorrect email or password");
             }
 
-            _tokenHandler.GenerateJsonWebToken(user);
+            var accessToken = _tokenHandler.GenerateJsonWebToken(user);
+            var refreshToken = _tokenHandler.GenerateRefreshToken(user);
 
-            await _userRepository.UpdateLastLoggedIn(user.Id);
+            return new TokenResponseViewModel()
+            {
+                TokenResponse = new TokenResponseDto()
+                {
+                    AccessToken = accessToken,
+                    RefreshToken = refreshToken
+                }
+            };
         }
     }
 }

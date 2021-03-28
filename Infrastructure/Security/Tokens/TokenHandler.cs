@@ -18,6 +18,13 @@ namespace Infrastructure.Security.Tokens
             _tokenConfig = tokenConfig;
         }
         
+        /**
+         * Generates a JSON web token.
+         *
+         * @param {User} userInfo - Contains user data. 
+         * 
+         * @returns string representing a Json web token.
+         */
         public string GenerateJsonWebToken(User userInfo)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokenConfig.Value.SecretKey));
@@ -32,6 +39,32 @@ namespace Infrastructure.Security.Tokens
                 _tokenConfig.Value.Audience,
                 claims,
                 expires: DateTime.Now.AddSeconds(_tokenConfig.Value.AccessTokenExpiration),
+                signingCredentials: credentials);
+
+            return new JwtSecurityTokenHandler()
+                .WriteToken(token);   
+        }
+        
+        /**
+         * Generates a refresh token.
+         *
+         * @param {User} userInfo - Contains user data. 
+         * 
+         * @returns string representing a Json web token used as a refresh token.
+         */
+        public string GenerateRefreshToken(User userInfo)
+        {
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokenConfig.Value.SecretKey));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            
+            var claims = new[] {
+                new Claim(JwtRegisteredClaimNames.Email, userInfo.Email),
+            };
+
+            var token = new JwtSecurityToken(_tokenConfig.Value.Issuer,
+                _tokenConfig.Value.Audience,
+                claims,
+                expires: DateTime.Now.AddSeconds(_tokenConfig.Value.RefreshTokenExpiration),
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler()

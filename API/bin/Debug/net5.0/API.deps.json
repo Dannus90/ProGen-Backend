@@ -1946,8 +1946,10 @@
           "Core": "1.0.0",
           "Dapper": "2.0.78",
           "Microsoft.AspNetCore.Http": "2.2.2",
+          "Microsoft.IdentityModel.JsonWebTokens": "6.7.1",
           "Microsoft.IdentityModel.Tokens": "6.7.1",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "6.0.0-preview2"
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "6.0.0-preview2",
+          "System.IdentityModel.Tokens.Jwt": "6.7.1"
         },
         "runtime": {
           "Infrastructure.dll": {}
