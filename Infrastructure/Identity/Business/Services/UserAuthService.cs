@@ -44,7 +44,7 @@ namespace Infrastructure.Identity.Services
         {
             var userCredentials = _mapper.Map<UserCredentials>(userCredentialsDto);
             var user = await _userRepository.GetUserByEmail(userCredentials.Email);
-            
+
             // If no user we send unauthorized to not give information regarding if email exist or not.
             // Not found would give information that the email is not in use at the moment. 
             if (user == null)

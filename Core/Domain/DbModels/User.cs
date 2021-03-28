@@ -11,9 +11,12 @@ namespace Core.Domain.DbModels
         [Key]
         [Column("id", TypeName = "CHAR(36)")]
         public Guid Id { get ; set; }
-
-        public string IdString => Id.ToString("N");
-
+        
+        public string IdString {
+            get => Id.ToString("N");
+            set => Id = new Guid(value);
+        }
+        
         [Required]
         [Column("email", TypeName = "CHAR(128)")]
         public string Email { get; set; }
@@ -46,6 +49,10 @@ namespace Core.Domain.DbModels
             modelBuilder.Entity<User>().Property(u => u.UpdatedAt)
                 .HasDefaultValueSql("NOW()")
                 .ValueGeneratedOnAddOrUpdate();
+
+            modelBuilder.Entity<User>()
+                .Property(u => u.Id)
+                .HasConversion<string>();
         }
     }
 }

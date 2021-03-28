@@ -64,6 +64,9 @@ namespace API.Migrations
                         .HasColumnType("CHAR(128)")
                         .HasColumnName("email");
 
+                    b.Property<string>("IdString")
+                        .HasColumnType("text");
+
                     b.Property<DateTime?>("LastLogin")
                         .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_login");

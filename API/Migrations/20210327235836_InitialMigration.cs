@@ -26,6 +26,7 @@ namespace API.Migrations
                 columns: table => new
                 {
                     id = table.Column<string>(type: "CHAR(36)", nullable: false),
+                    IdString = table.Column<string>(type: "text", nullable: true),
                     email = table.Column<string>(type: "CHAR(128)", nullable: false),
                     password = table.Column<string>(type: "CHAR(500)", nullable: false),
                     last_login = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
