@@ -42,5 +42,24 @@ namespace Infrastructure.Identity.Repositories
                 Id = userId
             });
         }
+        
+        public async Task SaveRefreshToken(string refreshToken, Guid userId)
+        {
+            const string query = @"
+                    Insert into refresh_token (id, user_id, refresh_token)
+                    VALUES (@TokenId, @UserId, @RefreshToken);  
+                ";
+            
+            var tokenId = Guid.NewGuid();
+            
+            using var conn = connectDb(_connectionString);
+            
+            await conn.ExecuteScalarAsync(query, new
+            {
+                RefreshToken = refreshToken,
+                UserId = userId,
+                TokenId = tokenId
+            });
+        }
     }
 }

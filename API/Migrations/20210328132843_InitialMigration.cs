@@ -14,7 +14,7 @@ namespace API.Migrations
                     refresh_token = table.Column<string>(type: "TEXT", nullable: false),
                     id = table.Column<string>(type: "CHAR(36)", nullable: false),
                     user_id = table.Column<string>(type: "Char(36)", nullable: false),
-                    token_set_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
+                    token_set_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "NOW()")
                 },
                 constraints: table =>
                 {

@@ -33,6 +33,10 @@ namespace Core.Domain.DbModels
 
             modelBuilder.Entity<RefreshToken>()
                 .HasKey(x => x.Token);
+            
+            modelBuilder.Entity<RefreshToken>().Property(u => u.TokenSetAt)
+                .HasDefaultValueSql("NOW()")
+                .ValueGeneratedOnAddOrUpdate();
         }
     }
 }

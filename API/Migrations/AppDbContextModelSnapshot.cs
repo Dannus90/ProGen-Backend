@@ -34,7 +34,8 @@ namespace API.Migrations
                     b.Property<DateTime>("TokenSetAt")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("timestamp without time zone")
-                        .HasColumnName("token_set_at");
+                        .HasColumnName("token_set_at")
+                        .HasDefaultValueSql("NOW()");
 
                     b.Property<string>("UserId")
                         .IsRequired()

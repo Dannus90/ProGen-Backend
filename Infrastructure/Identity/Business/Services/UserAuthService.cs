@@ -66,6 +66,9 @@ namespace Infrastructure.Identity.Services
 
             var accessToken = _tokenHandler.GenerateJsonWebToken(user);
             var refreshToken = _tokenHandler.GenerateRefreshToken(user);
+            
+            // Saving the refresh token in the database. 
+            await _userAuthRepository.SaveRefreshToken(refreshToken, user.Id);
 
             return new TokenResponseViewModel()
             {

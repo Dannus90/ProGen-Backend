@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210327235836_InitialMigration")]
+    [Migration("20210328132843_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,7 +36,8 @@ namespace API.Migrations
                     b.Property<DateTime>("TokenSetAt")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("timestamp without time zone")
-                        .HasColumnName("token_set_at");
+                        .HasColumnName("token_set_at")
+                        .HasDefaultValueSql("NOW()");
 
                     b.Property<string>("UserId")
                         .IsRequired()
