@@ -44,6 +44,26 @@ namespace Infrastructure.Persistence.Repositories
             });
         }
         
+        public async Task<User> GetUserByUserId(string userId)
+        {
+            const string query = @"
+                    SELECT id AS IdString,
+                            email AS Email,
+                            password AS Password,
+                            last_login AS LastLogin,
+                            created_at AS CreatedAt,
+                            updated_at AS UpdatedAt   
+                    FROM user_base WHERE id = @UserId;  
+                ";
+            
+            using var conn = connectDb(_connectionString);
+
+            return await conn.QueryFirstOrDefaultAsync<User>(query, new
+            {
+                UserID = userId
+            });
+        }
+        
         public async Task UpdateLastLoggedIn(Guid userId)
         {
             const string query = @"

@@ -12,8 +12,18 @@ namespace Core.Domain.DbModels
         [Column("id", TypeName = "CHAR(36)")]
         public Guid Id { get; set; }
         
+        public string IdString {
+            get => Id.ToString("N");
+            set => Id = new Guid(value);
+        }
+        
         [Column("user_id", TypeName = "Char(36)")]
         public Guid UserId { get; set; }
+        
+        public string UserIdString {
+            get => UserId.ToString("N");
+            set => UserId = new Guid(value);
+        }
         
         [Column("refresh_token", TypeName = "TEXT")]
         [Required]
@@ -30,6 +40,10 @@ namespace Core.Domain.DbModels
         {
             modelBuilder.Entity<RefreshToken>()
                 .HasKey(x => x.UserId);
+
+            modelBuilder.Entity<RefreshToken>()
+                .HasIndex(rf => rf.UserId)
+                .IsUnique();
 
             modelBuilder.Entity<RefreshToken>()
                 .HasKey(x => x.Token);

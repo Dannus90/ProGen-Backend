@@ -13,7 +13,9 @@ namespace API.Migrations
                 {
                     refresh_token = table.Column<string>(type: "TEXT", nullable: false),
                     id = table.Column<string>(type: "CHAR(36)", nullable: false),
+                    IdString = table.Column<string>(type: "text", nullable: true),
                     user_id = table.Column<string>(type: "Char(36)", nullable: false),
+                    UserIdString = table.Column<string>(type: "text", nullable: true),
                     token_set_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "NOW()")
                 },
                 constraints: table =>
@@ -37,6 +39,12 @@ namespace API.Migrations
                 {
                     table.PrimaryKey("PK_user_base", x => x.id);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_refresh_token_user_id",
+                table: "refresh_token",
+                column: "user_id",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_user_base_email",

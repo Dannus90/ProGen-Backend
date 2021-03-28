@@ -72,7 +72,49 @@ namespace Infrastructure.Identity.Services
 
             return new TokenResponseViewModel()
             {
-                TokenResponse = new TokenResponseDto()
+                TokenResponse = new TokenDataDto()
+                {
+                    AccessToken = accessToken,
+                    RefreshToken = refreshToken
+                }
+            };
+        }
+
+        public async Task<TokenResponseViewModel> GenerateAccessTokenFromRefreshToken
+            (string userId, string refreshToken)
+        {
+            var refreshTokenDb = await _userAuthRepository.GetRefreshTokenByUserId(userId);
+            
+            // Check if refreshToken exist in db. 
+            if (refreshTokenDb == null)
+            {
+                throw new HttpExceptionResponse(401, "No refresh token related to user exist.");
+            }
+
+            Console.WriteLine(refreshToken);
+            Console.WriteLine(refreshTokenDb.Token);
+            
+            // Check so that the provided refresh token and db refresh token are equal.
+            if (!Equals(refreshTokenDb.Token, refreshToken))
+            {
+                throw new HttpExceptionResponse(401, "The provided refresh token is not valid.");
+            }
+            
+            var user = await _userRepository.GetUserByEmail(userId);
+            
+            // Check so that the provided refresh token and db refresh token are equal.
+            if (user == null)
+            {
+                throw new HttpExceptionResponse(404, "No user related to the user id exist.");
+            }
+            
+            // Generating a new access token.
+            var accessToken = _tokenHandler.GenerateJsonWebToken(user);
+            
+            // We only update life time and generate new refresh token upon login for security reasons. 
+            return new TokenResponseViewModel()
+            {
+                TokenResponse = new TokenDataDto()
                 {
                     AccessToken = accessToken,
                     RefreshToken = refreshToken

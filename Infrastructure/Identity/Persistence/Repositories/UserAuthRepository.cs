@@ -1,7 +1,7 @@
 using System;
 using System.Data;
 using System.Threading.Tasks;
-
+using Core.Domain.DbModels;
 using Dapper;
 using Infrastructure.Identity.Repositories.Interfaces;
 using Npgsql;
@@ -59,6 +59,24 @@ namespace Infrastructure.Identity.Repositories
                 RefreshToken = refreshToken,
                 UserId = userId,
                 TokenId = tokenId
+            });
+        }
+        
+        public async Task<RefreshToken> GetRefreshTokenByUserId(string userId)
+        {
+            const string query = @"
+                    SELECT id AS IdString,
+                            user_Id AS UserIdString,
+                            refresh_token AS RefreshToken,
+                            token_set_at AS TokenSetAt
+                    FROM refresh_token WHERE user_id = @UserId;  
+                ";
+            
+            using var conn = connectDb(_connectionString);
+            
+            return await conn.QueryFirstOrDefaultAsync<RefreshToken>(query, new
+            {
+                UserId = userId
             });
         }
     }

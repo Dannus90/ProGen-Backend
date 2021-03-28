@@ -1,8 +1,14 @@
+using System;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Core.Application.Exceptions;
 using Core.Domain.Dtos;
 using Core.Domain.ViewModels;
 using Infrastructure.Identity.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.JsonWebTokens;
 
 namespace API.Controllers.Identity
 {
@@ -47,15 +53,25 @@ namespace API.Controllers.Identity
          */
         [HttpPost]
         [Route("refresh")]
-        public async Task<ActionResult> refresh()
+        public async Task<ActionResult<TokenResponseViewModel>> refresh(TokenDataDto tokenDataDto)
         {
-            return Ok("Hello");
+            var currentUser = HttpContext.User;
+            var userId = currentUser.Claims.FirstOrDefault(c => 
+                c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+            if (userId == null)
+            {
+                throw new HttpExceptionResponse(401, "No userId provided");
+            }
+
+            return Ok(await _userAuthService.GenerateAccessTokenFromRefreshToken(userId, tokenDataDto.RefreshToken));
         }
         
         /**
          * Responsible for logging a user out from an application. 
          */
         [HttpPost]
+        [Authorize]
         [Route("logout")]
         public async Task<ActionResult> logout()
         {

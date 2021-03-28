@@ -1,6 +1,7 @@
 using AutoMapper;
 using Core.Domain.Dtos;
 using Core.Domain.Models;
+using Core.Domain.ViewModels;
 
 namespace Core.Mapping
 {
@@ -10,6 +11,9 @@ namespace Core.Mapping
         {
             // From UserCredentialsDto -> UserCredentials.
             CreateMap<UserCredentialsDto, UserCredentials>();
+            
+            // From UserCredentialsDto -> UserCredentials -> UserCredentialsDto.
+            CreateMap<TokenDataDto, TokenData>();
         }
     }
 }

@@ -31,6 +31,9 @@ namespace API.Migrations
                         .HasColumnType("CHAR(36)")
                         .HasColumnName("id");
 
+                    b.Property<string>("IdString")
+                        .HasColumnType("text");
+
                     b.Property<DateTime>("TokenSetAt")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("timestamp without time zone")
@@ -42,7 +45,13 @@ namespace API.Migrations
                         .HasColumnType("Char(36)")
                         .HasColumnName("user_id");
 
+                    b.Property<string>("UserIdString")
+                        .HasColumnType("text");
+
                     b.HasKey("Token");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("refresh_token");
                 });

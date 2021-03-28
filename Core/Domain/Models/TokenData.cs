@@ -1,6 +1,6 @@
-namespace Core.Domain.Dtos
+namespace Core.Domain.ViewModels
 {
-    public class TokenResponseDto
+    public class TokenData
     {
         public string AccessToken { get; set; }
         public string RefreshToken { get; set; }
