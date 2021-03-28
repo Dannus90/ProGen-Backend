@@ -101,6 +101,7 @@ namespace API
             // Dependency injection.
             services.Configure<ProGenConfig>(_proGenConfig);
             services.Configure<TokenConfig>(_tokenConfig);
+            _dependencyInjection.AddDependencyInjectionHandlers(services);
             _dependencyInjection.AddDependencyInjectionServices(services);
             _dependencyInjection.AddDependencyInjectionRepositories(services, _connectionString);
         }
@@ -114,7 +115,7 @@ namespace API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
             }
-
+            
             db.Database.EnsureCreated();
 
             app.UseHttpsRedirection();

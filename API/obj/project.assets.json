@@ -2312,7 +2312,10 @@
           "Core": "1.0.0",
           "Dapper": "2.0.78",
           "Microsoft.AspNetCore.Http": "2.2.2",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "6.0.0-preview2"
+          "Microsoft.IdentityModel.JsonWebTokens": "6.7.1",
+          "Microsoft.IdentityModel.Tokens": "6.7.1",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "6.0.0-preview2",
+          "System.IdentityModel.Tokens.Jwt": "6.7.1"
         },
         "compile": {
           "bin/placeholder/Infrastructure.dll": {}
@@ -7467,12 +7470,12 @@
     "Core/1.0.0": {
       "type": "project",
       "path": "../Core/Core.csproj",
-      "msbuildProject": "../Core/Core.csproj"
+      "msbuildProject": "../../../../../LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/Core/Core.csproj"
     },
     "Infrastructure/1.0.0": {
       "type": "project",
       "path": "../Infrastructure/Infrastructure.csproj",
-      "msbuildProject": "../Infrastructure/Infrastructure.csproj"
+      "msbuildProject": "../../../../../LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/Infrastructure/Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {

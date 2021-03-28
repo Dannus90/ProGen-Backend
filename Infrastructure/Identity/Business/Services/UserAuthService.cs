@@ -9,6 +9,7 @@ using Infrastructure.Identity.Repositories.Interfaces;
 using Infrastructure.Identity.Services.Interfaces;
 using Infrastructure.Persistence.Repositories.Interfaces;
 using Infrastructure.Security;
+using Infrastructure.Security.Tokens;
 
 namespace Infrastructure.Identity.Services
 {
@@ -16,14 +17,17 @@ namespace Infrastructure.Identity.Services
     {
         private readonly IUserAuthRepository _userAuthRepository;
         private readonly IUserRepository _userRepository;
+        private readonly ITokenHandler _tokenHandler;
         private readonly IMapper _mapper;
         
         public UserAuthService(IUserAuthRepository userAuthRepository,
             IUserRepository userRepository,
+            ITokenHandler tokenHandler,
             IMapper mapper)
         {
             _userAuthRepository = userAuthRepository;
             _userRepository = userRepository;
+            _tokenHandler = tokenHandler;
             _mapper = mapper;
         }
 
@@ -58,6 +62,8 @@ namespace Infrastructure.Identity.Services
             {
                 throw new HttpExceptionResponse(401, "Incorrect email or password");
             }
+
+            _tokenHandler.GenerateJsonWebToken(user);
 
             await _userRepository.UpdateLastLoggedIn(user.Id);
         }

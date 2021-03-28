@@ -5,6 +5,7 @@ using Infrastructure.Identity.Services;
 using Infrastructure.Identity.Services.Interfaces;
 using Infrastructure.Persistence.Repositories;
 using Infrastructure.Persistence.Repositories.Interfaces;
+using Infrastructure.Security.Tokens;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace API
@@ -20,6 +21,11 @@ namespace API
         {
             services.AddSingleton<IUserAuthRepository>(new UserAuthRepository(connectionString));
             services.AddSingleton<IUserRepository>(new UserRepository(connectionString));
+        }
+
+        public void AddDependencyInjectionHandlers(IServiceCollection services)
+        {
+            services.AddScoped<ITokenHandler, TokenHandler>();
         }
     }
 }
