@@ -11,28 +11,30 @@ namespace Core.Domain.DbModels
         [Key]
         [Column("id", TypeName = "CHAR(36)", Order = 1)]
         public Guid Id { get; set; }
-        
-        public string IdString {
+
+        public string IdString
+        {
             get => Id.ToString("N");
             set => Id = new Guid(value);
         }
-        
+
         [Column("user_id", TypeName = "Char(36)")]
         public Guid UserId { get; set; }
-        
-        public string UserIdString {
+
+        public string UserIdString
+        {
             get => UserId.ToString("N");
             set => UserId = new Guid(value);
         }
-        
+
         [Column("refresh_token", TypeName = "TEXT")]
         [Required]
         public Guid Token { get; set; }
-        
+
         [Column("token_set_at")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime TokenSetAt { get; set; }
-        
+
         /**
          * Model configurations.
          *
@@ -46,7 +48,7 @@ namespace Core.Domain.DbModels
 
             modelBuilder.Entity<RefreshToken>()
                 .HasIndex(x => x.Token);
-            
+
             modelBuilder.Entity<RefreshToken>()
                 .Property(u => u.TokenSetAt)
                 .HasDefaultValueSql("NOW()")
@@ -57,7 +59,7 @@ namespace Core.Domain.DbModels
 
             modelBuilder.Entity<RefreshToken>()
                 .Ignore(rf => rf.IdString);
-            
+
             modelBuilder.Entity<RefreshToken>()
                 .Ignore(rf => rf.UserIdString);
         }

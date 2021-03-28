@@ -17,7 +17,7 @@ namespace Infrastructure.Security.Tokens
         {
             _tokenConfig = tokenConfig;
         }
-        
+
         /**
          * Generates a JSON web token.
          *
@@ -29,10 +29,11 @@ namespace Infrastructure.Security.Tokens
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokenConfig.Value.SecretKey));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-            
-            var claims = new[] {    
-                new Claim(JwtRegisteredClaimNames.Sub, userInfo.Id.ToString()),    
-                new Claim(JwtRegisteredClaimNames.Email, userInfo.Email),
+
+            var claims = new[]
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, userInfo.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.Email, userInfo.Email)
             };
 
             var token = new JwtSecurityToken(_tokenConfig.Value.Issuer,
@@ -42,9 +43,9 @@ namespace Infrastructure.Security.Tokens
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler()
-                .WriteToken(token);   
+                .WriteToken(token);
         }
-        
+
         /**
          * Generates a refresh token.
          *
@@ -56,9 +57,10 @@ namespace Infrastructure.Security.Tokens
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokenConfig.Value.SecretKey));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-            
-            var claims = new[] {
-                new Claim(JwtRegisteredClaimNames.Email, userInfo.Email),
+
+            var claims = new[]
+            {
+                new Claim(JwtRegisteredClaimNames.Email, userInfo.Email)
             };
 
             var token = new JwtSecurityToken(_tokenConfig.Value.Issuer,
@@ -68,7 +70,7 @@ namespace Infrastructure.Security.Tokens
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler()
-                .WriteToken(token);   
+                .WriteToken(token);
         }
     }
 }

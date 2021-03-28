@@ -4,9 +4,6 @@ namespace Core.Application.Exceptions
 {
     public class ExceptionResponse
     {
-        public int StatusCode { get; set; }
-        public string Message { get; set; }
-        public string Type { get; set; }
         public ExceptionResponse(int statusCode, string message, string type)
         {
             StatusCode = statusCode;
@@ -14,11 +11,15 @@ namespace Core.Application.Exceptions
             Type = type;
         }
 
+        public int StatusCode { get; set; }
+        public string Message { get; set; }
+        public string Type { get; set; }
+
         public ObjectResult CreateObjectResult()
         {
-            return new ObjectResult(this)
+            return new(this)
             {
-                StatusCode = StatusCode,
+                StatusCode = StatusCode
             };
         }
     }

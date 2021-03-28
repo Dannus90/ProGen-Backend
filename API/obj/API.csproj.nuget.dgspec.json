@@ -142,22 +142,6 @@
               "target": "Package",
               "version": "[8.1.1, )"
             },
-            "EntityFramework.Core": {
-              "target": "Package",
-              "version": "[7.0.0-rc1-final, )"
-            },
-            "Microsoft.AspNet.Mvc": {
-              "target": "Package",
-              "version": "[5.2.7, )"
-            },
-            "Microsoft.AspNet.Mvc.Core": {
-              "target": "Package",
-              "version": "[6.0.0-rc1-final, )"
-            },
-            "Microsoft.AspNet.WebApi.Core": {
-              "target": "Package",
-              "version": "[5.2.7, )"
-            },
             "Microsoft.AspNetCore.Mvc.Core": {
               "target": "Package",
               "version": "[2.2.5, )"

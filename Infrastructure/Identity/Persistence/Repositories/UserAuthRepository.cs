@@ -8,7 +8,7 @@ using Npgsql;
 
 namespace Infrastructure.Identity.Repositories
 {
-    public class UserAuthRepository :IUserAuthRepository
+    public class UserAuthRepository : IUserAuthRepository
     {
         private readonly string _connectionString;
 
@@ -17,24 +17,17 @@ namespace Infrastructure.Identity.Repositories
             _connectionString = connectionString;
         }
 
-        private static IDbConnection connectDb(string connectionString)
-        {
-            var connection = new NpgsqlConnection(connectionString);
-            connection.OpenAsync();
-            return connection;
-        }
-
         public async Task RegisterUser(string hashedPassword, string email)
         {
             const string query = @"
                     Insert into user_base (id, email, password)
                     VALUES (@Id, @Email, @Password);  
                 ";
-            
+
             var userId = Guid.NewGuid();
 
             using var conn = connectDb(_connectionString);
-            
+
             await conn.ExecuteScalarAsync(query, new
             {
                 Email = email,
@@ -42,18 +35,18 @@ namespace Infrastructure.Identity.Repositories
                 Id = userId
             });
         }
-        
+
         public async Task SaveRefreshToken(string refreshToken, Guid userId)
         {
             const string query = @"
                     Insert into refresh_token (id, user_id, refresh_token)
                     VALUES (@TokenId, @UserId, @RefreshToken);  
                 ";
-            
+
             var tokenId = Guid.NewGuid();
-            
+
             using var conn = connectDb(_connectionString);
-            
+
             await conn.ExecuteScalarAsync(query, new
             {
                 RefreshToken = refreshToken,
@@ -61,7 +54,7 @@ namespace Infrastructure.Identity.Repositories
                 TokenId = tokenId
             });
         }
-        
+
         public async Task UpdateRefreshTokenByUserId(string refreshToken, Guid userId)
         {
             const string query = @"
@@ -71,11 +64,11 @@ namespace Infrastructure.Identity.Repositories
                 ";
 
             using var conn = connectDb(_connectionString);
-            
+
             await conn.ExecuteScalarAsync(query, new
             {
                 RefreshToken = refreshToken,
-                UserId = userId.ToString(),
+                UserId = userId.ToString()
             });
         }
 
@@ -88,9 +81,9 @@ namespace Infrastructure.Identity.Repositories
                             token_set_at AS TokenSetAt
                     FROM refresh_token WHERE user_id = @UserId;  
                 ";
-            
+
             using var conn = connectDb(_connectionString);
-            
+
             return await conn.QueryFirstOrDefaultAsync<RefreshToken>(query, new
             {
                 UserId = userId
@@ -103,9 +96,9 @@ namespace Infrastructure.Identity.Repositories
                     DELETE FROM refresh_token
                     WHERE refresh_token.user_id = @UserId;
                 ";
-            
+
             using var conn = connectDb(_connectionString);
-            
+
             await conn.ExecuteScalarAsync(query, new
             {
                 UserId = userId
@@ -119,16 +112,23 @@ namespace Infrastructure.Identity.Repositories
                     SET last_login = @LastLoggedIn
                     WHERE id = @UserId;
                 ";
-            
+
             var lastLogin = DateTime.Now;
-            
+
             using var conn = connectDb(_connectionString);
-            
+
             await conn.ExecuteScalarAsync(query, new
             {
                 LastLoggedIn = lastLogin,
                 UserId = userId.ToString()
             });
+        }
+
+        private static IDbConnection connectDb(string connectionString)
+        {
+            var connection = new NpgsqlConnection(connectionString);
+            connection.OpenAsync();
+            return connection;
         }
     }
 }

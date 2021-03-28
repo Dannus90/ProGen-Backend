@@ -1,5 +1,4 @@
 using System;
-using Core.Domain.DbModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace Core.Context

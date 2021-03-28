@@ -1,5 +1,3 @@
-using System;
-
 namespace Core.Application.Exceptions.ResponseHandlers
 {
     public static class HttpResponseHandler

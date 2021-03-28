@@ -12,15 +12,15 @@ namespace Core.Application.Exceptions.ResponseHandlers
             {
                 case "23505":
                     return GetDublicateKeyType(e);
-                
-                default: 
+
+                default:
                     Console.WriteLine($"[{e.GetType().FullName}] {e.Message}");
                     Console.WriteLine(e.StackTrace);
                     Console.WriteLine(e.InnerException?.StackTrace);
                     return DefaultExceptionResponse();
             }
         }
-        
+
         /**
          * The default fallback exception.
          */
@@ -40,7 +40,7 @@ namespace Core.Application.Exceptions.ResponseHandlers
                 case string msg when msg.Contains("IX_user_base_email"):
                     return new ExceptionResponse(409, "Email already in use.",
                         "DuplicateKeyError");
-                
+
                 default:
                     return new ExceptionResponse(409, "Duplicate key",
                         "DuplicateKeyError");

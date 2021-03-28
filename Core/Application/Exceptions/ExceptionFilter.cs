@@ -1,5 +1,4 @@
 using System;
-using System.Data.Common;
 using Core.Application.Exceptions.ResponseHandlers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -22,7 +21,7 @@ namespace Core.Application.Exceptions
                 case NpgsqlException e:
                     response = DbResponseHandler.Respond(e);
                     break;
-                
+
                 case HttpExceptionResponse e:
                     response = HttpResponseHandler.Respond(e);
                     break;
@@ -38,7 +37,7 @@ namespace Core.Application.Exceptions
             context.ExceptionHandled = true;
             context.Result = response.CreateObjectResult();
         }
-        
+
         /**
          * The default fallback exception.
          */

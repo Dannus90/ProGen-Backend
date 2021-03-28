@@ -1,4 +1,3 @@
-using System;
 using Infrastructure.Identity.Repositories;
 using Infrastructure.Identity.Repositories.Interfaces;
 using Infrastructure.Identity.Services;
@@ -16,7 +15,7 @@ namespace API
         {
             services.AddScoped<IUserAuthService, UserAuthService>();
         }
-        
+
         public void AddDependencyInjectionRepositories(IServiceCollection services, string connectionString)
         {
             services.AddSingleton<IUserAuthRepository>(new UserAuthRepository(connectionString));

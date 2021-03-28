@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using API.helpers;
 using AutoMapper;
@@ -16,11 +15,11 @@ namespace Infrastructure.Identity.Services
 {
     public class UserAuthService : IUserAuthService
     {
+        private readonly IMapper _mapper;
+        private readonly ITokenHandler _tokenHandler;
         private readonly IUserAuthRepository _userAuthRepository;
         private readonly IUserRepository _userRepository;
-        private readonly ITokenHandler _tokenHandler;
-        private readonly IMapper _mapper;
-        
+
         public UserAuthService(IUserAuthRepository userAuthRepository,
             IUserRepository userRepository,
             ITokenHandler tokenHandler,
@@ -37,14 +36,14 @@ namespace Infrastructure.Identity.Services
             var userCredentials = _mapper.Map<UserCredentials>(userCredentialsDto);
             CredentialsValidation.ValidateCredentials(userCredentials.Password,
                 userCredentials.Email);
-            
+
             var hashedPassword = PasswordHandler.HashPassword(userCredentials.Password);
-            await _userAuthRepository.RegisterUser(hashedPassword.Trim(), 
+            await _userAuthRepository.RegisterUser(hashedPassword.Trim(),
                 userCredentials.Email
                     .Trim()
                     .ToLower());
         }
-        
+
         public async Task<TokenResponseViewModel> LoginUser(UserCredentialsDto userCredentialsDto)
         {
             var userCredentials = _mapper.Map<UserCredentials>(userCredentialsDto);
@@ -52,39 +51,30 @@ namespace Infrastructure.Identity.Services
 
             // If no user we send unauthorized to not give information regarding if email exist or not.
             // Not found would give information that the email is not in use at the moment. 
-            if (user == null)
-            {
-                throw new HttpExceptionResponse(401, "Incorrect email or password");
-            }
+            if (user == null) throw new HttpExceptionResponse(401, "Incorrect email or password");
 
             // Password verification.
             if (!PasswordHandler.VerifyPassword(userCredentials.Password,
                 user.Password.Trim()))
-            {
                 throw new HttpExceptionResponse(401, "Incorrect email or password");
-            }
 
             var accessToken = _tokenHandler.GenerateJsonWebToken(user);
             var refreshToken = _tokenHandler.GenerateRefreshToken(user);
             var refreshTokenDb = await _userAuthRepository
                 .GetRefreshTokenByUserId(user.Id.ToString());
-            
+
             // Either updating or saving the token depending on if the user has a refresh token saved or not. 
             if (refreshTokenDb != null)
-            {
                 await _userAuthRepository.UpdateRefreshTokenByUserId(refreshToken, user.Id);
-            }
             else
-            {
                 await _userAuthRepository.SaveRefreshToken(refreshToken, user.Id);
-            }
-            
+
             // Set last logged in. 
             await _userAuthRepository.UpdateLastLoggedIn(user.Id);
 
-            return new TokenResponseViewModel()
+            return new TokenResponseViewModel
             {
-                TokenResponse = new TokenDataDto()
+                TokenResponse = new TokenDataDto
                 {
                     AccessToken = accessToken,
                     RefreshToken = refreshToken
@@ -96,34 +86,26 @@ namespace Infrastructure.Identity.Services
             (string userId, string refreshToken)
         {
             var refreshTokenDb = await _userAuthRepository.GetRefreshTokenByUserId(userId);
-            
+
             // Check if refreshToken exist in db. 
-            if (refreshTokenDb == null)
-            {
-                throw new HttpExceptionResponse(401, "No refresh token related to user exist.");
-            }
+            if (refreshTokenDb == null) throw new HttpExceptionResponse(401, "No refresh token related to user exist.");
 
             // Check so that the provided refresh token and db refresh token are equal.
             if (!Equals(refreshTokenDb.Token, refreshToken))
-            {
                 throw new HttpExceptionResponse(401, "The provided refresh token is not valid.");
-            }
-            
+
             var user = await _userRepository.GetUserByEmail(userId);
-            
+
             // Check so that the provided refresh token and db refresh token are equal.
-            if (user == null)
-            {
-                throw new HttpExceptionResponse(404, "No user related to the user id exist.");
-            }
-            
+            if (user == null) throw new HttpExceptionResponse(404, "No user related to the user id exist.");
+
             // Generating a new access token.
             var accessToken = _tokenHandler.GenerateJsonWebToken(user);
-            
+
             // We only update life time and generate new refresh token upon login for security reasons. 
-            return new TokenResponseViewModel()
+            return new TokenResponseViewModel
             {
-                TokenResponse = new TokenDataDto()
+                TokenResponse = new TokenDataDto
                 {
                     AccessToken = accessToken,
                     RefreshToken = refreshToken

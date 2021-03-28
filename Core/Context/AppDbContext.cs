@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.Context
 {
-    public class AppDbContext: DbContext
+    public class AppDbContext : DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -16,13 +16,10 @@ namespace Core.Context
         protected override void OnModelCreating(ModelBuilder dbModelBuilder)
         {
             // Seeding depending on environment
-            string environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
-            if (environment == "Development")
-            {
-                Seed.SeedDataBase(dbModelBuilder);
-            }
-            
+            if (environment == "Development") Seed.SeedDataBase(dbModelBuilder);
+
             Domain.DbModels.User.Configure(dbModelBuilder);
             Domain.DbModels.RefreshToken.Configure(dbModelBuilder);
         }
