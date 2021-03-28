@@ -69,6 +69,9 @@ namespace Infrastructure.Identity.Services
             
             // Saving the refresh token in the database. 
             await _userAuthRepository.SaveRefreshToken(refreshToken, user.Id);
+            
+            // Set last logged in. 
+            await _userAuthRepository.UpdateLastLoggedIn(user.Id);
 
             return new TokenResponseViewModel()
             {
@@ -91,9 +94,6 @@ namespace Infrastructure.Identity.Services
                 throw new HttpExceptionResponse(401, "No refresh token related to user exist.");
             }
 
-            Console.WriteLine(refreshToken);
-            Console.WriteLine(refreshTokenDb.Token);
-            
             // Check so that the provided refresh token and db refresh token are equal.
             if (!Equals(refreshTokenDb.Token, refreshToken))
             {
@@ -120,6 +120,11 @@ namespace Infrastructure.Identity.Services
                     RefreshToken = refreshToken
                 }
             };
+        }
+
+        public async Task DeleteRefreshToken(string userId)
+        {
+            await _userAuthRepository.DeleteRefreshTokenByUserId(userId);
         }
     }
 }

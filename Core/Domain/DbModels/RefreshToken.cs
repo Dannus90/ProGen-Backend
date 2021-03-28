@@ -34,7 +34,9 @@ namespace Core.Domain.DbModels
         public DateTime TokenSetAt { get; set; }
         
         /**
-         * Model configurations. 
+         * Model configurations.
+         *
+         * @Param {ModelBuilder} modelBuilder - Used for entity configurations in database.
          */
         public static void Configure(ModelBuilder modelBuilder)
         {
@@ -48,9 +50,17 @@ namespace Core.Domain.DbModels
             modelBuilder.Entity<RefreshToken>()
                 .HasKey(x => x.Token);
             
-            modelBuilder.Entity<RefreshToken>().Property(u => u.TokenSetAt)
+            modelBuilder.Entity<RefreshToken>()
+                .Property(u => u.TokenSetAt)
                 .HasDefaultValueSql("NOW()")
                 .ValueGeneratedOnAddOrUpdate();
+
+            modelBuilder.Entity<RefreshToken>()
+                .Ignore(rf => rf.IdString);
+            
+            modelBuilder.Entity<RefreshToken>()
+                .Ignore(rf => rf.UserIdString);
+
         }
     }
 }

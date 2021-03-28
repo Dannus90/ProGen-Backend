@@ -79,5 +79,39 @@ namespace Infrastructure.Identity.Repositories
                 UserId = userId
             });
         }
+
+        public async Task DeleteRefreshTokenByUserId(string userId)
+        {
+            const string query = @"
+                    DELETE FROM refresh_token
+                    WHERE refresh_token.user_id = @UserId;
+                ";
+            
+            using var conn = connectDb(_connectionString);
+            
+            await conn.ExecuteScalarAsync(query, new
+            {
+                UserId = userId
+            });
+        }
+
+        public async Task UpdateLastLoggedIn(Guid userId)
+        {
+            const string query = @"
+                    UPDATE user_base
+                    SET last_login = @LastLoggedIn
+                    WHERE id = @UserId;
+                ";
+            
+            var lastLogin = DateTime.Now;
+            
+            using var conn = connectDb(_connectionString);
+            
+            await conn.ExecuteScalarAsync(query, new
+            {
+                LastLoggedIn = lastLogin,
+                UserId = userId.ToString()
+            });
+        }
     }
 }

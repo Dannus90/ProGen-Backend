@@ -50,6 +50,10 @@ namespace API.Controllers.Identity
         
         /**
          * Responsible for generating a new access token with refresh token.
+         *
+         * @Param Takes in a TokeDataDTO with token data. 
+         * 
+         * @Returns a TokenResponseViewModel containing the a DTO representing the token data.
          */
         [HttpPost]
         [Route("refresh")]
@@ -75,7 +79,18 @@ namespace API.Controllers.Identity
         [Route("logout")]
         public async Task<ActionResult> logout()
         {
-            return Ok("Hello");
+            var currentUser = HttpContext.User;
+            var userId = currentUser.Claims.FirstOrDefault(c => 
+                c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+            if (userId == null)
+            {
+                throw new HttpExceptionResponse(401, "No userId provided");
+            }
+
+            await _userAuthService.DeleteRefreshToken(userId);
+            
+            return NoContent();
         }
     }
 }

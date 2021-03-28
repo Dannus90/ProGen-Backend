@@ -13,9 +13,7 @@ namespace API.Migrations
                 {
                     refresh_token = table.Column<string>(type: "TEXT", nullable: false),
                     id = table.Column<string>(type: "CHAR(36)", nullable: false),
-                    IdString = table.Column<string>(type: "text", nullable: true),
                     user_id = table.Column<string>(type: "Char(36)", nullable: false),
-                    UserIdString = table.Column<string>(type: "text", nullable: true),
                     token_set_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "NOW()")
                 },
                 constraints: table =>
@@ -28,7 +26,6 @@ namespace API.Migrations
                 columns: table => new
                 {
                     id = table.Column<string>(type: "CHAR(36)", nullable: false),
-                    IdString = table.Column<string>(type: "text", nullable: true),
                     email = table.Column<string>(type: "CHAR(128)", nullable: false),
                     password = table.Column<string>(type: "CHAR(500)", nullable: false),
                     last_login = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),

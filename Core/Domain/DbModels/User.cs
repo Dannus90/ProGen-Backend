@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 using Microsoft.EntityFrameworkCore;
 
 namespace Core.Domain.DbModels
@@ -18,6 +19,7 @@ namespace Core.Domain.DbModels
         }
         
         [Required]
+        [EmailAddress]
         [Column("email", TypeName = "CHAR(128)")]
         public string Email { get; set; }
         
@@ -34,7 +36,9 @@ namespace Core.Domain.DbModels
         public DateTime UpdatedAt { get; set; }
         
         /**
-         * Model configurations. 
+         * Model configurations.
+         *
+         * @Param {ModelBuilder} modelBuilder - Used for entity configurations in database.
          */
         public static void Configure(ModelBuilder modelBuilder)
         {
@@ -51,8 +55,7 @@ namespace Core.Domain.DbModels
                 .ValueGeneratedOnAddOrUpdate();
 
             modelBuilder.Entity<User>()
-                .Property(u => u.Id)
-                .HasConversion<string>();
+                .Ignore(u => u.IdString);
         }
     }
 }

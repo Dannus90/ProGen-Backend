@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210328145334_InitialMigration")]
+    [Migration("20210328173818_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,9 +33,6 @@ namespace API.Migrations
                         .HasColumnType("CHAR(36)")
                         .HasColumnName("id");
 
-                    b.Property<string>("IdString")
-                        .HasColumnType("text");
-
                     b.Property<DateTime>("TokenSetAt")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("timestamp without time zone")
@@ -46,9 +43,6 @@ namespace API.Migrations
                         .IsRequired()
                         .HasColumnType("Char(36)")
                         .HasColumnName("user_id");
-
-                    b.Property<string>("UserIdString")
-                        .HasColumnType("text");
 
                     b.HasKey("Token");
 
@@ -75,9 +69,6 @@ namespace API.Migrations
                         .IsRequired()
                         .HasColumnType("CHAR(128)")
                         .HasColumnName("email");
-
-                    b.Property<string>("IdString")
-                        .HasColumnType("text");
 
                     b.Property<DateTime?>("LastLogin")
                         .HasColumnType("timestamp without time zone")
