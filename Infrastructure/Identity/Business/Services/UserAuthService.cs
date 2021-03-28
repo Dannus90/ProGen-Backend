@@ -66,9 +66,18 @@ namespace Infrastructure.Identity.Services
 
             var accessToken = _tokenHandler.GenerateJsonWebToken(user);
             var refreshToken = _tokenHandler.GenerateRefreshToken(user);
+            var refreshTokenDb = await _userAuthRepository
+                .GetRefreshTokenByUserId(user.Id.ToString());
             
-            // Saving the refresh token in the database. 
-            await _userAuthRepository.SaveRefreshToken(refreshToken, user.Id);
+            // Either updating or saving the token depending on if the user has a refresh token saved or not. 
+            if (refreshTokenDb != null)
+            {
+                await _userAuthRepository.UpdateRefreshTokenByUserId(refreshToken, user.Id);
+            }
+            else
+            {
+                await _userAuthRepository.SaveRefreshToken(refreshToken, user.Id);
+            }
             
             // Set last logged in. 
             await _userAuthRepository.UpdateLastLoggedIn(user.Id);

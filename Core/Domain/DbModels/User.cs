@@ -10,7 +10,7 @@ namespace Core.Domain.DbModels
     public class User
     {
         [Key]
-        [Column("id", TypeName = "CHAR(36)")]
+        [Column("id", TypeName = "CHAR(36)", Order = 1)]
         public Guid Id { get ; set; }
         
         public string IdString {

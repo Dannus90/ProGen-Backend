@@ -8,6 +8,7 @@ namespace Infrastructure.Identity.Repositories.Interfaces
     {
         Task RegisterUser(string password, string email);
         Task SaveRefreshToken(string refreshToken, Guid userId);
+        Task UpdateRefreshTokenByUserId(string refreshToken, Guid userId);
         Task<RefreshToken> GetRefreshTokenByUserId(string userId);
         Task DeleteRefreshTokenByUserId(string userId);
         Task UpdateLastLoggedIn(Guid userId);

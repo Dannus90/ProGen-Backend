@@ -62,6 +62,23 @@ namespace Infrastructure.Identity.Repositories
             });
         }
         
+        public async Task UpdateRefreshTokenByUserId(string refreshToken, Guid userId)
+        {
+            const string query = @"
+                    UPDATE refresh_token
+                    SET refresh_token = @RefreshToken
+                    WHERE user_id = @UserId;
+                ";
+
+            using var conn = connectDb(_connectionString);
+            
+            await conn.ExecuteScalarAsync(query, new
+            {
+                RefreshToken = refreshToken,
+                UserId = userId.ToString(),
+            });
+        }
+
         public async Task<RefreshToken> GetRefreshTokenByUserId(string userId)
         {
             const string query = @"

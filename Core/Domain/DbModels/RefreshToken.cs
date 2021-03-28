@@ -9,7 +9,7 @@ namespace Core.Domain.DbModels
     public class RefreshToken
     {
         [Key]
-        [Column("id", TypeName = "CHAR(36)")]
+        [Column("id", TypeName = "CHAR(36)", Order = 1)]
         public Guid Id { get; set; }
         
         public string IdString {
@@ -41,14 +41,11 @@ namespace Core.Domain.DbModels
         public static void Configure(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<RefreshToken>()
-                .HasKey(x => x.UserId);
-
-            modelBuilder.Entity<RefreshToken>()
                 .HasIndex(rf => rf.UserId)
                 .IsUnique();
 
             modelBuilder.Entity<RefreshToken>()
-                .HasKey(x => x.Token);
+                .HasIndex(x => x.Token);
             
             modelBuilder.Entity<RefreshToken>()
                 .Property(u => u.TokenSetAt)
@@ -56,11 +53,13 @@ namespace Core.Domain.DbModels
                 .ValueGeneratedOnAddOrUpdate();
 
             modelBuilder.Entity<RefreshToken>()
+                .HasOne<User>();
+
+            modelBuilder.Entity<RefreshToken>()
                 .Ignore(rf => rf.IdString);
             
             modelBuilder.Entity<RefreshToken>()
                 .Ignore(rf => rf.UserIdString);
-
         }
     }
 }
