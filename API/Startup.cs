@@ -2,11 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using AutoMapper;
 using Core.Application.Exceptions;
 using Core.Configurations;
 using Core.Context;
 using Core.Mapping;
+using Infrastructure.Security.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -14,6 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace API
 {
@@ -23,6 +27,7 @@ namespace API
         private const string _allowedSpecificOrigins = "_allowedSpecificOrigins";
         private readonly string _connectionString;
         private readonly IConfigurationSection _proGenConfig;
+        private readonly IConfigurationSection _tokenConfig;
         private readonly DependencyInjection _dependencyInjection;
         public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
@@ -34,6 +39,7 @@ namespace API
             
             _configuration = configurationBuilder.Build();
             _proGenConfig = _configuration.GetSection("ProGenConfig");
+            _tokenConfig = _configuration.GetSection("TokenConfig");
             _connectionString = _proGenConfig.Get<ProGenConfig>().DbConnectionString;
             _dependencyInjection = new DependencyInjection();
         }
@@ -60,6 +66,24 @@ namespace API
                     }
                 );
             });
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(opt =>
+                {
+                    opt.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = _tokenConfig.Get<TokenConfig>().Issuer,
+                        ValidAudience = _tokenConfig.Get<TokenConfig>().Audience,
+                        IssuerSigningKey =
+                            new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokenConfig
+                                .Get<TokenConfig>()
+                                .SecretKey))
+                    };
+                });
 
             var mapperConfig = new MapperConfiguration(mc =>
             {
@@ -95,6 +119,7 @@ namespace API
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseCors(_allowedSpecificOrigins);
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
