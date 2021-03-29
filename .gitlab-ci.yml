@@ -4,7 +4,6 @@ image: microsoft/dotnet:latest
 
 stages:
   - build
-  - ci-test
 
 variables:
   project: "ProGenBackend"
