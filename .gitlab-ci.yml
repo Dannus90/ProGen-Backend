@@ -11,6 +11,8 @@ variables:
   POSTGRES_USER: progen
   POSTGRES_PASSWORD: "progen"
   POSTGRES_HOST_AUTH_METHOD: trust
+  
+  echo: postgres -v
 
 stages:
   - build
