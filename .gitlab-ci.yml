@@ -1,8 +1,10 @@
+name: CI-Tests
+
 image: microsoft/dotnet:latest
 
 stages:
   - build
-  - test
+  - ci-test
 
 variables:
   project: "ProGenBackend"
@@ -16,11 +18,3 @@ build:
     build_path: "$project"
   script:
     - "dotnet build"
-
-test:
-  stage: test
-  variables:
-    test_path: "$project/test/$project.Tests"
-  script:
-    - "cd $test_path"
-    - "dotnet test"
