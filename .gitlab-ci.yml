@@ -4,6 +4,7 @@ image: microsoft/dotnet:latest
 
 stages:
   - build
+  - ci-test
 
 variables:
   project: "ProGenBackend"
@@ -17,3 +18,11 @@ build:
     build_path: "$project"
   script:
     - "dotnet build"
+
+test:
+  stage: ci-test
+  image: ubuntu:latest
+  variables:
+    test_path: "$project"
+  script:
+    - "dotnet test"
