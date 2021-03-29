@@ -1,13 +1,20 @@
-name: CI-Tests
+name: CI-ests
 
 image: microsoft/dotnet:latest
+
+services:
+  - postgres:12.2-alpine
+
+variables:
+  project: "ProGenBackend"
+  POSTGRES_DB: progenlocal
+  POSTGRES_USER: progen
+  POSTGRES_PASSWORD: "progen"
+  POSTGRES_HOST_AUTH_METHOD: trust
 
 stages:
   - build
   - ci-test
-
-variables:
-  project: "ProGenBackend"
 
 before_script:
   - "dotnet restore"
