@@ -7,7 +7,7 @@ using Infrastructure.Persistence.Repositories.Interfaces;
 using Infrastructure.Security;
 using NUnit.Framework;
 
-namespace Tests.IntegrationsTests
+namespace Tests.IntegrationsTests.Repositories
 {
     public class UserAuthRepositoryTests
     {

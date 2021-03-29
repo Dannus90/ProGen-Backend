@@ -12,7 +12,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="IntegrationsTests\Repositories" />
         <Folder Include="UnitTests" />
     </ItemGroup>
 

@@ -8,5 +8,6 @@ namespace Infrastructure.Persistence.Repositories.Interfaces
     {
         Task<User> GetUserByEmail(string email);
         Task DeleteUserByUserId(Guid userId);
+        Task<User> GetUserByUserId(string userId);
     }
 }
