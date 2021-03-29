@@ -5,7 +5,7 @@ stages:
   - test
 
 variables:
-  project: "ProGenApi"
+  project: "ProGenBackend"
 
 before_script:
   - "dotnet restore"
@@ -13,7 +13,7 @@ before_script:
 build:
   stage: build
   variables:
-    build_path: "$project/src/$project"
+    build_path: "$project"
   script:
     - "cd $build_path"
     - "dotnet build"
