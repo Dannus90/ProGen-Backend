@@ -11,7 +11,7 @@ stages:
 build:
   stage: build
   script:
-    - apt-get update
+    - cat /etc/issue
   variables:
     build_path: "$project"
 
