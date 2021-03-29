@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Infrastructure.Identity.Repositories;
 using Infrastructure.Identity.Repositories.Interfaces;
@@ -61,6 +62,37 @@ namespace Tests.IntegrationsTests
             
             // Clean up
             await _userRepository.DeleteUserByUserId(user.Id);
+        }
+        
+        [Test]
+        public async Task SaveRefreshToken_WithRefreshTokenAndUserId_SuccessfullySavesRefreshToken()
+        {
+            // Arrange
+            const string refreshToken = "randomTestToken";
+            const string password = "dfgjwasgasgqwqer";
+            const string email = "farmorAnka@gmail.com";
+            var hashedPassword = PasswordHandler.HashPassword(password);
+            
+            // Act
+            await _userAuthRepository.RegisterUser(hashedPassword, email);
+            var user = await _userRepository.GetUserByEmail(email);
+            
+            await _userAuthRepository.SaveRefreshToken(refreshToken, user.Id);
+            var retrievedRefreshToken = await _userAuthRepository.GetRefreshTokenByUserId(user.Id.ToString());
+            
+            // Assert
+            Assert.AreEqual(retrievedRefreshToken.Token, refreshToken);
+            Assert.AreEqual(retrievedRefreshToken.UserId, user.Id);
+            
+            // Clean up
+            await _userAuthRepository.DeleteRefreshTokenByUserId(user.Id.ToString());
+            var removedRefreshToken = await _userAuthRepository.
+                GetRefreshTokenByUserId(user.Id.ToString());
+            
+            await _userRepository.DeleteUserByUserId(user.Id);
+            
+            // Assert clean up
+            Assert.IsNull(removedRefreshToken);
         }
     }
 }

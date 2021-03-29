@@ -77,7 +77,7 @@ namespace Infrastructure.Identity.Repositories
             const string query = @"
                     SELECT id AS IdString,
                             user_Id AS UserIdString,
-                            refresh_token AS RefreshToken,
+                            refresh_token AS Token,
                             token_set_at AS TokenSetAt
                     FROM refresh_token WHERE user_id = @UserId;  
                 ";

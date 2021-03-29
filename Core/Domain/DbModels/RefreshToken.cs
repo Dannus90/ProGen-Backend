@@ -29,7 +29,7 @@ namespace Core.Domain.DbModels
 
         [Column("refresh_token", TypeName = "TEXT")]
         [Required]
-        public Guid Token { get; set; }
+        public string Token { get; set; }
 
         [Column("token_set_at")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
