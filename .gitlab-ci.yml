@@ -23,7 +23,7 @@ stages:
 build:
   stage: build
   script:
-    - echo "hello dererer!" 
+    - postgres -V 
   variables:
     build_path: "$project"
 
