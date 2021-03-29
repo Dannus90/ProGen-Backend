@@ -3,7 +3,7 @@ default:
   
   before_script:
     - apt-get update
-    - apt install postgresql postgresql-contrib
+    - apt-get postgresql postgresql-contrib
     - postgres -V
 
   services:
