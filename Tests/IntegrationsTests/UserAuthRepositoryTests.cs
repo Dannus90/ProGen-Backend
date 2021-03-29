@@ -13,11 +13,32 @@ namespace Tests.IntegrationsTests
     {
         private readonly IUserAuthRepository _userAuthRepository;
         private readonly IUserRepository _userRepository;
+        private string setupEmail;
+        private string setupPassword;
+        private Guid setupUserId;
 
         public UserAuthRepositoryTests()
         {
             _userAuthRepository = new UserAuthRepository(TestConfig.ConnectionString);
             _userRepository = new UserRepository(TestConfig.ConnectionString);
+        }
+
+        [OneTimeSetUp]
+        public async Task Setup()
+        {
+            setupPassword = "dfgjwasgasgqwqer";
+            setupEmail = "farbrorAnka@gmail.com";
+            var hashedPassword = PasswordHandler.HashPassword(setupPassword);
+            await _userAuthRepository.RegisterUser(hashedPassword, setupEmail);
+            var user = await _userRepository.GetUserByEmail(setupEmail);
+
+            setupUserId = user.Id;
+        }
+
+        [OneTimeTearDown]
+        public async Task TearDown()
+        {
+            await _userRepository.DeleteUserByUserId(setupUserId);
         }
 
         [Test]
@@ -69,27 +90,48 @@ namespace Tests.IntegrationsTests
         {
             // Arrange
             const string refreshToken = "randomTestToken";
-            const string password = "dfgjwasgasgqwqer";
-            const string email = "farmorAnka@gmail.com";
-            var hashedPassword = PasswordHandler.HashPassword(password);
+
             
             // Act
-            await _userAuthRepository.RegisterUser(hashedPassword, email);
-            var user = await _userRepository.GetUserByEmail(email);
-            
-            await _userAuthRepository.SaveRefreshToken(refreshToken, user.Id);
-            var retrievedRefreshToken = await _userAuthRepository.GetRefreshTokenByUserId(user.Id.ToString());
+            await _userAuthRepository.SaveRefreshToken(refreshToken, setupUserId);
+            var retrievedRefreshToken = await _userAuthRepository.GetRefreshTokenByUserId(setupUserId.ToString());
             
             // Assert
             Assert.AreEqual(retrievedRefreshToken.Token, refreshToken);
-            Assert.AreEqual(retrievedRefreshToken.UserId, user.Id);
+            Assert.AreEqual(retrievedRefreshToken.UserId, setupUserId);
             
             // Clean up
-            await _userAuthRepository.DeleteRefreshTokenByUserId(user.Id.ToString());
+            await _userAuthRepository.DeleteRefreshTokenByUserId(setupUserId.ToString());
             var removedRefreshToken = await _userAuthRepository.
-                GetRefreshTokenByUserId(user.Id.ToString());
+                GetRefreshTokenByUserId(setupUserId.ToString());
+
+            // Assert clean up
+            Assert.IsNull(removedRefreshToken);
+        }
+        
+        [Test]
+        public async Task UpdateRefreshToken_WithRefreshTokenAndUserId_SuccessfullySavesRefreshToken()
+        {
+            // Arrange
+            const string refreshToken = "randomTestToken";
+            const string updatedRefreshToken = "newRefreshToken";
+
+            // Act
+            await _userAuthRepository.SaveRefreshToken(refreshToken, setupUserId);
+            var retrievedRefreshToken = await _userAuthRepository
+                .GetRefreshTokenByUserId(setupUserId.ToString());
+
+            await _userAuthRepository.UpdateRefreshTokenByUserId(updatedRefreshToken, setupUserId);
+            var retrievedUpdatedRefreshToken = await _userAuthRepository
+                .GetRefreshTokenByUserId(setupUserId.ToString());
             
-            await _userRepository.DeleteUserByUserId(user.Id);
+            // Assert
+            Assert.AreNotEqual(retrievedRefreshToken.Token, retrievedUpdatedRefreshToken.Token);
+
+            // Clean up
+            await _userAuthRepository.DeleteRefreshTokenByUserId(setupUserId.ToString());
+            var removedRefreshToken = await _userAuthRepository.
+                GetRefreshTokenByUserId(setupUserId.ToString());
             
             // Assert clean up
             Assert.IsNull(removedRefreshToken);
