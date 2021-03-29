@@ -4,6 +4,7 @@ default:
   before_script:
     - apt update
     - apt -y install postgresql postgresql-contrib
+    - 8 'Gitlab CI'
     - -i -u postgres
     - psql
 
