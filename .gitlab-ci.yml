@@ -3,7 +3,7 @@ default:
   
   before_script:
     - apt update
-    - apt install postgresql postgresql-contrib
+    - apt install postgresql postgresql-contrib -Y
 
 stages:
   - build
