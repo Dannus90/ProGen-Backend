@@ -11,7 +11,7 @@ stages:
 build:
   stage: build
   script:
-    - lsb_release -a 
+    - apt-get update
   variables:
     build_path: "$project"
 
