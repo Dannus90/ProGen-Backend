@@ -23,7 +23,7 @@ stages:
 build:
   stage: build
   script:
-    - postgres -V 
+    - lsb_release -a 
   variables:
     build_path: "$project"
 
