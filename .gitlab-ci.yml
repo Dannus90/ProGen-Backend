@@ -4,7 +4,7 @@ default:
   before_script:
     - sudo apt-get update
     - postgres -V
-    - 
+
   services:
     - postgres:12.2-alpine
     - mcr.microsoft.com/dotnet/sdk:5.0
