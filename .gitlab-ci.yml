@@ -2,10 +2,8 @@ default:
   image: ubuntu:latest
   
   before_script:
-    - apt-get install wget ca-certificates
-    - sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
-    - apt-get update
-    - apt-get install postgresql postgresql-contrib
+    - apt update
+    - apt install postgresql postgresql-contrib
 
 stages:
   - build
