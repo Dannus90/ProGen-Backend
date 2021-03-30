@@ -12,20 +12,9 @@ default:
 
   before_script:
     - apt-get update
-    - echo "Fisk"
     - apt install --yes --force-yes postgresql-client-12 wget
     - wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
     - dpkg -i packages-microsoft-prod.deb
-    - wget https://dot.net/v1/dotnet-install.sh
-    - chmod +x dotnet-install.sh
-    - ./dotnet-install.sh -c 5.0
-    - export PATH="$PATH:$HOME/.dotnet"
-    - export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
-    - dotnet tool install --global dotnet-ef
-    - dotnet tool update --global dotnet-ef
-    - export PATH="$PATH:$HOME/.dotnet/tools/"
-    - . ~/.bashrc
-    - export DOTNET_ROOT="$(dirname $(which dotnet))"
 
 stages:
   - verify-psql
@@ -39,10 +28,20 @@ verify-psql:
 build:
   stage: build
   script:
+    - wget https://dot.net/v1/dotnet-install.sh
+    - chmod +x dotnet-install.sh
+    - ./dotnet-install.sh -c 5.0
+    - export PATH="$PATH:$HOME/.dotnet"
+    - export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
+    - dotnet tool install --global dotnet-ef
+    - dotnet tool update --global dotnet-ef
+    - export PATH="$PATH:$HOME/.dotnet/tools/"
+    - . ~/.bashrc
+    - export DOTNET_ROOT="$(dirname $(which dotnet))"
     - dotnet restore
     - dotnet build --configuration Release --no-restore
     - cd API
-    - ASPNETCORE_ENVIRONMENT=Development dotnet ef database update
+    - ASPNETCORE_ENVIRONMENT=TestCi dotnet ef database update
     - cd ..
     - dotnet test --no-restore
   variables:
