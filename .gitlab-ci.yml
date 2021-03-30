@@ -19,11 +19,10 @@ default:
     - wget https://dot.net/v1/dotnet-install.sh
     - chmod +x dotnet-install.sh
     - ./dotnet-install.sh -c 5.0
-    - export PATH="$PATH:$HOME/.dotnet"
+    - export PATH=$PATH:$HOME/.dotnet/tools
     - export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
     - dotnet tool install --global dotnet-ef
     - dotnet tool update --global dotnet-ef
-    - export PATH='$PATH;/root/.dotnet/tools'
 
 stages:
   - verify-psql
