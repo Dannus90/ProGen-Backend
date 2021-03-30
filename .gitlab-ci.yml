@@ -12,9 +12,11 @@ default:
 
   before_script:
     - apt-get update
-    - echo "Hello Rundberg"
+    - echo "Fisk"
     - apt install --yes --force-yes postgresql-client-12
-
+    - https://dot.net/v1/dotnet-install.sh
+    - dotnet tool install --global dotnet-ef
+    - dotnet add package Microsoft.EntityFrameworkCore.Design
 
 stages:
   - build
@@ -23,7 +25,6 @@ stages:
 build:
   stage: build
   script:
-    - cat /etc/issue
     - psql -V
   variables:
     build_path: "$project"
