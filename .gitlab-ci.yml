@@ -22,24 +22,35 @@ default:
     - export PATH="$PATH:$HOME/.dotnet"
     - export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
     - dotnet tool install --global dotnet-ef
-    - dotnet add package Microsoft.EntityFrameworkCore.Design
 
 stages:
+  - dotnet-setup
   - build
   - ci-test
+    
+setup:
+  stage: dotnet-setup
+  script:
+    - dotnet restore
+    - dotnet build
+    - echo "Fish"
+  variables:
+    build_path: "$project"
 
 build:
   stage: build
   script:
-    - psql -V
+    - dotnet restore
+    - dotnet build
+    - echo "Fish"
   variables:
     build_path: "$project"
 
 test:
   stage: ci-test
-  image: ubuntu:latest
+  script:
+    - dotnet test
   variables:
     test_path: "$project"
-  script:
-    - "dotnet test"
+
 
