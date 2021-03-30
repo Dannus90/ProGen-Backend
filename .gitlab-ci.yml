@@ -13,6 +13,7 @@ default:
   before_script:
     - apt-get update
     - echo "Hello Rundberg"
+    - apt install --yes --force--yes postgresql-client-13
 
 
 stages:
@@ -23,7 +24,7 @@ build:
   stage: build
   script:
     - cat /etc/issue
-    - psql --version
+    - postgres -V
   variables:
     build_path: "$project"
 
