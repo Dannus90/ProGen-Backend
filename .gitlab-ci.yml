@@ -37,10 +37,7 @@ build:
   script:
     - dotnet restore
     - dotnet build
-    - cd API
     - dotnet ef database update
-    - cd ..
-    - ls
     - dotnet test
   variables:
     build_path: "$project"
