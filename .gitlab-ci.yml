@@ -15,6 +15,8 @@ default:
     - echo "Fisk"
     - apt install --yes --force-yes postgresql-client-12
     - wget https://dot.net/v1/dotnet-install.sh
+    - chmod +x dotnet-install.sh
+    - ./dotnet-install.sh -c 5.0
     - dotnet tool install --global dotnet-ef
     - dotnet add package Microsoft.EntityFrameworkCore.Design
 
