@@ -1,6 +1,6 @@
 namespace Tests
 {
-    public class TestConfigCi
+    public static class TestConfigCi
     {
         public const string ConnectionString = @"
                 Host=postgres;

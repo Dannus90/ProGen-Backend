@@ -19,8 +19,16 @@ namespace Tests.IntegrationsTests.Repositories
 
         public UserRepositoryTests()
         {
-            _userAuthRepository = new UserAuthRepository(TestConfig.ConnectionString);
-            _userRepository = new UserRepository(TestConfig.ConnectionString);
+            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "TestCi")
+            {
+                _userAuthRepository = new UserAuthRepository(TestConfigCi.ConnectionString);
+                _userRepository = new UserRepository(TestConfigCi.ConnectionString);
+            }
+            else
+            {
+                _userAuthRepository = new UserAuthRepository(TestConfig.ConnectionString);
+                _userRepository = new UserRepository(TestConfig.ConnectionString);
+            }
         }
 
         [OneTimeSetUp]
