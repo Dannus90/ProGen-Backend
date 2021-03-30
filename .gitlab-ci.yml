@@ -4,7 +4,7 @@ services:
 variables:
   POSTGRES_DB: progenlocal
   POSTGRES_USER: progen
-  POSTGRES_PASSWORD: progenm
+  POSTGRES_PASSWORD: progen
   POSTGRES_HOST_AUTH_METHOD: trust
 
 default:
