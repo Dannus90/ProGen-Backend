@@ -23,6 +23,7 @@ default:
     - export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
     - dotnet tool install --global dotnet-ef
     - dotnet tool update --global dotnet-ef
+    - export PATH='$PATH;/root/.dotnet/tools'
 
 stages:
   - verify-psql
