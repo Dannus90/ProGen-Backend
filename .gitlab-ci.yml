@@ -13,7 +13,7 @@ build:
   stage: build
   script:
     - cat /etc/issue
-    - psql --version
+    - postgres -V
   variables:
     build_path: "$project"
 
