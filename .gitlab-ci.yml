@@ -21,7 +21,8 @@ default:
     - ./dotnet-install.sh -c 5.0
     - export PATH="$PATH:$HOME/.dotnet"
     - export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
-    - dotnet tool install -g dotnet-ef --version 3.0.0-preview4.19216.3
+    - dotnet tool install --global dotnet-ef
+    - dotnet tool update --global dotnet-ef
 
 stages:
   - verify-psql
@@ -35,6 +36,9 @@ verify-psql:
 build:
   stage: build
   script:
+    - dotnet restore
+    - dotnet build --configuration Release --no-restore
+    - dotnet add package Microsoft.EntityFrameworkCore.Design
     - cd API
     - dotnet ef database update
     - dotnet test --no-restore
