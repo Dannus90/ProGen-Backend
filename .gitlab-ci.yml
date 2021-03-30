@@ -4,13 +4,6 @@ default:
   services: 
     - postgres:latest
   
-  before_script:
-    - apt update
-    - psql --version
-    - apt --yes --force-yes install postgresql postgresql-contrib
-    - which psql
-    - -i -u postgres
-    - psql
 
 stages:
   - build
@@ -20,6 +13,7 @@ build:
   stage: build
   script:
     - cat /etc/issue
+    - psql --version
   variables:
     build_path: "$project"
 
