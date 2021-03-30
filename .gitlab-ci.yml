@@ -35,10 +35,7 @@ verify-psql:
 build:
   stage: build
   script:
-    - dotnet restore
-    - dotnet build --configuration Release --no-restore
     - cd API
-    - dotnet tool restore
     - dotnet ef database update
     - dotnet test --no-restore
   variables:
