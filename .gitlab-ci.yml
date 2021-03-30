@@ -25,7 +25,7 @@ default:
     - dotnet tool update --global dotnet-ef
     - export PATH="$PATH:$HOME/.dotnet/tools/"
     - . ~/.bashrc
-    - export DOTNET_ROOT="/opt/dotnet"
+    - export DOTNET_ROOT="$(dirname $(which dotnet))"
     - dotnet ef
 
 stages:
