@@ -5,10 +5,10 @@ default:
     - postgres:13.2-alpine
       
     variables:
-      POSTGRES_DB: progenlocal
-      POSTGRES_USER: progen
-      POSTGRES_PASSWORD: progenm
-      POSTGRES_HOST_AUTH_METHOD: trustß
+      - POSTGRES_DB: progenlocal
+      - POSTGRES_USER: progen
+      - POSTGRES_PASSWORD: progenm
+      - POSTGRES_HOST_AUTH_METHOD: trustß
 
   before_script:
     - apt-get update
