@@ -30,8 +30,7 @@ stages:
 verify-psql:
   stage: verify-psql
   script:
-    - service postgresql start
-    - psql -c 'show tables' postgres
+    - psql -h "postgres" -U "$POSTGRES_USER" -d "$POSTGRES_DB" -c "SELECT 'OK' AS status;"
 
 build:
   stage: build
