@@ -44,6 +44,7 @@ build:
     - dotnet build --configuration Release --no-restore
     - cd API
     - ASPNETCORE_ENVIRONMENT=Development dotnet ef database update
+    - cd ..
     - dotnet test --no-restore
   variables:
     build_path: "$project"
