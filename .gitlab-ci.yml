@@ -14,15 +14,6 @@ default:
     - apt-get update
     - echo "Fisk"
     - apt install --yes --force-yes postgresql-client-12 wget
-
-stages:
-  - dotnet-setup
-  - build
-  - ci-test
-    
-dotnet-setup:
-  stage: dotnet-setup
-  script:
     - wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
     - dpkg -i packages-microsoft-prod.deb
     - wget https://dot.net/v1/dotnet-install.sh
@@ -31,22 +22,17 @@ dotnet-setup:
     - export PATH="$PATH:$HOME/.dotnet"
     - export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
     - dotnet tool install --global dotnet-ef
-  variables:
-    build_path: "$project"
+
+stages:
+  - build
+  - ci-test
 
 build:
   stage: build
   script:
     - dotnet restore
     - dotnet build
-  variables:
-    build_path: "$project"
-
-ci-test:
-  stage: ci-test
-  script:
     - dotnet test
   variables:
-    test_path: "$project"
-
+    build_path: "$project"
 
