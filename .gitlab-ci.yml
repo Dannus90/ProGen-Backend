@@ -1,5 +1,5 @@
 services:
-  - postgres:13.2-alpine
+  - postgres:latest
 
 variables:
   POSTGRES_DB: progenlocal
