@@ -12,8 +12,8 @@ default:
 
   before_script:
     - apt-get update
-    - -i -u postgres
-    - psql
+    - echo "Hello Rundberg"
+
 
 stages:
   - build
