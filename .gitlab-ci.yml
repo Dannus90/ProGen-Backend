@@ -2,7 +2,7 @@ default:
   image: ubuntu:latest
   
   services: 
-    - postgres:latest
+    - postgres:13.2 apline
   
 
 stages:
