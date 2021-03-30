@@ -25,6 +25,9 @@ default:
     - dotnet tool update --global dotnet-ef
     - export PATH="$PATH:$HOME/.dotnet/tools/"
     - . ~/.bashrc
+    - export DOTNET_ROOT="/opt/dotnet"
+    - . ~/.bashrc
+    - dotnet ef
 
 stages:
   - verify-psql
@@ -41,7 +44,6 @@ build:
     - dotnet restore
     - dotnet build --configuration Release --no-restore
     - cd API
-    - dotnet ef
     - ASPNETCORE_ENVIRONMENT=Development dotnet ef database update
     - dotnet test --no-restore
   variables:
