@@ -16,13 +16,6 @@ default:
     - apt install --yes --force-yes postgresql-client-12 wget
     - wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
     - dpkg -i packages-microsoft-prod.deb
-    - wget https://dot.net/v1/dotnet-install.sh
-    - chmod +x dotnet-install.sh
-    - ./dotnet-install.sh -c 5.0
-    - export PATH="$PATH:$HOME/.dotnet"
-    - export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
-    - dotnet tool install --global dotnet-ef
-    - dotnet tool update --global dotnet-ef
 
 stages:
   - verify-psql
@@ -38,6 +31,12 @@ build:
   script:
     - dotnet restore
     - dotnet build --configuration Release --no-restore
+    - wget https://dot.net/v1/dotnet-install.sh
+    - chmod +x dotnet-install.sh
+    - ./dotnet-install.sh -c 5.0
+    - export PATH="$PATH:$HOME/.dotnet"
+    - export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
+    - dotnet tool install --global dotnet-ef
     - cd API
     - dotnet ef
     - ASPNETCORE_ENVIRONMENT=Development dotnet ef database update
