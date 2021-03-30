@@ -43,7 +43,7 @@ build:
     - cd API
     - ASPNETCORE_ENVIRONMENT=TestCi dotnet ef database update
     - cd ..
-    - dotnet test --no-restore
+    - ASPNETCORE_ENVIRONMENT=TestCi dotnet test --no-restore
   variables:
     build_path: "$project"
 
