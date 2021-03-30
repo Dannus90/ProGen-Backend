@@ -1,5 +1,5 @@
 services:
-  - postgres:latest
+  - postgres:12
 
 variables:
   POSTGRES_DB: progenlocal
@@ -13,7 +13,7 @@ default:
   before_script:
     - apt-get update
     - echo "Hello Rundberg"
-    - apt install --yes --force-yes postgresql-client-13
+    - apt install --yes --force-yes postgresql-client-12
 
 
 stages:
