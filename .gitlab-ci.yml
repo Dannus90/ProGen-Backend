@@ -20,6 +20,7 @@ default:
     - chmod +x dotnet-install.sh
     - ./dotnet-install.sh -c 5.0
     - export PATH="$PATH:$HOME/.dotnet"
+    - export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
     - dotnet tool install --global dotnet-ef
     - dotnet add package Microsoft.EntityFrameworkCore.Design
 
