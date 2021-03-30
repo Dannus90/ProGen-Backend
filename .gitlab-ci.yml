@@ -29,7 +29,9 @@ stages:
     
 verify-psql:
   stage: verify-psql
-  script: psql -c 'show tables' postgres
+  script:
+    - service postgresql start
+    - psql -c 'show tables' postgres
 
 build:
   stage: build
