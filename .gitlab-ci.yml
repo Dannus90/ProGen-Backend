@@ -38,7 +38,6 @@ build:
     - dotnet restore
     - dotnet build --configuration Release --no-restore
     - cd API
-    - dotnet tool install --global dotnet-ef
     - dotnet tool restore
     - dotnet ef database update
     - dotnet test --no-restore
