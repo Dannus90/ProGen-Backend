@@ -17,6 +17,7 @@ default:
     - wget https://dot.net/v1/dotnet-install.sh
     - chmod +x dotnet-install.sh
     - ./dotnet-install.sh -c 5.0
+    - export PATH="$PATH:$HOME/.dotnet"
     - dotnet tool install --global dotnet-ef
     - dotnet add package Microsoft.EntityFrameworkCore.Design
 
