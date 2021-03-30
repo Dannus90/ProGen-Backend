@@ -25,7 +25,6 @@ default:
 
 stages:
   - build
-  - ci-test
 
 build:
   stage: build
