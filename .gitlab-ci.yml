@@ -4,6 +4,9 @@ default:
   services: 
     - postgres:13.2
   
+  before_script:
+    - apt update
+    - su -postgres
 
 stages:
   - build
@@ -13,7 +16,7 @@ build:
   stage: build
   script:
     - cat /etc/issue
-    - postgres -V
+    - psql --version
   variables:
     build_path: "$project"
 
