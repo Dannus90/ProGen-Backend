@@ -3,7 +3,6 @@ default:
   
   before_script:
     - apt update
-    - which psql
     - apt --yes --force-yes install postgresql postgresql-contrib
     - which psql
     - -i -u postgres
