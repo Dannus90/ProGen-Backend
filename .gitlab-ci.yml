@@ -2,7 +2,7 @@ default:
   image: ubuntu:latest
   
   services: 
-    - postgres:13.2
+    - postgres:13.2-alpine
   
   before_script:
     - apt update
