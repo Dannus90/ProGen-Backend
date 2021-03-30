@@ -38,8 +38,8 @@ build:
   script:
     - dotnet restore
     - dotnet build --configuration Release --no-restore
-    - dotnet add package Microsoft.EntityFrameworkCore.Design
     - cd API
+    - dotnet add package Microsoft.EntityFrameworkCore.Design
     - dotnet ef database update
     - dotnet test --no-restore
   variables:
