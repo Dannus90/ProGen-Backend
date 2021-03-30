@@ -1,9 +1,8 @@
 default: 
-  image: ubuntu:latest
-  
-  services: 
-    - postgres:13.2-alpine --name progenlocal -e POSTGRES_PASSWORD=progen -p 5432:5432 -d progen 
-  
+  image: 
+  - ubuntu:latest
+  - postgres:13.2-alpine
+
   before_script:
     - apt update
     - su -postgres
