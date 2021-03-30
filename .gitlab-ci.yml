@@ -39,8 +39,8 @@ build:
     - dotnet restore
     - dotnet build --configuration Release --no-restore
     - cd API
-    - dotnet add package Microsoft.EntityFrameworkCore.Design
-    - dotnet ef database update
+    - dotnet ef
+    - ASPNETCORE_ENVIRONMENT=Development dotnet ef database update
     - dotnet test --no-restore
   variables:
     build_path: "$project"
