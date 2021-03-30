@@ -24,7 +24,12 @@ default:
     - dotnet tool install --global dotnet-ef
 
 stages:
+  - verify-psql
   - build
+    
+verify-psql:
+  stage: verify-psql
+  script: psql -c 'show tables' postgres
 
 build:
   stage: build
