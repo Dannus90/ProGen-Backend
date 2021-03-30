@@ -2,7 +2,7 @@ default:
   image: ubuntu:latest
   
   services: 
-    - docker run postgres:13.2-alpine -e --name progenlocal -e POSTGRES_PASSWORD=progen -p 5432:5432 -d progen 
+    - postgres:13.2-alpine --name progenlocal -e POSTGRES_PASSWORD=progen -p 5432:5432 -d progen 
   
   before_script:
     - apt update
