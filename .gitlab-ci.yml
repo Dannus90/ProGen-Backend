@@ -1,12 +1,12 @@
 default: 
   image: ubuntu:latest
   
+  services: 
+    - postgres:latest
+  
   before_script:
     - apt update
-    - apt --yes --force-yes install postgresql postgresql-contrib
-    - which psql
-    - -i -u postgres
-    - psql
+    - postgres -V
 
 stages:
   - build
