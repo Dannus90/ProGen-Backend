@@ -2,7 +2,7 @@ default:
   image: ubuntu:latest
 
   before_script:
-    - apt-get update --y
+    - apt-get update
     - apt install --yes --force-yes postgresql postgresql-contrib
     - -i -u postgres
     - psql
