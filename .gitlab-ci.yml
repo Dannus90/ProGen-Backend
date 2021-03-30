@@ -26,7 +26,6 @@ default:
     - export PATH="$PATH:$HOME/.dotnet/tools/"
     - . ~/.bashrc
     - export DOTNET_ROOT="/opt/dotnet"
-    - . ~/.bashrc
     - dotnet ef
 
 stages:
