@@ -1,5 +1,14 @@
 default: 
   image: ubuntu:latest
+  
+  services: 
+    - postgres:13.2-alpine
+      
+  variables:
+    POSTGRES_DB: progenlocal
+    POSTGRES_USER: progen
+    POSTGRES_PASSWORD: progenm
+    POSTGRES_HOST_AUTH_METHOD: trust
 
   before_script:
     - apt-get update
