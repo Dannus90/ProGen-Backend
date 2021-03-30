@@ -6,7 +6,6 @@ default:
   
   before_script:
     - apt update
-    - sudo service docker restart
     - su -postgres
 
 stages:
