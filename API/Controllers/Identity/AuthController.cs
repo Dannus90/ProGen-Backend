@@ -36,7 +36,7 @@ namespace API.Controllers.Identity
             return Ok(await _userAuthService.LoginUser(userCredentials));
         }
         
-        [HttpPost]
+        [HttpPost] //api/v1/user/auth/refresh
         [Route("refresh")]
         public async Task<ActionResult<TokenResponseViewModel>> refresh(TokenDataDto tokenDataDto)
         {
@@ -49,7 +49,7 @@ namespace API.Controllers.Identity
             return Ok(await _userAuthService.GenerateAccessTokenFromRefreshToken(userId, tokenDataDto.RefreshToken));
         }
         
-        [HttpPost]
+        [HttpPost] //api/v1/user/auth/logout
         [Authorize]
         [Route("logout")]
         public async Task<ActionResult> logout()
