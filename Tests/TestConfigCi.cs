@@ -4,14 +4,14 @@ namespace Tests
 {
     public static class TestConfig
     {
-        public const string ConnectionStringCi = @"
+        private const string ConnectionStringCi = @"
                 Host=postgres;
                 Port=5432;
                 Username=progen;
                 Password=progen;
                 Database=progenlocal;";
-        
-        public const string ConnectionString = @"
+
+        private const string ConnectionString = @"
                 Host=localhost;
                 Port=5432;
                 Username=progen;

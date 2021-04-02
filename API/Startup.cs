@@ -58,7 +58,9 @@ namespace API
                     builder =>
                     {
                         builder.WithOrigins("http://localhost:3000",
-                                "https://localhost:3000")
+                                "https://localhost:3000",
+                                "http://localhost:4000",
+                                "https://localhost:4000")
                             .AllowAnyMethod()
                             .AllowAnyHeader()
                             .AllowCredentials();
