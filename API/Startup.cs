@@ -1,4 +1,3 @@
-using System;
 using System.Text;
 using AutoMapper;
 using Core.Application.Exceptions;

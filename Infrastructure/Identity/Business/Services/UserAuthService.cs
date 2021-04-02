@@ -88,7 +88,7 @@ namespace Infrastructure.Identity.Services
             var refreshTokenDb = await _userAuthRepository.GetRefreshTokenByUserId(userId);
 
             // Check if refreshToken exist in db. 
-            if (refreshTokenDb == null) 
+            if (refreshTokenDb == null)
                 throw new HttpExceptionResponse(401, "No refresh token related to user exist.");
 
             // Check so that the provided refresh token and db refresh token are equal.
@@ -98,7 +98,7 @@ namespace Infrastructure.Identity.Services
             var user = await _userRepository.GetUserByEmail(userId);
 
             // Check so that the provided refresh token and db refresh token are equal.
-            if (user == null) 
+            if (user == null)
                 throw new HttpExceptionResponse(404, "No user related to the user id exist.");
 
             // Generating a new access token.

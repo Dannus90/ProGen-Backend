@@ -48,7 +48,7 @@ namespace Tests.IntegrationsTests.Repositories
         {
             // Act
             var user = await _userRepository.GetUserByUserId(setupUserId.ToString());
-            
+
             // Assert
             Assert.AreEqual(user.Email.Trim(), setupEmail);
             Assert.AreEqual(user.Id, setupUserId);

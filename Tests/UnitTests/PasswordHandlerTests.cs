@@ -14,11 +14,11 @@ namespace Tests.UnitTests
             var hashedHashedPassword = PasswordHandler.HashPassword(testPassword);
             var outcome = PasswordHandler.VerifyPassword(testPassword
                 , hashedHashedPassword);
-            
+
             Assert.AreNotEqual(hashedHashedPassword, testPassword);
             Assert.AreEqual(true, outcome);
         }
-        
+
         [Test]
         [TestCase("Password123")]
         [TestCase("password456")]

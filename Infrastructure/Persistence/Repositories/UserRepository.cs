@@ -71,7 +71,7 @@ namespace Infrastructure.Persistence.Repositories
                 UserID = userId.ToString()
             });
         }
-        
+
         private static async Task<IDbConnection> connectDb(string connectionString)
         {
             var connection = new NpgsqlConnection(connectionString);

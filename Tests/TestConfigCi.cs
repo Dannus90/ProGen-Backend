@@ -21,7 +21,9 @@ namespace Tests
         public static string getTestConnectionString()
         {
             return Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")
-                   == "TestCi" ? ConnectionStringCi : ConnectionString;
+                   == "TestCi"
+                ? ConnectionStringCi
+                : ConnectionString;
         }
     }
 }

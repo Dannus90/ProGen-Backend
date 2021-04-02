@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -21,10 +20,7 @@ namespace API.Controllers.Identity
         {
             _userAuthService = userAuthService;
         }
-
-        /**
-         * Responsible for registering users.
-         */
+        
         [HttpPost] //api/v1/user/auth/register
         [Route("register")]
         public async Task<ActionResult> Register(UserCredentialsDto userCredentials)
@@ -32,28 +28,14 @@ namespace API.Controllers.Identity
             await _userAuthService.RegisterUser(userCredentials);
             return StatusCode(201);
         }
-
-        /**
-         * Responsible for logging an user into the application.
-         * 
-         * @Param Takes in a UserCredentialsDTO with user credentials. 
-         * 
-         * @Returns a TokenResponseViewModel containing the a DTO representing the token data.
-         */
+        
         [HttpPost] //api/v1/user/auth/login
         [Route("login")]
         public async Task<ActionResult<TokenResponseViewModel>> Login(UserCredentialsDto userCredentials)
         {
             return Ok(await _userAuthService.LoginUser(userCredentials));
         }
-
-        /**
-         * Responsible for generating a new access token with refresh token.
-         *
-         * @Param Takes in a TokeDataDTO with token data. 
-         * 
-         * @Returns a TokenResponseViewModel containing the a DTO representing the token data.
-         */
+        
         [HttpPost]
         [Route("refresh")]
         public async Task<ActionResult<TokenResponseViewModel>> refresh(TokenDataDto tokenDataDto)
@@ -66,10 +48,7 @@ namespace API.Controllers.Identity
 
             return Ok(await _userAuthService.GenerateAccessTokenFromRefreshToken(userId, tokenDataDto.RefreshToken));
         }
-
-        /**
-         * Responsible for logging a user out from an application.
-         */
+        
         [HttpPost]
         [Authorize]
         [Route("logout")]
