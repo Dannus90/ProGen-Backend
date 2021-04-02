@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -43,9 +44,9 @@ namespace API.Controllers.Identity
             var currentUser = HttpContext.User;
             var userId = currentUser.Claims.FirstOrDefault(c =>
                 c.Type == ClaimTypes.NameIdentifier)?.Value;
-
+            
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
-
+            
             return Ok(await _userAuthService.GenerateAccessTokenFromRefreshToken(userId, tokenDataDto.RefreshToken));
         }
         

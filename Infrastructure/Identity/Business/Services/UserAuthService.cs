@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using API.helpers;
 using AutoMapper;
@@ -95,12 +96,13 @@ namespace Infrastructure.Identity.Services
             if (!Equals(refreshTokenDb.Token, refreshToken))
                 throw new HttpExceptionResponse(401, "The provided refresh token is not valid.");
 
-            var user = await _userRepository.GetUserByEmail(userId);
-
+            var user = await _userRepository.GetUserByUserId(userId);
+            
             // Check so that the provided refresh token and db refresh token are equal.
             if (user == null)
                 throw new HttpExceptionResponse(404, "No user related to the user id exist.");
 
+            Console.WriteLine("BUT NOT HEREs");
             // Generating a new access token.
             var accessToken = _tokenHandler.GenerateJsonWebToken(user);
 
