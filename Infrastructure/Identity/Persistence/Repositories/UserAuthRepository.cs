@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using System.Threading.Tasks;
 using Core.Domain.DbModels;
+using Core.Domain.Models;
 using Dapper;
 using Infrastructure.Identity.Repositories.Interfaces;
 using Npgsql;
@@ -17,11 +18,11 @@ namespace Infrastructure.Identity.Repositories
             _connectionString = connectionString;
         }
 
-        public async Task RegisterUser(string hashedPassword, string email)
+        public async Task RegisterUser(UserCredentialsWithName userCredentialsWithName)
         {
             const string query = @"
-                    Insert into user_base (id, email, password)
-                    VALUES (@Id, @Email, @Password);  
+                    Insert into user_base (id, email, password, firstname, lastname)
+                    VALUES (@Id, @Email, @Password, @Firstname, @Lastname);  
                 ";
 
             var userId = Guid.NewGuid();
@@ -30,8 +31,10 @@ namespace Infrastructure.Identity.Repositories
 
             await conn.ExecuteScalarAsync(query, new
             {
-                Email = email,
-                Password = hashedPassword,
+                Email = userCredentialsWithName.Email,
+                Password = userCredentialsWithName.Password,
+                userCredentialsWithName.Firstname,
+                userCredentialsWithName.Lastname,
                 Id = userId
             });
         }

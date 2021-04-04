@@ -23,6 +23,8 @@ namespace Infrastructure.Persistence.Repositories
                     SELECT id AS IdString,
                             email AS Email,
                             password AS Password,
+                            firstname AS Firstname,
+                            lastname AS Lastname,
                             last_login AS LastLogin,
                             created_at AS CreatedAt,
                             updated_at AS UpdatedAt   

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210328182417_InitialMigration")]
+    [Migration("20210404214136_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -72,9 +72,19 @@ namespace API.Migrations
                         .HasColumnType("CHAR(128)")
                         .HasColumnName("email");
 
+                    b.Property<string>("Firstname")
+                        .IsRequired()
+                        .HasColumnType("CHAR(128)")
+                        .HasColumnName("firstname");
+
                     b.Property<DateTime?>("LastLogin")
                         .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_login");
+
+                    b.Property<string>("Lastname")
+                        .IsRequired()
+                        .HasColumnType("CHAR(128)")
+                        .HasColumnName("lastname");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -93,6 +103,18 @@ namespace API.Migrations
                         .IsUnique();
 
                     b.ToTable("user_base");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "7c4a13cf-0ac6-4cca-b20b-5f99d34c7f22",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "testuser@gmail.com",
+                            Firstname = "John",
+                            Lastname = "Doe",
+                            Password = "$2a$10$lmiYrmWUDf7klCsGo0VP.uI9DcK.5fUy2Ld34ahg8lQnIanlzThcy",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("Core.Domain.DbModels.RefreshToken", b =>

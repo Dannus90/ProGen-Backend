@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Core.Domain.Models;
 using Infrastructure.Identity.Repositories;
 using Infrastructure.Identity.Repositories.Interfaces;
 using Infrastructure.Persistence.Repositories;
@@ -15,6 +16,8 @@ namespace Tests.IntegrationsTests.Repositories
         private readonly IUserRepository _userRepository;
         private string setupEmail;
         private string setupPassword;
+        private string firstName;
+        private string lastName;
         private Guid setupUserId;
 
         public UserRepositoryTests()
@@ -29,9 +32,19 @@ namespace Tests.IntegrationsTests.Repositories
         public async Task Setup()
         {
             setupPassword = "dfgjwasgasgqwqer";
-            setupEmail = "farbrorAnka@gmail.com";
+            setupEmail = "farbrorAnka2@gmail.com";
+            firstName = "Daniel";
+            lastName = "Persson";
+            
             var hashedPassword = PasswordHandler.HashPassword(setupPassword);
-            await _userAuthRepository.RegisterUser(hashedPassword, setupEmail);
+            var userCredentialsWithName = new UserCredentialsWithName()
+            {
+                Email = setupEmail,
+                Password = hashedPassword,
+                Firstname = firstName,
+                Lastname = lastName
+            };
+            await _userAuthRepository.RegisterUser(userCredentialsWithName);
             var user = await _userRepository.GetUserByEmail(setupEmail);
 
             setupUserId = user.Id;

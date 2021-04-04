@@ -24,9 +24,9 @@ namespace API.Controllers.Identity
         
         [HttpPost] //api/v1/user/auth/register
         [Route("register")]
-        public async Task<ActionResult> Register(UserCredentialsDto userCredentials)
+        public async Task<ActionResult> Register(UserCredentialsWithNameDto userCredentialsWithName)
         {
-            await _userAuthService.RegisterUser(userCredentials);
+            await _userAuthService.RegisterUser(userCredentialsWithName);
             return StatusCode(201);
         }
         

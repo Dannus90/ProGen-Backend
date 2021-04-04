@@ -11,6 +11,9 @@ namespace Core.Mapping
         {
             // From UserCredentialsDto -> UserCredentials.
             CreateMap<UserCredentialsDto, UserCredentials>();
+            
+            // From UserCredentialsDto -> UserCredentials.
+            CreateMap<UserCredentialsWithNameDto, UserCredentialsWithName>();
 
             // From UserCredentialsDto -> UserCredentials -> UserCredentialsDto.
             CreateMap<TokenDataDto, TokenData>();

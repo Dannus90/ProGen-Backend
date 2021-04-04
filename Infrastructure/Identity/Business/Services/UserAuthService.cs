@@ -32,17 +32,16 @@ namespace Infrastructure.Identity.Services
             _mapper = mapper;
         }
 
-        public async Task RegisterUser(UserCredentialsDto userCredentialsDto)
+        public async Task RegisterUser(UserCredentialsWithNameDto userCredentialsWithNameDto)
         {
-            var userCredentials = _mapper.Map<UserCredentials>(userCredentialsDto);
-            CredentialsValidation.ValidateCredentials(userCredentials.Password,
-                userCredentials.Email);
+            var userCredentialsWithName = _mapper.Map<UserCredentialsWithName>(userCredentialsWithNameDto);
+            CredentialsValidation.ValidateCredentials(userCredentialsWithName.Password,
+                userCredentialsWithName.Email);
 
-            var hashedPassword = PasswordHandler.HashPassword(userCredentials.Password);
-            await _userAuthRepository.RegisterUser(hashedPassword.Trim(),
-                userCredentials.Email
-                    .Trim()
-                    .ToLower());
+            var hashedPassword = PasswordHandler.HashPassword(userCredentialsWithName.Password);
+            userCredentialsWithName.Password = hashedPassword;
+            
+            await _userAuthRepository.RegisterUser(userCredentialsWithName);
         }
 
         public async Task<TokenResponseViewModel> LoginUser(UserCredentialsDto userCredentialsDto)

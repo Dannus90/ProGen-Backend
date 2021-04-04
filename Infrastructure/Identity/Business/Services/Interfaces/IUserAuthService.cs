@@ -6,7 +6,7 @@ namespace Infrastructure.Identity.Services.Interfaces
 {
     public interface IUserAuthService
     {
-        Task RegisterUser(UserCredentialsDto userCredentials);
+        Task RegisterUser(UserCredentialsWithNameDto userCredentialsWithNameDto);
         Task<TokenResponseViewModel> LoginUser(UserCredentialsDto userCredentials);
         Task<TokenResponseViewModel> GenerateAccessTokenFromRefreshToken(string userId, string refreshToken);
         Task DeleteRefreshToken(string userId);

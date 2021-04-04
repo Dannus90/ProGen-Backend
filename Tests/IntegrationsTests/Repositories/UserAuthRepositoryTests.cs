@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Core.Domain.Models;
 using Infrastructure.Identity.Repositories;
 using Infrastructure.Identity.Repositories.Interfaces;
 using Infrastructure.Persistence.Repositories;
@@ -15,6 +16,8 @@ namespace Tests.IntegrationsTests.Repositories
         private readonly IUserRepository _userRepository;
         private string setupEmail;
         private string setupPassword;
+        private string firstName;
+        private string lastName;
         private Guid setupUserId;
 
         public UserAuthRepositoryTests()
@@ -29,9 +32,20 @@ namespace Tests.IntegrationsTests.Repositories
         public async Task Setup()
         {
             setupPassword = "dfgjwasgasgqwqer";
-            setupEmail = "farbrorAnka@gmail.com";
+            setupEmail = "farbrorAnka25@gmail.com";
+            firstName = "Daniel";
+            lastName = "Persson";
+            
             var hashedPassword = PasswordHandler.HashPassword(setupPassword);
-            await _userAuthRepository.RegisterUser(hashedPassword, setupEmail);
+            var userCredentialsWithName = new UserCredentialsWithName()
+            {
+                Email = setupEmail,
+                Password = hashedPassword,
+                Firstname = firstName,
+                Lastname = lastName
+            };
+            
+            await _userAuthRepository.RegisterUser(userCredentialsWithName);
             var user = await _userRepository.GetUserByEmail(setupEmail);
 
             setupUserId = user.Id;
@@ -48,11 +62,21 @@ namespace Tests.IntegrationsTests.Repositories
         {
             // Arrange
             const string password = "dfgjwasgasgqwqer";
-            const string email = "farmorAnka@gmail.com";
+            const string email = "farmorAnka31@gmail.com";
+            firstName = "Daniel2";
+            lastName = "Persson2";
             var hashedPassword = PasswordHandler.HashPassword(password);
+            
+            var userCredentialsWithName = new UserCredentialsWithName()
+            {
+                Email = email,
+                Password = hashedPassword,
+                Firstname = firstName,
+                Lastname = lastName
+            };
 
             // Act
-            await _userAuthRepository.RegisterUser(hashedPassword, email);
+            await _userAuthRepository.RegisterUser(userCredentialsWithName);
             var user = await _userRepository.GetUserByEmail(email);
 
             // Assert
@@ -69,10 +93,21 @@ namespace Tests.IntegrationsTests.Repositories
             // Arrange
             const string password = "dfgjwasgasgqwqer";
             const string email = "farmorAnka@gmail.com";
+            firstName = "Daniel2";
+            lastName = "Persson2";
             var hashedPassword = PasswordHandler.HashPassword(password);
+            
+            var userCredentialsWithName = new UserCredentialsWithName()
+            {
+                Email = email,
+                Password = hashedPassword,
+                Firstname = firstName,
+                Lastname = lastName
+            };
+
 
             // Act
-            await _userAuthRepository.RegisterUser(hashedPassword, email);
+            await _userAuthRepository.RegisterUser(userCredentialsWithName);
             var user = await _userRepository.GetUserByEmail(email);
 
             await _userAuthRepository.UpdateLastLoggedIn(user.Id);

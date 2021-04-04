@@ -1,12 +1,13 @@
 using System;
 using System.Threading.Tasks;
 using Core.Domain.DbModels;
+using Core.Domain.Models;
 
 namespace Infrastructure.Identity.Repositories.Interfaces
 {
     public interface IUserAuthRepository
     {
-        Task RegisterUser(string password, string email);
+        Task RegisterUser(UserCredentialsWithName userCredentialsWithName);
         Task SaveRefreshToken(string refreshToken, Guid userId);
         Task UpdateRefreshTokenByUserId(string refreshToken, Guid userId);
         Task<RefreshToken> GetRefreshTokenByUserId(string userId);

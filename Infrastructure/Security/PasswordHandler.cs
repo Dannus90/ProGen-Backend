@@ -1,3 +1,4 @@
+using System;
 using BC = BCrypt.Net.BCrypt;
 
 namespace Infrastructure.Security

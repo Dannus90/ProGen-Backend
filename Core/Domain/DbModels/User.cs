@@ -26,7 +26,15 @@ namespace Core.Domain.DbModels
         [Required]
         [Column("password", TypeName = "CHAR(500)")]
         public string Password { get; set; }
+        
+        [Required]
+        [Column("firstname", TypeName = "CHAR(128)")]
+        public string Firstname { get; set; }
 
+        [Required]
+        [Column("lastname", TypeName = "CHAR(128)")]
+        public string Lastname { get; set; }
+        
         [Column("last_login")] public DateTime? LastLogin { get; set; } = null;
 
         [Column("created_at")] public DateTime CreatedAt { get; set; }
