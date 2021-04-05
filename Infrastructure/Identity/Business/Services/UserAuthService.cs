@@ -34,14 +34,7 @@ namespace Infrastructure.Identity.Services
         public async Task RegisterUser(UserCredentialsWithNameDto userCredentialsWithNameDto)
         {
             var userCredentialsWithName = _mapper.Map<UserCredentialsWithName>(userCredentialsWithNameDto);
-            CredentialsValidation.ValidateCredentials(userCredentialsWithName.Password,
-                userCredentialsWithName.Email);
-            
-            if (userCredentialsWithName.Firstname == "") 
-                throw new HttpExceptionResponse(400, "First- and lastname are required.");
-            
-            if (userCredentialsWithName.Lastname == "") 
-                throw new HttpExceptionResponse(400, "First- and lastname are required.");
+            CredentialsValidation.ValidateCredentials(userCredentialsWithName);
 
             var hashedPassword = PasswordHandler.HashPassword(userCredentialsWithName.Password);
             userCredentialsWithName.Password = hashedPassword;
