@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using API.helpers;
 using AutoMapper;
@@ -37,6 +36,12 @@ namespace Infrastructure.Identity.Services
             var userCredentialsWithName = _mapper.Map<UserCredentialsWithName>(userCredentialsWithNameDto);
             CredentialsValidation.ValidateCredentials(userCredentialsWithName.Password,
                 userCredentialsWithName.Email);
+            
+            if (userCredentialsWithName.Firstname == "") 
+                throw new HttpExceptionResponse(400, "First- and lastname are required.");
+            
+            if (userCredentialsWithName.Lastname == "") 
+                throw new HttpExceptionResponse(400, "First- and lastname are required.");
 
             var hashedPassword = PasswordHandler.HashPassword(userCredentialsWithName.Password);
             userCredentialsWithName.Password = hashedPassword;
