@@ -1,4 +1,5 @@
 using System;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -6,6 +7,7 @@ using Core.Application.Exceptions;
 using Core.Domain.Dtos;
 using Core.Domain.ViewModels;
 using Infrastructure.Identity.Services.Interfaces;
+using Infrastructure.Security.Tokens;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,10 +18,12 @@ namespace API.Controllers.Identity
     public class AuthController : ControllerBase
     {
         private readonly IUserAuthService _userAuthService;
+        private readonly ITokenHandler _tokenHandler;
 
-        public AuthController(IUserAuthService userAuthService)
+        public AuthController(IUserAuthService userAuthService, ITokenHandler tokenHandler)
         {
             _userAuthService = userAuthService;
+            _tokenHandler = tokenHandler;
         }
         
         [HttpPost] //api/v1/user/auth/register
@@ -41,12 +45,10 @@ namespace API.Controllers.Identity
         [Route("refresh")]
         public async Task<ActionResult<TokenResponseViewModel>> refresh(TokenDataDto tokenDataDto)
         {
-            var currentUser = HttpContext.User;
-            var userId = currentUser.Claims.FirstOrDefault(c =>
-                c.Type == ClaimTypes.NameIdentifier)?.Value;
-            
-            if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
-            
+            var userId = _tokenHandler.GetUserIdFromAccessToken(tokenDataDto.AccessToken);
+
+            if (userId == null) throw new HttpExceptionResponse(400, "No userId provided");
+
             return Ok(await _userAuthService.GenerateAccessTokenFromRefreshToken(userId, tokenDataDto.RefreshToken));
         }
         

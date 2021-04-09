@@ -6,6 +6,5 @@ namespace Infrastructure.Security.Tokens
     {
         string GenerateJsonWebToken(User userInfo);
         string GenerateRefreshToken(User userInfo);
-        string GetUserIdFromAccessToken(string accessToken);
     }
 }

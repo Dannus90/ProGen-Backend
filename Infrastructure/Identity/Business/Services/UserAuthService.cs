@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using API.helpers;
 using AutoMapper;
@@ -84,14 +85,14 @@ namespace Infrastructure.Identity.Services
             (string userId, string refreshToken)
         {
             var refreshTokenDb = await _userAuthRepository.GetRefreshTokenByUserId(userId);
-
+            
             // Check if refreshToken exist in db. 
             if (refreshTokenDb == null)
-                throw new HttpExceptionResponse(401, "No refresh token related to user exist.");
+                throw new HttpExceptionResponse(400, "No refresh token related to user exist.");
 
             // Check so that the provided refresh token and db refresh token are equal.
-            if (!Equals(refreshTokenDb.Token, refreshToken))
-                throw new HttpExceptionResponse(401, "The provided refresh token is not valid.");
+            if (refreshTokenDb.Token != refreshToken)
+                throw new HttpExceptionResponse(400, "The provided refresh token is not valid.");
 
             var user = await _userRepository.GetUserByUserId(userId);
             

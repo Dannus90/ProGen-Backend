@@ -2,7 +2,6 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Core.Application.Exceptions;
 using Core.Domain.DbModels;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -47,6 +46,21 @@ namespace Infrastructure.Security.Tokens
                 .WriteToken(token);
         }
 
+        public string GetUserIdFromAccessToken(string accessToken)
+        {
+            if (!accessToken)
+            {
+                throw new HttpExceptionResponse("No access token provided!", 401);
+            }
+            
+            var stream = tokenDataDto.AccessToken;
+            var handler = new JwtSecurityTokenHandler();
+            var jsonToken = handler.ReadToken(stream);
+            var jwt = jsonToken as JwtSecurityToken;
+
+            return jwt.Subject;
+        }
+
         /**
          * Generates a refresh token.
          *
@@ -72,21 +86,6 @@ namespace Infrastructure.Security.Tokens
 
             return new JwtSecurityTokenHandler()
                 .WriteToken(token);
-        }
-
-        public string GetUserIdFromAccessToken(string accessToken)
-        {
-            if (accessToken == null)
-            {
-                throw new HttpExceptionResponse(401, "No accesssToken Provided");
-            }
-
-            var stream = accessToken;
-                var handler = new JwtSecurityTokenHandler();
-                var jsonToken = handler.ReadToken(stream);
-                var jwt = jsonToken as JwtSecurityToken;
-
-                return jwt.Subject;
         }
     }
 }
