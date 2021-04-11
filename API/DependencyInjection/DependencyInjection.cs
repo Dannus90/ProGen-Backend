@@ -22,6 +22,7 @@ namespace API
         {
             services.AddSingleton<IUserAuthRepository>(new UserAuthRepository(connectionString));
             services.AddSingleton<IUserRepository>(new UserRepository(connectionString));
+            services.AddSingleton<IUserDataRepository>(new UserDataRepository(connectionString));
         }
 
         public void AddDependencyInjectionHandlers(IServiceCollection services)

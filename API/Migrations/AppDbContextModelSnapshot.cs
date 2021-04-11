@@ -105,7 +105,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b9526026-bbc7-4781-a1fe-63849ce53e37",
+                            Id = "0398ab32-c764-4d16-afc6-dea269729c84",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "testuser@gmail.com",
                             Firstname = "John",
@@ -177,7 +177,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "55411f9e-13f0-44e7-b0df-503c7f162b0b",
+                            Id = "c2a39cee-ea2d-4f1e-8f32-f5abaf98e676",
                             CityEn = "Gothenburg",
                             CitySv = "Göteborg",
                             CountryEn = "Sweden",
@@ -187,7 +187,7 @@ namespace API.Migrations
                             PhoneNumber = "073-3249826",
                             ProfileImage = "",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "b9526026-bbc7-4781-a1fe-63849ce53e37"
+                            UserId = "0398ab32-c764-4d16-afc6-dea269729c84"
                         });
                 });
 

@@ -30,26 +30,26 @@ namespace Core.Domain.DbModels
         
         [Phone]
         [Column("phone_number", TypeName = "CHAR(64)")]
-        public string? PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; } = null;
         
         [EmailAddress]
         [Column("email_cv", TypeName = "CHAR(128)")]
-        public string? EmailCv { get; set; }
+        public string? EmailCv { get; set; } = null;
         
         [Column("city_sv", TypeName = "CHAR(128)")]
-        public string? CitySv { get; set; }
+        public string? CitySv { get; set; } = null;
         
         [Column("city_en", TypeName = "CHAR(128)")]
-        public string? CityEn { get; set; }
+        public string? CityEn { get; set; } = null;
         
         [Column("country_sv", TypeName = "CHAR(128)")]
-        public string? CountrySv { get; set; }
+        public string? CountrySv { get; set; } = null;
         
         [Column("country_en", TypeName = "CHAR(128)")]
-        public string? CountryEn { get; set; }
+        public string? CountryEn { get; set; } = null;
         
         [Column("profile_image", TypeName = "CHAR(256)")]
-        public string? ProfileImage { get; set; }
+        public string? ProfileImage { get; set; } = null;
 
         [Column("created_at")] public DateTime CreatedAt { get; set; }
 

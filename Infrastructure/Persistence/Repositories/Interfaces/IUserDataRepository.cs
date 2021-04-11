@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using Core.Domain.Dtos;
+using Core.Domain.Models;
 
 namespace Infrastructure.Persistence.Repositories.Interfaces
 {

@@ -75,12 +75,12 @@ namespace API.Migrations
             migrationBuilder.InsertData(
                 table: "user_base",
                 columns: new[] { "id", "email", "firstname", "last_login", "lastname", "password" },
-                values: new object[] { "b9526026-bbc7-4781-a1fe-63849ce53e37", "testuser@gmail.com", "John", null, "Doe", "$2a$10$lmiYrmWUDf7klCsGo0VP.uI9DcK.5fUy2Ld34ahg8lQnIanlzThcy" });
+                values: new object[] { "0398ab32-c764-4d16-afc6-dea269729c84", "testuser@gmail.com", "John", null, "Doe", "$2a$10$lmiYrmWUDf7klCsGo0VP.uI9DcK.5fUy2Ld34ahg8lQnIanlzThcy" });
 
             migrationBuilder.InsertData(
                 table: "user_data",
                 columns: new[] { "id", "city_en", "city_sv", "country_en", "country_sv", "email_cv", "phone_number", "profile_image", "user_id" },
-                values: new object[] { "55411f9e-13f0-44e7-b0df-503c7f162b0b", "Gothenburg", "Göteborg", "Sweden", "Sverige", "persson.daniel.1990@gmail.com", "073-3249826", "", "b9526026-bbc7-4781-a1fe-63849ce53e37" });
+                values: new object[] { "c2a39cee-ea2d-4f1e-8f32-f5abaf98e676", "Gothenburg", "Göteborg", "Sweden", "Sverige", "persson.daniel.1990@gmail.com", "073-3249826", "", "0398ab32-c764-4d16-afc6-dea269729c84" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_refresh_token_refresh_token",

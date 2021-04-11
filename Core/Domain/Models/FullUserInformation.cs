@@ -1,6 +1,6 @@
 using Core.Domain.DbModels;
 
-namespace Core.Domain.Dtos
+namespace Core.Domain.Models
 {
     public class FullUserInformation
     {
