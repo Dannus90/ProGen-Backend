@@ -20,23 +20,42 @@ namespace Infrastructure.Identity.Repositories
 
         public async Task RegisterUser(UserCredentialsWithName userCredentialsWithName)
         {
-            const string query = @"
+            const string queryUserBase = @"
                     Insert into user_base (id, email, password, firstname, lastname)
                     VALUES (@Id, @Email, @Password, @Firstname, @Lastname);  
                 ";
-
-            var userId = Guid.NewGuid();
-
+            
+            const string queryUserData = @"
+                    Insert into user_data (id, user_id, email_cv)
+                    VALUES (@Id, @UserId, @Email);  
+                ";
+            
             using var conn = await connectDb(_connectionString);
-
-            await conn.ExecuteScalarAsync(query, new
+            
+            // Begin transaction.
+            using var transaction = conn.BeginTransaction();
+            
+            var userId = Guid.NewGuid();
+                
+            await conn.ExecuteScalarAsync(queryUserBase, new
             {
-                Email = userCredentialsWithName.Email,
-                Password = userCredentialsWithName.Password,
+                userCredentialsWithName.Email,
+                userCredentialsWithName.Password,
                 userCredentialsWithName.Firstname,
                 userCredentialsWithName.Lastname,
                 Id = userId
             });
+            
+            var userDataId = Guid.NewGuid();
+            
+            await conn.ExecuteScalarAsync(queryUserData, new
+            {
+                Id = userDataId,
+                UserId = userId,
+                userCredentialsWithName.Email,
+            });
+                
+            transaction.Commit();
         }
 
         public async Task SaveRefreshToken(string refreshToken, Guid userId)
