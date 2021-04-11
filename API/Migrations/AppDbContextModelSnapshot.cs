@@ -70,19 +70,19 @@ namespace API.Migrations
                         .HasColumnType("CHAR(128)")
                         .HasColumnName("email");
 
-                    b.Property<string>("Firstname")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("CHAR(128)")
-                        .HasColumnName("firstname");
+                        .HasColumnName("first_name");
 
                     b.Property<DateTime?>("LastLogin")
                         .HasColumnType("timestamp without time zone")
                         .HasColumnName("last_login");
 
-                    b.Property<string>("Lastname")
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("CHAR(128)")
-                        .HasColumnName("lastname");
+                        .HasColumnName("last_name");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -105,11 +105,11 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0398ab32-c764-4d16-afc6-dea269729c84",
+                            Id = "4be50a4e-ed2b-4ad1-88eb-457c44fde35d",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "testuser@gmail.com",
-                            Firstname = "John",
-                            Lastname = "Doe",
+                            FirstName = "John",
+                            LastName = "Doe",
                             Password = "$2a$10$lmiYrmWUDf7klCsGo0VP.uI9DcK.5fUy2Ld34ahg8lQnIanlzThcy",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
@@ -177,7 +177,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c2a39cee-ea2d-4f1e-8f32-f5abaf98e676",
+                            Id = "ead904dd-0d1b-445f-9644-ff4f1c7dfef8",
                             CityEn = "Gothenburg",
                             CitySv = "Göteborg",
                             CountryEn = "Sweden",
@@ -187,7 +187,7 @@ namespace API.Migrations
                             PhoneNumber = "073-3249826",
                             ProfileImage = "",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "0398ab32-c764-4d16-afc6-dea269729c84"
+                            UserId = "4be50a4e-ed2b-4ad1-88eb-457c44fde35d"
                         });
                 });
 

@@ -41,8 +41,8 @@ namespace Tests.IntegrationsTests.Repositories
             {
                 Email = setupEmail,
                 Password = hashedPassword,
-                Firstname = firstName,
-                Lastname = lastName
+                FirstName = firstName,
+                LastName = lastName
             };
             
             await _userAuthRepository.RegisterUser(userCredentialsWithName);
@@ -71,8 +71,8 @@ namespace Tests.IntegrationsTests.Repositories
             {
                 Email = email,
                 Password = hashedPassword,
-                Firstname = firstName,
-                Lastname = lastName
+                FirstName = firstName,
+                LastName = lastName
             };
 
             // Act
@@ -101,8 +101,8 @@ namespace Tests.IntegrationsTests.Repositories
             {
                 Email = email,
                 Password = hashedPassword,
-                Firstname = firstName,
-                Lastname = lastName
+                FirstName = firstName,
+                LastName = lastName
             };
 
 

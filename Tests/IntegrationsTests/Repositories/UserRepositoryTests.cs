@@ -41,8 +41,8 @@ namespace Tests.IntegrationsTests.Repositories
             {
                 Email = setupEmail,
                 Password = hashedPassword,
-                Firstname = firstName,
-                Lastname = lastName
+                FirstName = firstName,
+                LastName = lastName
             };
             await _userAuthRepository.RegisterUser(userCredentialsWithName);
             var user = await _userRepository.GetUserByEmail(setupEmail);

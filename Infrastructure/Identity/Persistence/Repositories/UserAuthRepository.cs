@@ -21,8 +21,8 @@ namespace Infrastructure.Identity.Repositories
         public async Task RegisterUser(UserCredentialsWithName userCredentialsWithName)
         {
             const string queryUserBase = @"
-                    Insert into user_base (id, email, password, firstname, lastname)
-                    VALUES (@Id, @Email, @Password, @Firstname, @Lastname);  
+                    Insert into user_base (id, email, password, first_name, last_name)
+                    VALUES (@Id, @Email, @Password, @FirstName, @LastName);  
                 ";
             
             const string queryUserData = @"
@@ -41,8 +41,8 @@ namespace Infrastructure.Identity.Repositories
             {
                 userCredentialsWithName.Email,
                 userCredentialsWithName.Password,
-                userCredentialsWithName.Firstname,
-                userCredentialsWithName.Lastname,
+                userCredentialsWithName.FirstName,
+                userCredentialsWithName.LastName,
                 Id = userId
             });
             

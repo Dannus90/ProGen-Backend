@@ -28,12 +28,12 @@ namespace Core.Domain.DbModels
         public string Password { get; set; }
         
         [Required]
-        [Column("firstname", TypeName = "CHAR(128)")]
-        public string Firstname { get; set; }
+        [Column("first_name", TypeName = "CHAR(128)")]
+        public string FirstName { get; set; }
 
         [Required]
-        [Column("lastname", TypeName = "CHAR(128)")]
-        public string Lastname { get; set; }
+        [Column("last_name", TypeName = "CHAR(128)")]
+        public string LastName { get; set; }
         
         [Column("last_login")] public DateTime? LastLogin { get; set; } = null;
 

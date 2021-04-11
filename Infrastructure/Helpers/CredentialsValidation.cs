@@ -14,7 +14,7 @@ namespace API.helpers
                 throw new HttpExceptionResponse(StatusCodes.Status400BadRequest,
                     "Invalid email format or password length supplied");
             
-            if (userCredentialsWithName.Firstname == "" || userCredentialsWithName.Lastname == "")
+            if (userCredentialsWithName.FirstName == "" || userCredentialsWithName.LastName == "")
                 throw new HttpExceptionResponse(StatusCodes.Status400BadRequest,
                     "Firstname and lastname are required.");
         }
