@@ -10,13 +10,16 @@ namespace Core.Mapping
         public SimpleMappers()
         {
             // From UserCredentialsDto -> UserCredentials.
-            CreateMap<UserCredentialsDto, UserCredentials>();
+            CreateMap<UserCredentialsDto, UserCredentials>().ReverseMap();
             
             // From UserCredentialsDto -> UserCredentials.
-            CreateMap<UserCredentialsWithNameDto, UserCredentialsWithName>();
+            CreateMap<UserCredentialsWithNameDto, UserCredentialsWithName>().ReverseMap();
 
             // From UserCredentialsDto -> UserCredentials -> UserCredentialsDto.
-            CreateMap<TokenDataDto, TokenData>();
+            CreateMap<TokenDataDto, TokenData>().ReverseMap();
+            
+            // From FullUserInformation -> FullUserInformationDto -> FullUserInformation.
+            CreateMap<FullUserInformation, FullUserInformationDto>().ReverseMap();
         }
     }
 }

@@ -28,14 +28,16 @@ namespace Infrastructure.Identity.Services
 
         public async Task<UserInformationViewModel> GetFullUserData(string userId)
         {
-            var userData = await _userAuthRepository.GetFullUserData(userId);
+            var fullUserInformation = await _userDataRepository.GetFullUserInformation(userId);
 
-            if (!userData) throw new HttpExceptionResponse(404, "No userdata was foudnd");
+            if (fullUserInformation == null) throw new HttpExceptionResponse(404, "No userdata was found");
             
+            var fullUserInformationDto = _mapper.Map<FullUserInformationDto>(fullUserInformation);
+
             return new UserInformationViewModel()
             {
-                FullUserInformationDto = user
-            }
+                FullUserInformationDto = fullUserInformationDto
+            };
         }
     }
 }
