@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210411201100_InitialMigration")]
+    [Migration("20210411224747_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -107,7 +107,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4be50a4e-ed2b-4ad1-88eb-457c44fde35d",
+                            Id = "986dbfe1-feb5-45e3-b0c6-f35ceee38637",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "testuser@gmail.com",
                             FirstName = "John",
@@ -179,7 +179,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ead904dd-0d1b-445f-9644-ff4f1c7dfef8",
+                            Id = "67889a38-62f0-412c-abf1-b775490408c1",
                             CityEn = "Gothenburg",
                             CitySv = "Göteborg",
                             CountryEn = "Sweden",
@@ -189,7 +189,7 @@ namespace API.Migrations
                             PhoneNumber = "073-3249826",
                             ProfileImage = "",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "4be50a4e-ed2b-4ad1-88eb-457c44fde35d"
+                            UserId = "986dbfe1-feb5-45e3-b0c6-f35ceee38637"
                         });
                 });
 
