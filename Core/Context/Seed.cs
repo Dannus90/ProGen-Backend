@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Core.Domain.DbModels;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,13 +15,34 @@ namespace Core.Context
             ///         SEED USER          ///
             //////////////////////////////////
 
-            modelBuilder.Entity<User>().HasData(
-                new User
+            var users = new List<User>()
+            {
+                new()
                 {
                     Id = Guid.NewGuid(), Email = "testuser@gmail.com",
                     Password = "$2a$10$lmiYrmWUDf7klCsGo0VP.uI9DcK.5fUy2Ld34ahg8lQnIanlzThcy",
                     Firstname = "John", Lastname = "Doe"
-                });
+                }
+            };
+
+            modelBuilder.Entity<User>().HasData(users);
+            
+            //////////////////////////////////
+            ///         SEED USERDATA      ///
+            //////////////////////////////////
+        
+            var userData = new List<UserData>()
+            {
+                new()
+                {
+                    Id = Guid.NewGuid(), UserId = users[0].Id,
+                    CityEn = "Gothenburg", CitySv = "Göteborg",
+                    CountryEn = "Sweden", CountrySv = "Sverige",
+                    PhoneNumber = "073-3249826", ProfileImage = ""
+                }
+            };
+
+            modelBuilder.Entity<UserData>().HasData(userData);
         }
     }
 }

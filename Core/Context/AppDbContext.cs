@@ -12,6 +12,7 @@ namespace Core.Context
 
         public DbSet<User> User { get; set; }
         public DbSet<RefreshToken> RefreshToken { get; set; }
+        public DbSet<UserData> UserData { get; set; }
 
         protected override void OnModelCreating(ModelBuilder dbModelBuilder)
         {
@@ -22,6 +23,7 @@ namespace Core.Context
 
             Domain.DbModels.User.Configure(dbModelBuilder);
             Domain.DbModels.RefreshToken.Configure(dbModelBuilder);
+            Domain.DbModels.UserData.Configure(dbModelBuilder);
         }
     }
 }

@@ -19,6 +19,7 @@ namespace Core.Domain.DbModels
         }
 
         [Column("user_id", TypeName = "Char(36)")]
+        [Required]
         public Guid UserId { get; set; }
 
         public string UserIdString

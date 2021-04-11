@@ -19,6 +19,7 @@ namespace Core.Domain.DbModels
         }
         
         [Column("user_id", TypeName = "Char(36)")]
+        [Required]
         public Guid UserId { get; set; }
 
         public string UserIdString
@@ -49,7 +50,7 @@ namespace Core.Domain.DbModels
         public string CountryEn { get; set; } = null;
         
         [Required]
-        [Column("country_sv", TypeName = "CHAR(256)")]
+        [Column("profile_image", TypeName = "CHAR(256)")]
         public string ProfileImage { get; set; } = null;
 
         [Column("created_at")] public DateTime CreatedAt { get; set; }
@@ -79,10 +80,10 @@ namespace Core.Domain.DbModels
                 .ValueGeneratedOnAddOrUpdate();
 
             modelBuilder.Entity<UserData>()
-                .Ignore(rf => rf.IdString);
+                .Ignore(ud => ud.IdString);
 
             modelBuilder.Entity<UserData>()
-                .Ignore(rf => rf.UserIdString);
+                .Ignore(ud => ud.UserIdString);
         }
     }
 }
