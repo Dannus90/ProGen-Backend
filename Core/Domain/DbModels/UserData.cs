@@ -38,23 +38,23 @@ namespace Core.Domain.DbModels
 
         [Required]
         [Column("city_sv", TypeName = "CHAR(128)")]
-        public string CitySv { get; set; } = null;
+        public string CitySv { get; set; }
 
         [Required]
         [Column("city_en", TypeName = "CHAR(128)")]
-        public string CityEn { get; set; } = null;
+        public string CityEn { get; set; }
 
         [Required]
         [Column("country_sv", TypeName = "CHAR(128)")]
-        public string CountrySv { get; set; } = null;
+        public string CountrySv { get; set; }
         
         [Required]
         [Column("country_en", TypeName = "CHAR(128)")]
-        public string CountryEn { get; set; } = null;
+        public string CountryEn { get; set; }
         
         [Required]
         [Column("profile_image", TypeName = "CHAR(256)")]
-        public string ProfileImage { get; set; } = null;
+        public string ProfileImage { get; set; }
 
         [Column("created_at")] public DateTime CreatedAt { get; set; }
 
