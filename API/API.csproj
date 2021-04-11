@@ -22,9 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Controllers\UserData" />
         <Folder Include="Controllers\Identity" />
-        <Folder Include="Controllers" />
         <Folder Include="Helpers" />
     </ItemGroup>
 
