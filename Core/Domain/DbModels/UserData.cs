@@ -27,11 +27,14 @@ namespace Core.Domain.DbModels
             get => UserId.ToString("N");
             set => UserId = new Guid(value);
         }
-
-        [Required]
+        
         [Phone]
         [Column("phone_number", TypeName = "CHAR(64)")]
-        public string PhoneNumber { get; set; } = null;
+        public string PhoneNumber { get; set; }
+        
+        [EmailAddress]
+        [Column("email_cv", TypeName = "CHAR(128)")]
+        public string EmailCv { get; set; }
 
         [Required]
         [Column("city_sv", TypeName = "CHAR(128)")]

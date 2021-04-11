@@ -38,7 +38,8 @@ namespace Core.Context
                     Id = Guid.NewGuid(), UserId = users[0].Id,
                     CityEn = "Gothenburg", CitySv = "Göteborg",
                     CountryEn = "Sweden", CountrySv = "Sverige",
-                    PhoneNumber = "073-3249826", ProfileImage = ""
+                    PhoneNumber = "073-3249826", ProfileImage = "",
+                    EmailCv = "persson.daniel.1990@gmail.com"
                 }
             };
 
