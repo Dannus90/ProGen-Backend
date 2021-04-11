@@ -1,4 +1,5 @@
 using AutoMapper;
+using Core.Domain.DbModels;
 using Core.Domain.Dtos;
 using Core.Domain.Models;
 using Core.Domain.ViewModels;
@@ -20,6 +21,9 @@ namespace Core.Mapping
             
             // From FullUserInformation -> FullUserInformationDto -> FullUserInformation.
             CreateMap<FullUserInformation, FullUserInformationDto>().ReverseMap();
+            
+            // From UserDataDto -> UserData -> UserDataDto.
+            CreateMap<UserDataDto, UserData>().ReverseMap();
         }
     }
 }

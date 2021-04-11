@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using API.helpers;
 using AutoMapper;
 using Core.Application.Exceptions;
+using Core.Domain.DbModels;
 using Core.Domain.Dtos;
 using Core.Domain.Models;
 using Core.Domain.ViewModels;
@@ -37,6 +38,22 @@ namespace Infrastructure.Identity.Services
             return new UserInformationViewModel()
             {
                 FullUserInformationDto = fullUserInformationDto
+            };
+        }
+        
+        public async Task<UserDataViewModel> UpdateUserData(string userId, UserDataDto userDataDto)
+        {
+            var userData = _mapper.Map<UserData>(userDataDto);
+            
+            var retrievedUserData = await _userDataRepository.UpdateUserData(userData);
+
+            if (retrievedUserData == null) throw new HttpExceptionResponse(404, "No userdata was found");
+            
+            var retrievedUserDataDto = _mapper.Map<UserDataDto>(retrievedUserData);
+
+            return new UserDataViewModel()
+            {
+                UserDataDto = retrievedUserDataDto
             };
         }
     }

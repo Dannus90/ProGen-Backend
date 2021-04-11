@@ -2,6 +2,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Core.Application.Exceptions;
+using Core.Domain.Dtos;
 using Core.Domain.ViewModels;
 using Infrastructure.Business.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -32,6 +33,19 @@ namespace API.Controllers.Data
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
             
             return Ok(await _userDataService.GetFullUserData(userId));
+        }
+        
+        [HttpPut] //api/v1/user/userdata
+        [Route("")]
+        public async Task<ActionResult<UserInformationViewModel>> UpdateUserData(UserDataDto userDataDto)
+        {
+            var currentUser = HttpContext.User;
+            var userId = currentUser.Claims.FirstOrDefault(c =>
+                c.Type == ClaimTypes.NameIdentifier)?.Value;
+            
+            if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
+            
+            return Ok(await _userDataService.UpdateUserData(userId, userDataDto));
         }
     }
 }
