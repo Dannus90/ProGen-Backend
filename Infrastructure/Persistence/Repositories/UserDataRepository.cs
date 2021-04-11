@@ -59,6 +59,46 @@ namespace Infrastructure.Persistence.Repositories
                 }, splitOn: "IdString");
             return result.ToList()[0];
         }
+
+        public async Task<UserData> UpdateUserData(string userId, UserData userData)
+        {
+            const string query = @"
+                    UPDATE user_data
+                    SET email_cv = @EmailCv,
+                        city_sv = @CitySv,
+                        city_en = @CityEn,
+                        country_sv = @CountrySv,
+                        country_en = @CountryEn,
+                        phone_number = @PhoneNumber
+                    WHERE user_id = @UserId;
+
+                   SELECT id AS IdString,
+                        user_id AS UserIdString,
+                        phone_number AS PhoneNumber,
+                        email_cv AS EmailCv,
+                        city_sv AS CitySv,
+                        city_en AS CityEn,
+                        country_sv AS CountrySv,
+                        country_en AS CountryEn,
+                        profile_image AS ProfileImage,
+                        created_at AS CreatedAt,
+                        updated_at AS UpdatedAt
+                   FROM user_data
+                   WHERE user_id = @UserId;
+                ";
+            
+            using var conn = await connectDb(_connectionString);
+            return await conn.QueryFirstOrDefaultAsync<UserData>(query, new
+            {
+                UserId = userId,
+                userData.EmailCv,
+                userData.CitySv,
+                userData.CityEn,
+                userData.CountrySv,
+                userData.CountryEn,
+                userData.PhoneNumber
+            });
+        }
         
         private static async Task<IDbConnection> connectDb(string connectionString)
         {

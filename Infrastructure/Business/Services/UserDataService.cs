@@ -45,7 +45,7 @@ namespace Infrastructure.Identity.Services
         {
             var userData = _mapper.Map<UserData>(userDataDto);
             
-            var retrievedUserData = await _userDataRepository.UpdateUserData(userData);
+            var retrievedUserData = await _userDataRepository.UpdateUserData(userId, userData);
 
             if (retrievedUserData == null) throw new HttpExceptionResponse(404, "No userdata was found");
             
