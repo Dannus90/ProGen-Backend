@@ -105,7 +105,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "5ff7dde3-0ffa-4d66-92f6-5ab6f6a742f7",
+                            Id = "b9526026-bbc7-4781-a1fe-63849ce53e37",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "testuser@gmail.com",
                             Firstname = "John",
@@ -123,22 +123,18 @@ namespace API.Migrations
                         .HasColumnName("id");
 
                     b.Property<string>("CityEn")
-                        .IsRequired()
                         .HasColumnType("CHAR(128)")
                         .HasColumnName("city_en");
 
                     b.Property<string>("CitySv")
-                        .IsRequired()
                         .HasColumnType("CHAR(128)")
                         .HasColumnName("city_sv");
 
                     b.Property<string>("CountryEn")
-                        .IsRequired()
                         .HasColumnType("CHAR(128)")
                         .HasColumnName("country_en");
 
                     b.Property<string>("CountrySv")
-                        .IsRequired()
                         .HasColumnType("CHAR(128)")
                         .HasColumnName("country_sv");
 
@@ -157,7 +153,6 @@ namespace API.Migrations
                         .HasColumnName("phone_number");
 
                     b.Property<string>("ProfileImage")
-                        .IsRequired()
                         .HasColumnType("CHAR(256)")
                         .HasColumnName("profile_image");
 
@@ -182,7 +177,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "3f765c41-71de-4794-9064-d483e4f04da8",
+                            Id = "55411f9e-13f0-44e7-b0df-503c7f162b0b",
                             CityEn = "Gothenburg",
                             CitySv = "Göteborg",
                             CountryEn = "Sweden",
@@ -192,7 +187,7 @@ namespace API.Migrations
                             PhoneNumber = "073-3249826",
                             ProfileImage = "",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "5ff7dde3-0ffa-4d66-92f6-5ab6f6a742f7"
+                            UserId = "b9526026-bbc7-4781-a1fe-63849ce53e37"
                         });
                 });
 

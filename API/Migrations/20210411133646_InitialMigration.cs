@@ -53,11 +53,11 @@ namespace API.Migrations
                     user_id = table.Column<string>(type: "Char(36)", nullable: false),
                     phone_number = table.Column<string>(type: "CHAR(64)", nullable: true),
                     email_cv = table.Column<string>(type: "CHAR(128)", nullable: true),
-                    city_sv = table.Column<string>(type: "CHAR(128)", nullable: false),
-                    city_en = table.Column<string>(type: "CHAR(128)", nullable: false),
-                    country_sv = table.Column<string>(type: "CHAR(128)", nullable: false),
-                    country_en = table.Column<string>(type: "CHAR(128)", nullable: false),
-                    profile_image = table.Column<string>(type: "CHAR(256)", nullable: false),
+                    city_sv = table.Column<string>(type: "CHAR(128)", nullable: true),
+                    city_en = table.Column<string>(type: "CHAR(128)", nullable: true),
+                    country_sv = table.Column<string>(type: "CHAR(128)", nullable: true),
+                    country_en = table.Column<string>(type: "CHAR(128)", nullable: true),
+                    profile_image = table.Column<string>(type: "CHAR(256)", nullable: true),
                     created_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "NOW()"),
                     updated_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "NOW()")
                 },
@@ -75,12 +75,12 @@ namespace API.Migrations
             migrationBuilder.InsertData(
                 table: "user_base",
                 columns: new[] { "id", "email", "firstname", "last_login", "lastname", "password" },
-                values: new object[] { "5ff7dde3-0ffa-4d66-92f6-5ab6f6a742f7", "testuser@gmail.com", "John", null, "Doe", "$2a$10$lmiYrmWUDf7klCsGo0VP.uI9DcK.5fUy2Ld34ahg8lQnIanlzThcy" });
+                values: new object[] { "b9526026-bbc7-4781-a1fe-63849ce53e37", "testuser@gmail.com", "John", null, "Doe", "$2a$10$lmiYrmWUDf7klCsGo0VP.uI9DcK.5fUy2Ld34ahg8lQnIanlzThcy" });
 
             migrationBuilder.InsertData(
                 table: "user_data",
                 columns: new[] { "id", "city_en", "city_sv", "country_en", "country_sv", "email_cv", "phone_number", "profile_image", "user_id" },
-                values: new object[] { "3f765c41-71de-4794-9064-d483e4f04da8", "Gothenburg", "Göteborg", "Sweden", "Sverige", "persson.daniel.1990@gmail.com", "073-3249826", "", "5ff7dde3-0ffa-4d66-92f6-5ab6f6a742f7" });
+                values: new object[] { "55411f9e-13f0-44e7-b0df-503c7f162b0b", "Gothenburg", "Göteborg", "Sweden", "Sverige", "persson.daniel.1990@gmail.com", "073-3249826", "", "b9526026-bbc7-4781-a1fe-63849ce53e37" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_refresh_token_refresh_token",
