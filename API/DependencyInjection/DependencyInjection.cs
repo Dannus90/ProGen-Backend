@@ -1,3 +1,4 @@
+using Infrastructure.Business.Services.Interfaces;
 using Infrastructure.Identity.Repositories;
 using Infrastructure.Identity.Repositories.Interfaces;
 using Infrastructure.Identity.Services;
@@ -11,12 +12,13 @@ namespace API
 {
     public class DependencyInjection
     {
-        public void AddDependencyInjectionServices(IServiceCollection services)
+        public static void AddDependencyInjectionServices(IServiceCollection services)
         {
             services.AddScoped<IUserAuthService, UserAuthService>();
+            services.AddScoped<IUserDataService, UserDataService>();
         }
 
-        public void AddDependencyInjectionRepositories(IServiceCollection services, string connectionString)
+        public static void AddDependencyInjectionRepositories(IServiceCollection services, string connectionString)
         {
             services.AddSingleton<IUserAuthRepository>(new UserAuthRepository(connectionString));
             services.AddSingleton<IUserRepository>(new UserRepository(connectionString));

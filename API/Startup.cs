@@ -102,8 +102,8 @@ namespace API
             services.Configure<ProGenConfig>(_proGenConfig);
             services.Configure<TokenConfig>(_tokenConfig);
             _dependencyInjection.AddDependencyInjectionHandlers(services);
-            _dependencyInjection.AddDependencyInjectionServices(services);
-            _dependencyInjection.AddDependencyInjectionRepositories(services, _connectionString);
+            DependencyInjection.AddDependencyInjectionServices(services);
+            DependencyInjection.AddDependencyInjectionRepositories(services, _connectionString);
         }
 
         // This method gets called by the runtime. We use this method to configure the pipeline.

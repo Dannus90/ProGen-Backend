@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Core.Application.Exceptions;
 using Core.Domain.ViewModels;
+using Infrastructure.Business.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,8 +31,7 @@ namespace API.Controllers.Data
             
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
             
-            var userInformationViewModel = await _userDataService.GetFullUserData(userId);
-            return Ok();
+            return Ok(await _userDataService.GetFullUserData(userId));
         }
     }
 }
