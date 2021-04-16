@@ -24,8 +24,8 @@ namespace Infrastructure.Persistence.Repositories
             const string query = @"
                     SELECT user_base.id AS IdString,
                             user_base.email AS Email,
-                            user_base.firstname AS Firstname,
-                            user_base.lastname AS Lastname,
+                            user_base.first_name AS Firstname,
+                            user_base.last_name AS Lastname,
                             user_base.last_login AS LastLogin,
                             user_base.created_at AS CreatedAt,
                             user_base.updated_at AS UpdatedAt,

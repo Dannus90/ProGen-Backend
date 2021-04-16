@@ -1,9 +1,11 @@
 using System.Text;
+using API.Helpers.DbHelpers;
 using AutoMapper;
 using Core.Application.Exceptions;
 using Core.Configurations;
 using Core.Context;
 using Core.Mapping;
+using Dapper;
 using Infrastructure.Security.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -66,6 +68,8 @@ namespace API
                     }
                 );
             });
+
+            SqlMapper.AddTypeHandler(new TrimmedStringHandler());
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(opt =>
