@@ -60,7 +60,7 @@ namespace Infrastructure.Persistence.Repositories
             return result.ToList()[0];
         }
 
-        public async Task<UserData> UpdateUserData(string userId, UserData userData)
+        public async Task<UserData> UpdateUserData(string userId, UserDataModel userData)
         {
             const string query = @"
                     UPDATE user_data

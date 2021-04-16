@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using System.Threading.Tasks;
 using Core.Domain.DbModels;
+using Core.Domain.Models;
 using Dapper;
 using Infrastructure.Persistence.Repositories.Interfaces;
 using Npgsql;
@@ -71,6 +72,29 @@ namespace Infrastructure.Persistence.Repositories
             await conn.ExecuteScalarAsync(query, new
             {
                 UserID = userId.ToString()
+            });
+        }
+        
+        public async Task<FullnameModel> UpdateUserName(string firstName, string lastName, string userId)
+        {
+            const string query = @"
+                    UPDATE user_base
+                    SET first_name = @FirstName,
+                        last_name = @LastName
+                    WHERE id = @UserId;
+
+                   SELECT first_name AS FirstName,
+                        last_name AS LastName
+                   FROM user_base
+                   WHERE id = @UserId;
+                ";
+            
+            using var conn = await connectDb(_connectionString);
+            return await conn.QueryFirstOrDefaultAsync<FullnameModel>(query, new
+            {
+                UserId = userId,
+                LastName = lastName,
+                FirstName = firstName
             });
         }
 

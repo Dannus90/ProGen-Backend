@@ -7,6 +7,6 @@ namespace Infrastructure.Persistence.Repositories.Interfaces
     public interface IUserDataRepository
     {
         Task<FullUserInformation> GetFullUserInformation(string userId);
-        Task<UserData> UpdateUserData(string userId, UserData userData);
+        Task<UserData> UpdateUserData(string userId, UserDataModel userData);
     }
 }

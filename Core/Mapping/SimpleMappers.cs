@@ -22,8 +22,11 @@ namespace Core.Mapping
             // From FullUserInformation -> FullUserInformationDto -> FullUserInformation.
             CreateMap<FullUserInformation, FullUserInformationDto>().ReverseMap();
             
-            // From UserDataDto -> UserData -> UserDataDto.
-            CreateMap<UserDataDto, UserData>().ReverseMap();
+            // From UserDataDto -> UserDataModel -> UserDataDto.
+            CreateMap<UserDataDto, UserDataModel>().ReverseMap();
+            
+            // From UserData -> UserData.
+            CreateMap<UserData, UserDataDto>();
         }
     }
 }
