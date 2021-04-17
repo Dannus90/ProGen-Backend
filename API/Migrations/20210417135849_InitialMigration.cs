@@ -58,6 +58,7 @@ namespace API.Migrations
                     country_sv = table.Column<string>(type: "CHAR(128)", nullable: true),
                     country_en = table.Column<string>(type: "CHAR(128)", nullable: true),
                     profile_image = table.Column<string>(type: "CHAR(256)", nullable: true),
+                    profile_image_public_id = table.Column<string>(type: "CHAR(36)", nullable: true),
                     created_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "NOW()"),
                     updated_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "NOW()")
                 },
@@ -75,12 +76,12 @@ namespace API.Migrations
             migrationBuilder.InsertData(
                 table: "user_base",
                 columns: new[] { "id", "email", "first_name", "last_login", "last_name", "password" },
-                values: new object[] { "986dbfe1-feb5-45e3-b0c6-f35ceee38637", "testuser@gmail.com", "John", null, "Doe", "$2a$10$lmiYrmWUDf7klCsGo0VP.uI9DcK.5fUy2Ld34ahg8lQnIanlzThcy" });
+                values: new object[] { "7489a52a-9c6c-484c-9257-55502e9eac1c", "testuser@gmail.com", "John", null, "Doe", "$2a$10$lmiYrmWUDf7klCsGo0VP.uI9DcK.5fUy2Ld34ahg8lQnIanlzThcy" });
 
             migrationBuilder.InsertData(
                 table: "user_data",
-                columns: new[] { "id", "city_en", "city_sv", "country_en", "country_sv", "email_cv", "phone_number", "profile_image", "user_id" },
-                values: new object[] { "67889a38-62f0-412c-abf1-b775490408c1", "Gothenburg", "Göteborg", "Sweden", "Sverige", "persson.daniel.1990@gmail.com", "073-3249826", "", "986dbfe1-feb5-45e3-b0c6-f35ceee38637" });
+                columns: new[] { "id", "city_en", "city_sv", "country_en", "country_sv", "email_cv", "phone_number", "profile_image", "profile_image_public_id", "user_id" },
+                values: new object[] { "b93cfde4-e28b-4c9d-adbd-ecbcf3a1060d", "Gothenburg", "Göteborg", "Sweden", "Sverige", "persson.daniel.1990@gmail.com", "073-3249826", "", null, "7489a52a-9c6c-484c-9257-55502e9eac1c" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_refresh_token_refresh_token",

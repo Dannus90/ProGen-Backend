@@ -50,7 +50,10 @@ namespace Core.Domain.DbModels
         
         [Column("profile_image", TypeName = "CHAR(256)")]
         public string? ProfileImage { get; set; } = null;
-
+        
+        [Column("profile_image_public_id", TypeName = "CHAR(36)")]
+        public string? ProfileImagePublicId { get; set; } = null;
+        
         [Column("created_at")] public DateTime CreatedAt { get; set; }
 
         [Column("updated_at")] public DateTime UpdatedAt { get; set; }

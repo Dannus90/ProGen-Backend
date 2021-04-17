@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210411224747_InitialMigration")]
+    [Migration("20210417135849_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -107,7 +107,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "986dbfe1-feb5-45e3-b0c6-f35ceee38637",
+                            Id = "7489a52a-9c6c-484c-9257-55502e9eac1c",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "testuser@gmail.com",
                             FirstName = "John",
@@ -158,6 +158,10 @@ namespace API.Migrations
                         .HasColumnType("CHAR(256)")
                         .HasColumnName("profile_image");
 
+                    b.Property<string>("ProfileImagePublicId")
+                        .HasColumnType("CHAR(36)")
+                        .HasColumnName("profile_image_public_id");
+
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("timestamp without time zone")
@@ -179,7 +183,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "67889a38-62f0-412c-abf1-b775490408c1",
+                            Id = "b93cfde4-e28b-4c9d-adbd-ecbcf3a1060d",
                             CityEn = "Gothenburg",
                             CitySv = "Göteborg",
                             CountryEn = "Sweden",
@@ -189,7 +193,7 @@ namespace API.Migrations
                             PhoneNumber = "073-3249826",
                             ProfileImage = "",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "986dbfe1-feb5-45e3-b0c6-f35ceee38637"
+                            UserId = "7489a52a-9c6c-484c-9257-55502e9eac1c"
                         });
                 });
 

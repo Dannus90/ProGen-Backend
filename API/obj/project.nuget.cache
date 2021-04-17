@@ -2,7 +2,7 @@
   "version": 2,
   "dgSpecHash": "c8tJ6IVf2zapsQ72ERWVWLpsClm1IS/nlQIjqvroGz2ZHSoBifryLj441jZwwi8eSUd5Y4uxHoN6U0VThefRAw==",
   "success": true,
-  "projectFilePath": "/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/API/API.csproj",
+  "projectFilePath": "/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/API/API.csproj",
   "expectedPackageFiles": [
     "/Users/danielpersson/.nuget/packages/automapper/10.1.1/automapper.10.1.1.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/8.1.1/automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

@@ -38,6 +38,7 @@ namespace Infrastructure.Persistence.Repositories
                             user_data.country_sv AS CountrySv,
                             user_data.country_en AS CountryEn,
                             user_data.profile_image AS ProfileImage,
+                            user_data.profile_image_public_id AS ProfileImagePublicId,
                             user_data.created_at AS CreatedAt,
                             user_data.updated_at AS UpdatedAt
                     FROM user_base
@@ -81,6 +82,7 @@ namespace Infrastructure.Persistence.Repositories
                         country_sv AS CountrySv,
                         country_en AS CountryEn,
                         profile_image AS ProfileImage,
+                        profile_image_public_id AS ProfileImagePublicId,
                         created_at AS CreatedAt,
                         updated_at AS UpdatedAt
                    FROM user_data

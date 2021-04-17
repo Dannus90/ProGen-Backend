@@ -15,6 +15,7 @@ namespace Core.Domain.Models
         public string CountrySv { get; set; }
         public string CountryEn { get; set; }
         public string ProfileImage { get; set; }
+        public string ProfileImagePublicId { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
     }
