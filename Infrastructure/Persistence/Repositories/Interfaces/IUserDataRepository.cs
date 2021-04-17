@@ -8,5 +8,7 @@ namespace Infrastructure.Persistence.Repositories.Interfaces
     {
         Task<FullUserInformation> GetFullUserInformation(string userId);
         Task<UserData> UpdateUserData(string userId, UserDataModel userData);
+        Task<ProfileImageModel> UploadProfileImage(string imagePublicId, string imageUrl, string userId);
+        Task DeleteProfileImage(string userId);
     }
 }

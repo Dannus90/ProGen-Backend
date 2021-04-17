@@ -1,3 +1,5 @@
+using API.helpers.Cloudinary;
+using API.helpers.Cloudinary.Interfaces;
 using Infrastructure.Business.Services.Interfaces;
 using Infrastructure.Identity.Repositories;
 using Infrastructure.Identity.Repositories.Interfaces;
@@ -16,6 +18,9 @@ namespace API
         {
             services.AddScoped<IUserAuthService, UserAuthService>();
             services.AddScoped<IUserDataService, UserDataService>();
+            
+            // Helpers
+            services.AddScoped<ICloudinaryHelper, CloudinaryHelper>();
         }
 
         public static void AddDependencyInjectionRepositories(IServiceCollection services, string connectionString)

@@ -22,7 +22,8 @@ namespace API.helpers.Cloudinary
             _apiKey = cloudinaryConfig.Value.ApiKey;
         }
 
-        public string UploadImageOrPdfToCloudinary(IFormFile file, string subfolderId, string imageOrPdfGuid, string path)
+        public string UploadImageOrPdfToCloudinary
+            (IFormFile file, string subfolderId, string imageOrPdfGuid, string path)
         {
             var account = new Account(_cloudName, _apiSecret, _apiKey);
             var cloudinary = new CloudinaryDotNet.Cloudinary(account);

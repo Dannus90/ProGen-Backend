@@ -1,13 +1,14 @@
 using System;
 using System.Threading.Tasks;
+using API.helpers.Cloudinary.Interfaces;
 using AutoMapper;
 using Core.Application.Exceptions;
-using Core.Domain.DbModels;
 using Core.Domain.Dtos;
 using Core.Domain.Models;
 using Core.Domain.ViewModels;
 using Infrastructure.Business.Services.Interfaces;
 using Infrastructure.Persistence.Repositories.Interfaces;
+using Microsoft.AspNetCore.Http;
 
 namespace Infrastructure.Identity.Services
 {
@@ -16,14 +17,17 @@ namespace Infrastructure.Identity.Services
         private readonly IMapper _mapper;
         private readonly IUserDataRepository _userDataRepository;
         private readonly IUserRepository _userRepository;
+        private readonly ICloudinaryHelper _cloudinaryHelper;
 
         public UserDataService(IUserDataRepository userDataRepository,
             IUserRepository userRepository,
-            IMapper mapper)
+            IMapper mapper,
+            ICloudinaryHelper cloudinaryHelper)
         {
             _userDataRepository = userDataRepository;
             _userRepository = userRepository;
             _mapper = mapper;
+            _cloudinaryHelper = cloudinaryHelper;
         }
 
         public async Task<UserInformationViewModel> GetFullUserData(string userId)
@@ -62,6 +66,34 @@ namespace Infrastructure.Identity.Services
             {
                 UserDataDto = retrievedUserDataDto
             };
+        }
+
+        public async Task<UserImageViewModel> UploadProfileImage(IFormFile file, string userId)
+        {
+            var userData = await _userDataRepository.GetFullUserInformation(userId);
+
+            var imagePublicId = new Guid(userData.UserData.ProfileImage) != Guid.Empty
+                ? new Guid(userData.UserData.ProfileImage)
+                : Guid.NewGuid();
+
+            var publicImageUrl =
+                _cloudinaryHelper.UploadImageOrPdfToCloudinary
+                (file, userId, imagePublicId.ToString(),
+                    "profile-images/");
+
+            var profileImageData = await _userDataRepository.UploadProfileImage
+                (imagePublicId.ToString(), publicImageUrl, userId);
+            
+            var userImageViewModel = _mapper.Map<UserImageViewModel>(profileImageData);
+
+            return userImageViewModel;
+        }
+        
+        public async Task DeleteProfileImage(string publicId, string userId)
+        { 
+            _cloudinaryHelper.DeleteResourceFromCloudinary(publicId, userId, "profile-images/");
+
+            await _userDataRepository.DeleteProfileImage(userId);
         }
     }
 }

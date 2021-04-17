@@ -49,27 +49,33 @@ namespace API.Controllers.Data
             return Ok(await _userDataService.UpdateUserData(userId, userDataDto));
         }
 
-        /* [HttpPut] //api/v1/user/userdata/profileimage/:publicId
-        [Route("profileimage/{publicId}")]
-        public async Task<ActionResult<UserImageViewModel>> UpdateProfileImage
-            ([FromForm] IFormFile file, string publicId)
-        {
-            
-        }
-        
-        [HttpPost] //api/v1/user/userdata/profileimage/
+        [HttpPut] //api/v1/user/userdata/profileimage/
         [Route("profileimage")]
         public async Task<ActionResult<UserImageViewModel>> UploadProfileImage
             ([FromForm] IFormFile file)
         {
+            var currentUser = HttpContext.User;
+            var userId = currentUser.Claims.FirstOrDefault(c =>
+                c.Type == ClaimTypes.NameIdentifier)?.Value;
             
+            if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
+            
+            return Ok(await _userDataService.UploadProfileImage(file, userId));
         }
         
         [HttpDelete] //api/v1/user/userdata/profileimage/:publicId
         [Route("profileimage/{publicId}")]
         public async Task<ActionResult> DeleteProfileImage(string publicId)
         {
+            var currentUser = HttpContext.User;
+            var userId = currentUser.Claims.FirstOrDefault(c =>
+                c.Type == ClaimTypes.NameIdentifier)?.Value;
             
-        } */
+            if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
+
+            await _userDataService.DeleteProfileImage(publicId, userId);
+            
+            return Ok();
+        }
     }
 }

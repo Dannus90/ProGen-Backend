@@ -102,6 +102,45 @@ namespace Infrastructure.Persistence.Repositories
             });
         }
         
+        public async Task<ProfileImageModel> UploadProfileImage(string imagePublicId, string imageUrl, string userId)
+        {
+            const string query = @"
+                    UPDATE user_data
+                    SET profile_image_public_id = @ProfileImagePublicId,
+                        profile_image = @ProfileImage
+                    WHERE user_id = @UserId;
+
+                   SELECT profile_image_public_id AS ProfileImagePublicId,
+                        profile_image AS ProfileImage
+                   FROM user_data
+                   WHERE user_id = @UserId;
+                ";
+            
+            using var conn = await connectDb(_connectionString);
+            return await conn.QueryFirstOrDefaultAsync<ProfileImageModel>(query, new
+            {
+                UserId = userId,
+                ProfileImagePublicId = imagePublicId,
+                ProfileImage = imageUrl
+            });
+        }
+        
+        public async Task DeleteProfileImage(string userId)
+        {
+            const string query = @"
+                    UPDATE user_data
+                    SET profile_image_public_id = null,
+                        profile_image = null
+                    WHERE user_id = @UserId;
+                ";
+            
+            using var conn = await connectDb(_connectionString);
+            await conn.ExecuteScalarAsync(query, new
+            {
+                UserId = userId
+            });
+        }
+        
         private static async Task<IDbConnection> connectDb(string connectionString)
         {
             var connection = new NpgsqlConnection(connectionString);

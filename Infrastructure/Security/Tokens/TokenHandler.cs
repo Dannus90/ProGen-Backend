@@ -16,10 +16,9 @@ namespace Infrastructure.Security.Tokens
         private readonly IOptions<TokenConfig> _tokenConfig;
         private readonly IOptions<CloudinaryConfig> _cloudinaryConfig;
 
-        public TokenHandler(IOptions<TokenConfig> tokenConfig, IOptions<CloudinaryConfig> cloudinaryConfig)
+        public TokenHandler(IOptions<TokenConfig> tokenConfig)
         {
             _tokenConfig = tokenConfig;
-            _cloudinaryConfig = cloudinaryConfig;
         }
 
         /**

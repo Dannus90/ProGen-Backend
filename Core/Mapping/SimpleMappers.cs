@@ -27,6 +27,9 @@ namespace Core.Mapping
             
             // From UserData -> UserData.
             CreateMap<UserData, UserDataDto>();
+            
+            // From ProfileImageModel -> UserImageViewModel.
+            CreateMap<ProfileImageModel, UserImageViewModel>();
         }
     }
 }
