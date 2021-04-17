@@ -49,7 +49,7 @@ namespace API.Controllers.Data
             return Ok(await _userDataService.UpdateUserData(userId, userDataDto));
         }
 
-        [HttpPut] //api/v1/user/userdata/profileimage/:publicId
+        /* [HttpPut] //api/v1/user/userdata/profileimage/:publicId
         [Route("profileimage/{publicId}")]
         public async Task<ActionResult<UserImageViewModel>> UpdateProfileImage
             ([FromForm] IFormFile file, string publicId)
@@ -70,6 +70,6 @@ namespace API.Controllers.Data
         public async Task<ActionResult> DeleteProfileImage(string publicId)
         {
             
-        }
+        } */
     }
 }

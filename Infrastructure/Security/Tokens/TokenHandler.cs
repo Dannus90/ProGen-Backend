@@ -4,6 +4,7 @@ using System.Security.Claims;
 using System.Text;
 using Core.Application.Exceptions;
 using Core.Domain.DbModels;
+using Infrastructure.configurations;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
@@ -13,10 +14,12 @@ namespace Infrastructure.Security.Tokens
     public class TokenHandler : ITokenHandler
     {
         private readonly IOptions<TokenConfig> _tokenConfig;
+        private readonly IOptions<CloudinaryConfig> _cloudinaryConfig;
 
-        public TokenHandler(IOptions<TokenConfig> tokenConfig)
+        public TokenHandler(IOptions<TokenConfig> tokenConfig, IOptions<CloudinaryConfig> cloudinaryConfig)
         {
             _tokenConfig = tokenConfig;
+            _cloudinaryConfig = cloudinaryConfig;
         }
 
         /**
