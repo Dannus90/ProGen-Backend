@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using API.helpers.Cloudinary.Interfaces;
 using Infrastructure.configurations;
@@ -27,6 +28,7 @@ namespace API.helpers.Cloudinary
         {
             var account = new Account(_cloudName, _apiSecret, _apiKey);
             var cloudinary = new CloudinaryDotNet.Cloudinary(account);
+
             var uploadParams = new ImageUploadParams()
             {
                 File = new FileDescription(file.FileName, file.OpenReadStream()),

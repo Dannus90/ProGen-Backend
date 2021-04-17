@@ -12,6 +12,7 @@ using Infrastructure.Security.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -111,6 +112,13 @@ namespace API
             {
                 c.SwaggerDoc("v1",
                     new OpenApiInfo {Title = "API", Version = "v1"});
+            });
+            
+            services.Configure<FormOptions>(options =>
+            {
+                options.MemoryBufferThreshold = int.MaxValue;
+                options.MultipartBodyLengthLimit = int.MaxValue;
+                options.MultipartHeadersLengthLimit = int.MaxValue;
             });
 
             // Dependency injection.

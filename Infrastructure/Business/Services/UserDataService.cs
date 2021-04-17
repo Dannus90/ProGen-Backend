@@ -72,9 +72,9 @@ namespace Infrastructure.Identity.Services
         {
             var userData = await _userDataRepository.GetFullUserInformation(userId);
 
-            var imagePublicId = new Guid(userData.UserData.ProfileImage) != Guid.Empty
-                ? new Guid(userData.UserData.ProfileImage)
-                : Guid.NewGuid();
+            var imagePublicId = userData.UserData.ProfileImagePublicId == null 
+                ? Guid.NewGuid() 
+                : new Guid(userData.UserData.ProfileImagePublicId);
 
             var publicImageUrl =
                 _cloudinaryHelper.UploadImageOrPdfToCloudinary
