@@ -6,6 +6,7 @@ using Core.Configurations;
 using Core.Context;
 using Core.Mapping;
 using Dapper;
+using Infrastructure.configurations;
 using Infrastructure.Security.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -26,6 +27,7 @@ namespace API
         private readonly DependencyInjection _dependencyInjection;
         private readonly IConfigurationSection _proGenConfig;
         private readonly IConfigurationSection _tokenConfig;
+        private readonly IConfiguration _cloudinaryConfig;
 
         public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
@@ -37,6 +39,7 @@ namespace API
 
             _configuration = configurationBuilder.Build();
             _proGenConfig = _configuration.GetSection("ProGenConfig");
+            _cloudinaryConfig = _configuration.GetSection("CloudinaryConfig");
             _tokenConfig = _configuration.GetSection("TokenConfig");
             _connectionString = _proGenConfig.Get<ProGenConfig>().DbConnectionString;
             _dependencyInjection = new DependencyInjection();
@@ -105,6 +108,7 @@ namespace API
             // Dependency injection.
             services.Configure<ProGenConfig>(_proGenConfig);
             services.Configure<TokenConfig>(_tokenConfig);
+            services.Configure<CloudinaryConfig>(_cloudinaryConfig);
             _dependencyInjection.AddDependencyInjectionHandlers(services);
             DependencyInjection.AddDependencyInjectionServices(services);
             DependencyInjection.AddDependencyInjectionRepositories(services, _connectionString);
