@@ -84,6 +84,7 @@ namespace Infrastructure.Identity.Services
             var profileImageData = await _userDataRepository.UploadProfileImage
                 (imagePublicId.ToString(), publicImageUrl, userId);
             
+            
             var userImageViewModel = _mapper.Map<UserImageViewModel>(profileImageData);
 
             return userImageViewModel;
@@ -91,7 +92,7 @@ namespace Infrastructure.Identity.Services
         
         public async Task DeleteProfileImage(string publicId, string userId)
         { 
-            _cloudinaryHelper.DeleteResourceFromCloudinary(publicId, userId, "profile-images/");
+            _cloudinaryHelper.DeleteResourceFromCloudinary(userId, publicId, "profile-images/");
 
             await _userDataRepository.DeleteProfileImage(userId);
         }

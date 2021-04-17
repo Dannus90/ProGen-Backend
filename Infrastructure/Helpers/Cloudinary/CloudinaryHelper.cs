@@ -26,8 +26,10 @@ namespace API.helpers.Cloudinary
         public string UploadImageOrPdfToCloudinary
             (IFormFile file, string subfolderId, string imageOrPdfGuid, string path)
         {
-            var account = new Account(_cloudName, _apiSecret, _apiKey);
+            var account = new Account(_cloudName, _apiKey, _apiSecret);
             var cloudinary = new CloudinaryDotNet.Cloudinary(account);
+
+            Console.WriteLine(path + subfolderId + "/" + imageOrPdfGuid);
 
             var uploadParams = new ImageUploadParams()
             {
@@ -41,9 +43,9 @@ namespace API.helpers.Cloudinary
             return uploadResult.SecureUrl.AbsoluteUri;
         }
 
-        public void DeleteResourceFromCloudinary(string publicId, string subFolderId, string path)
+        public void DeleteResourceFromCloudinary(string subFolderId, string publicId, string path)
         {
-            var account = new Account(_cloudName, _apiSecret, _apiKey);
+            var account = new Account(_cloudName, _apiKey, _apiSecret);
             var cloudinary = new CloudinaryDotNet.Cloudinary(account);
 
             var delResParams = new DelResParams()

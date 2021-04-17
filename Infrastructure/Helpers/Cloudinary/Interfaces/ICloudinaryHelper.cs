@@ -8,6 +8,6 @@ namespace API.helpers.Cloudinary.Interfaces
             (IFormFile file, string subfolderId, string imageOrPdfGuid, string path);
 
         void DeleteResourceFromCloudinary
-            (string publicId, string subFolderId, string path);
+            (string subFolderId, string publicId, string path);
     }
 }
