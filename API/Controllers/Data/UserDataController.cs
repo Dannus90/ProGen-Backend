@@ -6,6 +6,7 @@ using Core.Domain.Dtos;
 using Core.Domain.ViewModels;
 using Infrastructure.Business.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers.Data
@@ -46,6 +47,29 @@ namespace API.Controllers.Data
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
             
             return Ok(await _userDataService.UpdateUserData(userId, userDataDto));
+        }
+
+        [HttpPut] //api/v1/user/userdata/profileimage/:publicId
+        [Route("profileimage/{publicId}")]
+        public async Task<ActionResult<UserImageViewModel>> UpdateProfileImage
+            ([FromForm] IFormFile file, string publicId)
+        {
+            
+        }
+        
+        [HttpPost] //api/v1/user/userdata/profileimage/
+        [Route("profileimage")]
+        public async Task<ActionResult<UserImageViewModel>> UploadProfileImage
+            ([FromForm] IFormFile file)
+        {
+            
+        }
+        
+        [HttpDelete] //api/v1/user/userdata/profileimage/:publicId
+        [Route("profileimage/{publicId}")]
+        public async Task<ActionResult> DeleteProfileImage(string publicId)
+        {
+            
         }
     }
 }
