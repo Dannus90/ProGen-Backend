@@ -50,7 +50,15 @@ namespace API
             _cloudinaryConfig.GetSection("ApiSecret").Value = configuration["CloudinaryConfig:ApiSecret"];
             _cloudinaryConfig.GetSection("CloudName").Value = configuration["CloudinaryConfig:CloudName"];
             _tokenConfig = _configuration.GetSection("TokenConfig");
-            _connectionString = _proGenConfig.Get<ProGenConfig>().DbConnectionString;
+            if (env.IsDevelopment())
+            {
+                _connectionString = _proGenConfig.Get<ProGenConfig>().DbConnectionString;
+            }
+            else
+            {
+                _connectionString = _configuration["DB_CONNECTION_STRING"];
+            }
+            
             _dependencyInjection = new DependencyInjection();
         }
 
