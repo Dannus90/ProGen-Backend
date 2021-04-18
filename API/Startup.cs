@@ -50,6 +50,7 @@ namespace API
             _cloudinaryConfig.GetSection("ApiSecret").Value = configuration["CloudinaryConfig:ApiSecret"];
             _cloudinaryConfig.GetSection("CloudName").Value = configuration["CloudinaryConfig:CloudName"];
             
+            // Some secrets come from environment and are set on the hosting platform (or locally) for security reasons.
             if (env.IsDevelopment())
             {
                 _connectionString = _proGenConfig.Get<ProGenConfig>().DbConnectionString;
