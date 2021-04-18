@@ -26,10 +26,6 @@
         <Folder Include="Controllers\Identity" />
     </ItemGroup>
 
-    <Target Name="PrePublishTarget" AfterTargets="Publish">
-        <Exec Command="dotnet ef database update" />
-    </Target>
-
     <ItemGroup>
       <ProjectReference Include="..\Core\Core.csproj" />
       <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
