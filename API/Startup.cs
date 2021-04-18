@@ -42,21 +42,24 @@ namespace API
             _configuration = configurationBuilder.Build();
             _proGenConfig = _configuration.GetSection("ProGenConfig");
             _cloudinaryConfig = _configuration.GetSection("CloudinaryConfig");
-            
+
             // Access from env variables. 
             // Read more: https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-5.0&tabs=linux&fbclid=IwAR1_Ih_VPv4SPDaKZkKwIU0-nrixJU8vfiLvYvbPrmXovt39jwvvpsCjfXg#register-the-user-secrets-configuration-source
             // Read more: https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-5.0&tabs=linux&fbclid=IwAR1_Ih_VPv4SPDaKZkKwIU0-nrixJU8vfiLvYvbPrmXovt39jwvvpsCjfXg#secret-manager
             _cloudinaryConfig.GetSection("ApiKey").Value = configuration["CloudinaryConfig:ApiKey"];
             _cloudinaryConfig.GetSection("ApiSecret").Value = configuration["CloudinaryConfig:ApiSecret"];
             _cloudinaryConfig.GetSection("CloudName").Value = configuration["CloudinaryConfig:CloudName"];
-            _tokenConfig = _configuration.GetSection("TokenConfig");
+            
             if (env.IsDevelopment())
             {
                 _connectionString = _proGenConfig.Get<ProGenConfig>().DbConnectionString;
+                _tokenConfig = _configuration.GetSection("TokenConfig");
             }
             else
             {
                 _connectionString = _configuration["DB_CONNECTION_STRING"];
+                _tokenConfig = _configuration.GetSection("TokenConfig");
+                _tokenConfig.GetSection("SecretKey").Value = configuration["SecretKey"];
             }
             
             _dependencyInjection = new DependencyInjection();
