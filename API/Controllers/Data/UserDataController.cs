@@ -1,6 +1,8 @@
+using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using API.Helpers;
 using Core.Application.Exceptions;
 using Core.Domain.Dtos;
 using Core.Domain.ViewModels;
@@ -57,8 +59,14 @@ namespace API.Controllers.Data
             var currentUser = HttpContext.User;
             var userId = currentUser.Claims.FirstOrDefault(c =>
                 c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+            if (userId == null) 
+                throw new HttpExceptionResponse(401, "No userId provided");
             
-            if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
+            var fileExt = System.IO.Path.GetExtension(file.FileName);
+
+            if(!FileValidator.ValidateImageUpload(fileExt)) 
+                throw new HttpExceptionResponse(415, "Following formats are allowed: jpg, jpeg, png");
             
             return Ok(await _userDataService.UploadProfileImage(file, userId));
         }
