@@ -41,7 +41,7 @@ namespace API.Controllers.Identity
         
         [HttpPost] //api/v1/user/auth/refresh
         [Route("refresh")]
-        public async Task<ActionResult<TokenResponseViewModel>> refresh(TokenDataDto tokenDataDto)
+        public async Task<ActionResult<TokenResponseViewModel>> Refresh(TokenDataDto tokenDataDto)
         {
             var userId = _tokenHandler.GetUserIdFromAccessToken(tokenDataDto.AccessToken);
 
@@ -53,7 +53,7 @@ namespace API.Controllers.Identity
         [HttpPost] //api/v1/user/auth/logout
         [Authorize]
         [Route("logout")]
-        public async Task<ActionResult> logout()
+        public async Task<ActionResult> Logout()
         {
             var currentUser = HttpContext.User;
             var userId = currentUser.Claims.FirstOrDefault(c =>
@@ -64,6 +64,22 @@ namespace API.Controllers.Identity
             await _userAuthService.DeleteRefreshToken(userId);
 
             return NoContent();
+        }
+        
+        [HttpPost] //api/v1/user/auth/change-password
+        [Authorize]
+        [Route("change-password")]
+        public async Task<ActionResult> ChangePassword(ChangePasswordDto changePasswordDto)
+        {
+            var currentUser = HttpContext.User;
+            var userId = currentUser.Claims.FirstOrDefault(c =>
+                c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+            if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
+
+            await _userAuthService.ChangePassword(changePasswordDto, userId);
+
+            return Ok();
         }
     }
 }

@@ -30,6 +30,10 @@ namespace Core.Mapping
             
             // From ProfileImageModel -> UserImageViewModel.
             CreateMap<ProfileImageModel, UserImageViewModel>();
+            
+            // From ChangePasswordModel -> ChangePasswordDto -> ChangePasswordModel.
+            CreateMap<ChangePasswordModel, ChangePasswordDto>().ReverseMap();
+            
         }
     }
 }

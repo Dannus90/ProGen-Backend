@@ -146,6 +146,23 @@ namespace Infrastructure.Identity.Repositories
             });
         }
 
+        public async Task UpdatePassword(string newPassword, string userId)
+        {
+            const string query = @"
+                    UPDATE user_base
+                    SET password = @NewPassword
+                    WHERE id = @UserId;
+                ";
+
+            using var conn = await connectDb(_connectionString);
+
+            await conn.ExecuteScalarAsync(query, new
+            {
+                NewPassword = newPassword,
+                UserId = userId
+            });
+        }
+
         private static async Task<IDbConnection> connectDb(string connectionString)
         {
             var connection = new NpgsqlConnection(connectionString);

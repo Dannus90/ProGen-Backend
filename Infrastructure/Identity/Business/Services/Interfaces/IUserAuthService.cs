@@ -10,5 +10,6 @@ namespace Infrastructure.Identity.Services.Interfaces
         Task<TokenResponseViewModel> LoginUser(UserCredentialsDto userCredentials);
         Task<TokenResponseViewModel> GenerateAccessTokenFromRefreshToken(string userId, string refreshToken);
         Task DeleteRefreshToken(string userId);
+        Task ChangePassword(ChangePasswordDto changePasswordDto, string userId);
     }
 }

@@ -18,5 +18,14 @@ namespace API.helpers
                 throw new HttpExceptionResponse(StatusCodes.Status400BadRequest,
                     "Firstname and lastname are required.");
         }
+        
+        public static void ValidatePasswordLength(string password)
+        {
+            if (password.Length < 10)
+            {
+                throw new HttpExceptionResponse(StatusCodes.Status400BadRequest,
+                    "Invalid password length supplied");    
+            }
+        }
     }
 }

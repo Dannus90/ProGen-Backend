@@ -10,6 +10,7 @@ using Infrastructure.Identity.Services.Interfaces;
 using Infrastructure.Persistence.Repositories.Interfaces;
 using Infrastructure.Security;
 using Infrastructure.Security.Tokens;
+using Microsoft.AspNetCore.Http;
 
 namespace Infrastructure.Identity.Services
 {
@@ -49,12 +50,14 @@ namespace Infrastructure.Identity.Services
 
             // If no user we send unauthorized to not give information regarding if email exist or not.
             // Not found would give information that the email is not in use at the moment. 
-            if (user == null) throw new HttpExceptionResponse(401, "Incorrect email or password");
+            if (user == null) throw new HttpExceptionResponse
+                (StatusCodes.Status401Unauthorized, "Incorrect email or password");
 
             // Password verification.
             if (!PasswordHandler.VerifyPassword(userCredentials.Password,
                 user.Password.Trim()))
-                throw new HttpExceptionResponse(401, "Incorrect email or password");
+                throw new HttpExceptionResponse
+                    (StatusCodes.Status401Unauthorized, "Incorrect email or password");
 
             var accessToken = _tokenHandler.GenerateJsonWebToken(user);
             var refreshToken = _tokenHandler.GenerateRefreshToken(user);
@@ -116,6 +119,26 @@ namespace Infrastructure.Identity.Services
         public async Task DeleteRefreshToken(string userId)
         {
             await _userAuthRepository.DeleteRefreshTokenByUserId(userId);
+        }
+
+        public async Task ChangePassword(ChangePasswordDto changePasswordDto, string userId)
+        {
+            var changePasswordData = _mapper.Map<ChangePasswordModel>(changePasswordDto);
+
+            var user = await _userRepository.GetUserByUserId(userId);
+
+            var isPasswordValid = PasswordHandler.VerifyPassword
+                (changePasswordData.OldPassword, user.Password);
+
+            if (!isPasswordValid)
+            {
+                throw new HttpExceptionResponse(400, "Incorrect old password provided.");
+            }
+            
+            // Validate new password
+            CredentialsValidation.ValidatePasswordLength(changePasswordData.NewPassword);
+
+            await _userAuthRepository.UpdatePassword(changePasswordData.NewPassword, userId);
         }
     }
 }
