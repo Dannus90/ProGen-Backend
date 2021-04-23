@@ -14,5 +14,6 @@ namespace Infrastructure.Identity.Repositories.Interfaces
         Task DeleteRefreshTokenByUserId(string userId);
         Task UpdateLastLoggedIn(Guid userId);
         Task UpdatePassword(string newPassword, string userId);
+        Task UpdateEmail(string email, string userId);
     }
 }

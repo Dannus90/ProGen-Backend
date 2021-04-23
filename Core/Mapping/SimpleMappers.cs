@@ -34,6 +34,8 @@ namespace Core.Mapping
             // From ChangePasswordModel -> ChangePasswordDto -> ChangePasswordModel.
             CreateMap<ChangePasswordModel, ChangePasswordDto>().ReverseMap();
             
+            // From ChangeEmailModel -> ChangeEmailDto -> ChangeEmailModel.
+            CreateMap<ChangeEmailModel, ChangeEmailDto>().ReverseMap();
         }
     }
 }

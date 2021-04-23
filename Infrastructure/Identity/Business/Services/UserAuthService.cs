@@ -144,23 +144,20 @@ namespace Infrastructure.Identity.Services
         
         public async Task ChangeEmail(ChangeEmailDto changeEmailDto, string userId)
         {
-            var changePasswordData = _mapper.Map<ChangePasswordModel>(changeEmailDto);
+            var changeEmailData= _mapper.Map<ChangeEmailDto>(changeEmailDto);
 
             var user = await _userRepository.GetUserByUserId(userId);
 
             var isPasswordValid = PasswordHandler.VerifyPassword
-                (changePasswordData.OldPassword, user.Password);
+                (changeEmailData.Password, user.Password);
 
             if (!isPasswordValid)
             {
                 throw new HttpExceptionResponse
                     (StatusCodes.Status401Unauthorized, "Incorrect password provided.");
             }
-            
-            // Validate new password
-            CredentialsValidation.ValidatePasswordLength(changePasswordData.NewPassword);
 
-            await _userAuthRepository.UpdatePassword(changePasswordData.NewPassword, userId);
+            await _userAuthRepository.UpdateEmail(changeEmailData.NewEmail, userId);
         }
     }
 }
