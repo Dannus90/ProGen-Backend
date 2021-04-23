@@ -138,8 +138,9 @@ namespace Infrastructure.Identity.Services
             
             // Validate new password
             CredentialsValidation.ValidatePasswordLength(changePasswordData.NewPassword);
+            var hashedPassword = PasswordHandler.HashPassword(changePasswordDto.NewPassword);
 
-            await _userAuthRepository.UpdatePassword(changePasswordData.NewPassword, userId);
+            await _userAuthRepository.UpdatePassword(hashedPassword, userId);
         }
         
         public async Task ChangeEmail(ChangeEmailDto changeEmailDto, string userId)
