@@ -81,5 +81,21 @@ namespace API.Controllers.Identity
 
             return Ok();
         }
+        
+        [HttpPost] //api/v1/user/auth/change-email
+        [Authorize]
+        [Route("change-email")]
+        public async Task<ActionResult> ChangeEmail(ChangeEmailDto changeEmailDto)
+        {
+            var currentUser = HttpContext.User;
+            var userId = currentUser.Claims.FirstOrDefault(c =>
+                c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+            if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
+
+            await _userAuthService.ChangeEmail(changeEmailDto, userId);
+
+            return Ok();
+        }
     }
 }

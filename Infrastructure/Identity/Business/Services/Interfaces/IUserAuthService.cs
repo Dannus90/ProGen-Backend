@@ -11,5 +11,6 @@ namespace Infrastructure.Identity.Services.Interfaces
         Task<TokenResponseViewModel> GenerateAccessTokenFromRefreshToken(string userId, string refreshToken);
         Task DeleteRefreshToken(string userId);
         Task ChangePassword(ChangePasswordDto changePasswordDto, string userId);
+        Task ChangeEmail(ChangeEmailDto changeEmailDto, string userId);
     }
 }

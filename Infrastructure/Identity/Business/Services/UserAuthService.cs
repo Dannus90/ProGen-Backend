@@ -132,7 +132,29 @@ namespace Infrastructure.Identity.Services
 
             if (!isPasswordValid)
             {
-                throw new HttpExceptionResponse(400, "Incorrect old password provided.");
+                throw new HttpExceptionResponse
+                    (StatusCodes.Status401Unauthorized, "Incorrect old password provided.");
+            }
+            
+            // Validate new password
+            CredentialsValidation.ValidatePasswordLength(changePasswordData.NewPassword);
+
+            await _userAuthRepository.UpdatePassword(changePasswordData.NewPassword, userId);
+        }
+        
+        public async Task ChangeEmail(ChangeEmailDto changeEmailDto, string userId)
+        {
+            var changePasswordData = _mapper.Map<ChangePasswordModel>(changeEmailDto);
+
+            var user = await _userRepository.GetUserByUserId(userId);
+
+            var isPasswordValid = PasswordHandler.VerifyPassword
+                (changePasswordData.OldPassword, user.Password);
+
+            if (!isPasswordValid)
+            {
+                throw new HttpExceptionResponse
+                    (StatusCodes.Status401Unauthorized, "Incorrect password provided.");
             }
             
             // Validate new password
