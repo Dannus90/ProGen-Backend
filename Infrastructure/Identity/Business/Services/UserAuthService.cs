@@ -145,7 +145,9 @@ namespace Infrastructure.Identity.Services
         
         public async Task ChangeEmail(ChangeEmailDto changeEmailDto, string userId)
         {
-            var changeEmailData= _mapper.Map<ChangeEmailDto>(changeEmailDto);
+            var changeEmailData = _mapper.Map<ChangeEmailModel>(changeEmailDto);
+
+            CredentialsValidation.ValidateEmailChange(changeEmailData);
 
             var user = await _userRepository.GetUserByUserId(userId);
 

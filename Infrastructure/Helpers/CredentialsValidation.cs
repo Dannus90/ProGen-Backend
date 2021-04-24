@@ -19,6 +19,14 @@ namespace API.helpers
                     "Firstname and lastname are required.");
         }
         
+        public static void ValidateEmailChange(ChangeEmailModel changeEmailModel)
+        {
+            var regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            if (!regex.Match(changeEmailModel.NewEmail).Success)
+                throw new HttpExceptionResponse(StatusCodes.Status400BadRequest,
+                    "Invalid email format.");
+        }
+        
         public static void ValidatePasswordLength(string password)
         {
             if (password.Length < 10)
