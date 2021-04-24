@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210417135849_InitialMigration")]
+    [Migration("20210424201041_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -107,7 +107,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7489a52a-9c6c-484c-9257-55502e9eac1c",
+                            Id = "00119ccb-f6dc-44f1-97f4-4d30bac16490",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "testuser@gmail.com",
                             FirstName = "John",
@@ -183,7 +183,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b93cfde4-e28b-4c9d-adbd-ecbcf3a1060d",
+                            Id = "cf24e8ac-0a4a-42e3-8e6f-199e388105b2",
                             CityEn = "Gothenburg",
                             CitySv = "Göteborg",
                             CountryEn = "Sweden",
@@ -193,8 +193,50 @@ namespace API.Migrations
                             PhoneNumber = "073-3249826",
                             ProfileImage = "",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "7489a52a-9c6c-484c-9257-55502e9eac1c"
+                            UserId = "00119ccb-f6dc-44f1-97f4-4d30bac16490"
                         });
+                });
+
+            modelBuilder.Entity("Core.Domain.DbModels.UserPresentation", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("CHAR(36)")
+                        .HasColumnName("id");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("PresentationEn")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("presentation_en");
+
+                    b.Property<string>("PresentationSv")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("presentation_sv");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("updated_at")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("Char(36)")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("user_presentation");
                 });
 
             modelBuilder.Entity("Core.Domain.DbModels.RefreshToken", b =>
@@ -207,6 +249,15 @@ namespace API.Migrations
                 });
 
             modelBuilder.Entity("Core.Domain.DbModels.UserData", b =>
+                {
+                    b.HasOne("Core.Domain.DbModels.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Core.Domain.DbModels.UserPresentation", b =>
                 {
                     b.HasOne("Core.Domain.DbModels.User", null)
                         .WithMany()
