@@ -30,6 +30,11 @@ namespace Infrastructure.Identity.Repositories
                     VALUES (@Id, @UserId, @Email);  
                 ";
             
+            const string queryUserPresentation = @"
+                    Insert into user_presentation (id, user_id, presentation_sv, presentation_en)
+                    VALUES (@Id, @UserId, @PresentationSv, @PresentationEn);
+                ";
+            
             using var conn = await connectDb(_connectionString);
             
             // Begin transaction.
@@ -53,6 +58,16 @@ namespace Infrastructure.Identity.Repositories
                 Id = userDataId,
                 UserId = userId,
                 userCredentialsWithName.Email,
+            });
+            
+            var userPresentationId = Guid.NewGuid();
+            
+            await conn.ExecuteScalarAsync(queryUserPresentation, new
+            {
+                PresentationSv = "",
+                PresentationEn = "",
+                UserId = userId,
+                Id = userPresentationId
             });
                 
             transaction.Commit();

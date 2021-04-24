@@ -17,11 +17,13 @@ namespace Infrastructure.Identity.Repositories
             _connectionString = connectionString;
         }
 
-        public async Task<UserPresentation> CreateUserPresentation(string userId, UserPresentation userPresentation)
+        public async Task<UserPresentation> UpdateUserPresentation(string userId, UserPresentation userPresentation)
         {
             const string queryUserPresentation = @"
-                    Insert into user_presentation (id, user_id, presentation_sv, presentation_en)
-                    VALUES (@Id, @UserId, @PresentationSv, @PresentationEn);
+                    UPDATE user_presentation 
+                    SET presentation_sv = @PresentationSv,
+                        presentation_en = @PresentationEn
+                    WHERE user_id = @UserId
                 ";
             
             const string queryRetrieveUserPresentation = @"
@@ -49,7 +51,7 @@ namespace Infrastructure.Identity.Repositories
                 Id = id
             });
             
-            var retreivedUserPresentation = await conn.QueryFirstOrDefaultAsync<UserPresentation>
+            var retrievedUserPresentation = await conn.QueryFirstOrDefaultAsync<UserPresentation>
             (queryRetrieveUserPresentation, new
             {
                 UserId = userId
@@ -57,7 +59,7 @@ namespace Infrastructure.Identity.Repositories
             
             transaction.Commit();
 
-            return retreivedUserPresentation;
+            return retrievedUserPresentation;
         }
         
         public async Task<UserPresentation> GetUserPresentation(string userId)

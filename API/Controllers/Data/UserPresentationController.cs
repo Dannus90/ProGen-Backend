@@ -35,9 +35,9 @@ namespace API.Controllers.Data
             return Ok(await _userPresentationService.GetUserPresentation(userId));
         }
         
-        [HttpPost] //api/v1/user/userpresentation
+        [HttpPut] //api/v1/user/userpresentation
         [Route("")]
-        public async Task<ActionResult<UserPresentationViewModel>> CreateUserPresentation(UserPresentationDto userDataDto)
+        public async Task<ActionResult<UserPresentationViewModel>> UpdateUserPresentation(UserPresentationDto userDataDto)
         {
             var currentUser = HttpContext.User;
             var userId = currentUser.Claims.FirstOrDefault(c =>
@@ -45,7 +45,7 @@ namespace API.Controllers.Data
             
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
             
-            return Ok(await _userPresentationService.CreateUserPresentation(userId, userDataDto));
+            return Ok(await _userPresentationService.UpdateUserPresentation(userId, userDataDto));
         }
     }
 }

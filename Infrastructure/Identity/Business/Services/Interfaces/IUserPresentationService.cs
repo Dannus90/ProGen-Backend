@@ -6,7 +6,7 @@ namespace Infrastructure.Identity.Services.Interfaces
 {
     public interface IUserPresentationService
     {
-        Task<UserPresentationViewModel> CreateUserPresentation
+        Task<UserPresentationViewModel> UpdateUserPresentation
             (string userId, UserPresentationDto userPresentationDto);
         Task<UserPresentationViewModel> GetUserPresentation(string userId);
     }

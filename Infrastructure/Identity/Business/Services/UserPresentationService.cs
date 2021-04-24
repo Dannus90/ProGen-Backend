@@ -21,12 +21,12 @@ namespace Infrastructure.Identity.Services
             _mapper = mapper;
         }
         
-        public async Task<UserPresentationViewModel> CreateUserPresentation
+        public async Task<UserPresentationViewModel> UpdateUserPresentation
             (string userId, UserPresentationDto userPresentationDto)
         {
             var userPresentation = _mapper.Map<UserPresentation>(userPresentationDto);
 
-            var retrievedUserPresentation = await _userPresentationRepository.CreateUserPresentation
+            var retrievedUserPresentation = await _userPresentationRepository.UpdateUserPresentation
                 (userId, userPresentation);
             
             var retrievedUserPresentationDto = _mapper.Map<UserPresentationDto>(retrievedUserPresentation);
