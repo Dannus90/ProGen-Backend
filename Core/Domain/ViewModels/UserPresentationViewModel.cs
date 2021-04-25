@@ -4,6 +4,6 @@ namespace Core.Domain.ViewModels
 {
     public class UserPresentationViewModel
     {
-        public UserPresentationDto UserPresentatioData { get; set; }
+        public UserPresentationDto UserPresentationData { get; set; }
     }
 }

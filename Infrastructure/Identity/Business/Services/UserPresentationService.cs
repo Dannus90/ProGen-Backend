@@ -33,7 +33,7 @@ namespace Infrastructure.Identity.Services
 
             return new UserPresentationViewModel()
             {
-                UserPresentatioData = retrievedUserPresentationDto
+                UserPresentationData = retrievedUserPresentationDto
             };
         }
         
@@ -50,7 +50,7 @@ namespace Infrastructure.Identity.Services
 
             return new UserPresentationViewModel()
             {
-                UserPresentatioData = retrievedUserPresentationDto
+                UserPresentationData = retrievedUserPresentationDto
             };
         }
     }
