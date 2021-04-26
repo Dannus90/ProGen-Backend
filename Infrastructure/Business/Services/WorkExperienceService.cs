@@ -49,5 +49,19 @@ namespace Infrastructure.Identity.Services
                 WorkExperienceDto = listWorkExperiencesDto
             };
         }
+        
+        public async Task<WorkExperienceViewModel> GetWorkExperience
+            (string workExperienceId)
+        {
+            var workExperience = await _workExperienceRepository.GetWorkExperience
+                (workExperienceId);
+            
+            var listWorkExperiencesDto = _mapper.Map<WorkExperienceDto>(workExperience);
+
+            return new WorkExperienceViewModel()
+            {
+                WorkExperienceDto = listWorkExperiencesDto
+            };
+        }
     }
 }

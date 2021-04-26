@@ -36,6 +36,19 @@ namespace API.Controllers.Data
             return Ok(await _workExperienceService.GetWorkExperiences(userId));
         }
         
+        [HttpGet] //api/v1/user/workexperience/:workexperienceId
+        [Route("{workExperienceId}")]
+        public async Task<ActionResult<WorkExperienceViewModel>> GetSingleWorkExperience(string workExperienceId)
+        {
+            var currentUser = HttpContext.User;
+            var userId = currentUser.Claims.FirstOrDefault(c =>
+                c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+            if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
+
+            return Ok(await _workExperienceService.GetWorkExperience(workExperienceId));
+        }
+        
         [HttpPost] //api/v1/user/workexperience
         [Route("")]
         public async Task<ActionResult<CreateWorkExperienceViewModel>> CreateWorkExperience (WorkExperienceDto workExperienceDto)

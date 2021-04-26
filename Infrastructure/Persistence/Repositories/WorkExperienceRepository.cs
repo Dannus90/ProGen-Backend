@@ -87,6 +87,36 @@ namespace Infrastructure.Persistence.Repositories
             });
         }
         
+        public async Task<WorkExperience> GetWorkExperience(string workExperienceId)
+        {
+            const string query = @"
+                   SELECT id AS IdString,
+                            user_id AS UserIdString,
+                            employment_rate AS EmploymentRate,
+                            company_name AS CompanyName,
+                            role_sv AS RoleSv,
+                            role_en AS RoleEn,
+                            description_sv AS DescriptionSv,
+                            description_en AS DescriptionEn,
+                            city_sv AS CitySv,
+                            city_en AS CityEn,
+                            country_sv AS CountrySv,
+                            country_en AS CountryEn,
+                            date_started AS DateStarted,
+                            date_ended AS DateEnded,
+                            created_at AS CreatedAt,
+                            updated_at AS UpdatedAt
+                    FROM work_experience WHERE id = @Id;  
+                ";
+            
+            using var conn = await connectDb(_connectionString);
+
+            return await conn.QueryFirstOrDefaultAsync<WorkExperience>(query, new
+            {
+                Id = workExperienceId
+            });
+        }
+        
         private static async Task<IDbConnection> connectDb(string connectionString)
         {
             var connection = new NpgsqlConnection(connectionString);
