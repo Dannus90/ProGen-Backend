@@ -14,6 +14,7 @@ namespace Core.Context
         public DbSet<RefreshToken> RefreshToken { get; set; }
         public DbSet<UserData> UserData { get; set; }
         public DbSet<UserPresentation> UserPresentation { get; set; }
+        public DbSet<WorkExperience> WorkExperience { get; set; }
 
         protected override void OnModelCreating(ModelBuilder dbModelBuilder)
         {
@@ -26,6 +27,7 @@ namespace Core.Context
             Domain.DbModels.RefreshToken.Configure(dbModelBuilder);
             Domain.DbModels.UserData.Configure(dbModelBuilder);
             Domain.DbModels.UserPresentation.Configure(dbModelBuilder);
+            Domain.DbModels.WorkExperience.Configure(dbModelBuilder);
         }
     }
 }

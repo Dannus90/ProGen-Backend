@@ -44,6 +44,10 @@ namespace Core.Context
             };
 
             modelBuilder.Entity<UserData>().HasData(userData);
+            
+            //////////////////////////////////
+            ///     SEED PRESENTATIONS     ///
+            //////////////////////////////////
 
             var userPresentations = new List<UserPresentation>()
             {

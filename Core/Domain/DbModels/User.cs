@@ -59,6 +59,10 @@ namespace Core.Domain.DbModels
             modelBuilder.Entity<User>().Property(u => u.UpdatedAt)
                 .HasDefaultValueSql("NOW()")
                 .ValueGeneratedOnAddOrUpdate();
+            
+            modelBuilder.Entity<User>()
+                .HasMany<WorkExperience>()
+                .WithOne();
 
             modelBuilder.Entity<User>()
                 .Ignore(u => u.IdString);
