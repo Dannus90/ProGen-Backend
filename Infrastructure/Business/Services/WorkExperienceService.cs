@@ -27,12 +27,12 @@ namespace Infrastructure.Identity.Services
         {
             var userPresentation = _mapper.Map<WorkExperience>(workExperienceDto);
 
-            await _workExperienceRepository.CreateWorkExperience
+            var workExperienceId = await _workExperienceRepository.CreateWorkExperience
                 (userPresentation, userId);
 
             return new CreateWorkExperienceViewModel()
             {
-                workExperienceId = Guid.Parse(userId)
+                workExperienceId = workExperienceId
             };
         }
         

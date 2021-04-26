@@ -18,7 +18,7 @@ namespace Infrastructure.Persistence.Repositories
             _connectionString = connectionString;
         }
         
-        public async Task CreateWorkExperience(WorkExperience workExperience, string userId)
+        public async Task<Guid> CreateWorkExperience(WorkExperience workExperience, string userId)
         {
             const string query = @"
                     Insert into work_experience (id, user_id, employment_rate, 
@@ -40,7 +40,7 @@ namespace Infrastructure.Persistence.Repositories
             {
                 Id = workExperienceId,
                 UserId = userId,
-                EmploymentRate = workExperience.EmploymentRate,
+                workExperience.EmploymentRate,
                 workExperience.CompanyName,
                 workExperience.RoleSv,
                 workExperience.RoleEn,
@@ -53,6 +53,8 @@ namespace Infrastructure.Persistence.Repositories
                 workExperience.DateStarted,
                 workExperience.DateEnded
             });
+
+            return workExperienceId;
         }
         
         public async Task<IEnumerable<WorkExperience>> GetWorkExperiences(string userId)
@@ -76,8 +78,6 @@ namespace Infrastructure.Persistence.Repositories
                             updated_at AS UpdatedAt
                     FROM work_experience WHERE user_id = @UserId;  
                 ";
-
-            var workExperienceId = Guid.NewGuid();
 
             using var conn = await connectDb(_connectionString);
 
