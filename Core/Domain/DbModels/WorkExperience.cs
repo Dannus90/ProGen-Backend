@@ -47,7 +47,7 @@ namespace Core.Domain.DbModels
         public string DescriptionEn { get; set; }
         
         [Column("city_sv", TypeName = "Char(72)")]
-        public string CityCv { get; set; }
+        public string CitySv { get; set; }
         
         [Column("city_en", TypeName = "Char(72)")]
         public string CityEn { get; set; }
