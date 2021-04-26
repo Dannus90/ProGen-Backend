@@ -165,13 +165,13 @@ namespace Infrastructure.Persistence.Repositories
                         employment_rate AS EmploymentRate,
                         role_sv AS RoleSv,
                         role_en AS RoleEn
-                   FROM user_data
-                   WHERE user_id = @UserId;
+                   FROM work_experience
+                   WHERE id = @Id;
                 ";
             
             using var conn = await connectDb(_connectionString);
 
-            return await conn.ExecuteScalarAsync<WorkExperience>(query, new
+            return await conn.QueryFirstOrDefaultAsync<WorkExperience>(query, new
             {
                 Id = workExperienceId,
                 workExperience.CitySv,
