@@ -11,5 +11,7 @@ namespace Infrastructure.Persistence.Repositories.Interfaces
         Task<IEnumerable<WorkExperience>> GetWorkExperiences(string userId);
         Task<WorkExperience> GetWorkExperience(string workExperienceId);
         Task DeleteWorkExperience(string workExperienceId);
+        Task<WorkExperience> UpdateWorkExperience
+            (string workExperienceId, WorkExperience workExperience);
     }
 }

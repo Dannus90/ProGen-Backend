@@ -25,14 +25,30 @@ namespace Infrastructure.Identity.Services
         public async Task<CreateWorkExperienceViewModel> CreateWorkExperience
             (string userId, WorkExperienceDto workExperienceDto)
         {
-            var userPresentation = _mapper.Map<WorkExperience>(workExperienceDto);
+            var workExperience = _mapper.Map<WorkExperience>(workExperienceDto);
 
             var workExperienceId = await _workExperienceRepository.CreateWorkExperience
-                (userPresentation, userId);
+                (workExperience, userId);
 
             return new CreateWorkExperienceViewModel()
             {
                 workExperienceId = workExperienceId
+            };
+        }
+        
+        public async Task<WorkExperienceViewModel> UpdateWorkExperience
+            (string workExperienceId, WorkExperienceDto workExperienceDto)
+        {
+            var workExperience = _mapper.Map<WorkExperience>(workExperienceDto);
+
+            var retrievedWorkExperience = await _workExperienceRepository.UpdateWorkExperience
+                (workExperienceId, workExperience);
+            
+            var workExperienceDtoMapped = _mapper.Map<WorkExperienceDto>(retrievedWorkExperience);
+
+            return new WorkExperienceViewModel()
+            {
+                WorkExperienceDto = workExperienceDtoMapped
             };
         }
         

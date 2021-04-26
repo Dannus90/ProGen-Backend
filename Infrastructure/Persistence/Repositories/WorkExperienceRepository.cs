@@ -132,10 +132,68 @@ namespace Infrastructure.Persistence.Repositories
             });
         }
         
+        public async Task<WorkExperience> UpdateWorkExperience
+            (string workExperienceId, WorkExperience workExperience)
+        {
+            const string query = @"
+                    UPDATE work_experience
+                    SET city_sv = @CitySv,
+                        city_en = @CityEn,
+                        company_name = @CompanyName,
+                        country_sv = @CountrySv,
+                        country_en = @CountryEn,
+                        description_sv = @DescriptionSv,
+                        description_en = @DescriptionEn,
+                        date_started = @DateStarted,
+                        date_ended = @DateEnded,
+                        employment_rate = @EmploymentRate,
+                        role_sv = @RoleSv,
+                        role_en = @RoleEn
+                    WHERE id = @Id;
+
+                   SELECT id AS IdString,
+                        user_id AS UserIdString,
+                        city_sv AS CitySv,
+                        city_en AS CityEn,
+                        company_name AS CompanyName,
+                        country_sv AS CountrySv,
+                        country_en AS CountryEn,
+                        description_sv AS DescriptionSv,
+                        description_en AS DescriptionEn,
+                        date_started AS DateStarted,
+                        date_ended AS DateEnded,
+                        employment_rate AS EmploymentRate,
+                        role_sv AS RoleSv,
+                        role_en AS RoleEn
+                   FROM user_data
+                   WHERE user_id = @UserId;
+                ";
+            
+            using var conn = await connectDb(_connectionString);
+
+            return await conn.ExecuteScalarAsync<WorkExperience>(query, new
+            {
+                Id = workExperienceId,
+                workExperience.CitySv,
+                workExperience.CityEn,
+                workExperience.CompanyName,
+                workExperience.CountrySv,
+                workExperience.CountryEn,
+                workExperience.DescriptionSv,
+                workExperience.DescriptionEn,
+                workExperience.DateStarted,
+                workExperience.DateEnded,
+                workExperience.EmploymentRate,
+                workExperience.RoleEn,
+                workExperience.RoleSv
+            });
+        }
+        
         private static async Task<IDbConnection> connectDb(string connectionString)
         {
             var connection = new NpgsqlConnection(connectionString);
             await connection.OpenAsync();
+            
             return connection;
         }
     }
