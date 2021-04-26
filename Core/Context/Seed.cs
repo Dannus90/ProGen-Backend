@@ -44,6 +44,18 @@ namespace Core.Context
             };
 
             modelBuilder.Entity<UserData>().HasData(userData);
+
+            var userPresentations = new List<UserPresentation>()
+            {
+                new()
+                {
+                    Id = Guid.NewGuid(), UserId = userData[0].Id,
+                    PresentationEn = "PresentationText En",
+                    PresentationSv = "PresentationTextSv"
+                }
+            };
+
+            modelBuilder.Entity<UserPresentation>().HasData(userPresentations);
         }
     }
 }
