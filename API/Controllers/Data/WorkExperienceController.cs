@@ -30,8 +30,10 @@ namespace API.Controllers.Data
                 c.Type == ClaimTypes.NameIdentifier)?.Value;
             
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
+
+            await _workExperienceService.CreateWorkExperience(userId, workExperienceDto);
             
-            return Ok(await _workExperienceService.CreateWorkExperience(userId, workExperienceDto));
+            return Ok();
         }
     }
 }
