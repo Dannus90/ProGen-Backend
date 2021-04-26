@@ -10,5 +10,6 @@ namespace Infrastructure.Business.Services.Interfaces
         Task<CreateWorkExperienceViewModel> CreateWorkExperience (string userId, WorkExperienceDto workExperienceDto);
         Task<WorkExperiencesViewModel> GetWorkExperiences(string userId);
         Task<WorkExperienceViewModel> GetWorkExperience(string workExperienceId);
+        Task DeleteWorkExperience(string workExperienceId);
     }
 }

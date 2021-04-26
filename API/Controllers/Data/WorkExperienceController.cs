@@ -61,5 +61,20 @@ namespace API.Controllers.Data
 
             return Ok(await _workExperienceService.CreateWorkExperience(userId, workExperienceDto));
         }
+        
+        [HttpDelete] //api/v1/user/workexperience/:workexperienceId
+        [Route("{workExperienceId}")]
+        public async Task<ActionResult> DeleteSingleWorkExperience(string workExperienceId)
+        {
+            var currentUser = HttpContext.User;
+            var userId = currentUser.Claims.FirstOrDefault(c =>
+                c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+            if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
+
+            await _workExperienceService.DeleteWorkExperience(workExperienceId);
+
+            return Ok();
+        }
     }
 }

@@ -63,5 +63,11 @@ namespace Infrastructure.Identity.Services
                 WorkExperienceDto = listWorkExperiencesDto
             };
         }
+        
+        public async Task DeleteWorkExperience
+            (string workExperienceId)
+        {
+           await _workExperienceRepository.DeleteWorkExperience(workExperienceId);
+        }
     }
 }

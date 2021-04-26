@@ -117,6 +117,21 @@ namespace Infrastructure.Persistence.Repositories
             });
         }
         
+        public async Task DeleteWorkExperience(string workExperienceId)
+        {
+            const string query = @"
+                   DELETE FROM work_experience
+                   WHERE id = @Id 
+                ";
+            
+            using var conn = await connectDb(_connectionString);
+
+            await conn.ExecuteScalarAsync(query, new
+            {
+                Id = workExperienceId
+            });
+        }
+        
         private static async Task<IDbConnection> connectDb(string connectionString)
         {
             var connection = new NpgsqlConnection(connectionString);
