@@ -105,7 +105,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "54fe0475-783a-42ff-bf14-e9257fea8e99",
+                            Id = "8877f880-444d-4519-89d7-5038641d15ed",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "testuser@gmail.com",
                             FirstName = "John",
@@ -181,7 +181,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4886ef3d-f7c6-4c91-8f50-1c309fe945f2",
+                            Id = "640c412b-d949-43a2-ad56-b2e920b300e4",
                             CityEn = "Gothenburg",
                             CitySv = "Göteborg",
                             CountryEn = "Sweden",
@@ -191,7 +191,7 @@ namespace API.Migrations
                             PhoneNumber = "073-3249826",
                             ProfileImage = "",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "54fe0475-783a-42ff-bf14-e9257fea8e99"
+                            UserId = "8877f880-444d-4519-89d7-5038641d15ed"
                         });
                 });
 
@@ -239,12 +239,12 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "50ec0543-8688-4d14-9dcf-677b7d6d8a1d",
+                            Id = "2175b2ad-b4b3-4cdc-a9f4-d5efe49de761",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             PresentationEn = "PresentationText En",
-                            PresentationSv = "PresentationTextSv",
+                            PresentationSv = "PresentationText Sv",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "4886ef3d-f7c6-4c91-8f50-1c309fe945f2"
+                            UserId = "8877f880-444d-4519-89d7-5038641d15ed"
                         });
                 });
 
@@ -255,15 +255,15 @@ namespace API.Migrations
                         .HasColumnType("CHAR(36)")
                         .HasColumnName("id");
 
-                    b.Property<string>("CityCv")
-                        .IsRequired()
-                        .HasColumnType("Char(72)")
-                        .HasColumnName("city_sv");
-
                     b.Property<string>("CityEn")
                         .IsRequired()
                         .HasColumnType("Char(72)")
                         .HasColumnName("city_en");
+
+                    b.Property<string>("CitySv")
+                        .IsRequired()
+                        .HasColumnType("Char(72)")
+                        .HasColumnName("city_sv");
 
                     b.Property<string>("CompanyName")
                         .IsRequired()
@@ -308,7 +308,7 @@ namespace API.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("description_sv");
 
-                    b.Property<string>("EmployementRate")
+                    b.Property<string>("EmploymentRate")
                         .IsRequired()
                         .HasColumnType("Char(54)")
                         .HasColumnName("employment_rate");
@@ -336,8 +336,7 @@ namespace API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
+                    b.HasIndex("UserId");
 
                     b.ToTable("work_experience");
                 });

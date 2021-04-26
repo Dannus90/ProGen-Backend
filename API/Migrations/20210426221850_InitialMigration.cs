@@ -130,17 +130,17 @@ namespace API.Migrations
             migrationBuilder.InsertData(
                 table: "user_base",
                 columns: new[] { "id", "email", "first_name", "last_login", "last_name", "password" },
-                values: new object[] { "54fe0475-783a-42ff-bf14-e9257fea8e99", "testuser@gmail.com", "John", null, "Doe", "$2a$10$lmiYrmWUDf7klCsGo0VP.uI9DcK.5fUy2Ld34ahg8lQnIanlzThcy" });
-
-            migrationBuilder.InsertData(
-                table: "user_presentation",
-                columns: new[] { "id", "presentation_en", "presentation_sv", "user_id" },
-                values: new object[] { "50ec0543-8688-4d14-9dcf-677b7d6d8a1d", "PresentationText En", "PresentationTextSv", "4886ef3d-f7c6-4c91-8f50-1c309fe945f2" });
+                values: new object[] { "8877f880-444d-4519-89d7-5038641d15ed", "testuser@gmail.com", "John", null, "Doe", "$2a$10$lmiYrmWUDf7klCsGo0VP.uI9DcK.5fUy2Ld34ahg8lQnIanlzThcy" });
 
             migrationBuilder.InsertData(
                 table: "user_data",
                 columns: new[] { "id", "city_en", "city_sv", "country_en", "country_sv", "email_cv", "phone_number", "profile_image", "profile_image_public_id", "user_id" },
-                values: new object[] { "4886ef3d-f7c6-4c91-8f50-1c309fe945f2", "Gothenburg", "Göteborg", "Sweden", "Sverige", "persson.daniel.1990@gmail.com", "073-3249826", "", null, "54fe0475-783a-42ff-bf14-e9257fea8e99" });
+                values: new object[] { "640c412b-d949-43a2-ad56-b2e920b300e4", "Gothenburg", "Göteborg", "Sweden", "Sverige", "persson.daniel.1990@gmail.com", "073-3249826", "", null, "8877f880-444d-4519-89d7-5038641d15ed" });
+
+            migrationBuilder.InsertData(
+                table: "user_presentation",
+                columns: new[] { "id", "presentation_en", "presentation_sv", "user_id" },
+                values: new object[] { "2175b2ad-b4b3-4cdc-a9f4-d5efe49de761", "PresentationText En", "PresentationText Sv", "8877f880-444d-4519-89d7-5038641d15ed" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_refresh_token_refresh_token",
@@ -174,8 +174,7 @@ namespace API.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_work_experience_user_id",
                 table: "work_experience",
-                column: "user_id",
-                unique: true);
+                column: "user_id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

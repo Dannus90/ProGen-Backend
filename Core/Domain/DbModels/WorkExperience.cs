@@ -29,7 +29,7 @@ namespace Core.Domain.DbModels
         }
 
         [Column("employment_rate", TypeName = "Char(54)")]
-        public string EmployementRate { get; set; }
+        public string EmploymentRate { get; set; }
         
         [Column("company_name", TypeName = "Char(54)")]
         public string CompanyName { get; set; }
@@ -78,8 +78,7 @@ namespace Core.Domain.DbModels
         public static void Configure(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<WorkExperience>()
-                .HasIndex(u => u.UserId)
-                .IsUnique();
+                .HasIndex(u => u.UserId);
             
             modelBuilder.Entity<WorkExperience>()
                 .HasOne<User>()

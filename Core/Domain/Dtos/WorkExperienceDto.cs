@@ -8,7 +8,7 @@ namespace Core.Domain.Dtos
         
         public Guid? UserId { get; set; }
         
-        public string EmployementRate { get; set; }
+        public string EmploymentRate { get; set; }
         
         public string CompanyName { get; set; }
         
