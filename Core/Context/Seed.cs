@@ -53,9 +53,9 @@ namespace Core.Context
             {
                 new()
                 {
-                    Id = Guid.NewGuid(), UserId = userData[0].Id,
+                    Id = Guid.NewGuid(), UserId = users[0].Id,
                     PresentationEn = "PresentationText En",
-                    PresentationSv = "PresentationTextSv"
+                    PresentationSv = "PresentationText Sv"
                 }
             };
 

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210424201041_InitialMigration")]
+    [Migration("20210426211101_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -107,7 +107,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "00119ccb-f6dc-44f1-97f4-4d30bac16490",
+                            Id = "54fe0475-783a-42ff-bf14-e9257fea8e99",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "testuser@gmail.com",
                             FirstName = "John",
@@ -183,7 +183,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "cf24e8ac-0a4a-42e3-8e6f-199e388105b2",
+                            Id = "4886ef3d-f7c6-4c91-8f50-1c309fe945f2",
                             CityEn = "Gothenburg",
                             CitySv = "Göteborg",
                             CountryEn = "Sweden",
@@ -193,7 +193,7 @@ namespace API.Migrations
                             PhoneNumber = "073-3249826",
                             ProfileImage = "",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "00119ccb-f6dc-44f1-97f4-4d30bac16490"
+                            UserId = "54fe0475-783a-42ff-bf14-e9257fea8e99"
                         });
                 });
 
@@ -237,6 +237,111 @@ namespace API.Migrations
                         .IsUnique();
 
                     b.ToTable("user_presentation");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "50ec0543-8688-4d14-9dcf-677b7d6d8a1d",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PresentationEn = "PresentationText En",
+                            PresentationSv = "PresentationTextSv",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "4886ef3d-f7c6-4c91-8f50-1c309fe945f2"
+                        });
+                });
+
+            modelBuilder.Entity("Core.Domain.DbModels.WorkExperience", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("CHAR(36)")
+                        .HasColumnName("id");
+
+                    b.Property<string>("CityCv")
+                        .IsRequired()
+                        .HasColumnType("Char(72)")
+                        .HasColumnName("city_sv");
+
+                    b.Property<string>("CityEn")
+                        .IsRequired()
+                        .HasColumnType("Char(72)")
+                        .HasColumnName("city_en");
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasColumnType("Char(54)")
+                        .HasColumnName("company_name");
+
+                    b.Property<string>("CountryEn")
+                        .IsRequired()
+                        .HasColumnType("Char(72)")
+                        .HasColumnName("country_en");
+
+                    b.Property<string>("CountrySv")
+                        .IsRequired()
+                        .HasColumnType("Char(72)")
+                        .HasColumnName("country_sv");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<DateTime>("DateEnded")
+                        .ValueGeneratedOnUpdate()
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("date_ended")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<DateTime>("DateStarted")
+                        .ValueGeneratedOnUpdate()
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("date_started")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("DescriptionEn")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("description_en");
+
+                    b.Property<string>("DescriptionSv")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("description_sv");
+
+                    b.Property<string>("EmployementRate")
+                        .IsRequired()
+                        .HasColumnType("Char(54)")
+                        .HasColumnName("employment_rate");
+
+                    b.Property<string>("RoleEn")
+                        .IsRequired()
+                        .HasColumnType("Char(108)")
+                        .HasColumnName("role_en");
+
+                    b.Property<string>("RoleSv")
+                        .IsRequired()
+                        .HasColumnType("Char(108)")
+                        .HasColumnName("role_sv");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("updated_at")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("Char(36)")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("work_experience");
                 });
 
             modelBuilder.Entity("Core.Domain.DbModels.RefreshToken", b =>
@@ -258,6 +363,15 @@ namespace API.Migrations
                 });
 
             modelBuilder.Entity("Core.Domain.DbModels.UserPresentation", b =>
+                {
+                    b.HasOne("Core.Domain.DbModels.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Core.Domain.DbModels.WorkExperience", b =>
                 {
                     b.HasOne("Core.Domain.DbModels.User", null)
                         .WithMany()
