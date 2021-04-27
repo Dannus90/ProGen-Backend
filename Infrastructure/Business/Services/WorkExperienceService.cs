@@ -32,7 +32,7 @@ namespace Infrastructure.Identity.Services
 
             return new CreateWorkExperienceViewModel()
             {
-                workExperienceId = workExperienceId
+                WorkExperienceId = workExperienceId
             };
         }
         
