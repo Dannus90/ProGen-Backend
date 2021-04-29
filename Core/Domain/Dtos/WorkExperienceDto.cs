@@ -28,9 +28,9 @@ namespace Core.Domain.Dtos
         
         public string CountryEn { get; set; }
         
-        public DateTime DateStarted { get; set; }
+        public DateTime? DateStarted { get; set; }
         
-        public DateTime DateEnded { get; set; }
+        public DateTime? DateEnded { get; set; }
         
         public DateTime? CreatedAt { get; set; }
         
