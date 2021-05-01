@@ -92,7 +92,9 @@ namespace Infrastructure.Persistence.Repositories
                         education_name AS EducationName,
                         exam_name AS ExamName,
                         subject_area_sv AS SubjectAreaSv,
-                        subject_area_en AS SubjectAreaEn
+                        subject_area_en AS SubjectAreaEn,
+                        created_at AS CreatedAt,
+                        updated_at AS UpdatedAt
                    FROM education
                    WHERE id = @Id;
                 ";
