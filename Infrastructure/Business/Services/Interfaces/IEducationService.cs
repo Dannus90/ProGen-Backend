@@ -7,5 +7,6 @@ namespace Infrastructure.Business.Services.Interfaces
     public interface IEducationService
     {
         Task<CreateUpdateEducationViewModel> CreateEducation(string userId, EducationDto educationDto);
+        Task<EducationViewModel> GetEducation(string educationId);
     }
 }

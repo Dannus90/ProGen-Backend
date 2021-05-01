@@ -1,6 +1,7 @@
 using System.Data;
 using System.Threading.Tasks;
 using AutoMapper;
+using Core.Application.Exceptions;
 using Core.Domain.DbModels;
 using Core.Domain.Dtos;
 using Core.Domain.ViewModels;
@@ -32,6 +33,21 @@ namespace Infrastructure.Identity.Services
             return new CreateUpdateEducationViewModel()
             {
                 EducationId = educationId
+            };
+        }
+
+        public async Task<EducationViewModel> GetEducation(string educationId)
+        {
+            var education = await _educationRepository.GetEducation
+                (educationId);
+
+            if (education == null) throw new HttpExceptionResponse(404, "Not found");
+            
+            var singleEducationDto = _mapper.Map<EducationDto>(education);
+            
+            return new EducationViewModel()
+            {
+                EducationDto = singleEducationDto
             };
         }
     }

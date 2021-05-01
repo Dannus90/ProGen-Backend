@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using Core.Application.Exceptions;
 using Core.Domain.DbModels;
 using Core.Domain.Dtos;
 using Core.Domain.ViewModels;
@@ -72,11 +73,13 @@ namespace Infrastructure.Identity.Services
             var workExperience = await _workExperienceRepository.GetWorkExperience
                 (workExperienceId);
             
-            var listWorkExperiencesDto = _mapper.Map<WorkExperienceDto>(workExperience);
+            if (workExperience == null) throw new HttpExceptionResponse(404, "Not found");
+            
+            var singleWorkExperiencesDto = _mapper.Map<WorkExperienceDto>(workExperience);
 
             return new WorkExperienceViewModel()
             {
-                WorkExperienceDto = listWorkExperiencesDto
+                WorkExperienceDto = singleWorkExperiencesDto
             };
         }
         

@@ -57,6 +57,37 @@ namespace Infrastructure.Persistence.Repositories
             return educationId;
         }
         
+        public async Task<Education> GetEducation(string educationId)
+        {
+            const string query = @"
+                   SELECT id AS IdString,
+                            user_id AS UserIdString,
+                            education_name AS EducationName,
+                            exam_name AS ExamName,
+                            subject_area_sv AS SubjectAreaSv,
+                            subject_area_en AS SubjectAreaEn,
+                            description_sv AS DescriptionSv,
+                            description_en AS DescriptionEn,
+                            grade AS Grade,
+                            city_sv AS CitySv,
+                            city_en AS CityEn,
+                            country_sv AS CountrySv,
+                            country_en AS CountryEn,
+                            date_started AS DateStarted,
+                            date_ended AS DateEnded,
+                            created_at AS CreatedAt,
+                            updated_at AS UpdatedAt
+                    FROM education WHERE id = @Id;  
+                ";
+            
+            using var conn = await connectDb(_connectionString);
+
+            return await conn.QueryFirstOrDefaultAsync<Education>(query, new
+            {
+                Id = educationId
+            });
+        }
+        
         private static async Task<IDbConnection> connectDb(string connectionString)
         {
             var connection = new NpgsqlConnection(connectionString);

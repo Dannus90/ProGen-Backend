@@ -35,10 +35,9 @@ namespace API.Controllers.Data
             return Ok(await _workExperienceService.GetWorkExperiences(userId));
         }*/
         
-        /*
-        [HttpGet] //api/v1/user/workexperience/:workexperienceId
-        [Route("{workExperienceId}")]
-        public async Task<ActionResult<WorkExperienceViewModel>> GetSingleWorkExperience(string workExperienceId)
+        [HttpGet] //api/v1/user/education/:educationId
+        [Route("{educationId}")]
+        public async Task<ActionResult<EducationViewModel>> GetSingleEducation(string educationId)
         {
             var currentUser = HttpContext.User;
             var userId = currentUser.Claims.FirstOrDefault(c =>
@@ -46,11 +45,10 @@ namespace API.Controllers.Data
 
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
 
-            return Ok(await _workExperienceService.GetWorkExperience(workExperienceId));
+            return Ok(await _educationSerivce.GetEducation(educationId));
         }
-        */
-        
-        [HttpPost] //api/v1/user/workexperience
+
+        [HttpPost] //api/v1/user/education
         [Route("")]
         public async Task<ActionResult<CreateUpdateEducationViewModel>> CreateWorkExperience (EducationDto educationDto)
         {
