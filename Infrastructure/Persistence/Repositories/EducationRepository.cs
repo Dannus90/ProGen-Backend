@@ -22,6 +22,7 @@ namespace Infrastructure.Persistence.Repositories
                     Insert into education (id, user_id, education_name, 
                                                  exam_name, subject_area_sv, subject_area_en, 
                                                  description_sv, description_en,
+                                                 grade,
                                                  city_sv, city_en,
                                                  country_sv, country_en,
                                                  date_started, date_ended)
