@@ -73,11 +73,11 @@ namespace API.Controllers.Data
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
 
             return Ok(await _workExperienceService.UpdateWorkExperience(workExperienceId, workExperienceDto));
-        }
+        }*/
         
-        [HttpDelete] //api/v1/user/workexperience/:workexperienceId
-        [Route("{workExperienceId}")]
-        public async Task<ActionResult> DeleteSingleWorkExperience(string workExperienceId)
+        [HttpDelete] //api/v1/user/education/:educationId
+        [Route("{educationId}")]
+        public async Task<ActionResult> DeleteSingleEducation(string educationId)
         {
             var currentUser = HttpContext.User;
             var userId = currentUser.Claims.FirstOrDefault(c =>
@@ -85,9 +85,9 @@ namespace API.Controllers.Data
 
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
 
-            await _workExperienceService.DeleteWorkExperience(workExperienceId);
+            await _educationService.DeleteEducation(educationId);
 
             return Ok();
-        }*/
+        }
     }
 }
