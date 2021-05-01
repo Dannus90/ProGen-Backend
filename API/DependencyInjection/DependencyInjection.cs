@@ -20,6 +20,7 @@ namespace API
             services.AddScoped<IUserDataService, UserDataService>();
             services.AddScoped<IUserPresentationService, UserPresentationService>();
             services.AddScoped<IWorkExperienceService, WorkExperienceService>();
+            services.AddScoped<IEducationService, EducationService>();
 
             // Helpers
             services.AddScoped<ICloudinaryHelper, CloudinaryHelper>();
@@ -32,6 +33,7 @@ namespace API
             services.AddSingleton<IUserDataRepository>(new UserDataRepository(connectionString));
             services.AddSingleton<IUserPresentationRepository>(new UserPresentationRepository(connectionString));
             services.AddSingleton<IWorkExperienceRepository>(new WorkExperienceRepository(connectionString));
+            services.AddSingleton<IEducationRepository>(new EducationRepository(connectionString));
         }
 
         public void AddDependencyInjectionHandlers(IServiceCollection services)

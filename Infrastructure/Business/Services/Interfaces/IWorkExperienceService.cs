@@ -7,7 +7,7 @@ namespace Infrastructure.Business.Services.Interfaces
 {
     public interface IWorkExperienceService
     {
-        Task<CreateWorkExperienceViewModel> CreateWorkExperience (string userId, WorkExperienceDto workExperienceDto);
+        Task<CreateUpdateWorkExperienceViewModel> CreateWorkExperience (string userId, WorkExperienceDto workExperienceDto);
         Task<WorkExperiencesViewModel> GetWorkExperiences(string userId);
         Task<WorkExperienceViewModel> GetWorkExperience(string workExperienceId);
         Task DeleteWorkExperience(string workExperienceId);

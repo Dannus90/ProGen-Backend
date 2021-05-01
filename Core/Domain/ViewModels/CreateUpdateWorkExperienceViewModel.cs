@@ -2,7 +2,7 @@ using System;
 
 namespace Core.Domain.ViewModels
 {
-    public class CreateWorkExperienceViewModel
+    public class CreateUpdateWorkExperienceViewModel
     {
         public Guid WorkExperienceId { get; set; }
     }
