@@ -72,16 +72,17 @@ namespace Infrastructure.Persistence.Repositories
                         description_en = @DescriptionEn,
                         date_started = @DateStarted,
                         date_ended = @DateEnded,
-                        employment_rate = @EmploymentRate,
-                        role_sv = @RoleSv,
-                        role_en = @RoleEn
+                        education_name = @EducationName,
+                        exam_name = @ExamName,
+                        subject_area_sv = @SubjectAreaSv,
+                        subject_area_en = @SubjectAreaEn
                     WHERE id = @Id;
 
                    SELECT id AS IdString,
                         user_id AS UserIdString,
                         city_sv AS CitySv,
                         city_en AS CityEn,
-                        company_name AS CompanyName,
+                        grade AS Grade,
                         country_sv AS CountrySv,
                         country_en AS CountryEn,
                         description_sv AS DescriptionSv,
