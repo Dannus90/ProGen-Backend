@@ -120,6 +120,21 @@ namespace Infrastructure.Persistence.Repositories
             });
         }
         
+        public async Task DeleteEducation(string educationId)
+        {
+            const string query = @"
+                   DELETE FROM education
+                   WHERE id = @Id 
+                ";
+            
+            using var conn = await connectDb(_connectionString);
+
+            await conn.ExecuteScalarAsync(query, new
+            {
+                Id = educationId
+            });
+        }
+        
         private static async Task<IDbConnection> connectDb(string connectionString)
         {
             var connection = new NpgsqlConnection(connectionString);

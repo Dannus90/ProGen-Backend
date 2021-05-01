@@ -64,5 +64,10 @@ namespace Infrastructure.Identity.Services
                 EducationsDto = listEducationsDto
             };
         }
+        
+        public async Task DeleteEducation(string educationId)
+        {
+            await _educationRepository.DeleteEducation(educationId);
+        }
     }
 }

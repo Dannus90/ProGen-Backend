@@ -10,5 +10,6 @@ namespace Infrastructure.Persistence.Repositories.Interfaces
         Task<Guid> CreateEducation(Education education, string userId);
         Task<Education> GetEducation(string educationId);
         Task<IEnumerable<Education>> GetEducations(string userId);
+        Task DeleteEducation(string educationId);
     }
 }
