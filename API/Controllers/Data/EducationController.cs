@@ -61,10 +61,10 @@ namespace API.Controllers.Data
             return Ok(await _educationService.CreateEducation(userId, educationDto));
         }
 
-        /*[HttpPut] //api/v1/user/workexperience/:workexperienceId
-        [Route("{workExperienceId}")]
-        public async Task<ActionResult<CreateWorkExperienceViewModel>> UpdateWorkExperience
-            (string workExperienceId, WorkExperienceDto workExperienceDto)
+        [HttpPut] //api/v1/user/education/:educationId
+        [Route("{educationId}")]
+        public async Task<ActionResult<CreateUpdateEducationViewModel>> UpdateEducation
+            (string educationId, EducationDto educationDto)
         {
             var currentUser = HttpContext.User;
             var userId = currentUser.Claims.FirstOrDefault(c =>
@@ -72,8 +72,8 @@ namespace API.Controllers.Data
 
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
 
-            return Ok(await _workExperienceService.UpdateWorkExperience(workExperienceId, workExperienceDto));
-        }*/
+            return Ok(await _educationService.UpdateEducation(educationId, educationDto));
+        }
         
         [HttpDelete] //api/v1/user/education/:educationId
         [Route("{educationId}")]

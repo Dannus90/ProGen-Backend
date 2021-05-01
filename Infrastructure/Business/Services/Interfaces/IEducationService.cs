@@ -10,5 +10,6 @@ namespace Infrastructure.Business.Services.Interfaces
         Task<EducationViewModel> GetEducation(string educationId);
         Task<EducationsViewModel> GetEducations(string userId);
         Task DeleteEducation(string educationId);
+        Task<EducationViewModel> UpdateEducation(string educationId, EducationDto educationDto);
     }
 }

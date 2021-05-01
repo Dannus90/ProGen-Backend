@@ -64,7 +64,7 @@ namespace API.Controllers.Data
 
         [HttpPut] //api/v1/user/workexperience/:workexperienceId
         [Route("{workExperienceId}")]
-        public async Task<ActionResult<CreateUpdateWorkExperienceViewModel>> UpdateWorkExperience
+        public async Task<ActionResult<WorkExperienceViewModel>> UpdateWorkExperience
             (string workExperienceId, WorkExperienceDto workExperienceDto)
         {
             var currentUser = HttpContext.User;

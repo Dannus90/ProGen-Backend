@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Data;
 using System.Threading.Tasks;
 using AutoMapper;
 using Core.Application.Exceptions;
@@ -8,7 +7,6 @@ using Core.Domain.Dtos;
 using Core.Domain.ViewModels;
 using Infrastructure.Business.Services.Interfaces;
 using Infrastructure.Persistence.Repositories.Interfaces;
-using Npgsql;
 
 namespace Infrastructure.Identity.Services
 {
@@ -34,6 +32,23 @@ namespace Infrastructure.Identity.Services
             return new CreateUpdateEducationViewModel()
             {
                 EducationId = educationId
+            };
+        }
+        
+        public async Task<EducationViewModel> UpdateEducation(string educationId, EducationDto educationDto)
+        {
+            var education = _mapper.Map<Education>(educationDto);
+            
+            var retrievedEducation = await _educationRepository.UpdateEducation
+                (educationId, education);
+            
+            if (retrievedEducation == null) throw new HttpExceptionResponse(404, "No found");
+            
+            var retrievedEducationDto = _mapper.Map<EducationDto>(retrievedEducation);
+
+            return new EducationViewModel()
+            {
+                EducationDto = retrievedEducationDto
             };
         }
 

@@ -58,6 +58,65 @@ namespace Infrastructure.Persistence.Repositories
             return educationId;
         }
         
+        public async Task<Education> UpdateEducation
+            (string educationId, Education education)
+        {
+            const string query = @"
+                    UPDATE education
+                    SET city_sv = @CitySv,
+                        city_en = @CityEn,
+                        grade = @Grade,
+                        country_sv = @CountrySv,
+                        country_en = @CountryEn,
+                        description_sv = @DescriptionSv,
+                        description_en = @DescriptionEn,
+                        date_started = @DateStarted,
+                        date_ended = @DateEnded,
+                        employment_rate = @EmploymentRate,
+                        role_sv = @RoleSv,
+                        role_en = @RoleEn
+                    WHERE id = @Id;
+
+                   SELECT id AS IdString,
+                        user_id AS UserIdString,
+                        city_sv AS CitySv,
+                        city_en AS CityEn,
+                        company_name AS CompanyName,
+                        country_sv AS CountrySv,
+                        country_en AS CountryEn,
+                        description_sv AS DescriptionSv,
+                        description_en AS DescriptionEn,
+                        date_started AS DateStarted,
+                        date_ended AS DateEnded,
+                        education_name AS EducationName,
+                        exam_name AS ExamName,
+                        subject_area_sv AS SubjectAreaSv,
+                        subject_area_en AS SubjectAreaEn
+                   FROM education
+                   WHERE id = @Id;
+                ";
+            
+            using var conn = await connectDb(_connectionString);
+
+            return await conn.QueryFirstOrDefaultAsync<Education>(query, new
+            {
+                Id = educationId,
+                education.CitySv,
+                education.CityEn,
+                education.Grade,
+                education.CountrySv,
+                education.CountryEn,
+                education.DescriptionSv,
+                education.DescriptionEn,
+                education.DateStarted,
+                education.DateEnded,
+                education.EducationName,
+                education.ExamName,
+                education.SubjectAreaSv,
+                education.SubjectAreaEn
+            });
+        }
+        
         public async Task<Education> GetEducation(string educationId)
         {
             const string query = @"
