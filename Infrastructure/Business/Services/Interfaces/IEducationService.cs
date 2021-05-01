@@ -8,5 +8,6 @@ namespace Infrastructure.Business.Services.Interfaces
     {
         Task<CreateUpdateEducationViewModel> CreateEducation(string userId, EducationDto educationDto);
         Task<EducationViewModel> GetEducation(string educationId);
+        Task<EducationsViewModel> GetEducations(string userId);
     }
 }

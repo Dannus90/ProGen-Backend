@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -48,6 +49,19 @@ namespace Infrastructure.Identity.Services
             return new EducationViewModel()
             {
                 EducationDto = singleEducationDto
+            };
+        }
+        
+        public async Task<EducationsViewModel> GetEducations(string userId)
+        {
+            var educations = await _educationRepository.GetEducations
+                (userId);
+
+            var listEducationsDto = _mapper.Map<List<EducationDto>>(educations);
+            
+            return new EducationsViewModel()
+            {
+                EducationsDto = listEducationsDto
             };
         }
     }

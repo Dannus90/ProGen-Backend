@@ -15,16 +15,16 @@ namespace API.Controllers.Data
     [Route("api/v1/user/[controller]")]
     public class EducationController : ControllerBase
     {
-        private readonly IEducationService _educationSerivce;
+        private readonly IEducationService _educationService;
         
         public EducationController(IEducationService educationService)
         {
-            _educationSerivce = educationService;
+            _educationService = educationService;
         }
         
-        /*[HttpGet] //api/v1/user/education
+        [HttpGet] //api/v1/user/education
         [Route("")]
-        public async Task<ActionResult<WorkExperiencesViewModel>> GetWorkExperiences ()
+        public async Task<ActionResult<EducationsViewModel>> GetEducations ()
         {
             var currentUser = HttpContext.User;
             var userId = currentUser.Claims.FirstOrDefault(c =>
@@ -32,8 +32,8 @@ namespace API.Controllers.Data
 
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
 
-            return Ok(await _workExperienceService.GetWorkExperiences(userId));
-        }*/
+            return Ok(await _educationService.GetEducations(userId));
+        }
         
         [HttpGet] //api/v1/user/education/:educationId
         [Route("{educationId}")]
@@ -45,7 +45,7 @@ namespace API.Controllers.Data
 
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
 
-            return Ok(await _educationSerivce.GetEducation(educationId));
+            return Ok(await _educationService.GetEducation(educationId));
         }
 
         [HttpPost] //api/v1/user/education
@@ -58,7 +58,7 @@ namespace API.Controllers.Data
 
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
 
-            return Ok(await _educationSerivce.CreateEducation(userId, educationDto));
+            return Ok(await _educationService.CreateEducation(userId, educationDto));
         }
 
         /*[HttpPut] //api/v1/user/workexperience/:workexperienceId
