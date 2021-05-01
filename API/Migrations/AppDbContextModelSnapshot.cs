@@ -19,6 +19,104 @@ namespace API.Migrations
                 .HasAnnotation("ProductVersion", "6.0.0-preview.2.21154.2")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+            modelBuilder.Entity("Core.Domain.DbModels.Education", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("CHAR(36)")
+                        .HasColumnName("id");
+
+                    b.Property<string>("CityEn")
+                        .IsRequired()
+                        .HasColumnType("Char(72)")
+                        .HasColumnName("city_en");
+
+                    b.Property<string>("CitySv")
+                        .IsRequired()
+                        .HasColumnType("Char(72)")
+                        .HasColumnName("city_sv");
+
+                    b.Property<string>("CountryEn")
+                        .IsRequired()
+                        .HasColumnType("Char(72)")
+                        .HasColumnName("country_en");
+
+                    b.Property<string>("CountrySv")
+                        .IsRequired()
+                        .HasColumnType("Char(72)")
+                        .HasColumnName("country_sv");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<DateTime>("DateEnded")
+                        .ValueGeneratedOnUpdate()
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("date_ended")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<DateTime>("DateStarted")
+                        .ValueGeneratedOnUpdate()
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("date_started")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("DescriptionEn")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("description_en");
+
+                    b.Property<string>("DescriptionSv")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("description_sv");
+
+                    b.Property<string>("EducationName")
+                        .IsRequired()
+                        .HasColumnType("Char(108)")
+                        .HasColumnName("education_name");
+
+                    b.Property<string>("ExamName")
+                        .IsRequired()
+                        .HasColumnType("Char(108)")
+                        .HasColumnName("exam_name");
+
+                    b.Property<string>("Grade")
+                        .IsRequired()
+                        .HasColumnType("Char(72)")
+                        .HasColumnName("grade");
+
+                    b.Property<string>("SubjectAreaEn")
+                        .IsRequired()
+                        .HasColumnType("Char(108)")
+                        .HasColumnName("subject_area_en");
+
+                    b.Property<string>("SubjectAreaSv")
+                        .IsRequired()
+                        .HasColumnType("Char(108)")
+                        .HasColumnName("subject_area_sv");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("updated_at")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("Char(36)")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("education");
+                });
+
             modelBuilder.Entity("Core.Domain.DbModels.RefreshToken", b =>
                 {
                     b.Property<string>("Id")
@@ -105,7 +203,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8877f880-444d-4519-89d7-5038641d15ed",
+                            Id = "7cb30bd2-07e8-40e0-bcca-1bd8975b388d",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "testuser@gmail.com",
                             FirstName = "John",
@@ -181,7 +279,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "640c412b-d949-43a2-ad56-b2e920b300e4",
+                            Id = "ef3a69bf-7717-40ec-b747-3b8e18cfcf1f",
                             CityEn = "Gothenburg",
                             CitySv = "Göteborg",
                             CountryEn = "Sweden",
@@ -191,7 +289,7 @@ namespace API.Migrations
                             PhoneNumber = "073-3249826",
                             ProfileImage = "",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "8877f880-444d-4519-89d7-5038641d15ed"
+                            UserId = "7cb30bd2-07e8-40e0-bcca-1bd8975b388d"
                         });
                 });
 
@@ -239,12 +337,12 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2175b2ad-b4b3-4cdc-a9f4-d5efe49de761",
+                            Id = "70c23906-b9dc-4536-8d16-49b3bbb0287b",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             PresentationEn = "PresentationText En",
                             PresentationSv = "PresentationText Sv",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "8877f880-444d-4519-89d7-5038641d15ed"
+                            UserId = "7cb30bd2-07e8-40e0-bcca-1bd8975b388d"
                         });
                 });
 
@@ -339,6 +437,15 @@ namespace API.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("work_experience");
+                });
+
+            modelBuilder.Entity("Core.Domain.DbModels.Education", b =>
+                {
+                    b.HasOne("Core.Domain.DbModels.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Core.Domain.DbModels.RefreshToken", b =>

@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.Domain.DbModels
 {
+    [Table("education")]
     public class Education
     {
         [Key]

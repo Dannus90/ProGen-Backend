@@ -26,6 +26,39 @@ namespace API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "education",
+                columns: table => new
+                {
+                    id = table.Column<string>(type: "CHAR(36)", nullable: false),
+                    user_id = table.Column<string>(type: "Char(36)", nullable: false),
+                    education_name = table.Column<string>(type: "Char(108)", nullable: false),
+                    exam_name = table.Column<string>(type: "Char(108)", nullable: false),
+                    subject_area_sv = table.Column<string>(type: "Char(108)", nullable: false),
+                    subject_area_en = table.Column<string>(type: "Char(108)", nullable: false),
+                    description_sv = table.Column<string>(type: "TEXT", nullable: false),
+                    description_en = table.Column<string>(type: "TEXT", nullable: false),
+                    grade = table.Column<string>(type: "Char(72)", nullable: false),
+                    city_sv = table.Column<string>(type: "Char(72)", nullable: false),
+                    city_en = table.Column<string>(type: "Char(72)", nullable: false),
+                    country_sv = table.Column<string>(type: "Char(72)", nullable: false),
+                    country_en = table.Column<string>(type: "Char(72)", nullable: false),
+                    date_started = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "NOW()"),
+                    date_ended = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "NOW()"),
+                    created_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "NOW()"),
+                    updated_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "NOW()")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_education", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_education_user_base_user_id",
+                        column: x => x.user_id,
+                        principalTable: "user_base",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "refresh_token",
                 columns: table => new
                 {
@@ -130,17 +163,22 @@ namespace API.Migrations
             migrationBuilder.InsertData(
                 table: "user_base",
                 columns: new[] { "id", "email", "first_name", "last_login", "last_name", "password" },
-                values: new object[] { "8877f880-444d-4519-89d7-5038641d15ed", "testuser@gmail.com", "John", null, "Doe", "$2a$10$lmiYrmWUDf7klCsGo0VP.uI9DcK.5fUy2Ld34ahg8lQnIanlzThcy" });
+                values: new object[] { "7cb30bd2-07e8-40e0-bcca-1bd8975b388d", "testuser@gmail.com", "John", null, "Doe", "$2a$10$lmiYrmWUDf7klCsGo0VP.uI9DcK.5fUy2Ld34ahg8lQnIanlzThcy" });
 
             migrationBuilder.InsertData(
                 table: "user_data",
                 columns: new[] { "id", "city_en", "city_sv", "country_en", "country_sv", "email_cv", "phone_number", "profile_image", "profile_image_public_id", "user_id" },
-                values: new object[] { "640c412b-d949-43a2-ad56-b2e920b300e4", "Gothenburg", "Göteborg", "Sweden", "Sverige", "persson.daniel.1990@gmail.com", "073-3249826", "", null, "8877f880-444d-4519-89d7-5038641d15ed" });
+                values: new object[] { "ef3a69bf-7717-40ec-b747-3b8e18cfcf1f", "Gothenburg", "Göteborg", "Sweden", "Sverige", "persson.daniel.1990@gmail.com", "073-3249826", "", null, "7cb30bd2-07e8-40e0-bcca-1bd8975b388d" });
 
             migrationBuilder.InsertData(
                 table: "user_presentation",
                 columns: new[] { "id", "presentation_en", "presentation_sv", "user_id" },
-                values: new object[] { "2175b2ad-b4b3-4cdc-a9f4-d5efe49de761", "PresentationText En", "PresentationText Sv", "8877f880-444d-4519-89d7-5038641d15ed" });
+                values: new object[] { "70c23906-b9dc-4536-8d16-49b3bbb0287b", "PresentationText En", "PresentationText Sv", "7cb30bd2-07e8-40e0-bcca-1bd8975b388d" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_education_user_id",
+                table: "education",
+                column: "user_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_refresh_token_refresh_token",
@@ -179,6 +217,9 @@ namespace API.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "education");
+
             migrationBuilder.DropTable(
                 name: "refresh_token");
 
