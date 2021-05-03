@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210501153252_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20210503191021_initialmigration")]
+    partial class initialmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -76,15 +76,25 @@ namespace API.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("description_sv");
 
-                    b.Property<string>("EducationName")
+                    b.Property<string>("EducationNameEn")
                         .IsRequired()
                         .HasColumnType("Char(108)")
-                        .HasColumnName("education_name");
+                        .HasColumnName("education_name_en");
 
-                    b.Property<string>("ExamName")
+                    b.Property<string>("EducationNameSv")
                         .IsRequired()
                         .HasColumnType("Char(108)")
-                        .HasColumnName("exam_name");
+                        .HasColumnName("education_name_sv");
+
+                    b.Property<string>("ExamNameEn")
+                        .IsRequired()
+                        .HasColumnType("Char(108)")
+                        .HasColumnName("exam_name_en");
+
+                    b.Property<string>("ExamNameSv")
+                        .IsRequired()
+                        .HasColumnType("Char(108)")
+                        .HasColumnName("exam_name_sv");
 
                     b.Property<string>("Grade")
                         .IsRequired()
@@ -205,7 +215,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7cb30bd2-07e8-40e0-bcca-1bd8975b388d",
+                            Id = "8ff59f6b-08d6-47f9-9148-b7bdf8455904",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "testuser@gmail.com",
                             FirstName = "John",
@@ -281,7 +291,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ef3a69bf-7717-40ec-b747-3b8e18cfcf1f",
+                            Id = "d10dcc54-4e8a-4a29-b4cf-949d8fcaf335",
                             CityEn = "Gothenburg",
                             CitySv = "Göteborg",
                             CountryEn = "Sweden",
@@ -291,7 +301,7 @@ namespace API.Migrations
                             PhoneNumber = "073-3249826",
                             ProfileImage = "",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "7cb30bd2-07e8-40e0-bcca-1bd8975b388d"
+                            UserId = "8ff59f6b-08d6-47f9-9148-b7bdf8455904"
                         });
                 });
 
@@ -339,12 +349,12 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "70c23906-b9dc-4536-8d16-49b3bbb0287b",
+                            Id = "3d87043d-f6d2-4e35-9bf6-bff471d54103",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             PresentationEn = "PresentationText En",
                             PresentationSv = "PresentationText Sv",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "7cb30bd2-07e8-40e0-bcca-1bd8975b388d"
+                            UserId = "8ff59f6b-08d6-47f9-9148-b7bdf8455904"
                         });
                 });
 

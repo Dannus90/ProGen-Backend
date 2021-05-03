@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace API.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class initialmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,8 +31,10 @@ namespace API.Migrations
                 {
                     id = table.Column<string>(type: "CHAR(36)", nullable: false),
                     user_id = table.Column<string>(type: "Char(36)", nullable: false),
-                    education_name = table.Column<string>(type: "Char(108)", nullable: false),
-                    exam_name = table.Column<string>(type: "Char(108)", nullable: false),
+                    education_name_sv = table.Column<string>(type: "Char(108)", nullable: false),
+                    education_name_en = table.Column<string>(type: "Char(108)", nullable: false),
+                    exam_name_sv = table.Column<string>(type: "Char(108)", nullable: false),
+                    exam_name_en = table.Column<string>(type: "Char(108)", nullable: false),
                     subject_area_sv = table.Column<string>(type: "Char(108)", nullable: false),
                     subject_area_en = table.Column<string>(type: "Char(108)", nullable: false),
                     description_sv = table.Column<string>(type: "TEXT", nullable: false),
@@ -163,17 +165,17 @@ namespace API.Migrations
             migrationBuilder.InsertData(
                 table: "user_base",
                 columns: new[] { "id", "email", "first_name", "last_login", "last_name", "password" },
-                values: new object[] { "7cb30bd2-07e8-40e0-bcca-1bd8975b388d", "testuser@gmail.com", "John", null, "Doe", "$2a$10$lmiYrmWUDf7klCsGo0VP.uI9DcK.5fUy2Ld34ahg8lQnIanlzThcy" });
+                values: new object[] { "8ff59f6b-08d6-47f9-9148-b7bdf8455904", "testuser@gmail.com", "John", null, "Doe", "$2a$10$lmiYrmWUDf7klCsGo0VP.uI9DcK.5fUy2Ld34ahg8lQnIanlzThcy" });
 
             migrationBuilder.InsertData(
                 table: "user_data",
                 columns: new[] { "id", "city_en", "city_sv", "country_en", "country_sv", "email_cv", "phone_number", "profile_image", "profile_image_public_id", "user_id" },
-                values: new object[] { "ef3a69bf-7717-40ec-b747-3b8e18cfcf1f", "Gothenburg", "Göteborg", "Sweden", "Sverige", "persson.daniel.1990@gmail.com", "073-3249826", "", null, "7cb30bd2-07e8-40e0-bcca-1bd8975b388d" });
+                values: new object[] { "d10dcc54-4e8a-4a29-b4cf-949d8fcaf335", "Gothenburg", "Göteborg", "Sweden", "Sverige", "persson.daniel.1990@gmail.com", "073-3249826", "", null, "8ff59f6b-08d6-47f9-9148-b7bdf8455904" });
 
             migrationBuilder.InsertData(
                 table: "user_presentation",
                 columns: new[] { "id", "presentation_en", "presentation_sv", "user_id" },
-                values: new object[] { "70c23906-b9dc-4536-8d16-49b3bbb0287b", "PresentationText En", "PresentationText Sv", "7cb30bd2-07e8-40e0-bcca-1bd8975b388d" });
+                values: new object[] { "3d87043d-f6d2-4e35-9bf6-bff471d54103", "PresentationText En", "PresentationText Sv", "8ff59f6b-08d6-47f9-9148-b7bdf8455904" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_education_user_id",
