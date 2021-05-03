@@ -28,11 +28,17 @@ namespace Core.Domain.DbModels
             set => UserId = new Guid(value);
         }
 
-        [Column("education_name", TypeName = "Char(108)")]
-        public string EducationName { get; set; }
+        [Column("education_name_sv", TypeName = "Char(108)")]
+        public string EducationNameSv { get; set; }
         
-        [Column("exam_name", TypeName = "Char(108)")]
-        public string ExamName { get; set; }
+        [Column("education_name_en", TypeName = "Char(108)")]
+        public string EducationNameEn { get; set; }
+        
+        [Column("exam_name_sv", TypeName = "Char(108)")]
+        public string ExamNameSv { get; set; }
+        
+        [Column("exam_name_en", TypeName = "Char(108)")]
+        public string ExamNameEn { get; set; }
         
         [Column("subject_area_sv", TypeName = "Char(108)")]
         public string SubjectAreaSv { get; set; }

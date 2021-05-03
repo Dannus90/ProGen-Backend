@@ -8,9 +8,13 @@ namespace Core.Domain.Dtos
         
         public Guid? UserId { get; set; }
         
-        public string EducationName { get; set; }
+        public string EducationNameSv { get; set; }
         
-        public string ExamName { get; set; }
+        public string EducationNameEn { get; set; }
+        
+        public string ExamNameSv { get; set; }
+        
+        public string ExamNameEn { get; set; }
         
         public string SubjectAreaSv { get; set; }
         

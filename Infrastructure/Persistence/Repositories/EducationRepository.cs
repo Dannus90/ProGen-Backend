@@ -20,8 +20,9 @@ namespace Infrastructure.Persistence.Repositories
         public async Task<Guid> CreateEducation(Education education, string userId)
         {
             const string query = @"
-                    Insert into education (id, user_id, education_name, 
-                                                 exam_name, subject_area_sv, subject_area_en, 
+                    Insert into education (id, user_id, education_name_sv, 
+                                                 education_name_en, exam_name_sv,
+                                                 exam_name_en, subject_area_sv, subject_area_en, 
                                                  description_sv, description_en,
                                                  grade,
                                                  city_sv, city_en,
@@ -40,8 +41,10 @@ namespace Infrastructure.Persistence.Repositories
             {
                 Id = educationId,
                 UserId = userId,
-                education.EducationName,
-                education.ExamName,
+                education.EducationNameSv,
+                education.EducationNameEn,
+                education.ExamNameSv,
+                education.ExamNameEn,
                 education.SubjectAreaSv,
                 education.SubjectAreaEn,
                 education.DescriptionSv,
@@ -72,8 +75,10 @@ namespace Infrastructure.Persistence.Repositories
                         description_en = @DescriptionEn,
                         date_started = @DateStarted,
                         date_ended = @DateEnded,
-                        education_name = @EducationName,
-                        exam_name = @ExamName,
+                        education_name_sv = @EducationNameSv,
+                        education_name_En = @EducationNameEn,
+                        exam_name_sv = @ExamNameSv,
+                        exam_name_en = @ExamNameEn,
                         subject_area_sv = @SubjectAreaSv,
                         subject_area_en = @SubjectAreaEn
                     WHERE id = @Id;
@@ -89,8 +94,10 @@ namespace Infrastructure.Persistence.Repositories
                         description_en AS DescriptionEn,
                         date_started AS DateStarted,
                         date_ended AS DateEnded,
-                        education_name AS EducationName,
-                        exam_name AS ExamName,
+                        education_name_sv AS EducationNameSv,
+                        education_name_en AS EducationNameEn,
+                        exam_name_sv AS ExamNameSv,
+                        exam_name_en AS ExamNameEn,
                         subject_area_sv AS SubjectAreaSv,
                         subject_area_en AS SubjectAreaEn,
                         created_at AS CreatedAt,
@@ -113,8 +120,10 @@ namespace Infrastructure.Persistence.Repositories
                 education.DescriptionEn,
                 education.DateStarted,
                 education.DateEnded,
-                education.EducationName,
-                education.ExamName,
+                education.EducationNameSv,
+                education.EducationNameEn,
+                education.ExamNameSv,
+                education.ExamNameEn,
                 education.SubjectAreaSv,
                 education.SubjectAreaEn
             });
