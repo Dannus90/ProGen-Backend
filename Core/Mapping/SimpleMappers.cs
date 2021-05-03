@@ -45,6 +45,9 @@ namespace Core.Mapping
             
             // From WorkExperienceDto -> WorkExperience -> WorkExperienceDto.
             CreateMap<EducationDto, Education>().ReverseMap();
+            
+            // From OtherInformationDto -> OtherInformation -> OtherInformationDto.
+            CreateMap<OtherInformationDto, OtherInformation>().ReverseMap();
         }
     }
 }

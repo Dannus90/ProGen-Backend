@@ -29,10 +29,10 @@ namespace Core.Domain.DbModels
         }
 
         [Column("driving_license_sv", TypeName = "TEXT")]
-        public string DrivingLiscenseSv { get; set; }
+        public string DrivingLicenseSv { get; set; }
         
         [Column("driving_license_en", TypeName = "TEXT")]
-        public string DrivingLiscenseEn { get; set; }
+        public string DrivingLicenseEn { get; set; }
         
         [Column("languages_sv", TypeName = "TEXT")]
         public string LanguagesSv { get; set; }
