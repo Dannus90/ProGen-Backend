@@ -19,12 +19,14 @@ namespace Infrastructure.Persistence.Repositories
         public async Task<OtherInformation> GetOtherInformation(string userId)
         {
             const string query = @"
-                   SELECT id AS Id,
-                        user_id AS UserId,
+                   SELECT id AS IdString,
+                        user_id AS UserIdString,
                         driving_license_sv AS DrivingLicenseSv,
                         driving_license_en AS DrivingLicenseEn,
                         languages_sv AS LanguagesSv,
-                        languages_en AS LanguagesEn
+                        languages_en AS LanguagesEn,
+                        created_at AS CreatedAt,
+                        updated_at AS UpdatedAt
                    FROM other_information
                    WHERE user_id = @UserId;
                 ";
@@ -43,15 +45,17 @@ namespace Infrastructure.Persistence.Repositories
                     SET driving_license_sv = @DrivingLicenseSv,
                         driving_license_en = @DrivingLicenseEn,
                         languages_sv = @LanguagesSv,
-                        languages_en = @LanguagesEn,
+                        languages_en = @LanguagesEn
                     WHERE user_id = @UserId;
 
-                   SELECT id AS Id,
-                        user_id AS UserId,
+                   SELECT id AS IdString,
+                        user_id AS UserIdString,
                         driving_license_sv AS DrivingLicenseSv,
                         driving_license_en AS DrivingLicenseEn,
                         languages_sv AS LanguagesSv,
-                        languages_en AS LanguagesEn
+                        languages_en AS LanguagesEn,
+                        created_at AS CreatedAt,
+                        updated_at AS UpdatedAt
                    FROM other_information
                    WHERE user_id = @UserId;
                 ";
