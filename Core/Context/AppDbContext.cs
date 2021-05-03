@@ -16,6 +16,7 @@ namespace Core.Context
         public DbSet<UserPresentation> UserPresentation { get; set; }
         public DbSet<WorkExperience> WorkExperience { get; set; }
         public DbSet<Education> Education { get; set; }
+        public DbSet<OtherInformation> OtherInformation { get; set; }
 
         protected override void OnModelCreating(ModelBuilder dbModelBuilder)
         {
@@ -30,6 +31,7 @@ namespace Core.Context
             Domain.DbModels.UserPresentation.Configure(dbModelBuilder);
             Domain.DbModels.WorkExperience.Configure(dbModelBuilder);
             Domain.DbModels.Education.Configure(dbModelBuilder);
+            Domain.DbModels.OtherInformation.Configure(dbModelBuilder);
         }
     }
 }
