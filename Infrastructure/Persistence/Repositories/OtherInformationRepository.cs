@@ -15,6 +15,26 @@ namespace Infrastructure.Persistence.Repositories
         {
             _connectionString = connectionString;
         }
+        
+        public async Task<OtherInformation> GetOtherInformation(string userId)
+        {
+            const string query = @"
+                   SELECT id AS Id,
+                        user_id AS UserId,
+                        driving_license_sv AS DrivingLicenseSv,
+                        driving_license_en AS DrivingLicenseEn,
+                        languages_sv AS LanguagesSv,
+                        languages_en AS LanguagesEn
+                   FROM other_information
+                   WHERE user_id = @UserId;
+                ";
+            
+            using var conn = await connectDb(_connectionString);
+            return await conn.QueryFirstOrDefaultAsync<OtherInformation>(query, new
+            {
+                UserId = userId
+            });
+        }
 
         public async Task<OtherInformation> UpdateOtherInformation(string userId, OtherInformation otherInformation)
         {

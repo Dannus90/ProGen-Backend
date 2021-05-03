@@ -6,5 +6,6 @@ namespace Infrastructure.Persistence.Repositories.Interfaces
     public interface IOtherInformationRepository
     {
         Task<OtherInformation> UpdateOtherInformation(string userId, OtherInformation otherInformation);
+        Task<OtherInformation> GetOtherInformation(string userId);
     }
 }

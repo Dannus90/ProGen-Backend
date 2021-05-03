@@ -8,5 +8,8 @@ namespace Infrastructure.Business.Services.Interfaces
     {
         Task<OtherInformationViewModel> UpdateOtherInformation
             (string userId, OtherInformationDto otherInformationDto);
+
+        Task<OtherInformationViewModel> GetOtherInformation
+            (string userId);
     }
 }

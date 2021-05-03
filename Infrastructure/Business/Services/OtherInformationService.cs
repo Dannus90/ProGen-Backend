@@ -19,6 +19,20 @@ namespace Infrastructure.Identity.Services
             _otherInformationRepository = otherInformationRepository;
             _mapper = mapper;
         }
+        
+        public async Task<OtherInformationViewModel> GetOtherInformation
+            (string userId)
+        {
+            var otherInformation = await _otherInformationRepository.GetOtherInformation
+                (userId);
+            
+            var otherInformationDto = _mapper.Map<OtherInformationDto>(otherInformation);
+
+            return new OtherInformationViewModel()
+            {
+                OtherInformationDto = otherInformationDto
+            };
+        }
 
         public async Task<OtherInformationViewModel> UpdateOtherInformation
             (string userId, OtherInformationDto otherInformationDto)

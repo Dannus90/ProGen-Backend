@@ -22,9 +22,9 @@ namespace API.Controllers.Data
             _otherInformationService = otherInformationService;
         }
         
-        /*[HttpGet] //api/v1/user/otherinformation
+        [HttpGet] //api/v1/user/otherinformation
         [Route("")]
-        public async Task<ActionResult<UserInformationViewModel>> GetFullUserData()
+        public async Task<ActionResult<OtherInformationViewModel>> GetOtherInformation()
         {
             var currentUser = HttpContext.User;
             var userId = currentUser.Claims.FirstOrDefault(c =>
@@ -32,8 +32,8 @@ namespace API.Controllers.Data
             
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
             
-            return Ok(await _userDataService.GetFullUserData(userId));
-        }*/
+            return Ok(await _otherInformationService.GetOtherInformation(userId));
+        }
         
         [HttpPut] //api/v1/user/otherinformation
         [Route("")]
