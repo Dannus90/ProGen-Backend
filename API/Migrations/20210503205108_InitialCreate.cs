@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace API.Migrations
 {
-    public partial class initialmigration : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -54,6 +54,30 @@ namespace API.Migrations
                     table.PrimaryKey("PK_education", x => x.id);
                     table.ForeignKey(
                         name: "FK_education_user_base_user_id",
+                        column: x => x.user_id,
+                        principalTable: "user_base",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "other_information",
+                columns: table => new
+                {
+                    id = table.Column<string>(type: "CHAR(36)", nullable: false),
+                    user_id = table.Column<string>(type: "Char(36)", nullable: false),
+                    driving_license_sv = table.Column<string>(type: "TEXT", nullable: false),
+                    driving_license_en = table.Column<string>(type: "TEXT", nullable: false),
+                    languages_sv = table.Column<string>(type: "TEXT", nullable: false),
+                    languages_en = table.Column<string>(type: "TEXT", nullable: false),
+                    created_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "NOW()"),
+                    updated_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "NOW()")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_other_information", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_other_information_user_base_user_id",
                         column: x => x.user_id,
                         principalTable: "user_base",
                         principalColumn: "id",
@@ -165,22 +189,28 @@ namespace API.Migrations
             migrationBuilder.InsertData(
                 table: "user_base",
                 columns: new[] { "id", "email", "first_name", "last_login", "last_name", "password" },
-                values: new object[] { "8ff59f6b-08d6-47f9-9148-b7bdf8455904", "testuser@gmail.com", "John", null, "Doe", "$2a$10$lmiYrmWUDf7klCsGo0VP.uI9DcK.5fUy2Ld34ahg8lQnIanlzThcy" });
+                values: new object[] { "fcbe01c6-d8dc-40d4-b9c7-db09644f71a8", "testuser@gmail.com", "John", null, "Doe", "$2a$10$lmiYrmWUDf7klCsGo0VP.uI9DcK.5fUy2Ld34ahg8lQnIanlzThcy" });
 
             migrationBuilder.InsertData(
                 table: "user_data",
                 columns: new[] { "id", "city_en", "city_sv", "country_en", "country_sv", "email_cv", "phone_number", "profile_image", "profile_image_public_id", "user_id" },
-                values: new object[] { "d10dcc54-4e8a-4a29-b4cf-949d8fcaf335", "Gothenburg", "Göteborg", "Sweden", "Sverige", "persson.daniel.1990@gmail.com", "073-3249826", "", null, "8ff59f6b-08d6-47f9-9148-b7bdf8455904" });
+                values: new object[] { "3f5aa88a-3584-40b4-8cb7-babeb32ca06e", "Gothenburg", "Göteborg", "Sweden", "Sverige", "persson.daniel.1990@gmail.com", "073-3249826", "", null, "fcbe01c6-d8dc-40d4-b9c7-db09644f71a8" });
 
             migrationBuilder.InsertData(
                 table: "user_presentation",
                 columns: new[] { "id", "presentation_en", "presentation_sv", "user_id" },
-                values: new object[] { "3d87043d-f6d2-4e35-9bf6-bff471d54103", "PresentationText En", "PresentationText Sv", "8ff59f6b-08d6-47f9-9148-b7bdf8455904" });
+                values: new object[] { "cd38d964-407a-443d-a224-ee861308384d", "PresentationText En", "PresentationText Sv", "fcbe01c6-d8dc-40d4-b9c7-db09644f71a8" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_education_user_id",
                 table: "education",
                 column: "user_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_other_information_user_id",
+                table: "other_information",
+                column: "user_id",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_refresh_token_refresh_token",
@@ -221,6 +251,9 @@ namespace API.Migrations
         {
             migrationBuilder.DropTable(
                 name: "education");
+
+            migrationBuilder.DropTable(
+                name: "other_information");
 
             migrationBuilder.DropTable(
                 name: "refresh_token");

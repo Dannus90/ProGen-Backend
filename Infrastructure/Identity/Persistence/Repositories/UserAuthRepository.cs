@@ -34,6 +34,12 @@ namespace Infrastructure.Identity.Repositories
                     Insert into user_presentation (id, user_id, presentation_sv, presentation_en)
                     VALUES (@Id, @UserId, @PresentationSv, @PresentationEn);
                 ";
+
+            const string queryOtherInformation = @"
+                    Insert into other_information (id, user_id, driving_license_sv, driving_license_en
+                    , languages_sv, languages_en)
+                    VALUES (@Id, @UserId, @DrivingLicenseSv, @DrivingLicenseEn, @LanguagesSv, @LanguagesEn);
+                ";
             
             using var conn = await connectDb(_connectionString);
             
@@ -68,6 +74,18 @@ namespace Infrastructure.Identity.Repositories
                 PresentationEn = "",
                 UserId = userId,
                 Id = userPresentationId
+            });
+            
+            var otherInformationId = Guid.NewGuid();
+            
+            await conn.ExecuteScalarAsync(queryOtherInformation, new
+            {
+                DrivingLicenseSv = "",
+                DrivingLicenseEn = "",
+                LanguagesSv = "",
+                LanguagesEn = "",
+                Id = otherInformationId,
+                UserId = userId
             });
                 
             transaction.Commit();

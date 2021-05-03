@@ -54,17 +54,18 @@ namespace Core.Domain.DbModels
         public static void Configure(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<OtherInformation>()
-                .HasIndex(u => u.UserId);
+                .HasIndex(u => u.UserId)
+                .IsUnique();
             
             modelBuilder.Entity<OtherInformation>()
                 .HasOne<User>()
                 .WithOne();
 
-            modelBuilder.Entity<Education>().Property(u => u.CreatedAt)
+            modelBuilder.Entity<OtherInformation>().Property(u => u.CreatedAt)
                 .HasDefaultValueSql("NOW()")
                 .ValueGeneratedOnAdd();
 
-            modelBuilder.Entity<Education>().Property(u => u.UpdatedAt)
+            modelBuilder.Entity<OtherInformation>().Property(u => u.UpdatedAt)
                 .HasDefaultValueSql("NOW()")
                 .ValueGeneratedOnAddOrUpdate();
 

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210503191021_initialmigration")]
-    partial class initialmigration
+    [Migration("20210503205108_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -129,6 +129,58 @@ namespace API.Migrations
                     b.ToTable("education");
                 });
 
+            modelBuilder.Entity("Core.Domain.DbModels.OtherInformation", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("CHAR(36)")
+                        .HasColumnName("id");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("DrivingLiscenseEn")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("driving_license_en");
+
+                    b.Property<string>("DrivingLiscenseSv")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("driving_license_sv");
+
+                    b.Property<string>("LanguagesEn")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("languages_en");
+
+                    b.Property<string>("LanguagesSv")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("languages_sv");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("updated_at")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("Char(36)")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("other_information");
+                });
+
             modelBuilder.Entity("Core.Domain.DbModels.RefreshToken", b =>
                 {
                     b.Property<string>("Id")
@@ -215,7 +267,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8ff59f6b-08d6-47f9-9148-b7bdf8455904",
+                            Id = "fcbe01c6-d8dc-40d4-b9c7-db09644f71a8",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "testuser@gmail.com",
                             FirstName = "John",
@@ -291,7 +343,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "d10dcc54-4e8a-4a29-b4cf-949d8fcaf335",
+                            Id = "3f5aa88a-3584-40b4-8cb7-babeb32ca06e",
                             CityEn = "Gothenburg",
                             CitySv = "Göteborg",
                             CountryEn = "Sweden",
@@ -301,7 +353,7 @@ namespace API.Migrations
                             PhoneNumber = "073-3249826",
                             ProfileImage = "",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "8ff59f6b-08d6-47f9-9148-b7bdf8455904"
+                            UserId = "fcbe01c6-d8dc-40d4-b9c7-db09644f71a8"
                         });
                 });
 
@@ -349,12 +401,12 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "3d87043d-f6d2-4e35-9bf6-bff471d54103",
+                            Id = "cd38d964-407a-443d-a224-ee861308384d",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             PresentationEn = "PresentationText En",
                             PresentationSv = "PresentationText Sv",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "8ff59f6b-08d6-47f9-9148-b7bdf8455904"
+                            UserId = "fcbe01c6-d8dc-40d4-b9c7-db09644f71a8"
                         });
                 });
 
@@ -456,6 +508,15 @@ namespace API.Migrations
                     b.HasOne("Core.Domain.DbModels.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Core.Domain.DbModels.OtherInformation", b =>
+                {
+                    b.HasOne("Core.Domain.DbModels.User", null)
+                        .WithOne()
+                        .HasForeignKey("Core.Domain.DbModels.OtherInformation", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
