@@ -28,7 +28,7 @@ namespace Infrastructure.Persistence.Repositories
                                                  city_sv, city_en,
                                                  country_sv, country_en,
                                                  date_started, date_ended)
-                    VALUES (@Id, @UserId, @EducationName, @ExamName, @SubjectAreaSv, @SubjectAreaEn,
+                    VALUES (@Id, @UserId, @EducationNameSv, @EducationNameEn, @ExamNameSv, @ExamNameEn, @SubjectAreaSv, @SubjectAreaEn,
                     @DescriptionSv, @DescriptionEn, @Grade, @CitySv, @CityEn, @CountrySv, @CountryEn,
                     @DateStarted, @DateEnded);  
                 ";
@@ -134,8 +134,10 @@ namespace Infrastructure.Persistence.Repositories
             const string query = @"
                    SELECT id AS IdString,
                             user_id AS UserIdString,
-                            education_name AS EducationName,
-                            exam_name AS ExamName,
+                            education_name_sv AS EducationNameSv,
+                            education_name_en AS EducationNameEn,
+                            exam_name_sv AS ExamNameSv,
+                            exam_name_en AS ExamNameEn,
                             subject_area_sv AS SubjectAreaSv,
                             subject_area_en AS SubjectAreaEn,
                             description_sv AS DescriptionSv,
@@ -165,8 +167,10 @@ namespace Infrastructure.Persistence.Repositories
             const string query = @"
                    SELECT id AS IdString,
                             user_id AS UserIdString,
-                            education_name AS EducationName,
-                            exam_name AS ExamName,
+                            education_name_sv AS EducationNameSv,
+                            education_name_en AS EducationNameEn,
+                            exam_name_sv AS ExamNameSv,
+                            exam_name_en AS ExamNameEn,
                             subject_area_sv AS SubjectAreaSv,
                             subject_area_en AS SubjectAreaEn,
                             description_sv AS DescriptionSv,
