@@ -150,7 +150,6 @@ namespace Tests.IntegrationsTests.Repositories
             };
             
             // Act
-            
             var updatedWorkExperience = 
                 await _workExperienceRepository.UpdateWorkExperience(workExperienceId.ToString(), workExperienceForUpdate);
 
