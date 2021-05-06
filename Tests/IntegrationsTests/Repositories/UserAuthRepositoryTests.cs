@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Core.Domain.Models;
 using Infrastructure.Identity.Repositories;
@@ -104,7 +105,6 @@ namespace Tests.IntegrationsTests.Repositories
                 FirstName = firstName,
                 LastName = lastName
             };
-
 
             // Act
             await _userAuthRepository.RegisterUser(userCredentialsWithName);

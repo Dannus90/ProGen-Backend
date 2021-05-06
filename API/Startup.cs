@@ -85,7 +85,11 @@ namespace API
                         builder.WithOrigins("http://localhost:3000",
                                 "https://localhost:3000",
                                 "http://localhost:4000",
-                                "https://localhost:4000")
+                                "https://localhost:4000",
+                                "https://progen-frontend.herokuapp.com",
+                                "http://progen-frontend.herokuapp.com",
+                                "https://progen-gql-apollo-server.herokuapp.com",
+                                "http://progen-gql-apollo-server.herokuapp.com")
                             .AllowAnyMethod()
                             .AllowAnyHeader()
                             .AllowCredentials();
