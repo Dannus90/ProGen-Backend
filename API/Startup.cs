@@ -49,7 +49,7 @@ namespace API
             _cloudinaryConfig.GetSection("ApiKey").Value = configuration["CloudinaryConfig:ApiKey"];
             _cloudinaryConfig.GetSection("ApiSecret").Value = configuration["CloudinaryConfig:ApiSecret"];
             _cloudinaryConfig.GetSection("CloudName").Value = configuration["CloudinaryConfig:CloudName"];
-            
+
             // Some secrets come from environment and are set on the hosting platform (or locally) for security reasons.
             if (env.IsDevelopment() | env.IsEnvironment("TestCi"))
             {
@@ -59,9 +59,19 @@ namespace API
             else
             {
                 _connectionString = _configuration["DB_CONNECTION_STRING"];
+
+                if (_connectionString == null)
+                {
+                    _connectionString = _connectionString = _proGenConfig.Get<ProGenConfig>().DbConnectionString;
+                }
+                
                 _tokenConfig = _configuration.GetSection("TokenConfig");
                 _tokenConfig.GetSection("SecretKey").Value = configuration["SecretKey"];
             }
+            
+            Console.WriteLine(_tokenConfig
+                .Get<TokenConfig>()
+                .SecretKey);
             
             _dependencyInjection = new DependencyInjection();
         }

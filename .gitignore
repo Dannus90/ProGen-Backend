@@ -221,7 +221,7 @@ project.lock.json
 *.Specs_*.html
 
 # Settings files
-appsettings.Prod.json
+appsettings.LocalProd.json
 
 #####
 # End of core ignore list, below put you custom 'per project' settings (patterns or path)
