@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Core.Domain.DbModels;
 using Core.Domain.Models;
@@ -20,6 +22,8 @@ namespace Tests.IntegrationsTests.Repositories
         private string lastName;
         private Education education;
         private Guid setupUserId;
+        private List<Education> educations;
+        private List<Guid> educationIds;
         private readonly IUserAuthRepository _userAuthRepository;
         private readonly IUserRepository _userRepository;
         private readonly IEducationRepository _educationRepository;
@@ -76,12 +80,87 @@ namespace Tests.IntegrationsTests.Repositories
                 DescriptionEn = "Test description",
                 DescriptionSv = "Test beskrivning"
             };
+
+            educations = new List<Education>()
+            {
+                new()
+                {
+                    Grade = "VG",
+                    CityEn = "Gothenburg",
+                    CitySv = "Göteborg",
+                    EducationNameEn = "TestEducaton",
+                    EducationNameSv = "Testutbildning",
+                    ExamNameEn = "TestExam",
+                    ExamNameSv = "TestExamenSv",
+                    SubjectAreaEn = "Testing...",
+                    SubjectAreaSv = "Testar",
+                    CountryEn = "Sweden",
+                    CountrySv = "Sverige",
+                    DateStarted = new DateTime(),
+                    DateEnded = new DateTime(),
+                    DescriptionEn = "Test description",
+                    DescriptionSv = "Test beskrivning"
+                },
+                new()
+                {
+                    Grade = "VG",
+                    CityEn = "Gothenburg",
+                    CitySv = "Göteborg",
+                    EducationNameEn = "TestEducaton",
+                    EducationNameSv = "Testutbildning",
+                    ExamNameEn = "TestExam",
+                    ExamNameSv = "TestExamenSv",
+                    SubjectAreaEn = "Testing...",
+                    SubjectAreaSv = "Testar",
+                    CountryEn = "Sweden",
+                    CountrySv = "Sverige",
+                    DateStarted = new DateTime(),
+                    DateEnded = new DateTime(),
+                    DescriptionEn = "Test description",
+                    DescriptionSv = "Test beskrivning"
+                },
+                new()
+                {
+                    UserId = setupUserId,
+                    Grade = "VG",
+                    CityEn = "Gothenburg",
+                    CitySv = "Göteborg",
+                    EducationNameEn = "TestEducaton",
+                    EducationNameSv = "Testutbildning",
+                    ExamNameEn = "TestExam",
+                    ExamNameSv = "TestExamenSv",
+                    SubjectAreaEn = "Testing...",
+                    SubjectAreaSv = "Testar",
+                    CountryEn = "Sweden",
+                    CountrySv = "Sverige",
+                    DateStarted = new DateTime(),
+                    DateEnded = new DateTime(),
+                    DescriptionEn = "Test description",
+                    DescriptionSv = "Test beskrivning"
+                }
+            };
+            
+            var educationIdFirst = await _educationRepository.CreateEducation
+                (educations[0], setupUserId.ToString());
+            var educationIdSecondary = await _educationRepository.CreateEducation
+                (educations[1], setupUserId.ToString());
+            var educationIdTertiary = await _educationRepository.CreateEducation
+                (educations[2], setupUserId.ToString());
+
+            educationIds = new List<Guid>();
+            
+            educationIds.AddRange(new List<Guid>() 
+                { educationIdFirst, educationIdSecondary, educationIdTertiary });
         }
 
         [OneTimeTearDown]
         public async Task TearDown()
         {
             await _userRepository.DeleteUserByUserId(setupUserId);
+            foreach (var educationId in educationIds)
+            {
+                await _educationRepository.DeleteEducation(educationId.ToString());
+            }
         }
         
         [Test]
@@ -111,7 +190,7 @@ namespace Tests.IntegrationsTests.Repositories
         
         [Test]
         public async Task 
-            CreateAndUpdateWorkExperience_WithNewData_SuccessfullyCreatesAndUpdateWorkExperience()
+            CreateAndUpdateEducation_WithNewData_SuccessfullyCreatesAndUpdateEducation()
         {
             // Act
             var educationId = await _educationRepository.CreateEducation
@@ -154,6 +233,18 @@ namespace Tests.IntegrationsTests.Repositories
                 await _educationRepository.GetEducation(educationId.ToString());
             
             Assert.IsNull(retrievedEducationAfterDelete);
+        }
+        
+        [Test]
+        public async Task 
+            GetAllEducations_ByUserId_SuccessfullyGetsAllEducation()
+        {
+            // Act
+            var educations = await _educationRepository.GetEducations(setupUserId.ToString());
+
+            // Assert
+            Assert.IsNotNull(educations);
+            Assert.AreEqual(educations.Count(), 3);
         }
     }
 }

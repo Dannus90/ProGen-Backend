@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Core.Domain.DbModels;
 using Core.Domain.Models;
@@ -20,6 +22,8 @@ namespace Tests.IntegrationsTests.Repositories
         private string lastName;
         private WorkExperience workExperience;
         private Guid setupUserId;
+        private List<WorkExperience> workExperiences;
+        private List<Guid> workExperienceIds;
         private readonly IUserAuthRepository _userAuthRepository;
         private readonly IUserRepository _userRepository;
         private readonly IWorkExperienceRepository _workExperienceRepository;
@@ -59,7 +63,6 @@ namespace Tests.IntegrationsTests.Repositories
             // Arrange
             workExperience = new WorkExperience()
             {
-                UserId = setupUserId,
                 EmploymentRate = "50%",
                 CityEn = "Gothenburg",
                 CitySv = "Göteborg",
@@ -73,12 +76,77 @@ namespace Tests.IntegrationsTests.Repositories
                 RoleEn = "Fisher",
                 RoleSv = "Fiskare"
             };
+            
+             workExperiences = new List<WorkExperience>()
+            {
+                new()
+                {
+                    EmploymentRate = "50%",
+                    CityEn = "Gothenburg",
+                    CitySv = "Göteborg",
+                    CompanyName = "FrontEdge IT",
+                    CountryEn = "Sweden",
+                    CountrySv = "Sverige",
+                    DateStarted = new DateTime(),
+                    DateEnded = new DateTime(),
+                    DescriptionEn = "Test description",
+                    DescriptionSv = "Test beskrivning",
+                    RoleEn = "Fisher",
+                    RoleSv = "Fiskare"
+                },
+                new()
+                {
+                    EmploymentRate = "50%",
+                    CityEn = "Gothenburg",
+                    CitySv = "Göteborg",
+                    CompanyName = "FrontEdge IT",
+                    CountryEn = "Sweden",
+                    CountrySv = "Sverige",
+                    DateStarted = new DateTime(),
+                    DateEnded = new DateTime(),
+                    DescriptionEn = "Test description",
+                    DescriptionSv = "Test beskrivning",
+                    RoleEn = "Fisher",
+                    RoleSv = "Fiskare"
+                },
+                new()
+                {
+                    EmploymentRate = "50%",
+                    CityEn = "Gothenburg",
+                    CitySv = "Göteborg",
+                    CompanyName = "FrontEdge IT",
+                    CountryEn = "Sweden",
+                    CountrySv = "Sverige",
+                    DateStarted = new DateTime(),
+                    DateEnded = new DateTime(),
+                    DescriptionEn = "Test description",
+                    DescriptionSv = "Test beskrivning",
+                    RoleEn = "Fisher",
+                    RoleSv = "Fiskare"
+                }
+            };
+            
+            var workExperienceIdFirst = await _workExperienceRepository.CreateWorkExperience
+                (workExperiences[0], setupUserId.ToString());
+            var workExperienceIdSecondary = await _workExperienceRepository.CreateWorkExperience
+                (workExperiences[1], setupUserId.ToString());
+            var workExperienceIdTertiary = await _workExperienceRepository.CreateWorkExperience
+                (workExperiences[2], setupUserId.ToString());
+
+            workExperienceIds = new List<Guid>();
+            
+            workExperienceIds.AddRange(new List<Guid>() 
+                { workExperienceIdFirst, workExperienceIdSecondary, workExperienceIdTertiary });
         }
 
         [OneTimeTearDown]
         public async Task TearDown()
         {
             await _userRepository.DeleteUserByUserId(setupUserId);
+            foreach (var workExperienceId in workExperienceIds)
+            {
+                await _workExperienceRepository.DeleteWorkExperience(workExperienceId.ToString());
+            }
         }
         
         [Test]
@@ -134,7 +202,8 @@ namespace Tests.IntegrationsTests.Repositories
             
             // Act
             var updatedWorkExperience = 
-                await _workExperienceRepository.UpdateWorkExperience(workExperienceId.ToString(), workExperienceForUpdate);
+                await _workExperienceRepository.UpdateWorkExperience
+                    (workExperienceId.ToString(), workExperienceForUpdate);
 
             // Assert
             Assert.IsNotNull(updatedWorkExperience);
@@ -148,6 +217,19 @@ namespace Tests.IntegrationsTests.Repositories
                 await _workExperienceRepository.GetWorkExperience(workExperienceId.ToString());
             
             Assert.IsNull(retrievedWorkExperienceAfterDelete);
+        }
+        
+        [Test]
+        public async Task 
+            GetAllWorkExperiences_ByUserId_SuccessfullyGetsAllWorkExperiences()
+        {
+            // Act
+            var workExperiences = await _workExperienceRepository
+                .GetWorkExperiences(setupUserId.ToString());
+
+            // Assert
+            Assert.IsNotNull(workExperiences);
+            Assert.AreEqual(workExperiences.Count(), 3);
         }
     }
 }
