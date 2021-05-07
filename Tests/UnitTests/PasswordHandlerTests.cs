@@ -49,6 +49,7 @@ namespace Tests.UnitTests
                 NewEmail = email
             };
             
+            // Assert
             Assert.Throws<HttpExceptionResponse>(delegate
             {
                 CredentialsValidation.ValidateEmailChange(emailChangeModel);
@@ -68,6 +69,7 @@ namespace Tests.UnitTests
                 NewEmail = email
             };
             
+            // Assert
             Assert.DoesNotThrow(delegate
             {
                 CredentialsValidation.ValidateEmailChange(emailChangeModel);
@@ -80,6 +82,7 @@ namespace Tests.UnitTests
         [TestCase("23452345")]
         public void ValidatePasswordLength_GivesInvalidPassword_ShouldThrowHttpResponseException(string password)
         {
+            // Assert
             Assert.Throws<HttpExceptionResponse>(delegate
             {
                 CredentialsValidation.ValidatePasswordLength(password);
@@ -92,6 +95,7 @@ namespace Tests.UnitTests
         [TestCase("2345234523423422")]
         public void ValidatePasswordLength_GivesValidPassword_ShouldNotThrowHttpResponseException(string password)
         {
+            // Assert
             Assert.DoesNotThrow(delegate
             {
                 CredentialsValidation.ValidatePasswordLength(password);
