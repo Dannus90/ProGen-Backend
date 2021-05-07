@@ -18,6 +18,7 @@ namespace Tests.IntegrationsTests.Repositories
         private string setupPassword;
         private string firstName;
         private string lastName;
+        private WorkExperience workExperience;
         private Guid setupUserId;
         private readonly IUserAuthRepository _userAuthRepository;
         private readonly IUserRepository _userRepository;
@@ -54,20 +55,9 @@ namespace Tests.IntegrationsTests.Repositories
             var user = await _userRepository.GetUserByEmail(setupEmail);
 
             setupUserId = user.Id;
-        }
-
-        [OneTimeTearDown]
-        public async Task TearDown()
-        {
-            await _userRepository.DeleteUserByUserId(setupUserId);
-        }
-        
-        [Test]
-        public async Task 
-            CreateAndDeleteWorkExperience_WithWorkExperienceData_SuccessfullyCreatesAndDeletesWorkExperience()
-        {
+            
             // Arrange
-            var workExperience = new WorkExperience()
+            workExperience = new WorkExperience()
             {
                 UserId = setupUserId,
                 EmploymentRate = "50%",
@@ -83,7 +73,18 @@ namespace Tests.IntegrationsTests.Repositories
                 RoleEn = "Fisher",
                 RoleSv = "Fiskare"
             };
-            
+        }
+
+        [OneTimeTearDown]
+        public async Task TearDown()
+        {
+            await _userRepository.DeleteUserByUserId(setupUserId);
+        }
+        
+        [Test]
+        public async Task 
+            CreateAndDeleteWorkExperience_WithWorkExperienceData_SuccessfullyCreatesAndDeletesWorkExperience()
+        {
             // Act
             var workExperienceId = await _workExperienceRepository.CreateWorkExperience
                 (workExperience, setupUserId.ToString());
@@ -109,24 +110,6 @@ namespace Tests.IntegrationsTests.Repositories
         public async Task 
             CreateAndUpdateWorkExperience_WithNewData_SuccessfullyCreatesAndUpdateWorkExperience()
         {
-            // Arrange
-            var workExperience = new WorkExperience()
-            {
-                UserId = setupUserId,
-                EmploymentRate = "50%",
-                CityEn = "Gothenburg",
-                CitySv = "Göteborg",
-                CompanyName = "FrontEdge IT",
-                CountryEn = "Sweden",
-                CountrySv = "Sverige",
-                DateStarted = new DateTime(),
-                DateEnded = new DateTime(),
-                DescriptionEn = "Test description",
-                DescriptionSv = "Test beskrivning",
-                RoleEn = "Fisher",
-                RoleSv = "Fiskare"
-            };
-            
             // Act
             var workExperienceId = await _workExperienceRepository.CreateWorkExperience
                 (workExperience, setupUserId.ToString());
