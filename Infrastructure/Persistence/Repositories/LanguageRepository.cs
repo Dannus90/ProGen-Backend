@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 using Core.Domain.DbModels;
@@ -53,6 +54,24 @@ namespace Infrastructure.Persistence.Repositories
             return await conn.QueryFirstOrDefaultAsync<Language>(query, new
             {
                 LanguageId = languageId
+            });
+        }
+        
+        public async Task<IEnumerable<Language>> GetUserLanguages(string userId)
+        {
+            const string query = @"
+                   SELECT id AS IdString,
+                        user_id AS UserIdString,
+                        language_sv AS LanguageSv,
+                        language_en AS LanguageEn
+                   FROM language
+                   WHERE user_id = @UserId;
+                ";
+
+            using var conn = await connectDb(_connectionString);
+            return await conn.QueryAsync<Language>(query, new
+            {
+                UserId = userId
             });
         }
         

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Core.Domain.DbModels;
 
@@ -10,5 +11,7 @@ namespace Infrastructure.Persistence.Repositories.Interfaces
         Task<Language> GetUserLanguage(string languageId);
 
         Task<string> DeleteUserLanguage(string languageId);
+
+        Task<IEnumerable<Language>> GetUserLanguages(string userId);
     }
 }

@@ -22,19 +22,6 @@ namespace API.Controllers.Data
             _languageService = languageService;
         }
         
-        [HttpPost] //api/v1/user/languages
-        [Route("")]
-        public async Task<ActionResult<LanguageIdViewModel>> CreateUserLanguage(LanguageDto languageDto)
-        {
-            var currentUser = HttpContext.User;
-            var userId = currentUser.Claims.FirstOrDefault(c =>
-                c.Type == ClaimTypes.NameIdentifier)?.Value;
-            
-            if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
-            
-            return Ok(await _languageService.CreateUserLanguage(userId, languageDto));
-        }
-        
         [HttpGet] //api/v1/user/languages/:languageId
         [Route("{languageId}")]
         public async Task<ActionResult<UserLanguageViewModel>> GetUserLanguage(string languageId)
@@ -48,6 +35,32 @@ namespace API.Controllers.Data
             return Ok(await _languageService.GetUserLanguage(languageId));
         }
         
+        [HttpGet] //api/v1/user/languages
+        [Route("")]
+        public async Task<ActionResult<UserLanguagesViewModel>> GetUserLanguages()
+        {
+            var currentUser = HttpContext.User;
+            var userId = currentUser.Claims.FirstOrDefault(c =>
+                c.Type == ClaimTypes.NameIdentifier)?.Value;
+            
+            if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
+            
+            return Ok(await _languageService.GetUserLanguages(userId));
+        }
+        
+        [HttpPost] //api/v1/user/languages
+        [Route("")]
+        public async Task<ActionResult<LanguageIdViewModel>> CreateUserLanguage(LanguageDto languageDto)
+        {
+            var currentUser = HttpContext.User;
+            var userId = currentUser.Claims.FirstOrDefault(c =>
+                c.Type == ClaimTypes.NameIdentifier)?.Value;
+            
+            if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
+            
+            return Ok(await _languageService.CreateUserLanguage(userId, languageDto));
+        }
+
         [HttpDelete] //api/v1/user/languages/:languageId
         [Route("{languageId}")]
         public async Task<ActionResult<LanguageIdViewModel>> DeleteUserLanguage(string languageId)

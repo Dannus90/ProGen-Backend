@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Core.Application.Exceptions;
@@ -47,6 +48,20 @@ namespace Infrastructure.Identity.Services
             return new UserLanguageViewModel()
             {
                 LanguageDto = languageDto
+            };
+        }
+        
+        public async Task<UserLanguagesViewModel> GetUserLanguages
+            (string userId)
+        {
+            var languages = await _languageRepository.GetUserLanguages
+                (userId);
+            
+            var languageDtos = _mapper.Map<List<LanguageDto>>(languages);
+
+            return new UserLanguagesViewModel()
+            {
+                LanguageDtos = languageDtos
             };
         }
         
