@@ -187,17 +187,17 @@ namespace API.Migrations
             migrationBuilder.InsertData(
                 table: "user_base",
                 columns: new[] { "id", "email", "first_name", "last_login", "last_name", "password" },
-                values: new object[] { "1090129d-d2e6-422d-bc3e-86eb620a68d5", "testuser@gmail.com", "John", null, "Doe", "$2a$10$lmiYrmWUDf7klCsGo0VP.uI9DcK.5fUy2Ld34ahg8lQnIanlzThcy" });
+                values: new object[] { "f5782f41-dde3-420a-bf42-e6c7cc1549c5", "testuser@gmail.com", "John", null, "Doe", "$2a$10$lmiYrmWUDf7klCsGo0VP.uI9DcK.5fUy2Ld34ahg8lQnIanlzThcy" });
 
             migrationBuilder.InsertData(
                 table: "user_data",
                 columns: new[] { "id", "city_en", "city_sv", "country_en", "country_sv", "email_cv", "phone_number", "profile_image", "profile_image_public_id", "user_id" },
-                values: new object[] { "1215e6d4-8757-4574-9bc3-52f58d782f50", "Gothenburg", "Göteborg", "Sweden", "Sverige", "persson.daniel.1990@gmail.com", "073-3249826", "", null, "1090129d-d2e6-422d-bc3e-86eb620a68d5" });
+                values: new object[] { "04c4657d-3fab-4fe6-9a65-d65f51996594", "Gothenburg", "Göteborg", "Sweden", "Sverige", "persson.daniel.1990@gmail.com", "073-3249826", "", null, "f5782f41-dde3-420a-bf42-e6c7cc1549c5" });
 
             migrationBuilder.InsertData(
                 table: "user_presentation",
                 columns: new[] { "id", "presentation_en", "presentation_sv", "user_id" },
-                values: new object[] { "7238b16c-0f67-42b6-81c1-a8832a206527", "PresentationText En", "PresentationText Sv", "1090129d-d2e6-422d-bc3e-86eb620a68d5" });
+                values: new object[] { "5898e41f-6895-4af7-96d8-25ec42f64429", "PresentationText En", "PresentationText Sv", "f5782f41-dde3-420a-bf42-e6c7cc1549c5" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_education_user_id",

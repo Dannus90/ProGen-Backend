@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210508104820_InitialCreate")]
+    [Migration("20210508105007_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -257,7 +257,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1090129d-d2e6-422d-bc3e-86eb620a68d5",
+                            Id = "f5782f41-dde3-420a-bf42-e6c7cc1549c5",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "testuser@gmail.com",
                             FirstName = "John",
@@ -333,7 +333,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1215e6d4-8757-4574-9bc3-52f58d782f50",
+                            Id = "04c4657d-3fab-4fe6-9a65-d65f51996594",
                             CityEn = "Gothenburg",
                             CitySv = "Göteborg",
                             CountryEn = "Sweden",
@@ -343,7 +343,7 @@ namespace API.Migrations
                             PhoneNumber = "073-3249826",
                             ProfileImage = "",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "1090129d-d2e6-422d-bc3e-86eb620a68d5"
+                            UserId = "f5782f41-dde3-420a-bf42-e6c7cc1549c5"
                         });
                 });
 
@@ -391,12 +391,12 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7238b16c-0f67-42b6-81c1-a8832a206527",
+                            Id = "5898e41f-6895-4af7-96d8-25ec42f64429",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             PresentationEn = "PresentationText En",
                             PresentationSv = "PresentationText Sv",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "1090129d-d2e6-422d-bc3e-86eb620a68d5"
+                            UserId = "f5782f41-dde3-420a-bf42-e6c7cc1549c5"
                         });
                 });
 

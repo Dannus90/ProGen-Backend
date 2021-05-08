@@ -37,7 +37,7 @@ namespace Infrastructure.Identity.Repositories
 
             const string queryOtherInformation = @"
                     Insert into other_information (id, user_id, driving_license_sv, driving_license_en)
-                    VALUES (@Id, @UserId, @DrivingLicenseSv, @DrivingLicenseEn, @LanguagesSv, @LanguagesEn);
+                    VALUES (@Id, @UserId, @DrivingLicenseSv, @DrivingLicenseEn);
                 ";
             
             using var conn = await connectDb(_connectionString);
