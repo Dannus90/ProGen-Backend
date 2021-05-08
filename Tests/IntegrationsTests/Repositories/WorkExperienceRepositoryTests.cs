@@ -77,7 +77,7 @@ namespace Tests.IntegrationsTests.Repositories
                 RoleSv = "Fiskare"
             };
             
-             workExperiences = new List<WorkExperience>()
+            workExperiences = new List<WorkExperience>()
             {
                 new()
                 {
