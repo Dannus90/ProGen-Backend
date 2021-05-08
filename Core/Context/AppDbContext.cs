@@ -17,6 +17,7 @@ namespace Core.Context
         public DbSet<WorkExperience> WorkExperience { get; set; }
         public DbSet<Education> Education { get; set; }
         public DbSet<OtherInformation> OtherInformation { get; set; }
+        public DbSet<Language> Language { get; set; }
 
         protected override void OnModelCreating(ModelBuilder dbModelBuilder)
         {
@@ -32,6 +33,7 @@ namespace Core.Context
             Domain.DbModels.WorkExperience.Configure(dbModelBuilder);
             Domain.DbModels.Education.Configure(dbModelBuilder);
             Domain.DbModels.OtherInformation.Configure(dbModelBuilder);
+            Domain.DbModels.Language.Configure(dbModelBuilder);
         }
     }
 }

@@ -37,7 +37,8 @@ namespace API.Controllers.Data
         
         [HttpPut] //api/v1/user/otherinformation
         [Route("")]
-        public async Task<ActionResult<OtherInformationViewModel>> UpdateOtherInformation(OtherInformationDto otherInformationDto)
+        public async Task<ActionResult<OtherInformationViewModel>> UpdateOtherInformation
+            (OtherInformationDto otherInformationDto)
         {
             var currentUser = HttpContext.User;
             var userId = currentUser.Claims.FirstOrDefault(c =>

@@ -22,6 +22,7 @@ namespace API
             services.AddScoped<IWorkExperienceService, WorkExperienceService>();
             services.AddScoped<IEducationService, EducationService>();
             services.AddScoped<IOtherInformationService, OtherInformationService>();
+            services.AddScoped<ILanguageService, LanguageService>();
 
             // Helpers
             services.AddScoped<ICloudinaryHelper, CloudinaryHelper>();
@@ -36,6 +37,7 @@ namespace API
             services.AddSingleton<IWorkExperienceRepository>(new WorkExperienceRepository(connectionString));
             services.AddSingleton<IEducationRepository>(new EducationRepository(connectionString));
             services.AddSingleton<IOtherInformationRepository>(new OtherInformationRepository(connectionString));
+            services.AddSingleton<ILanguageRepository>(new LanguageRepository(connectionString));
         }
 
         public void AddDependencyInjectionHandlers(IServiceCollection services)

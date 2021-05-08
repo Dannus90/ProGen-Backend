@@ -127,6 +127,35 @@ namespace API.Migrations
                     b.ToTable("education");
                 });
 
+            modelBuilder.Entity("Core.Domain.DbModels.Language", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("CHAR(36)")
+                        .HasColumnName("id");
+
+                    b.Property<string>("LanguageEn")
+                        .IsRequired()
+                        .HasColumnType("Char(128)")
+                        .HasColumnName("language_en");
+
+                    b.Property<string>("LanguageSv")
+                        .IsRequired()
+                        .HasColumnType("Char(128)")
+                        .HasColumnName("language_sv");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("Char(36)")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("language");
+                });
+
             modelBuilder.Entity("Core.Domain.DbModels.OtherInformation", b =>
                 {
                     b.Property<string>("Id")
@@ -255,7 +284,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f5782f41-dde3-420a-bf42-e6c7cc1549c5",
+                            Id = "2ce44222-b26b-4b2b-90c5-58a899e191c4",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "testuser@gmail.com",
                             FirstName = "John",
@@ -331,7 +360,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "04c4657d-3fab-4fe6-9a65-d65f51996594",
+                            Id = "1f5c890d-650a-493f-b68e-fc246065ae6a",
                             CityEn = "Gothenburg",
                             CitySv = "Göteborg",
                             CountryEn = "Sweden",
@@ -341,7 +370,7 @@ namespace API.Migrations
                             PhoneNumber = "073-3249826",
                             ProfileImage = "",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "f5782f41-dde3-420a-bf42-e6c7cc1549c5"
+                            UserId = "2ce44222-b26b-4b2b-90c5-58a899e191c4"
                         });
                 });
 
@@ -389,12 +418,12 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "5898e41f-6895-4af7-96d8-25ec42f64429",
+                            Id = "98882bc6-7dd2-416c-8b6e-373f3f18b4e0",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             PresentationEn = "PresentationText En",
                             PresentationSv = "PresentationText Sv",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "f5782f41-dde3-420a-bf42-e6c7cc1549c5"
+                            UserId = "2ce44222-b26b-4b2b-90c5-58a899e191c4"
                         });
                 });
 
@@ -492,6 +521,15 @@ namespace API.Migrations
                 });
 
             modelBuilder.Entity("Core.Domain.DbModels.Education", b =>
+                {
+                    b.HasOne("Core.Domain.DbModels.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Core.Domain.DbModels.Language", b =>
                 {
                     b.HasOne("Core.Domain.DbModels.User", null)
                         .WithMany()

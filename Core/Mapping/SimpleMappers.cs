@@ -48,6 +48,9 @@ namespace Core.Mapping
             
             // From OtherInformationDto -> OtherInformation -> OtherInformationDto.
             CreateMap<OtherInformationDto, OtherInformation>().ReverseMap();
+            
+            // From LanguageDto -> Language -> LanguageDto.
+            CreateMap<LanguageDto, Language>().ReverseMap();
         }
     }
 }
