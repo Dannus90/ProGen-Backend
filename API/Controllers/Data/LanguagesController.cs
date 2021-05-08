@@ -48,6 +48,20 @@ namespace API.Controllers.Data
             return Ok(await _languageService.GetUserLanguages(userId));
         }
         
+        [HttpPut] //api/v1/user/languages/:languageId
+        [Route("")]
+        public async Task<ActionResult<LanguageIdViewModel>> UpdateUserLanguage
+            (LanguageDto LanguageDto, string languageId)
+        {
+            var currentUser = HttpContext.User;
+            var userId = currentUser.Claims.FirstOrDefault(c =>
+                c.Type == ClaimTypes.NameIdentifier)?.Value;
+            
+            if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
+            
+            return Ok(await _languageService.UpdateUserLanguage(languageId, LanguageDto));
+        }
+        
         [HttpPost] //api/v1/user/languages
         [Route("")]
         public async Task<ActionResult<LanguageIdViewModel>> CreateUserLanguage(LanguageDto languageDto)

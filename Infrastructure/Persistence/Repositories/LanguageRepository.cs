@@ -39,6 +39,26 @@ namespace Infrastructure.Persistence.Repositories
             return languageId;
         }
         
+        public async Task<string> UpdateUserLanguage(string languageId, Language language)
+        {
+            const string query = @"
+                    UPDATE language
+                    SET language_sv = @LanguageSv,
+                        language_en = @LanguageEn
+                    WHERE id = @LanguageId;
+                ";
+
+            using var conn = await connectDb(_connectionString);
+            await conn.ExecuteScalarAsync(query, new
+            {
+                LanguageId = languageId,
+                language.LanguageSv,
+                language.LanguageEn
+            });
+
+            return languageId;
+        }
+        
         public async Task<Language> GetUserLanguage(string languageId)
         {
             const string query = @"

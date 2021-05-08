@@ -37,6 +37,21 @@ namespace Infrastructure.Identity.Services
             };
         }
         
+        
+        public async Task<LanguageIdViewModel> UpdateUserLanguage
+            (string languageId, LanguageDto languageDto)
+        {
+            var language = _mapper.Map<Language>(languageDto);
+            
+            var retrievedLanguageId = await _languageRepository.UpdateUserLanguage
+                (languageId, language);
+
+            return new LanguageIdViewModel()
+            {
+                LanguageId = Guid.Parse(retrievedLanguageId)
+            };
+        }
+        
         public async Task<UserLanguageViewModel> GetUserLanguage
             (string languageId)
         {

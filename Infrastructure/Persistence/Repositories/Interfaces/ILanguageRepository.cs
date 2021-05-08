@@ -13,5 +13,7 @@ namespace Infrastructure.Persistence.Repositories.Interfaces
         Task<string> DeleteUserLanguage(string languageId);
 
         Task<IEnumerable<Language>> GetUserLanguages(string userId);
+
+        Task<string> UpdateUserLanguage(string languageId, Language language);
     }
 }

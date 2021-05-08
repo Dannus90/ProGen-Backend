@@ -17,5 +17,8 @@ namespace Infrastructure.Business.Services.Interfaces
 
         Task<UserLanguagesViewModel> GetUserLanguages
             (string userId);
+
+        Task<LanguageIdViewModel> UpdateUserLanguage
+            (string languageId, LanguageDto languageDto);
     }
 }
