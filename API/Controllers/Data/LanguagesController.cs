@@ -50,7 +50,7 @@ namespace API.Controllers.Data
         
         [HttpDelete] //api/v1/user/languages/:languageId
         [Route("{languageId}")]
-        public async Task<ActionResult<UserLanguageViewModel>> DeleteUserLanguage(string languageId)
+        public async Task<ActionResult<LanguageIdViewModel>> DeleteUserLanguage(string languageId)
         {
             var currentUser = HttpContext.User;
             var userId = currentUser.Claims.FirstOrDefault(c =>
@@ -58,7 +58,7 @@ namespace API.Controllers.Data
             
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
             
-            return Ok(await _languageService.GetUserLanguage(languageId));
+            return Ok(await _languageService.DeleteUserLanguage(languageId));
         }
     }
 }

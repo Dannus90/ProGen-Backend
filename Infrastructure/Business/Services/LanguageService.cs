@@ -1,5 +1,7 @@
+using System;
 using System.Threading.Tasks;
 using AutoMapper;
+using Core.Application.Exceptions;
 using Core.Domain.DbModels;
 using Core.Domain.Dtos;
 using Core.Domain.ViewModels;
@@ -45,6 +47,21 @@ namespace Infrastructure.Identity.Services
             return new UserLanguageViewModel()
             {
                 LanguageDto = languageDto
+            };
+        }
+        
+        public async Task<LanguageIdViewModel> DeleteUserLanguage
+            (string languageId)
+        {
+            if (languageId == null) 
+                throw new HttpExceptionResponse(404, "No languageId was provided");
+            
+            var retrievedLanguageId = await _languageRepository.DeleteUserLanguage
+                (languageId);
+
+            return new LanguageIdViewModel()
+            {
+                LanguageId = Guid.Parse(retrievedLanguageId)
             };
         }
     }

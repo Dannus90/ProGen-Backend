@@ -8,5 +8,7 @@ namespace Infrastructure.Persistence.Repositories.Interfaces
     {
         Task<Guid> CreateUserLanguage(string userId, Language language);
         Task<Language> GetUserLanguage(string languageId);
+
+        Task<string> DeleteUserLanguage(string languageId);
     }
 }

@@ -56,6 +56,22 @@ namespace Infrastructure.Persistence.Repositories
             });
         }
         
+        public async Task<string> DeleteUserLanguage(string languageId)
+        {
+            const string query = @"
+                   DELETE FROM language
+                   WHERE id = @LanguageId 
+                ";
+
+            using var conn = await connectDb(_connectionString);
+            await conn.ExecuteScalarAsync(query, new
+            {
+                LanguageId = languageId
+            });
+
+            return languageId;
+        }
+        
         private static async Task<IDbConnection> connectDb(string connectionString)
         {
             var connection = new NpgsqlConnection(connectionString);

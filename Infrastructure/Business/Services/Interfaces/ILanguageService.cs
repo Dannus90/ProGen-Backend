@@ -11,5 +11,8 @@ namespace Infrastructure.Business.Services.Interfaces
 
         Task<UserLanguageViewModel> GetUserLanguage
             (string languageId);
+
+        Task<LanguageIdViewModel> DeleteUserLanguage
+            (string languageId);
     }
 }
