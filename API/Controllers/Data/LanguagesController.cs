@@ -49,7 +49,7 @@ namespace API.Controllers.Data
         }
         
         [HttpPut] //api/v1/user/languages/:languageId
-        [Route("")]
+        [Route("{languageId}")]
         public async Task<ActionResult<LanguageIdViewModel>> UpdateUserLanguage
             (LanguageDto LanguageDto, string languageId)
         {
