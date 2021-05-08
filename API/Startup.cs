@@ -69,10 +69,6 @@ namespace API
                 _tokenConfig.GetSection("SecretKey").Value = configuration["SecretKey"];
             }
             
-            Console.WriteLine(_tokenConfig
-                .Get<TokenConfig>()
-                .SecretKey);
-            
             _dependencyInjection = new DependencyInjection();
         }
 
