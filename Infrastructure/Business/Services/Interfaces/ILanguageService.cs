@@ -6,7 +6,7 @@ namespace Infrastructure.Business.Services.Interfaces
 {
     public interface ILanguageService
     {
-        Task<CreateUpdateLanguageViewModel> CreateUserLanguage
+        Task<LanguageIdViewModel> CreateUserLanguage
             (string userId, LanguageDto languageDto);
 
         Task<UserLanguageViewModel> GetUserLanguage

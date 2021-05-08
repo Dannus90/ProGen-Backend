@@ -20,7 +20,7 @@ namespace Infrastructure.Identity.Services
             _mapper = mapper;
         }
         
-        public async Task<CreateUpdateLanguageViewModel> CreateUserLanguage
+        public async Task<LanguageIdViewModel> CreateUserLanguage
             (string userId, LanguageDto languageDto)
         {
             var language = _mapper.Map<Language>(languageDto);
@@ -28,7 +28,7 @@ namespace Infrastructure.Identity.Services
             var languageId = await _languageRepository.CreateUserLanguage
                 (userId, language);
 
-            return new CreateUpdateLanguageViewModel()
+            return new LanguageIdViewModel()
             {
                 LanguageId = languageId
             };

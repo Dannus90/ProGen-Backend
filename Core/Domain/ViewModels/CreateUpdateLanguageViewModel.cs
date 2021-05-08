@@ -2,7 +2,7 @@ using System;
 
 namespace Core.Domain.ViewModels
 {
-    public class CreateUpdateLanguageViewModel
+    public class LanguageIdViewModel
     {
         public Guid LanguageId { get; set; }
     }

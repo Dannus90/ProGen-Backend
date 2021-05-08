@@ -24,7 +24,7 @@ namespace API.Controllers.Data
         
         [HttpPost] //api/v1/user/languages
         [Route("")]
-        public async Task<ActionResult<CreateUpdateLanguageViewModel>> CreateUserLanguage(LanguageDto languageDto)
+        public async Task<ActionResult<LanguageIdViewModel>> CreateUserLanguage(LanguageDto languageDto)
         {
             var currentUser = HttpContext.User;
             var userId = currentUser.Claims.FirstOrDefault(c =>
@@ -38,6 +38,19 @@ namespace API.Controllers.Data
         [HttpGet] //api/v1/user/languages/:languageId
         [Route("{languageId}")]
         public async Task<ActionResult<UserLanguageViewModel>> GetUserLanguage(string languageId)
+        {
+            var currentUser = HttpContext.User;
+            var userId = currentUser.Claims.FirstOrDefault(c =>
+                c.Type == ClaimTypes.NameIdentifier)?.Value;
+            
+            if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
+            
+            return Ok(await _languageService.GetUserLanguage(languageId));
+        }
+        
+        [HttpDelete] //api/v1/user/languages/:languageId
+        [Route("{languageId}")]
+        public async Task<ActionResult<UserLanguageViewModel>> DeleteUserLanguage(string languageId)
         {
             var currentUser = HttpContext.User;
             var userId = currentUser.Claims.FirstOrDefault(c =>
