@@ -11,11 +11,7 @@ namespace Core.Domain.Dtos
         public string DrivingLicenseSv { get; set; }
 
         public string DrivingLicenseEn { get; set; }
-        
-        public string LanguagesSv { get; set; }
-        
-        public string LanguagesEn { get; set; }
-        
+
         public DateTime? CreatedAt { get; set; }
         
         public DateTime? UpdatedAt { get; set; }

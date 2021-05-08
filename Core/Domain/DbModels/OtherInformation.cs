@@ -33,12 +33,6 @@ namespace Core.Domain.DbModels
         
         [Column("driving_license_en", TypeName = "TEXT")]
         public string DrivingLicenseEn { get; set; }
-        
-        [Column("languages_sv", TypeName = "TEXT")]
-        public string LanguagesSv { get; set; }
-        
-        [Column("languages_en", TypeName = "TEXT")]
-        public string LanguagesEn { get; set; }
 
         [Column("created_at")] 
         public DateTime CreatedAt { get; set; }

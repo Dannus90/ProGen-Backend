@@ -36,8 +36,7 @@ namespace Infrastructure.Identity.Repositories
                 ";
 
             const string queryOtherInformation = @"
-                    Insert into other_information (id, user_id, driving_license_sv, driving_license_en
-                    , languages_sv, languages_en)
+                    Insert into other_information (id, user_id, driving_license_sv, driving_license_en)
                     VALUES (@Id, @UserId, @DrivingLicenseSv, @DrivingLicenseEn, @LanguagesSv, @LanguagesEn);
                 ";
             
@@ -82,8 +81,6 @@ namespace Infrastructure.Identity.Repositories
             {
                 DrivingLicenseSv = "",
                 DrivingLicenseEn = "",
-                LanguagesSv = "",
-                LanguagesEn = "",
                 Id = otherInformationId,
                 UserId = userId
             });

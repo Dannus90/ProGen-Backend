@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210503205108_InitialCreate")]
+    [Migration("20210508104820_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -142,25 +142,15 @@ namespace API.Migrations
                         .HasColumnName("created_at")
                         .HasDefaultValueSql("NOW()");
 
-                    b.Property<string>("DrivingLiscenseEn")
+                    b.Property<string>("DrivingLicenseEn")
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnName("driving_license_en");
 
-                    b.Property<string>("DrivingLiscenseSv")
+                    b.Property<string>("DrivingLicenseSv")
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnName("driving_license_sv");
-
-                    b.Property<string>("LanguagesEn")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("languages_en");
-
-                    b.Property<string>("LanguagesSv")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("languages_sv");
 
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
@@ -267,7 +257,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "fcbe01c6-d8dc-40d4-b9c7-db09644f71a8",
+                            Id = "1090129d-d2e6-422d-bc3e-86eb620a68d5",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "testuser@gmail.com",
                             FirstName = "John",
@@ -343,7 +333,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "3f5aa88a-3584-40b4-8cb7-babeb32ca06e",
+                            Id = "1215e6d4-8757-4574-9bc3-52f58d782f50",
                             CityEn = "Gothenburg",
                             CitySv = "Göteborg",
                             CountryEn = "Sweden",
@@ -353,7 +343,7 @@ namespace API.Migrations
                             PhoneNumber = "073-3249826",
                             ProfileImage = "",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "fcbe01c6-d8dc-40d4-b9c7-db09644f71a8"
+                            UserId = "1090129d-d2e6-422d-bc3e-86eb620a68d5"
                         });
                 });
 
@@ -401,12 +391,12 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "cd38d964-407a-443d-a224-ee861308384d",
+                            Id = "7238b16c-0f67-42b6-81c1-a8832a206527",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             PresentationEn = "PresentationText En",
                             PresentationSv = "PresentationText Sv",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "fcbe01c6-d8dc-40d4-b9c7-db09644f71a8"
+                            UserId = "1090129d-d2e6-422d-bc3e-86eb620a68d5"
                         });
                 });
 

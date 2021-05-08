@@ -23,8 +23,6 @@ namespace Infrastructure.Persistence.Repositories
                         user_id AS UserIdString,
                         driving_license_sv AS DrivingLicenseSv,
                         driving_license_en AS DrivingLicenseEn,
-                        languages_sv AS LanguagesSv,
-                        languages_en AS LanguagesEn,
                         created_at AS CreatedAt,
                         updated_at AS UpdatedAt
                    FROM other_information
@@ -43,17 +41,13 @@ namespace Infrastructure.Persistence.Repositories
             const string query = @"
                     UPDATE other_information
                     SET driving_license_sv = @DrivingLicenseSv,
-                        driving_license_en = @DrivingLicenseEn,
-                        languages_sv = @LanguagesSv,
-                        languages_en = @LanguagesEn
+                        driving_license_en = @DrivingLicenseEn
                     WHERE user_id = @UserId;
 
                    SELECT id AS IdString,
                         user_id AS UserIdString,
                         driving_license_sv AS DrivingLicenseSv,
                         driving_license_en AS DrivingLicenseEn,
-                        languages_sv AS LanguagesSv,
-                        languages_en AS LanguagesEn,
                         created_at AS CreatedAt,
                         updated_at AS UpdatedAt
                    FROM other_information
@@ -65,9 +59,7 @@ namespace Infrastructure.Persistence.Repositories
             {
                 UserId = userId,
                 otherInformation.DrivingLicenseSv,
-                otherInformation.DrivingLicenseEn,
-                otherInformation.LanguagesSv,
-                otherInformation.LanguagesEn
+                otherInformation.DrivingLicenseEn
             });
         }
         
