@@ -36,7 +36,7 @@ namespace API.Controllers.Data
         }
         
         [HttpGet] //api/v1/user/languages/:languageId
-        [Route("")]
+        [Route("{languageId}")]
         public async Task<ActionResult<UserLanguageViewModel>> GetUserLanguage(string languageId)
         {
             var currentUser = HttpContext.User;
