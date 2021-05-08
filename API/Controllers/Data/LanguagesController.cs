@@ -34,5 +34,18 @@ namespace API.Controllers.Data
             
             return Ok(await _languageService.CreateUserLanguage(userId, languageDto));
         }
+        
+        [HttpGet] //api/v1/user/languages/:languageId
+        [Route("")]
+        public async Task<ActionResult<UserLanguageViewModel>> GetUserLanguage(string languageId)
+        {
+            var currentUser = HttpContext.User;
+            var userId = currentUser.Claims.FirstOrDefault(c =>
+                c.Type == ClaimTypes.NameIdentifier)?.Value;
+            
+            if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
+            
+            return Ok(await _languageService.GetUserLanguage(languageId));
+        }
     }
 }

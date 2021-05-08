@@ -33,5 +33,19 @@ namespace Infrastructure.Identity.Services
                 LanguageId = languageId
             };
         }
+        
+        public async Task<UserLanguageViewModel> GetUserLanguage
+            (string languageId)
+        {
+            var language = await _languageRepository.GetUserLanguage
+                (languageId);
+            
+            var languageDto = _mapper.Map<LanguageDto>(language);
+
+            return new UserLanguageViewModel()
+            {
+                LanguageDto = languageDto
+            };
+        }
     }
 }

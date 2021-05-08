@@ -38,6 +38,24 @@ namespace Infrastructure.Persistence.Repositories
             return languageId;
         }
         
+        public async Task<Language> GetUserLanguage(string languageId)
+        {
+            const string query = @"
+                   SELECT id AS IdString,
+                        user_id AS UserIdString,
+                        language_sv AS LanguageSv,
+                        language_en AS LanguageEn
+                   FROM language
+                   WHERE id = @LanguageId;
+                ";
+
+            using var conn = await connectDb(_connectionString);
+            return await conn.QueryFirstOrDefaultAsync<Language>(query, new
+            {
+                LanguageId = languageId
+            });
+        }
+        
         private static async Task<IDbConnection> connectDb(string connectionString)
         {
             var connection = new NpgsqlConnection(connectionString);

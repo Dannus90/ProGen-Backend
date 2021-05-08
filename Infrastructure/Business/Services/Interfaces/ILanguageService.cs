@@ -8,5 +8,8 @@ namespace Infrastructure.Business.Services.Interfaces
     {
         Task<CreateUpdateLanguageViewModel> CreateUserLanguage
             (string userId, LanguageDto languageDto);
+
+        Task<UserLanguageViewModel> GetUserLanguage
+            (string languageId);
     }
 }

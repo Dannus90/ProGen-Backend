@@ -7,5 +7,6 @@ namespace Infrastructure.Persistence.Repositories.Interfaces
     public interface ILanguageRepository
     {
         Task<Guid> CreateUserLanguage(string userId, Language language);
+        Task<Language> GetUserLanguage(string languageId);
     }
 }
