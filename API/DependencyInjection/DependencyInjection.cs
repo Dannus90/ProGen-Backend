@@ -5,6 +5,7 @@ using Infrastructure.Identity.Repositories;
 using Infrastructure.Identity.Repositories.Interfaces;
 using Infrastructure.Identity.Services;
 using Infrastructure.Identity.Services.Interfaces;
+using Infrastructure.Persistence;
 using Infrastructure.Persistence.Repositories;
 using Infrastructure.Persistence.Repositories.Interfaces;
 using Infrastructure.Security.Tokens;
@@ -23,6 +24,7 @@ namespace API
             services.AddScoped<IEducationService, EducationService>();
             services.AddScoped<IOtherInformationService, OtherInformationService>();
             services.AddScoped<ILanguageService, LanguageService>();
+            services.AddScoped<IFullCvInformationService, FullCvInformationService>();
 
             // Helpers
             services.AddScoped<ICloudinaryHelper, CloudinaryHelper>();
@@ -38,6 +40,7 @@ namespace API
             services.AddSingleton<IEducationRepository>(new EducationRepository(connectionString));
             services.AddSingleton<IOtherInformationRepository>(new OtherInformationRepository(connectionString));
             services.AddSingleton<ILanguageRepository>(new LanguageRepository(connectionString));
+            services.AddSingleton<IFullCvInformationRepository>(new FullCvInformationRepository(connectionString));
         }
 
         public void AddDependencyInjectionHandlers(IServiceCollection services)
