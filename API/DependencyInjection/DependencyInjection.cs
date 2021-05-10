@@ -1,5 +1,6 @@
 using API.helpers.Cloudinary;
 using API.helpers.Cloudinary.Interfaces;
+using AutoMapper;
 using Infrastructure.Business.Services.Interfaces;
 using Infrastructure.Identity.Repositories;
 using Infrastructure.Identity.Repositories.Interfaces;
@@ -30,7 +31,8 @@ namespace API
             services.AddScoped<ICloudinaryHelper, CloudinaryHelper>();
         }
 
-        public static void AddDependencyInjectionRepositories(IServiceCollection services, string connectionString)
+        public static void AddDependencyInjectionRepositories(IServiceCollection services,
+            string connectionString, IMapper mapper)
         {
             services.AddSingleton<IUserAuthRepository>(new UserAuthRepository(connectionString));
             services.AddSingleton<IUserRepository>(new UserRepository(connectionString));
@@ -40,7 +42,8 @@ namespace API
             services.AddSingleton<IEducationRepository>(new EducationRepository(connectionString));
             services.AddSingleton<IOtherInformationRepository>(new OtherInformationRepository(connectionString));
             services.AddSingleton<ILanguageRepository>(new LanguageRepository(connectionString));
-            services.AddSingleton<IFullCvInformationRepository>(new FullCvInformationRepository(connectionString));
+            services.AddSingleton<IFullCvInformationRepository>(new FullCvInformationRepository
+                (connectionString, mapper));
         }
 
         public void AddDependencyInjectionHandlers(IServiceCollection services)

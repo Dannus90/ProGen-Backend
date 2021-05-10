@@ -149,7 +149,7 @@ namespace API
             services.Configure<CloudinaryConfig>(_cloudinaryConfig);
             _dependencyInjection.AddDependencyInjectionHandlers(services);
             DependencyInjection.AddDependencyInjectionServices(services);
-            DependencyInjection.AddDependencyInjectionRepositories(services, _connectionString);
+            DependencyInjection.AddDependencyInjectionRepositories(services, _connectionString, mapper);
         }
 
         // This method gets called by the runtime. We use this method to configure the pipeline.

@@ -8,14 +8,11 @@ namespace Infrastructure.Identity.Services
 {
     public class FullCvInformationService : IFullCvInformationService
     {
-        private readonly IMapper _mapper;
         private readonly IFullCvInformationRepository _fullCvInformationRepository;
 
-        public FullCvInformationService(IFullCvInformationRepository IFullCvInformationRepository,
-            IMapper mapper)
+        public FullCvInformationService(IFullCvInformationRepository IFullCvInformationRepository)
         {
             _fullCvInformationRepository = IFullCvInformationRepository;
-            _mapper = mapper;
         }
         
         public async Task<FullCvInformationViewModel> GetFullCvInformation
