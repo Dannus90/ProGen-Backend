@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -43,6 +44,7 @@ namespace Infrastructure.Persistence
                             user_data.country_en AS CountryEn,
                             user_data.profile_image AS ProfileImage,
                             user_data.profile_image_public_id AS ProfileImagePublicId,
+                            user_data.work_title AS WorkTitle,
                             user_data.created_at AS CreatedAt,
                             user_data.updated_at AS UpdatedAt
                     FROM user_base
@@ -142,7 +144,7 @@ namespace Infrastructure.Persistence
                 }, splitOn: "IdString");
             
             var fullUserInformation = fullUserInformations.ToList()[0];
-            
+
             // SET FULL USER INFORMATION
             fullCvInformationViewModel.FullUserInformationDto = _mapper.Map<FullUserInformationDto>
                 (fullUserInformation);

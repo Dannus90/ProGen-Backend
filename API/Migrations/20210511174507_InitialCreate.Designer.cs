@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210508105724_InitialCreate")]
+    [Migration("20210511174507_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -282,18 +282,6 @@ namespace API.Migrations
                         .IsUnique();
 
                     b.ToTable("user_base");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "2ce44222-b26b-4b2b-90c5-58a899e191c4",
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "testuser@gmail.com",
-                            FirstName = "John",
-                            LastName = "Doe",
-                            Password = "$2a$10$lmiYrmWUDf7klCsGo0VP.uI9DcK.5fUy2Ld34ahg8lQnIanlzThcy",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("Core.Domain.DbModels.UserData", b =>
@@ -352,28 +340,16 @@ namespace API.Migrations
                         .HasColumnType("Char(36)")
                         .HasColumnName("user_id");
 
+                    b.Property<string>("WorkTitle")
+                        .HasColumnType("CHAR(128)")
+                        .HasColumnName("work_title");
+
                     b.HasKey("Id");
 
                     b.HasIndex("UserId")
                         .IsUnique();
 
                     b.ToTable("user_data");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "1f5c890d-650a-493f-b68e-fc246065ae6a",
-                            CityEn = "Gothenburg",
-                            CitySv = "Göteborg",
-                            CountryEn = "Sweden",
-                            CountrySv = "Sverige",
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EmailCv = "persson.daniel.1990@gmail.com",
-                            PhoneNumber = "073-3249826",
-                            ProfileImage = "",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "2ce44222-b26b-4b2b-90c5-58a899e191c4"
-                        });
                 });
 
             modelBuilder.Entity("Core.Domain.DbModels.UserPresentation", b =>
@@ -416,17 +392,6 @@ namespace API.Migrations
                         .IsUnique();
 
                     b.ToTable("user_presentation");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "98882bc6-7dd2-416c-8b6e-373f3f18b4e0",
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            PresentationEn = "PresentationText En",
-                            PresentationSv = "PresentationText Sv",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = "2ce44222-b26b-4b2b-90c5-58a899e191c4"
-                        });
                 });
 
             modelBuilder.Entity("Core.Domain.DbModels.WorkExperience", b =>

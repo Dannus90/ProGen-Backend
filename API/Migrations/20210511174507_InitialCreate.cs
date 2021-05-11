@@ -134,6 +134,7 @@ namespace API.Migrations
                     city_en = table.Column<string>(type: "CHAR(128)", nullable: true),
                     country_sv = table.Column<string>(type: "CHAR(128)", nullable: true),
                     country_en = table.Column<string>(type: "CHAR(128)", nullable: true),
+                    work_title = table.Column<string>(type: "CHAR(128)", nullable: true),
                     profile_image = table.Column<string>(type: "CHAR(256)", nullable: true),
                     profile_image_public_id = table.Column<string>(type: "CHAR(36)", nullable: true),
                     created_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "NOW()"),
@@ -203,21 +204,6 @@ namespace API.Migrations
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.InsertData(
-                table: "user_base",
-                columns: new[] { "id", "email", "first_name", "last_login", "last_name", "password" },
-                values: new object[] { "2ce44222-b26b-4b2b-90c5-58a899e191c4", "testuser@gmail.com", "John", null, "Doe", "$2a$10$lmiYrmWUDf7klCsGo0VP.uI9DcK.5fUy2Ld34ahg8lQnIanlzThcy" });
-
-            migrationBuilder.InsertData(
-                table: "user_data",
-                columns: new[] { "id", "city_en", "city_sv", "country_en", "country_sv", "email_cv", "phone_number", "profile_image", "profile_image_public_id", "user_id" },
-                values: new object[] { "1f5c890d-650a-493f-b68e-fc246065ae6a", "Gothenburg", "Göteborg", "Sweden", "Sverige", "persson.daniel.1990@gmail.com", "073-3249826", "", null, "2ce44222-b26b-4b2b-90c5-58a899e191c4" });
-
-            migrationBuilder.InsertData(
-                table: "user_presentation",
-                columns: new[] { "id", "presentation_en", "presentation_sv", "user_id" },
-                values: new object[] { "98882bc6-7dd2-416c-8b6e-373f3f18b4e0", "PresentationText En", "PresentationText Sv", "2ce44222-b26b-4b2b-90c5-58a899e191c4" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_education_user_id",
