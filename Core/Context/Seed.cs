@@ -189,7 +189,7 @@ namespace Core.Context
                 }
             };
             
-            modelBuilder.Entity<WorkExperiece>().HasData(workExperiences);
+            modelBuilder.Entity<WorkExperience>().HasData(workExperiences);
             
             //////////////////////////////////
             ///       SEED LANGUAGES       ///
