@@ -5,6 +5,10 @@ namespace Core.Domain.ViewModels
 {
     public class WorkExperiencesViewModel
     {
-        public IEnumerable<WorkExperienceDto> WorkExperienceDto { get; set; }
+        public WorkExperiencesViewModel()
+        {
+            WorkExperienceDto = new List<WorkExperienceDto>();
+        }
+        public IEnumerable<WorkExperienceDto> WorkExperienceDto { get; init; }
     }
 }

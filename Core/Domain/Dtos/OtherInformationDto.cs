@@ -8,9 +8,9 @@ namespace Core.Domain.Dtos
         
         public Guid? UserId { get; set; }
         
-        public string DrivingLicenseSv { get; set; }
+        public string DrivingLicenseSv { get; set; } = null!;
 
-        public string DrivingLicenseEn { get; set; }
+        public string DrivingLicenseEn { get; set; } = null!;
 
         public DateTime? CreatedAt { get; set; }
         

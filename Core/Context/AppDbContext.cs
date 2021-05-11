@@ -10,14 +10,14 @@ namespace Core.Context
         {
         }
 
-        public DbSet<User> User { get; set; }
-        public DbSet<RefreshToken> RefreshToken { get; set; }
-        public DbSet<UserData> UserData { get; set; }
-        public DbSet<UserPresentation> UserPresentation { get; set; }
-        public DbSet<WorkExperience> WorkExperience { get; set; }
-        public DbSet<Education> Education { get; set; }
-        public DbSet<OtherInformation> OtherInformation { get; set; }
-        public DbSet<Language> Language { get; set; }
+        public DbSet<User> User { get; set; } = null!;
+        public DbSet<RefreshToken> RefreshToken { get; set; } = null!;
+        public DbSet<UserData> UserData { get; set; } = null!;
+        public DbSet<UserPresentation> UserPresentation { get; set; } = null!;
+        public DbSet<WorkExperience> WorkExperience { get; set; } = null!;
+        public DbSet<Education> Education { get; set; } = null!;
+        public DbSet<OtherInformation> OtherInformation { get; set; } = null!;
+        public DbSet<Language> Language { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder dbModelBuilder)
         {

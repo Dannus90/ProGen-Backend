@@ -4,6 +4,10 @@ namespace Core.Domain.ViewModels
 {
     public class WorkExperienceViewModel
     {
-        public WorkExperienceDto WorkExperienceDto { get; set; }
+        public WorkExperienceViewModel()
+        {
+            WorkExperienceDto = new WorkExperienceDto();
+        }
+        public WorkExperienceDto WorkExperienceDto { get; init; }
     }
 }

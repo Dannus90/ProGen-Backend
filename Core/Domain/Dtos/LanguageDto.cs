@@ -6,7 +6,7 @@ namespace Core.Domain.Dtos
     {
         public Guid? Id { get; set; }
         public Guid? UserId { get; set; }
-        public string LanguageSv { get; set; }
-        public string LanguageEn { get; set; }
+        public string LanguageSv { get; set; } = null!;
+        public string LanguageEn { get; set; } = null!;
     }
 }

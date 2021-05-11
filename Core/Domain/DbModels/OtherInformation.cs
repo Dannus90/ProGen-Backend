@@ -29,10 +29,10 @@ namespace Core.Domain.DbModels
         }
 
         [Column("driving_license_sv", TypeName = "TEXT")]
-        public string DrivingLicenseSv { get; set; }
+        public string DrivingLicenseSv { get; set; } = null!;
         
         [Column("driving_license_en", TypeName = "TEXT")]
-        public string DrivingLicenseEn { get; set; }
+        public string DrivingLicenseEn { get; set; } = null!;
 
         [Column("created_at")] 
         public DateTime CreatedAt { get; set; }

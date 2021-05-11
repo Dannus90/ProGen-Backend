@@ -21,21 +21,21 @@ namespace Core.Domain.DbModels
         [Required]
         [EmailAddress]
         [Column("email", TypeName = "CHAR(128)")]
-        public string Email { get; set; }
+        public string Email { get; init; } = null!;
 
         [Required]
         [Column("password", TypeName = "CHAR(500)")]
-        public string Password { get; set; }
+        public string Password { get; init; } = null!;
         
         [Required]
         [Column("first_name", TypeName = "CHAR(128)")]
-        public string FirstName { get; set; }
+        public string FirstName { get; init; } = null!;
 
         [Required]
         [Column("last_name", TypeName = "CHAR(128)")]
-        public string LastName { get; set; }
+        public string LastName { get; init; } = null!;
         
-        [Column("last_login")] public DateTime? LastLogin { get; set; } = null;
+        [Column("last_login")] public DateTime? LastLogin { get; set; }
 
         [Column("created_at")] public DateTime CreatedAt { get; set; }
 

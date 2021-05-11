@@ -30,11 +30,11 @@ namespace Core.Domain.DbModels
         
         [Column("presentation_sv", TypeName = "TEXT")]
         [Required]
-        public string PresentationSv { get; set; }
+        public string PresentationSv { get; init; } = null!;
         
         [Column("presentation_en", TypeName = "TEXT")]
         [Required]
-        public string PresentationEn { get; set; }
+        public string PresentationEn { get; init; } = null!;
         
         [Column("created_at")] public DateTime CreatedAt { get; set; }
 

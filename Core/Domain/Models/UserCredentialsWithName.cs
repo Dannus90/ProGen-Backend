@@ -2,7 +2,7 @@ namespace Core.Domain.Models
 {
     public class UserCredentialsWithName : UserCredentials
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string FirstName { get; set; } = null!;
+        public string LastName { get; set; } = null!;
     }
 }

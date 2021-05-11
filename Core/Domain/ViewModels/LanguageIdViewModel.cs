@@ -4,6 +4,6 @@ namespace Core.Domain.ViewModels
 {
     public class LanguageIdViewModel
     {
-        public Guid LanguageId { get; set; }
+        public Guid LanguageId { get; init; }
     }
 }

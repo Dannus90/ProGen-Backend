@@ -2,7 +2,7 @@ namespace Core.Domain.Models
 {
     public class ChangeEmailModel
     {
-        public string NewEmail { get; set; }
-        public string Password { get; set; }
+        public string NewEmail { get; init; }  = null!;
+        public string Password { get; init; }  = null!;
     }
 }

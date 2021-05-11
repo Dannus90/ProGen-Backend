@@ -29,34 +29,34 @@ namespace Core.Domain.DbModels
         }
 
         [Column("employment_rate", TypeName = "Char(54)")]
-        public string EmploymentRate { get; set; }
+        public string EmploymentRate { get; set; } = null!;
         
         [Column("company_name", TypeName = "Char(54)")]
-        public string CompanyName { get; set; }
+        public string CompanyName { get; set; } = null!;
         
         [Column("role_sv", TypeName = "Char(108)")]
-        public string RoleSv { get; set; }
+        public string RoleSv { get; set; } = null!;
         
         [Column("role_en", TypeName = "Char(108)")]
-        public string RoleEn { get; set; }
+        public string RoleEn { get; set; } = null!;
 
         [Column("description_sv", TypeName = "TEXT")]
-        public string DescriptionSv { get; set; }
+        public string DescriptionSv { get; set; } = null!;
         
         [Column("description_en", TypeName = "TEXT")]
-        public string DescriptionEn { get; set; }
+        public string DescriptionEn { get; set; } = null!;
         
         [Column("city_sv", TypeName = "Char(72)")]
-        public string CitySv { get; set; }
+        public string CitySv { get; set; } = null!;
         
         [Column("city_en", TypeName = "Char(72)")]
-        public string CityEn { get; set; }
+        public string CityEn { get; set; } = null!;
         
         [Column("country_sv", TypeName = "Char(72)")]
-        public string CountrySv { get; set; }
+        public string CountrySv { get; set; } = null!;
         
         [Column("country_en", TypeName = "Char(72)")]
-        public string CountryEn { get; set; }
+        public string CountryEn { get; set; } = null!;
         
         [Column("date_started")] 
         public DateTime DateStarted { get; set; }

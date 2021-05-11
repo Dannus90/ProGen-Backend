@@ -29,10 +29,10 @@ namespace Core.Domain.DbModels
         }
 
         [Column("language_sv", TypeName = "Char(128)")]
-        public string LanguageSv { get; set; }
+        public string LanguageSv { get; set; } = null!;
         
         [Column("language_en", TypeName = "Char(128)")]
-        public string LanguageEn { get; set; }
+        public string LanguageEn { get; set; } = null!;
 
         /**
          * Model configurations.

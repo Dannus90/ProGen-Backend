@@ -5,6 +5,15 @@ namespace Core.Domain.ViewModels
 {
     public class FullCvInformationViewModel
     {
+        public FullCvInformationViewModel()
+        {
+            FullUserInformationDto = new FullUserInformationDto();
+            OtherInformationDto = new OtherInformationDto();
+            EducationDtos = new List<EducationDto>();
+            WorkExperienceDtos = new List<WorkExperienceDto>();
+            LanguageDtos = new List<LanguageDto>();
+            UserPresentationDto = new UserPresentationDto();
+        }
         public FullUserInformationDto FullUserInformationDto { get; set; }
         public OtherInformationDto OtherInformationDto { get; set; }
         public IEnumerable<EducationDto> EducationDtos { get; set; }

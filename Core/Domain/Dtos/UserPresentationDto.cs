@@ -6,8 +6,8 @@ namespace Core.Domain.Dtos
     {
         public Guid? Id { get; set;}
         public Guid? UserId { get; set; }
-        public string PresentationSv { get; set; }
-        public string PresentationEn { get; set; }
+        public string PresentationSv { get; set; } = null!;
+        public string PresentationEn { get; set; } = null!;
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
     }

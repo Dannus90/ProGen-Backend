@@ -20,7 +20,7 @@ namespace Core.Domain.DbModels
 
         [Column("user_id", TypeName = "Char(36)")]
         [Required]
-        public Guid UserId { get; set; }
+        public Guid UserId { get; private set; }
 
         public string UserIdString
         {
@@ -30,7 +30,7 @@ namespace Core.Domain.DbModels
 
         [Column("refresh_token", TypeName = "TEXT")]
         [Required]
-        public string Token { get; set; }
+        public string Token { get; set; } = null!;
 
         [Column("token_set_at")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]

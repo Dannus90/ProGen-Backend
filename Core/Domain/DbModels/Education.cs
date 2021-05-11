@@ -29,43 +29,43 @@ namespace Core.Domain.DbModels
         }
 
         [Column("education_name_sv", TypeName = "Char(108)")]
-        public string EducationNameSv { get; set; }
+        public string EducationNameSv { get; set; } = null!;
         
         [Column("education_name_en", TypeName = "Char(108)")]
-        public string EducationNameEn { get; set; }
+        public string EducationNameEn { get; set; } = null!;
         
         [Column("exam_name_sv", TypeName = "Char(108)")]
-        public string ExamNameSv { get; set; }
+        public string ExamNameSv { get; set; } = null!;
         
         [Column("exam_name_en", TypeName = "Char(108)")]
-        public string ExamNameEn { get; set; }
+        public string ExamNameEn { get; set; } = null!;
         
         [Column("subject_area_sv", TypeName = "Char(108)")]
-        public string SubjectAreaSv { get; set; }
+        public string SubjectAreaSv { get; set; } = null!;
         
         [Column("subject_area_en", TypeName = "Char(108)")]
-        public string SubjectAreaEn { get; set; }
+        public string SubjectAreaEn { get; set; } = null!;
 
         [Column("description_sv", TypeName = "TEXT")]
-        public string DescriptionSv { get; set; }
+        public string DescriptionSv { get; set; } = null!;
         
         [Column("description_en", TypeName = "TEXT")]
-        public string DescriptionEn { get; set; }
+        public string DescriptionEn { get; set; } = null!;
         
         [Column("grade", TypeName = "Char(72)")]
-        public string Grade { get; set; }
+        public string Grade { get; set; } = null!;
         
         [Column("city_sv", TypeName = "Char(72)")]
-        public string CitySv { get; set; }
+        public string CitySv { get; set; } = null!;
         
         [Column("city_en", TypeName = "Char(72)")]
-        public string CityEn { get; set; }
+        public string CityEn { get; set; } = null!;
         
         [Column("country_sv", TypeName = "Char(72)")]
-        public string CountrySv { get; set; }
+        public string CountrySv { get; set; } = null!;
         
         [Column("country_en", TypeName = "Char(72)")]
-        public string CountryEn { get; set; }
+        public string CountryEn { get; set; } = null!;
         
         [Column("date_started")] 
         public DateTime DateStarted { get; set; }
