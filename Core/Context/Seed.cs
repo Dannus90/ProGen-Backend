@@ -39,6 +39,8 @@ namespace Core.Context
                     CityEn = "Gothenburg", CitySv = "Göteborg",
                     CountryEn = "Sweden", CountrySv = "Sverige",
                     PhoneNumber = "073-3249826", ProfileImage = "",
+                    WorkTitleSv = "Mjukvaru utvecklare",
+                    WorkTitleEn = "Software developer",
                     EmailCv = "persson.daniel.1990@gmail.com"
                 }
             };
@@ -97,7 +99,8 @@ namespace Core.Context
                     EducationNameSv = "Social vetenskap",
                     ExamNameEn = "Bacheclor with social science",
                     ExamNameSv = "Kandidatexamen inom socialvetenskap",
-                    SubjectAreaEn = "Behavioral science"
+                    SubjectAreaEn = "Behavioral science",
+                    SubjectAreaSv = "Beteende vetenskap"
                 },
                 new()
                 {
@@ -114,7 +117,8 @@ namespace Core.Context
                     EducationNameSv = "Social vetenskap2",
                     ExamNameEn = "Bacheclor with social science2",
                     ExamNameSv = "Kandidatexamen inom socialvetenskap2",
-                    SubjectAreaEn = "Behavioral science2"
+                    SubjectAreaEn = "Behavioral science2",
+                    SubjectAreaSv = "Beteende vetenskap2"
                 },
                 new()
                 {
@@ -131,7 +135,8 @@ namespace Core.Context
                     EducationNameSv = "Social vetenskap3",
                     ExamNameEn = "Bacheclor with social science3",
                     ExamNameSv = "Kandidatexamen inom socialvetenskap3",
-                    SubjectAreaEn = "Behavioral science3"
+                    SubjectAreaEn = "Behavioral science3",
+                    SubjectAreaSv = "Beteende vetenskap3"
                 }
             };
                 

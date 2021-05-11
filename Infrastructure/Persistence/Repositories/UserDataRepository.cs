@@ -38,7 +38,8 @@ namespace Infrastructure.Persistence.Repositories
                             user_data.country_en AS CountryEn,
                             user_data.profile_image AS ProfileImage,
                             user_data.profile_image_public_id AS ProfileImagePublicId,
-                            user_data.work_title AS WorkTitle,
+                            user_data.work_title_sv AS WorkTitleSv,
+                            user_data.work_title_en AS WorkTitleEn,
                             user_data.created_at AS CreatedAt,
                             user_data.updated_at AS UpdatedAt
                     FROM user_base
@@ -71,7 +72,8 @@ namespace Infrastructure.Persistence.Repositories
                         country_sv = @CountrySv,
                         country_en = @CountryEn,
                         phone_number = @PhoneNumber,
-                        work_title = @WorkTitle
+                        work_title_sv = @WorkTitleSv,
+                        work_title_en = @WorkTitleEn
                     WHERE user_id = @UserId;
 
                    SELECT id AS IdString,
@@ -84,7 +86,8 @@ namespace Infrastructure.Persistence.Repositories
                         country_en AS CountryEn,
                         profile_image AS ProfileImage,
                         profile_image_public_id AS ProfileImagePublicId,
-                        work_title AS WorkTitle,
+                        work_title_sv AS WorkTitleSv,
+                        work_title_en AS WorkTitleEn,
                         created_at AS CreatedAt,
                         updated_at AS UpdatedAt
                    FROM user_data
@@ -101,7 +104,8 @@ namespace Infrastructure.Persistence.Repositories
                 userData.CountrySv,
                 userData.CountryEn,
                 userData.PhoneNumber,
-                userData.WorkTitle
+                userData.WorkTitleSv,
+                userData.WorkTitleEn
             });
         }
         

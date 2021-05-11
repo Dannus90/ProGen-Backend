@@ -44,7 +44,8 @@ namespace Infrastructure.Persistence
                             user_data.country_en AS CountryEn,
                             user_data.profile_image AS ProfileImage,
                             user_data.profile_image_public_id AS ProfileImagePublicId,
-                            user_data.work_title AS WorkTitle,
+                            user_data.work_title_sv AS WorkTitleSv,
+                            user_data.work_title_en AS WorkTitleEn,
                             user_data.created_at AS CreatedAt,
                             user_data.updated_at AS UpdatedAt
                     FROM user_base

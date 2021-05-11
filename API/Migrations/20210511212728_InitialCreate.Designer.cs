@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210511174507_InitialCreate")]
+    [Migration("20210511212728_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -340,9 +340,13 @@ namespace API.Migrations
                         .HasColumnType("Char(36)")
                         .HasColumnName("user_id");
 
-                    b.Property<string>("WorkTitle")
+                    b.Property<string>("WorkTitleEn")
                         .HasColumnType("CHAR(128)")
-                        .HasColumnName("work_title");
+                        .HasColumnName("work_title_en");
+
+                    b.Property<string>("WorkTitleSv")
+                        .HasColumnType("CHAR(128)")
+                        .HasColumnName("work_title_sv");
 
                     b.HasKey("Id");
 
