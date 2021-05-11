@@ -48,6 +48,9 @@ namespace Core.Domain.DbModels
         [Column("country_en", TypeName = "CHAR(128)")]
         public string? CountryEn { get; set; }
         
+        [Column("work_title", TypeName = "CHAR(128)")]
+        public string? WorkTitle { get; set; }
+        
         [Column("profile_image", TypeName = "CHAR(256)")]
         public string? ProfileImage { get; set; }
         

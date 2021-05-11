@@ -16,6 +16,7 @@ namespace Core.Domain.Dtos
         public string? CountryEn { get; set; }
         public string? ProfileImage { get; set; }
         public string? ProfileImagePublicId { get; set; }
+        public string? WorkTitle { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
     }
