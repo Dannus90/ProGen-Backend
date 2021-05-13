@@ -105,50 +105,68 @@ namespace Core.Context
                     CitySv = "Göteborg",
                     CountryEn = "Sweden",
                     CountrySv = "Sverige",
-                    DescriptionEn = "Studies within social science and networking",
-                    DescriptionSv = "Studier inom social vetenskap och nätverkande",
+                    DescriptionEn = "There are many variations of passages of Lorem Ipsum available, " +
+                                    "but the majority have suffered alteration in some form," +
+                                    " by injected humour, or randomised words which don't look even slightly believable. ",
+                    DescriptionSv = "There are many variations of passages of Lorem Ipsum available, " +
+                                    "but the majority have suffered alteration in some form," +
+                                    " by injected humour, or randomised words which don't look even slightly believable. ",
                     EducationNameEn = "Social Sciences",
                     EducationNameSv = "Social vetenskap",
                     ExamNameEn = "Bacheclor with social science",
                     ExamNameSv = "Kandidatexamen inom socialvetenskap",
                     SubjectAreaEn = "Behavioral science",
-                    SubjectAreaSv = "Beteende vetenskap"
+                    SubjectAreaSv = "Beteendevetenskap",
+                    DateStarted = DateTime.Now.AddDays(-400),
+                    DateEnded = DateTime.Now.AddDays(-250)
                 },
                 new()
                 {
                     Id = Guid.NewGuid(),
                     UserId = users[0].Id,
                     Grade = "VG",
-                    CityEn = "Gothenburg2",
-                    CitySv = "Göteborg2",
-                    CountryEn = "Sweden2",
-                    CountrySv = "Sverige2",
-                    DescriptionEn = "Studies within social science and networking2",
-                    DescriptionSv = "Studier inom social vetenskap och nätverkande2",
-                    EducationNameEn = "Social Sciences2",
-                    EducationNameSv = "Social vetenskap2",
-                    ExamNameEn = "Bacheclor with social science2",
-                    ExamNameSv = "Kandidatexamen inom socialvetenskap2",
-                    SubjectAreaEn = "Behavioral science2",
-                    SubjectAreaSv = "Beteende vetenskap2"
+                    CityEn = "Gothenburg",
+                    CitySv = "Göteborg",
+                    CountryEn = "Sweden",
+                    CountrySv = "Sverige",
+                    DescriptionEn = "There are many variations of passages of Lorem Ipsum available, " +
+                                    "but the majority have suffered alteration in some form, by injected humour," +
+                                    " or randomised words which don't look even slightly believable. ",
+                    DescriptionSv = "There are many variations of passages of Lorem Ipsum available, " +
+                                    "but the majority have suffered alteration in some form, by injected humour, " +
+                                    "or randomised words which don't look even slightly believable. ",
+                    EducationNameEn = "Social Sciences",
+                    EducationNameSv = "Social vetenskap",
+                    ExamNameEn = "Bacheclor with social science",
+                    ExamNameSv = "Kandidatexamen inom socialvetenskap",
+                    SubjectAreaEn = "Behavioral science",
+                    SubjectAreaSv = "Beteendevetenskap",
+                    DateStarted = DateTime.Now.AddDays(-600),
+                    DateEnded = DateTime.Now.AddDays(-401)
                 },
                 new()
                 {
                     Id = Guid.NewGuid(),
                     UserId = users[0].Id,
                     Grade = "VG",
-                    CityEn = "Gothenburg3",
-                    CitySv = "Göteborg3",
-                    CountryEn = "Sweden3",
-                    CountrySv = "Sverige3",
-                    DescriptionEn = "Studies within social science and networking3",
-                    DescriptionSv = "Studier inom social vetenskap och nätverkande3",
-                    EducationNameEn = "Social Sciences3",
-                    EducationNameSv = "Social vetenskap3",
-                    ExamNameEn = "Bacheclor with social science3",
-                    ExamNameSv = "Kandidatexamen inom socialvetenskap3",
-                    SubjectAreaEn = "Behavioral science3",
-                    SubjectAreaSv = "Beteende vetenskap3"
+                    CityEn = "Gothenburg",
+                    CitySv = "Göteborg",
+                    CountryEn = "Sweden",
+                    CountrySv = "Sverige",
+                    DescriptionEn = "There are many variations of passages of Lorem Ipsum available," +
+                                    " but the majority have suffered alteration in some form, by injected humour," +
+                                    " or randomised words which don't look even slightly believable. ",
+                    DescriptionSv = "There are many variations of passages of Lorem Ipsum available," +
+                                    " but the majority have suffered alteration in some form, by injected humour," +
+                                    " or randomised words which don't look even slightly believable. ",
+                    EducationNameEn = "Social Sciences",
+                    EducationNameSv = "Social vetenskap",
+                    ExamNameEn = "Bacheclor with social science",
+                    ExamNameSv = "Kandidatexamen inom socialvetenskap",
+                    SubjectAreaEn = "Behavioral science",
+                    SubjectAreaSv = "Beteende vetenskap",
+                    DateStarted = DateTime.Now.AddDays(-800),
+                    DateEnded = DateTime.Now.AddDays(-601)
                 }
             };
                 
@@ -168,26 +186,38 @@ namespace Core.Context
                     CompanyName = "FrontEdge IT",
                     CountryEn = "Sweden",
                     CountrySv = "Sverige",
-                    DescriptionEn = "Worked as a fullstack developer on a consultant company",
-                    DescriptionSv = "Arbetade som en fullstackutvecklare på ett IT företag",
+                    DescriptionEn = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout." +
+                                    " The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here," +
+                                    " content here', making it look like readable English.",
+                    DescriptionSv = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout." +
+                                    " The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here," +
+                                    " content here', making it look like readable English.",
                     EmploymentRate = "Fulltime",
                     RoleEn = "Software Developer",
-                    RoleSv = "Mjukvaru-utvecklare"
+                    RoleSv = "Mjukvaruutvecklare",
+                    DateStarted = DateTime.Now.AddDays(-400),
+                    DateEnded = DateTime.Now.AddDays(-201)
                 },
                 new()
                 {
                     Id = Guid.NewGuid(),
                     UserId = users[0].Id,
-                    CityEn = "GothenBurg2",
-                    CitySv = "Göteborg2",
-                    CompanyName = "FrontEdge IT2",
-                    CountryEn = "Sweden2",
-                    CountrySv = "Sverige2",
-                    DescriptionEn = "Worked as a fullstack developer on a consultant company2",
-                    DescriptionSv = "Arbetade som en fullstackutvecklare på ett IT företag2",
-                    EmploymentRate = "Fulltime2",
-                    RoleEn = "Software Developer2",
-                    RoleSv = "Mjukvaru-utvecklare2"
+                    CityEn = "Gothenburg",
+                    CitySv = "Göteborg",
+                    CompanyName = "Stena Line",
+                    CountryEn = "Sweden",
+                    CountrySv = "Sverige",
+                    DescriptionEn = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout." +
+                                    " The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters," +
+                                    " as opposed to using 'Content here, content here', making it look like readable English.",
+                    DescriptionSv = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout." +
+                                    " The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters," +
+                                    " as opposed to using 'Content here, content here', making it look like readable English.",
+                    EmploymentRate = "Fulltime",
+                    RoleEn = "Software developer",
+                    RoleSv = "Mjukvaruutvecklare",
+                    DateStarted = DateTime.Now.AddDays(-200),
+                    DateEnded = DateTime.Now.AddDays(-50)
                 },
                 new()
                 {
@@ -198,11 +228,16 @@ namespace Core.Context
                     CompanyName = "FrontEdge IT3",
                     CountryEn = "Sweden3",
                     CountrySv = "Sverige3",
-                    DescriptionEn = "Worked as a fullstack developer on a consultant company3",
-                    DescriptionSv = "Arbetade som en fullstackutvecklare på ett IT företag3",
-                    EmploymentRate = "Fulltime3",
-                    RoleEn = "Software Developer3",
-                    RoleSv = "Mjukvaru-utvecklare3"
+                    DescriptionEn = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout." +
+                                    " The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here'," +
+                                    " making it look like readable English.",
+                    DescriptionSv = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout." +
+                                    " The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here'," +
+                                    " making it look like readable English.",
+                    EmploymentRate = "Fulltime",
+                    RoleEn = "Software developer",
+                    RoleSv = "Mjukvaruutvecklare",
+                    DateStarted = DateTime.Now.AddDays(-49)
                 }
             };
             
