@@ -32,7 +32,7 @@ namespace API.Controllers.Data
             var currentUser = HttpContext.User;
             var userId = currentUser.Claims.FirstOrDefault(c =>
                 c.Type == ClaimTypes.NameIdentifier)?.Value;
-            
+
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
             
             return Ok(await _userDataService.GetFullUserData(userId));
@@ -45,7 +45,7 @@ namespace API.Controllers.Data
             var currentUser = HttpContext.User;
             var userId = currentUser.Claims.FirstOrDefault(c =>
                 c.Type == ClaimTypes.NameIdentifier)?.Value;
-            
+
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
             
             return Ok(await _userDataService.UpdateUserData(userId, userDataDto));

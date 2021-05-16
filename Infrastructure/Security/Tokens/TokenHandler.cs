@@ -40,7 +40,7 @@ namespace Infrastructure.Security.Tokens
             var token = new JwtSecurityToken(_tokenConfig.Value.Issuer,
                 _tokenConfig.Value.Audience,
                 claims,
-                expires: DateTime.Now.AddSeconds(_tokenConfig.Value.AccessTokenExpiration),
+                expires: DateTime.UtcNow.AddSeconds(_tokenConfig.Value.AccessTokenExpiration),
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler()
@@ -67,7 +67,7 @@ namespace Infrastructure.Security.Tokens
             var token = new JwtSecurityToken(_tokenConfig.Value.Issuer,
                 _tokenConfig.Value.Audience,
                 claims,
-                expires: DateTime.Now.AddSeconds(_tokenConfig.Value.RefreshTokenExpiration),
+                expires: DateTime.UtcNow.AddSeconds(_tokenConfig.Value.RefreshTokenExpiration),
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler()
