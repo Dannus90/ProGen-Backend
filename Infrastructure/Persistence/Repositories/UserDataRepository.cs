@@ -66,11 +66,6 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<UserData> UpdateUserData(string userId, UserDataModel userData)
         {
-            Console.WriteLine(userData.ZipCode);
-            Console.WriteLine(userData.ZipCode);
-            Console.WriteLine(userData.ZipCode);
-            Console.WriteLine(userData.ZipCode);
-            Console.WriteLine(userData.ZipCode);
             const string query = @"
                     UPDATE user_data
                     SET email_cv = @EmailCv,
