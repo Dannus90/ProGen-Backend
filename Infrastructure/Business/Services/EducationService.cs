@@ -42,7 +42,7 @@ namespace Infrastructure.Identity.Services
             var retrievedEducation = await _educationRepository.UpdateEducation
                 (educationId, education);
             
-            if (retrievedEducation == null) throw new HttpExceptionResponse(404, "No found");
+            if (retrievedEducation == null) throw new HttpExceptionResponse(404, "Not found");
             
             var retrievedEducationDto = _mapper.Map<EducationDto>(retrievedEducation);
 

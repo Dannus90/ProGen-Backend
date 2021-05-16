@@ -9,7 +9,7 @@ namespace API.Helpers
         {
             ".jpg",
             ".png",
-            "jpeg"
+            ".jpeg"
         };
         
         public static bool ValidateImageUpload(string extension)
