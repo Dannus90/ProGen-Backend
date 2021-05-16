@@ -42,6 +42,7 @@ namespace Infrastructure.Persistence
                             user_data.city_en AS CityEn,
                             user_data.country_sv AS CountrySv,
                             user_data.country_en AS CountryEn,
+                            user_data.zip_code AS ZipCode,
                             user_data.profile_image AS ProfileImage,
                             user_data.profile_image_public_id AS ProfileImagePublicId,
                             user_data.work_title_sv AS WorkTitleSv,

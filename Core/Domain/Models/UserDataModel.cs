@@ -14,6 +14,7 @@ namespace Core.Domain.Models
         public string? CityEn { get; set; }
         public string? CountrySv { get; set; }
         public string? CountryEn { get; set; }
+        public string? ZipCode { get; set; }
         public string? ProfileImage { get; set; }
         public string? ProfileImagePublicId { get; set; }
         public string? WorkTitleSv { get; set; }

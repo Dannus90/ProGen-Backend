@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Serialization;
 
 namespace Core.Domain.DbModels
 {
@@ -47,6 +48,12 @@ namespace Core.Domain.DbModels
         
         [Column("country_en", TypeName = "CHAR(128)")]
         public string? CountryEn { get; set; }
+        
+        
+        [Column("zip_code", TypeName = "CHAR(128)")]
+        [RegularExpression(@"^(s-|S-){0,1}[0-9]{3}\s?[0-9]{2}$",
+            ErrorMessage = "Must be a valid swedish zip code")]
+        public string? ZipCode { get; set; }
         
         [Column("work_title_sv", TypeName = "CHAR(128)")]
         public string? WorkTitleSv { get; set; }

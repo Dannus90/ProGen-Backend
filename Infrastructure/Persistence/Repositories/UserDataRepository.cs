@@ -1,3 +1,4 @@
+using System;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
@@ -36,6 +37,7 @@ namespace Infrastructure.Persistence.Repositories
                             user_data.city_en AS CityEn,
                             user_data.country_sv AS CountrySv,
                             user_data.country_en AS CountryEn,
+                            user_data.zip_code AS ZipCode,
                             user_data.profile_image AS ProfileImage,
                             user_data.profile_image_public_id AS ProfileImagePublicId,
                             user_data.work_title_sv AS WorkTitleSv,
@@ -64,6 +66,11 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<UserData> UpdateUserData(string userId, UserDataModel userData)
         {
+            Console.WriteLine(userData.ZipCode);
+            Console.WriteLine(userData.ZipCode);
+            Console.WriteLine(userData.ZipCode);
+            Console.WriteLine(userData.ZipCode);
+            Console.WriteLine(userData.ZipCode);
             const string query = @"
                     UPDATE user_data
                     SET email_cv = @EmailCv,
@@ -71,6 +78,7 @@ namespace Infrastructure.Persistence.Repositories
                         city_en = @CityEn,
                         country_sv = @CountrySv,
                         country_en = @CountryEn,
+                        zip_code = @ZipCode,
                         phone_number = @PhoneNumber,
                         work_title_sv = @WorkTitleSv,
                         work_title_en = @WorkTitleEn
@@ -84,6 +92,7 @@ namespace Infrastructure.Persistence.Repositories
                         city_en AS CityEn,
                         country_sv AS CountrySv,
                         country_en AS CountryEn,
+                        zip_code AS ZipCode,
                         profile_image AS ProfileImage,
                         profile_image_public_id AS ProfileImagePublicId,
                         work_title_sv AS WorkTitleSv,
@@ -103,6 +112,7 @@ namespace Infrastructure.Persistence.Repositories
                 userData.CityEn,
                 userData.CountrySv,
                 userData.CountryEn,
+                userData.ZipCode,
                 userData.PhoneNumber,
                 userData.WorkTitleSv,
                 userData.WorkTitleEn

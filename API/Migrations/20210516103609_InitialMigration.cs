@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace API.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -134,6 +134,7 @@ namespace API.Migrations
                     city_en = table.Column<string>(type: "CHAR(128)", nullable: true),
                     country_sv = table.Column<string>(type: "CHAR(128)", nullable: true),
                     country_en = table.Column<string>(type: "CHAR(128)", nullable: true),
+                    zip_code = table.Column<string>(type: "CHAR(128)", nullable: true),
                     work_title_sv = table.Column<string>(type: "CHAR(128)", nullable: true),
                     work_title_en = table.Column<string>(type: "CHAR(128)", nullable: true),
                     profile_image = table.Column<string>(type: "CHAR(256)", nullable: true),
@@ -204,6 +205,57 @@ namespace API.Migrations
                         principalTable: "user_base",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "user_base",
+                columns: new[] { "id", "email", "first_name", "last_login", "last_name", "password" },
+                values: new object[] { "6002e474-49f5-4739-bff8-88bf44591a87", "testuser@gmail.com", "Daniel", null, "Persson", "$2a$10$lmiYrmWUDf7klCsGo0VP.uI9DcK.5fUy2Ld34ahg8lQnIanlzThcy" });
+
+            migrationBuilder.InsertData(
+                table: "education",
+                columns: new[] { "id", "city_en", "city_sv", "country_en", "country_sv", "date_ended", "date_started", "description_en", "description_sv", "education_name_en", "education_name_sv", "exam_name_en", "exam_name_sv", "grade", "subject_area_en", "subject_area_sv", "user_id" },
+                values: new object[,]
+                {
+                    { "c0947531-8752-4cb1-935f-860de6662cb0", "Gothenburg", "Göteborg", "Sweden", "Sverige", new DateTime(2020, 9, 8, 12, 36, 8, 776, DateTimeKind.Local).AddTicks(4790), new DateTime(2020, 4, 11, 12, 36, 8, 771, DateTimeKind.Local).AddTicks(5020), "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. ", "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. ", "Social Sciences", "Social vetenskap", "Bacheclor with social science", "Kandidatexamen inom socialvetenskap", "VG", "Behavioral science", "Beteendevetenskap", "6002e474-49f5-4739-bff8-88bf44591a87" },
+                    { "ef678bc7-cacf-4571-9d32-4863f8f2d26d", "Gothenburg", "Göteborg", "Sweden", "Sverige", new DateTime(2020, 4, 10, 12, 36, 8, 776, DateTimeKind.Local).AddTicks(5290), new DateTime(2019, 9, 24, 12, 36, 8, 776, DateTimeKind.Local).AddTicks(5280), "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. ", "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. ", "Social Sciences", "Social vetenskap", "Bacheclor with social science", "Kandidatexamen inom socialvetenskap", "VG", "Behavioral science", "Beteendevetenskap", "6002e474-49f5-4739-bff8-88bf44591a87" },
+                    { "2c81d739-f485-4424-9cef-f209b6625e91", "Gothenburg", "Göteborg", "Sweden", "Sverige", new DateTime(2019, 9, 23, 12, 36, 8, 776, DateTimeKind.Local).AddTicks(5300), new DateTime(2019, 3, 8, 12, 36, 8, 776, DateTimeKind.Local).AddTicks(5300), "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. ", "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. ", "Social Sciences", "Social vetenskap", "Bacheclor with social science", "Kandidatexamen inom socialvetenskap", "VG", "Behavioral science", "Beteende vetenskap", "6002e474-49f5-4739-bff8-88bf44591a87" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "language",
+                columns: new[] { "id", "language_en", "language_sv", "user_id" },
+                values: new object[,]
+                {
+                    { "4061a3b7-a94a-4950-b57c-68a2f13ec051", "Swedish", "Svenska", "6002e474-49f5-4739-bff8-88bf44591a87" },
+                    { "e70e9be2-97ae-4db3-a873-34b3f32783f0", "English", "Engelska", "6002e474-49f5-4739-bff8-88bf44591a87" },
+                    { "758e9e3b-c8e1-4a20-904d-ba8e17616a9c", "Spanish", "Spanska", "6002e474-49f5-4739-bff8-88bf44591a87" },
+                    { "7a372210-12ae-4e63-aa7a-aa66a75b8345", "French", "Franska", "6002e474-49f5-4739-bff8-88bf44591a87" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "other_information",
+                columns: new[] { "id", "driving_license_en", "driving_license_sv", "user_id" },
+                values: new object[] { "aeb0607d-17e9-4731-a672-cc9e28e413d7", "Driving license B", "Körkort B", "6002e474-49f5-4739-bff8-88bf44591a87" });
+
+            migrationBuilder.InsertData(
+                table: "user_data",
+                columns: new[] { "id", "city_en", "city_sv", "country_en", "country_sv", "email_cv", "phone_number", "profile_image", "profile_image_public_id", "user_id", "work_title_en", "work_title_sv", "zip_code" },
+                values: new object[] { "00b975c9-780a-4a09-96e6-28b6411e9e47", "Gothenburg", "Göteborg", "Sweden", "Sverige", "persson.daniel.1990@gmail.com", "073-3249826", "", null, "6002e474-49f5-4739-bff8-88bf44591a87", "Software developer", "Mjukvaru utvecklare", null });
+
+            migrationBuilder.InsertData(
+                table: "user_presentation",
+                columns: new[] { "id", "presentation_en", "presentation_sv", "user_id" },
+                values: new object[] { "50e7c975-ef10-4da4-a045-e77c1018281d", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.", "6002e474-49f5-4739-bff8-88bf44591a87" });
+
+            migrationBuilder.InsertData(
+                table: "work_experience",
+                columns: new[] { "id", "city_en", "city_sv", "company_name", "country_en", "country_sv", "date_ended", "date_started", "description_en", "description_sv", "employment_rate", "role_en", "role_sv", "user_id" },
+                values: new object[,]
+                {
+                    { "14f5421c-8229-42a0-a7ca-6b5436a10fe9", "GothenBurg", "Göteborg", "FrontEdge IT", "Sweden", "Sverige", new DateTime(2020, 10, 27, 12, 36, 8, 777, DateTimeKind.Local).AddTicks(890), new DateTime(2020, 4, 11, 12, 36, 8, 777, DateTimeKind.Local).AddTicks(520), "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.", "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.", "FullTime", "Software Developer", "Mjukvaruutvecklare", "6002e474-49f5-4739-bff8-88bf44591a87" },
+                    { "c8c351df-1c62-4afa-ad17-e2db3b400ab1", "Gothenburg", "Göteborg", "Stena Line", "Sweden", "Sverige", new DateTime(2021, 3, 27, 12, 36, 8, 777, DateTimeKind.Local).AddTicks(1270), new DateTime(2020, 10, 28, 12, 36, 8, 777, DateTimeKind.Local).AddTicks(1260), "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.", "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.", "PartTime", "Software developer", "Mjukvaruutvecklare", "6002e474-49f5-4739-bff8-88bf44591a87" },
+                    { "c00742dd-590c-4373-92c5-edbd09279d1c", "Gothenburg", "Göteborg", "FrontEdge IT", "Sweden", "Sverige", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 3, 28, 12, 36, 8, 777, DateTimeKind.Local).AddTicks(1280), "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.", "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.", "Internship", "Software developer", "Mjukvaruutvecklare", "6002e474-49f5-4739-bff8-88bf44591a87" }
                 });
 
             migrationBuilder.CreateIndex(
