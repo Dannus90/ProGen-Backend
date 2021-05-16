@@ -50,10 +50,8 @@ namespace Core.Domain.DbModels
         public string? CountryEn { get; set; }
         
         
-        [Column("zip_code", TypeName = "CHAR(128)")]
-        [RegularExpression(@"^(s-|S-){0,1}[0-9]{3}\s?[0-9]{2}$",
-            ErrorMessage = "Must be a valid swedish zip code")]
-        public string? ZipCode { get; set; }
+        [Column("address_zip_code", TypeName = "CHAR(256)")]
+        public string? AddressZipCode { get; set; }
         
         [Column("work_title_sv", TypeName = "CHAR(128)")]
         public string? WorkTitleSv { get; set; }
