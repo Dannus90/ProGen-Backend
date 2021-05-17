@@ -9,6 +9,7 @@ using Core.Domain.Dtos;
 using Core.Domain.ViewModels;
 using Infrastructure.Business.Services.Interfaces;
 using Infrastructure.Persistence.Repositories.Interfaces;
+using Microsoft.AspNetCore.Http;
 
 namespace Infrastructure.Identity.Services
 {
@@ -75,7 +76,7 @@ namespace Infrastructure.Identity.Services
                 (workExperienceId);
             
             if (workExperience == null) 
-                throw new HttpExceptionResponse((int) HttpStatusCode.NotFound, "Not found");
+                throw new HttpExceptionResponse(StatusCodes.Status404NotFound, "Not found");
             
             var singleWorkExperiencesDto = _mapper.Map<WorkExperienceDto>(workExperience);
 

@@ -9,6 +9,7 @@ using Core.Domain.Dtos;
 using Core.Domain.ViewModels;
 using Infrastructure.Business.Services.Interfaces;
 using Infrastructure.Persistence.Repositories.Interfaces;
+using Microsoft.AspNetCore.Http;
 
 namespace Infrastructure.Identity.Services
 {
@@ -85,7 +86,7 @@ namespace Infrastructure.Identity.Services
             (string languageId)
         {
             if (languageId == null) 
-                throw new HttpExceptionResponse((int) HttpStatusCode.NotFound,
+                throw new HttpExceptionResponse(StatusCodes.Status404NotFound,
                     "No languageId was provided");
             
             var retrievedLanguageId = await _languageRepository.DeleteUserLanguage

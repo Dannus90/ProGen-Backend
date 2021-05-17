@@ -12,5 +12,6 @@ namespace Infrastructure.Identity.Services.Interfaces
         Task DeleteRefreshToken(string userId);
         Task ChangePassword(ChangePasswordDto changePasswordDto, string userId);
         Task ChangeEmail(ChangeEmailDto changeEmailDto, string userId);
+        Task DeleteUserAccount(string userId, DeleteAccountDto deleteAccountDto);
     }
 }

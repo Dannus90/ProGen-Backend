@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Core.Application.Exceptions;
@@ -30,6 +31,22 @@ namespace API.Controllers.Identity
         {
             await _userAuthService.RegisterUser(userCredentialsWithName);
             return StatusCode(201);
+        }
+        
+        [HttpDelete] //api/v1/user/auth/delete-account
+        [Route("delete-account")]
+        public async Task<ActionResult> DeleteAccount(DeleteAccountDto deleteAccountDto)
+        {
+            var currentUser = HttpContext.User;
+            var userId = currentUser.Claims.FirstOrDefault(c =>
+                c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+            if (userId == null) 
+                throw new HttpExceptionResponse((int) HttpStatusCode.Unauthorized, "No userId provided");
+
+            await _userAuthService.DeleteUserAccount(userId, deleteAccountDto);
+            
+            return Ok();
         }
         
         [HttpPost] //api/v1/user/auth/login

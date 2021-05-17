@@ -50,19 +50,6 @@ namespace API.Controllers.Data
             
             return Ok(await _userDataService.UpdateUserData(userId, userDataDto));
         }
-        
-        [HttpDelete] //api/v1/user/userdata/delete-account
-        [Route("delete-account")]
-        public async Task<ActionResult> DeleteAccount(DeleteAccountDto deleteAccountDto)
-        {
-            var currentUser = HttpContext.User;
-            var userId = currentUser.Claims.FirstOrDefault(c =>
-                c.Type == ClaimTypes.NameIdentifier)?.Value;
-
-            if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
-            
-            return Ok(await _userDataService.DeleteUserAccount(userId, deleteAccountDto));
-        }
 
         [HttpPut] //api/v1/user/userdata/profile-image
         [Route("profile-image")]

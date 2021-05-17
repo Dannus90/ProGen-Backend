@@ -1,3 +1,5 @@
+using System;
+using System.Net;
 using System.Threading.Tasks;
 using API.helpers;
 using AutoMapper;
@@ -90,17 +92,20 @@ namespace Infrastructure.Identity.Services
             
             // Check if refreshToken exist in db. 
             if (refreshTokenDb == null)
-                throw new HttpExceptionResponse(400, "No refresh token related to user exist.");
+                throw new HttpExceptionResponse(StatusCodes.Status400BadRequest,
+                    "No refresh token related to user exist.");
 
             // Check so that the provided refresh token and db refresh token are equal.
             if (refreshTokenDb.Token != refreshToken)
-                throw new HttpExceptionResponse(400, "The provided refresh token is not valid.");
+                throw new HttpExceptionResponse(StatusCodes.Status400BadRequest,
+                    "The provided refresh token is not valid.");
 
             var user = await _userRepository.GetUserByUserId(userId);
             
             // Check so that the user actually exist in database and should get a token back. 
             if (user == null)
-                throw new HttpExceptionResponse(404, "No user related to the user id exist.");
+                throw new HttpExceptionResponse(StatusCodes.Status404NotFound,
+                    "No user related to the user id exist.");
             
             // Generating a new access token.
             var accessToken = _tokenHandler.GenerateJsonWebToken(user);
@@ -114,6 +119,24 @@ namespace Infrastructure.Identity.Services
                     RefreshToken = refreshToken
                 }
             };
+        }
+        
+        public async Task DeleteUserAccount(string userId, DeleteAccountDto deleteAccountDto)
+        {
+            var user = await _userRepository.GetUserByUserId(userId);
+
+            if (user == null) 
+                throw new HttpExceptionResponse(StatusCodes.Status404NotFound,
+                    "No user was found with the provided id");
+
+            var verified = PasswordHandler.
+                VerifyPassword(deleteAccountDto.Password, user.Password);
+            
+            if (!verified) 
+                throw new HttpExceptionResponse(StatusCodes.Status400BadRequest,
+                    "Incorrect password provided.");
+
+            await _userRepository.DeleteUserByUserId(Guid.Parse(userId));
         }
 
         public async Task DeleteRefreshToken(string userId)

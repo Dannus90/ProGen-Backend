@@ -7,6 +7,7 @@ using Core.Domain.Dtos;
 using Core.Domain.ViewModels;
 using Infrastructure.Identity.Repositories.Interfaces;
 using Infrastructure.Identity.Services.Interfaces;
+using Microsoft.AspNetCore.Http;
 
 namespace Infrastructure.Identity.Services
 {
@@ -44,7 +45,7 @@ namespace Infrastructure.Identity.Services
 
             if (retrievedUserPresentation == null)
             {
-                throw new HttpExceptionResponse((int) HttpStatusCode.NotFound, "No user presentation exist yet");
+                throw new HttpExceptionResponse(StatusCodes.Status404NotFound, "No user presentation exist yet");
             }
             
             var retrievedUserPresentationDto = _mapper.Map<UserPresentationDto>(retrievedUserPresentation);
