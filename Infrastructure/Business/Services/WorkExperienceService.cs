@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
 using Core.Application.Exceptions;
@@ -73,7 +74,8 @@ namespace Infrastructure.Identity.Services
             var workExperience = await _workExperienceRepository.GetWorkExperience
                 (workExperienceId);
             
-            if (workExperience == null) throw new HttpExceptionResponse(404, "Not found");
+            if (workExperience == null) 
+                throw new HttpExceptionResponse((int) HttpStatusCode.NotFound, "Not found");
             
             var singleWorkExperiencesDto = _mapper.Map<WorkExperienceDto>(workExperience);
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
 using Core.Application.Exceptions;
@@ -84,7 +85,8 @@ namespace Infrastructure.Identity.Services
             (string languageId)
         {
             if (languageId == null) 
-                throw new HttpExceptionResponse(404, "No languageId was provided");
+                throw new HttpExceptionResponse((int) HttpStatusCode.NotFound,
+                    "No languageId was provided");
             
             var retrievedLanguageId = await _languageRepository.DeleteUserLanguage
                 (languageId);

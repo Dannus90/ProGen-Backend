@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
 using Core.Application.Exceptions;
@@ -42,7 +43,8 @@ namespace Infrastructure.Identity.Services
             var retrievedEducation = await _educationRepository.UpdateEducation
                 (educationId, education);
             
-            if (retrievedEducation == null) throw new HttpExceptionResponse(404, "Not found");
+            if (retrievedEducation == null) 
+                throw new HttpExceptionResponse((int) HttpStatusCode.NotFound, "Not found");
             
             var retrievedEducationDto = _mapper.Map<EducationDto>(retrievedEducation);
 
@@ -57,7 +59,8 @@ namespace Infrastructure.Identity.Services
             var education = await _educationRepository.GetEducation
                 (educationId);
 
-            if (education == null) throw new HttpExceptionResponse(404, "Not found");
+            if (education == null) 
+                throw new HttpExceptionResponse((int) HttpStatusCode.NotFound, "Not found");
             
             var singleEducationDto = _mapper.Map<EducationDto>(education);
             

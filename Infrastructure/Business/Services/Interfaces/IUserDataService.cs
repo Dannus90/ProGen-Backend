@@ -11,5 +11,6 @@ namespace Infrastructure.Business.Services.Interfaces
         Task<UserDataViewModel> UpdateUserData(string userId, UserDataDto userDataDto);
         Task<UserImageViewModel> UploadProfileImage(IFormFile file, string userId);
         Task DeleteProfileImage(string publicId, string userId);
+        Task DeleteUserAccount(string userId, DeleteAccountDto deleteAccountDto);
     }
 }

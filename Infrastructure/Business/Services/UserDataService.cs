@@ -1,4 +1,5 @@
 using System;
+using System.Net;
 using System.Threading.Tasks;
 using API.helpers.Cloudinary.Interfaces;
 using AutoMapper;
@@ -8,6 +9,7 @@ using Core.Domain.Models;
 using Core.Domain.ViewModels;
 using Infrastructure.Business.Services.Interfaces;
 using Infrastructure.Persistence.Repositories.Interfaces;
+using Infrastructure.Security;
 using Microsoft.AspNetCore.Http;
 
 namespace Infrastructure.Identity.Services
@@ -34,7 +36,8 @@ namespace Infrastructure.Identity.Services
         {
             var fullUserInformation = await _userDataRepository.GetFullUserInformation(userId);
 
-            if (fullUserInformation == null) throw new HttpExceptionResponse(404, "No userdata was found");
+            if (fullUserInformation == null) 
+                throw new HttpExceptionResponse((int) HttpStatusCode.NotFound, "No userdata was found");
             
             var fullUserInformationDto = _mapper.Map<FullUserInformationDto>(fullUserInformation);
 
@@ -50,12 +53,14 @@ namespace Infrastructure.Identity.Services
             
             var retrievedUserData = await _userDataRepository.UpdateUserData(userId, userData);
 
-            if (retrievedUserData == null) throw new HttpExceptionResponse(404, "No userdata was found");
+            if (retrievedUserData == null) throw new HttpExceptionResponse((int) HttpStatusCode.NotFound,
+                "No userdata was found");
 
             var retrievedName = await _userRepository.UpdateUserName
                 (userData.FirstName, userData.LastName, userId);
             
-            if (retrievedName == null) throw new HttpExceptionResponse(404, "No userdata was found");
+            if (retrievedName == null) throw new HttpExceptionResponse((int) HttpStatusCode.NotFound,
+                "No userdata was found");
             
             var retrievedUserDataDto = _mapper.Map<UserDataDto>(retrievedUserData);
 
@@ -66,6 +71,24 @@ namespace Infrastructure.Identity.Services
             {
                 UserDataDto = retrievedUserDataDto
             };
+        }
+        
+        public async Task DeleteUserAccount(string userId, DeleteAccountDto deleteAccountDto)
+        {
+            var user = await _userRepository.GetUserByUserId(userId);
+
+            if (user == null) 
+                throw new HttpExceptionResponse((int) HttpStatusCode.NotFound,
+                    "No user was found with the provided id");
+
+            var verified = PasswordHandler.
+                VerifyPassword(deleteAccountDto.Password, user.Password);
+            
+            if (!verified) 
+                throw new HttpExceptionResponse((int) HttpStatusCode.BadRequest,
+                    "Incorrect password provided.");
+
+            await _userRepository.DeleteUserByUserId(Guid.Parse(userId));
         }
 
         public async Task<UserImageViewModel> UploadProfileImage(IFormFile file, string userId)

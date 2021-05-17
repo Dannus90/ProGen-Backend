@@ -1,3 +1,4 @@
+using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
 using Core.Application.Exceptions;
@@ -43,7 +44,7 @@ namespace Infrastructure.Identity.Services
 
             if (retrievedUserPresentation == null)
             {
-                throw new HttpExceptionResponse(404, "No user presentation exist yet");
+                throw new HttpExceptionResponse((int) HttpStatusCode.NotFound, "No user presentation exist yet");
             }
             
             var retrievedUserPresentationDto = _mapper.Map<UserPresentationDto>(retrievedUserPresentation);
