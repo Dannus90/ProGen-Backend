@@ -244,6 +244,10 @@
               "target": "Package",
               "version": "[6.0.0-preview2, )"
             },
+            "SendGrid": {
+              "target": "Package",
+              "version": "[9.23.1, )"
+            },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "[6.7.1, )"

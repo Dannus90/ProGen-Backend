@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Ws/yQWyIa0macngkhVXM1OSgH70cVQJputyW2R11eDXHiHlFMC4t+syrE8UdW8p4Png3USZbfRshiT3MQxMGcg==",
+  "dgSpecHash": "JGHX46dJu75D2myKW/rX9jTGS6j23pto+swgRRQy06J05mvB9LWLTzFF6vb6yFsiwTIBvXAd1fZVBqTDB9y3Qg==",
   "success": true,
   "projectFilePath": "/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/Tests/Tests.csproj",
   "expectedPackageFiles": [
@@ -67,6 +67,8 @@
     "/Users/danielpersson/.nuget/packages/nunit/3.12.0/nunit.3.12.0.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/nunit3testadapter/3.16.1/nunit3testadapter.3.16.1.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/runtime.native.system/4.3.0/runtime.native.system.4.3.0.nupkg.sha512",
+    "/Users/danielpersson/.nuget/packages/sendgrid/9.23.1/sendgrid.9.23.1.nupkg.sha512",
+    "/Users/danielpersson/.nuget/packages/starkbank-ecdsa/1.3.1/starkbank-ecdsa.1.3.1.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/system.appcontext/4.1.0/system.appcontext.4.1.0.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/system.buffers/4.5.0/system.buffers.4.5.0.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/system.collections/4.3.0/system.collections.4.3.0.nupkg.sha512",

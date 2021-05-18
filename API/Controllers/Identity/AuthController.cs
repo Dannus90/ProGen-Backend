@@ -34,6 +34,7 @@ namespace API.Controllers.Identity
         }
         
         [HttpDelete] //api/v1/user/auth/delete-account
+        [Authorize]
         [Route("delete-account")]
         public async Task<ActionResult> DeleteAccount(DeleteAccountDto deleteAccountDto)
         {
@@ -46,7 +47,7 @@ namespace API.Controllers.Identity
 
             await _userAuthService.DeleteUserAccount(userId, deleteAccountDto);
             
-            return Ok();
+            return Ok("Account successfully deleted");
         }
         
         [HttpPost] //api/v1/user/auth/login
@@ -111,6 +112,15 @@ namespace API.Controllers.Identity
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
 
             await _userAuthService.ChangeEmail(changeEmailDto, userId);
+
+            return Ok();
+        }
+        
+        [HttpPost] //api/v1/user/auth/request-password-reset
+        [Route("request-password-reset")]
+        public async Task<ActionResult> ResetPasswordByEmail(ResetPasswordDto changeEmailData)
+        {
+            await _userAuthService.ResetPasswordByEmail(changeEmailData);
 
             return Ok();
         }

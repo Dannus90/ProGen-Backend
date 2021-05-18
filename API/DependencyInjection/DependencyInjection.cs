@@ -1,5 +1,7 @@
 using API.helpers.Cloudinary;
 using API.helpers.Cloudinary.Interfaces;
+using API.helpers.SendGrid;
+using API.helpers.SendGrid.Interfaces;
 using AutoMapper;
 using Infrastructure.Business.Services.Interfaces;
 using Infrastructure.Identity.Repositories;
@@ -26,8 +28,9 @@ namespace API
             services.AddScoped<IOtherInformationService, OtherInformationService>();
             services.AddScoped<ILanguageService, LanguageService>();
             services.AddScoped<IFullCvInformationService, FullCvInformationService>();
-
+            
             // Helpers
+            services.AddScoped<IEmailHandler, EmailHandler>();
             services.AddScoped<ICloudinaryHelper, CloudinaryHelper>();
         }
 

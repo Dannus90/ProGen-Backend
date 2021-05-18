@@ -1,7 +1,7 @@
 using System;
-using System.Net;
 using System.Threading.Tasks;
 using API.helpers;
+using API.helpers.SendGrid.Interfaces;
 using AutoMapper;
 using Core.Application.Exceptions;
 using Core.Domain.Dtos;
@@ -22,15 +22,18 @@ namespace Infrastructure.Identity.Services
         private readonly ITokenHandler _tokenHandler;
         private readonly IUserAuthRepository _userAuthRepository;
         private readonly IUserRepository _userRepository;
+        private readonly IEmailHandler _emailHandler;
 
         public UserAuthService(IUserAuthRepository userAuthRepository,
             IUserRepository userRepository,
             ITokenHandler tokenHandler,
+            IEmailHandler emailHandler,
             IMapper mapper)
         {
             _userAuthRepository = userAuthRepository;
             _userRepository = userRepository;
             _tokenHandler = tokenHandler;
+            _emailHandler = emailHandler;
             _mapper = mapper;
         }
 
@@ -184,6 +187,11 @@ namespace Infrastructure.Identity.Services
             }
 
             await _userAuthRepository.UpdateEmail(changeEmailData.NewEmail, userId);
+        }
+
+        public async Task ResetPasswordByEmail(ResetPasswordDto changeEmailData)
+        {
+            await _emailHandler.SendResetPasswordEmail(changeEmailData.Email);
         }
     }
 }

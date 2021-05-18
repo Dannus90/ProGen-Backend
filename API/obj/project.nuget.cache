@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "MB0o9hD3TTDpNSeBZvdFa8QpkDFgwJwTMu62fJgMw2WyT1RJGH8+n3EmfcQeEhuiqpd5pIJv64Gbro8B89mb0w==",
+  "dgSpecHash": "2QEfOzWFI4RTWVzQTr56qwz33auEJ04WO5c9MYY9nmohEGYyDFXwTIYmb7tl2C+YL/fseEjWez+9rdUBVVIhiQ==",
   "success": true,
   "projectFilePath": "/Users/danielpersson/Insync/persson.daniel.1990@gmail.com/Google Drive/LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/API/API.csproj",
   "expectedPackageFiles": [
@@ -83,6 +83,8 @@
     "/Users/danielpersson/.nuget/packages/runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl/4.3.0/runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl/4.3.0/runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl/4.3.0/runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
+    "/Users/danielpersson/.nuget/packages/sendgrid/9.23.1/sendgrid.9.23.1.nupkg.sha512",
+    "/Users/danielpersson/.nuget/packages/starkbank-ecdsa/1.3.1/starkbank-ecdsa.1.3.1.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/swashbuckle.aspnetcore/5.6.3/swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/swashbuckle.aspnetcore.swagger/5.6.3/swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
     "/Users/danielpersson/.nuget/packages/swashbuckle.aspnetcore.swaggergen/5.6.3/swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",

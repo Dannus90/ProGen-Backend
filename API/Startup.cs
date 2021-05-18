@@ -30,6 +30,7 @@ namespace API
         private readonly IConfigurationSection _proGenConfig;
         private readonly IConfigurationSection _tokenConfig;
         private readonly IConfiguration _cloudinaryConfig;
+        private readonly IConfiguration _sendGridConfig;
 
         public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
@@ -42,6 +43,7 @@ namespace API
             _configuration = configurationBuilder.Build();
             _proGenConfig = _configuration.GetSection("ProGenConfig");
             _cloudinaryConfig = _configuration.GetSection("CloudinaryConfig");
+            _sendGridConfig = _configuration.GetSection("SendGrid");
 
             // Access from env variables. 
             // Read more: https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-5.0&tabs=linux&fbclid=IwAR1_Ih_VPv4SPDaKZkKwIU0-nrixJU8vfiLvYvbPrmXovt39jwvvpsCjfXg#register-the-user-secrets-configuration-source
@@ -49,6 +51,7 @@ namespace API
             _cloudinaryConfig.GetSection("ApiKey").Value = configuration["CloudinaryConfig:ApiKey"];
             _cloudinaryConfig.GetSection("ApiSecret").Value = configuration["CloudinaryConfig:ApiSecret"];
             _cloudinaryConfig.GetSection("CloudName").Value = configuration["CloudinaryConfig:CloudName"];
+            _sendGridConfig.GetSection("ApiKey").Value = configuration["SendGrid:ApiKey"];
 
             // Some secrets come from environment and are set on the hosting platform (or locally) for security reasons.
             if (env.IsDevelopment() | env.IsEnvironment("TestCi"))
@@ -147,6 +150,7 @@ namespace API
             services.Configure<ProGenConfig>(_proGenConfig);
             services.Configure<TokenConfig>(_tokenConfig);
             services.Configure<CloudinaryConfig>(_cloudinaryConfig);
+            services.Configure<SendGridConfig>(_sendGridConfig);
             _dependencyInjection.AddDependencyInjectionHandlers(services);
             DependencyInjection.AddDependencyInjectionServices(services);
             DependencyInjection.AddDependencyInjectionRepositories(services, _connectionString, mapper);
