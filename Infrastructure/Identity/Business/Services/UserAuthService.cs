@@ -191,7 +191,8 @@ namespace Infrastructure.Identity.Services
 
         public async Task ResetPasswordByEmail(ResetPasswordDto changeEmailData)
         {
-            await _emailHandler.SendResetPasswordEmail(changeEmailData.Email);
+            var token = _tokenHandler.GenerateResetPasswordToken(changeEmailData.Email);
+            await _emailHandler.SendResetPasswordEmail(changeEmailData.Email, token);
         }
     }
 }

@@ -73,12 +73,32 @@ namespace Infrastructure.Security.Tokens
             return new JwtSecurityTokenHandler()
                 .WriteToken(token);
         }
+        
+        public string GenerateResetPasswordToken(string email)
+        {
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokenConfig.Value.SecretKey));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+            var claims = new[]
+            {
+                new Claim(JwtRegisteredClaimNames.Email, email)
+            };
+
+            var token = new JwtSecurityToken(_tokenConfig.Value.Issuer,
+                _tokenConfig.Value.Audience,
+                claims,
+                expires: DateTime.UtcNow.AddSeconds(_tokenConfig.Value.ResetPasswordTokenExpiration),
+                signingCredentials: credentials);
+
+            return new JwtSecurityTokenHandler()
+                .WriteToken(token);
+        }
 
         public string GetUserIdFromAccessToken(string accessToken)
         {
             if (accessToken == null)
             {
-                throw new HttpExceptionResponse(401, "No accesssToken Provided");
+                throw new HttpExceptionResponse(401, "No accessToken Provided");
             }
 
             var stream = accessToken;

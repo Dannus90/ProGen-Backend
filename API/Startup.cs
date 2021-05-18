@@ -31,6 +31,7 @@ namespace API
         private readonly IConfigurationSection _tokenConfig;
         private readonly IConfiguration _cloudinaryConfig;
         private readonly IConfiguration _sendGridConfig;
+        private readonly IConfiguration _progenUrlConfig;
 
         public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
@@ -44,6 +45,7 @@ namespace API
             _proGenConfig = _configuration.GetSection("ProGenConfig");
             _cloudinaryConfig = _configuration.GetSection("CloudinaryConfig");
             _sendGridConfig = _configuration.GetSection("SendGrid");
+            _progenUrlConfig = _configuration.GetSection("ProGenUrlConfig");
 
             // Access from env variables. 
             // Read more: https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-5.0&tabs=linux&fbclid=IwAR1_Ih_VPv4SPDaKZkKwIU0-nrixJU8vfiLvYvbPrmXovt39jwvvpsCjfXg#register-the-user-secrets-configuration-source
@@ -151,6 +153,7 @@ namespace API
             services.Configure<TokenConfig>(_tokenConfig);
             services.Configure<CloudinaryConfig>(_cloudinaryConfig);
             services.Configure<SendGridConfig>(_sendGridConfig);
+            services.Configure<ProGenUrlConfig>(_progenUrlConfig);
             _dependencyInjection.AddDependencyInjectionHandlers(services);
             DependencyInjection.AddDependencyInjectionServices(services);
             DependencyInjection.AddDependencyInjectionRepositories(services, _connectionString, mapper);

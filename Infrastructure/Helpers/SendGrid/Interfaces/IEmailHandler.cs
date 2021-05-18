@@ -4,6 +4,6 @@ namespace API.helpers.SendGrid.Interfaces
 {
     public interface IEmailHandler
     {
-        Task SendResetPasswordEmail(string email);
+        Task SendResetPasswordEmail(string email, string token);
     }
 }
