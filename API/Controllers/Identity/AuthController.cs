@@ -124,5 +124,15 @@ namespace API.Controllers.Identity
 
             return Ok();
         }
+
+        [HttpPost] //api/v1/user/auth/reset-password-with-token
+        [Route("reset-password-with-token")]
+        public async Task<ActionResult> ResetPasswordWithToken
+            ([FromQuery] string token, [FromBody] ResetPasswordDto resetPasswordData)
+        {
+            await _userAuthService.ResetPasswordWithToken(token, resetPasswordData.NewPassword);
+
+            return Ok();
+        }
     }
 }

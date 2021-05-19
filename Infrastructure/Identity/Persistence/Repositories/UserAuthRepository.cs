@@ -192,6 +192,23 @@ namespace Infrastructure.Identity.Repositories
                 UserId = userId
             });
         }
+        
+        public async Task UpdatePasswordByEmail(string email, string newPassword)
+        {
+            const string query = @"
+                    UPDATE user_base
+                    SET password = @NewPassword
+                    WHERE email = @Email;
+                ";
+
+            using var conn = await connectDb(_connectionString);
+
+            await conn.ExecuteScalarAsync(query, new
+            {
+                Email = email,
+                NewPassword = newPassword
+            });
+        }
 
         public async Task UpdateEmail(string email, string userId)
         {

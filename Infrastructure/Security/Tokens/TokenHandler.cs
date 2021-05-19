@@ -94,6 +94,12 @@ namespace Infrastructure.Security.Tokens
                 .WriteToken(token);
         }
 
+        public JwtSecurityToken DecodeToken(string token)
+        {
+            var handler = new JwtSecurityTokenHandler();
+            return handler.ReadJwtToken(token);
+        }
+
         public string GetUserIdFromAccessToken(string accessToken)
         {
             if (accessToken == null)

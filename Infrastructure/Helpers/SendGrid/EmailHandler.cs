@@ -26,10 +26,12 @@ namespace API.helpers.SendGrid
             var client = new SendGridClient(_apiKey);
             var from = new EmailAddress("progeninfomail@gmail.com", "ProGen Support");
             var to = new EmailAddress(email, "ProGen user");
-            var subject = "Reset your password";
-            var plainTextContent = "Reset you password";
-            var htmlContent = GenerateResetPasswordHtml(_frontendBaseUrl + token, _frontendBaseUrl);
-            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+            const string subject = "Reset your password";
+            const string plainTextContent = "Reset you password";
+            var htmlContent = GenerateResetPasswordHtml
+                (_frontendBaseUrl + "reset-password/" + token, _frontendBaseUrl);
+            var msg = MailHelper.CreateSingleEmail
+                (from, to, subject, plainTextContent, htmlContent);
             
             await client.SendEmailAsync(msg);
         }

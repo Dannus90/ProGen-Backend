@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using API.helpers;
 using API.helpers.SendGrid.Interfaces;
@@ -193,6 +194,26 @@ namespace Infrastructure.Identity.Services
         {
             var token = _tokenHandler.GenerateResetPasswordToken(changeEmailData.Email);
             await _emailHandler.SendResetPasswordEmail(changeEmailData.Email, token);
+        }
+
+        public async Task ResetPasswordWithToken(string token, string password)
+        {
+            var decodedToken = _tokenHandler.DecodeToken(token);
+
+            var email = decodedToken.Claims
+                .Where(c => c.Type == "email")
+                .Select(cl => cl.Value).SingleOrDefault();
+
+            if (email == null) throw new HttpExceptionResponse
+                (StatusCodes.Status400BadRequest, "Something went wrong. Please try again.");
+
+            var user = _userRepository.GetUserByEmail(email);
+            
+            if (user == null) throw new HttpExceptionResponse
+                (StatusCodes.Status400BadRequest, "Something went wrong. Please try again.");
+
+            var hashedPassword = PasswordHandler.HashPassword(password);
+            await _userAuthRepository.UpdatePasswordByEmail(email, hashedPassword);
         }
     }
 }
