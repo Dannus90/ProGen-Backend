@@ -160,7 +160,8 @@ namespace Infrastructure.Identity.Services
             if (!isPasswordValid)
             {
                 throw new HttpExceptionResponse
-                    (StatusCodes.Status401Unauthorized, "Incorrect old password provided.");
+                    (StatusCodes.Status401Unauthorized,
+                    "Incorrect old password provided.");
             }
             
             // Validate new password
@@ -184,7 +185,8 @@ namespace Infrastructure.Identity.Services
             if (!isPasswordValid)
             {
                 throw new HttpExceptionResponse
-                    (StatusCodes.Status401Unauthorized, "Incorrect password provided.");
+                    (StatusCodes.Status401Unauthorized,
+                    "Incorrect password provided.");
             }
 
             await _userAuthRepository.UpdateEmail(changeEmailData.NewEmail, userId);
@@ -198,19 +200,37 @@ namespace Infrastructure.Identity.Services
 
         public async Task ResetPasswordWithToken(string token, string password)
         {
+            _tokenHandler.ValidateJwtToken(token);
+
+            if (!_tokenHandler.ValidateJwtToken(token))
+                throw new HttpExceptionResponse(StatusCodes.Status400BadRequest,
+                    "The token sent has an invalid format. " +
+                    "Please make a new request password request. ");
+            
             var decodedToken = _tokenHandler.DecodeToken(token);
+            var currentTime = DateTime.Now;
+            var currentUnixTime = ((DateTimeOffset)currentTime).ToUnixTimeSeconds();
+            
+            if(currentUnixTime > decodedToken.Payload.Exp)
+                throw new HttpExceptionResponse
+                    (StatusCodes.Status400BadRequest, 
+                    "Request was invalid, probably the link has expired. " +
+                    "Please make a new reset password request.");
 
             var email = decodedToken.Claims
                 .Where(c => c.Type == "email")
                 .Select(cl => cl.Value).SingleOrDefault();
 
             if (email == null) throw new HttpExceptionResponse
-                (StatusCodes.Status400BadRequest, "Something went wrong. Please try again.");
+                (StatusCodes.Status400BadRequest,
+                "Request was invalid, probably the link has expired. " +
+                "Please make a new reset password request.");
 
             var user = _userRepository.GetUserByEmail(email);
             
             if (user == null) throw new HttpExceptionResponse
-                (StatusCodes.Status400BadRequest, "Something went wrong. Please try again.");
+                (StatusCodes.Status400BadRequest, 
+                "No user connected to the email could be found.");
 
             var hashedPassword = PasswordHandler.HashPassword(password);
             await _userAuthRepository.UpdatePasswordByEmail(email, hashedPassword);

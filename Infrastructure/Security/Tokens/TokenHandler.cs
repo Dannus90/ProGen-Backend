@@ -13,10 +13,12 @@ namespace Infrastructure.Security.Tokens
     public class TokenHandler : ITokenHandler
     {
         private readonly IOptions<TokenConfig> _tokenConfig;
+        private JwtSecurityTokenHandler _tokenHandler; 
 
         public TokenHandler(IOptions<TokenConfig> tokenConfig)
         {
             _tokenConfig = tokenConfig;
+            _tokenHandler = new JwtSecurityTokenHandler();
         }
 
         /**
@@ -40,7 +42,7 @@ namespace Infrastructure.Security.Tokens
             var token = new JwtSecurityToken(_tokenConfig.Value.Issuer,
                 _tokenConfig.Value.Audience,
                 claims,
-                expires: DateTime.UtcNow.AddSeconds(_tokenConfig.Value.AccessTokenExpiration),
+                expires: DateTime.Now.AddSeconds(_tokenConfig.Value.AccessTokenExpiration),
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler()
@@ -67,7 +69,7 @@ namespace Infrastructure.Security.Tokens
             var token = new JwtSecurityToken(_tokenConfig.Value.Issuer,
                 _tokenConfig.Value.Audience,
                 claims,
-                expires: DateTime.UtcNow.AddSeconds(_tokenConfig.Value.RefreshTokenExpiration),
+                expires: DateTime.Now.AddSeconds(_tokenConfig.Value.RefreshTokenExpiration),
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler()
@@ -87,17 +89,40 @@ namespace Infrastructure.Security.Tokens
             var token = new JwtSecurityToken(_tokenConfig.Value.Issuer,
                 _tokenConfig.Value.Audience,
                 claims,
-                expires: DateTime.UtcNow.AddSeconds(_tokenConfig.Value.ResetPasswordTokenExpiration),
+                expires: DateTime.Now.AddSeconds(_tokenConfig.Value.ResetPasswordTokenExpiration),
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler()
                 .WriteToken(token);
         }
 
+        public bool ValidateJwtToken(string token)
+        {
+            try
+            {
+                _tokenHandler.ValidateToken(token, new TokenValidationParameters
+                {
+                    ValidateLifetime = true,
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidIssuer = _tokenConfig.Value.Issuer,
+                    ValidAudience = _tokenConfig.Value.Audience,
+                    IssuerSigningKey =
+                        new SymmetricSecurityKey(Encoding.UTF8.GetBytes
+                            (_tokenConfig.Value.SecretKey))
+                }, out _);
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         public JwtSecurityToken DecodeToken(string token)
         {
-            var handler = new JwtSecurityTokenHandler();
-            return handler.ReadJwtToken(token);
+            return _tokenHandler.ReadJwtToken(token);
         }
 
         public string GetUserIdFromAccessToken(string accessToken)

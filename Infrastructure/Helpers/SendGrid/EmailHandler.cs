@@ -1,8 +1,5 @@
 using SendGrid;
 using SendGrid.Helpers.Mail;
-using System;
-using System.Net.Mail;
-using System.Net.Mime;
 using System.Threading.Tasks;
 using API.helpers.SendGrid.Interfaces;
 using Infrastructure.configurations;

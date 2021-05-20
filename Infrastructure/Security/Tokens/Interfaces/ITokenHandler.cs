@@ -10,5 +10,6 @@ namespace Infrastructure.Security.Tokens
         string GetUserIdFromAccessToken(string accessToken);
         string GenerateResetPasswordToken(string email);
         JwtSecurityToken DecodeToken(string token);
+        bool ValidateJwtToken(string token);
     }
 }
