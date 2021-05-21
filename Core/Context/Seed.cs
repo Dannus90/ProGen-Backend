@@ -38,6 +38,7 @@ namespace Core.Context
                     Id = Guid.NewGuid(), UserId = users[0].Id,
                     CityEn = "Gothenburg", CitySv = "Göteborg",
                     CountryEn = "Sweden", CountrySv = "Sverige",
+                    AddressZipCode = "Ponnygatan 3, 43131",
                     PhoneNumber = "073-3249826", ProfileImage = "",
                     WorkTitleSv = "Mjukvaru utvecklare",
                     WorkTitleEn = "Software developer",

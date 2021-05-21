@@ -18,6 +18,7 @@ namespace Core.Context
         public DbSet<Education> Education { get; set; } = null!;
         public DbSet<OtherInformation> OtherInformation { get; set; } = null!;
         public DbSet<Language> Language { get; set; } = null!;
+        public DbSet<Certificate> Certificate { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder dbModelBuilder)
         {
@@ -34,6 +35,7 @@ namespace Core.Context
             Domain.DbModels.Education.Configure(dbModelBuilder);
             Domain.DbModels.OtherInformation.Configure(dbModelBuilder);
             Domain.DbModels.Language.Configure(dbModelBuilder);
+            Domain.DbModels.Certificate.Configure(dbModelBuilder);
         }
     }
 }
