@@ -48,7 +48,7 @@ namespace API
             services.AddSingleton<ILanguageRepository>(new LanguageRepository(connectionString));
             services.AddSingleton<IFullCvInformationRepository>(new FullCvInformationRepository
                 (connectionString, mapper));
-            services.AddSingleton<ICertificateRepository, CertificateRepository>();
+            services.AddSingleton<ICertificateRepository>(new CertificateRepository(connectionString));
         }
 
         public void AddDependencyInjectionHandlers(IServiceCollection services)

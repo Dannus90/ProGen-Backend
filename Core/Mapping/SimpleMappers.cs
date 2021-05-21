@@ -53,7 +53,7 @@ namespace Core.Mapping
             CreateMap<LanguageDto, Language>().ReverseMap();
             
             // From CertificateDto -> Certificate -> CertificateDto.
-            CreateMap<LanguageDto, Language>().ReverseMap();
+            CreateMap<CertificateDto, Certificate>().ReverseMap();
         }
     }
 }

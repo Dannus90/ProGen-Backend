@@ -22,7 +22,7 @@ namespace API.Controllers.Data
             _certificateService = certificateService;
         }
 
-        [HttpPost] //api/v1/user/education
+        [HttpPost] //api/v1/user/certificate
         [Route("")]
         public async Task<ActionResult<CreateUpdateCertificateViewModel>> CreateCertificate 
             (CertificateDto certificateDto)

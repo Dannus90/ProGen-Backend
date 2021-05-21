@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.Domain.DbModels
 {
-    [Table("certificates")]
+    [Table("certificate")]
     public class Certificate
     {
         [Key]
@@ -70,18 +70,18 @@ namespace Core.Domain.DbModels
                 .HasDefaultValueSql("NOW()")
                 .ValueGeneratedOnUpdate();
 
-            modelBuilder.Entity<Education>().Property(u => u.CreatedAt)
+            modelBuilder.Entity<Certificate>().Property(u => u.CreatedAt)
                 .HasDefaultValueSql("NOW()")
                 .ValueGeneratedOnAdd();
 
-            modelBuilder.Entity<Education>().Property(u => u.UpdatedAt)
+            modelBuilder.Entity<Certificate>().Property(u => u.UpdatedAt)
                 .HasDefaultValueSql("NOW()")
                 .ValueGeneratedOnAddOrUpdate();
 
-            modelBuilder.Entity<Education>()
+            modelBuilder.Entity<Certificate>()
                 .Ignore(u => u.IdString);
             
-            modelBuilder.Entity<Education>()
+            modelBuilder.Entity<Certificate>()
                 .Ignore(u => u.UserIdString);
         }
     }

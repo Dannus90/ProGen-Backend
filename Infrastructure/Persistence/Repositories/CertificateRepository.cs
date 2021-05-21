@@ -22,11 +22,9 @@ namespace Infrastructure.Persistence.Repositories
             const string query = @"
                     Insert into certificate (id, user_id, organisation, 
                                                  certificate_name_sv, certificate_name_en,
-                                                 identification_id, date_issued)
+                                                 reference_address, identification_id, date_issued)
                     VALUES (@Id, @UserId, @Organisation, @CertificateNameSv, @CertificateNameEn,
-                            @ReferenceAddress, @IdentificationId, @SubjectAreaEn,
-                            @DescriptionSv, @DescriptionEn, @Grade, @CitySv, @CityEn,
-                            @CountrySv, @CountryEn, @DateStarted, @DateEnded);  
+                            @ReferenceAddress, @IdentificationId, @DateIssued);  
                     ";
 
             var certificateId = Guid.NewGuid();
