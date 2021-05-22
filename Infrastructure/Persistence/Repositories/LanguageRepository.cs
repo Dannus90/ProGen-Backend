@@ -39,13 +39,14 @@ namespace Infrastructure.Persistence.Repositories
             return languageId;
         }
         
-        public async Task<string> UpdateUserLanguage(string languageId, Language language)
+        public async Task<string> UpdateUserLanguage(string languageId, Language language, string userId)
         {
             const string query = @"
                     UPDATE language
                     SET language_sv = @LanguageSv,
                         language_en = @LanguageEn
-                    WHERE id = @LanguageId;
+                    WHERE id = @LanguageId
+                    AND user_id = @UserId;
                 ";
 
             using var conn = await connectDb(_connectionString);
@@ -53,13 +54,14 @@ namespace Infrastructure.Persistence.Repositories
             {
                 LanguageId = languageId,
                 language.LanguageSv,
-                language.LanguageEn
+                language.LanguageEn,
+                UserId = userId
             });
 
             return languageId;
         }
         
-        public async Task<Language> GetUserLanguage(string languageId)
+        public async Task<Language> GetUserLanguage(string languageId, string userId)
         {
             const string query = @"
                    SELECT id AS IdString,
@@ -67,13 +69,15 @@ namespace Infrastructure.Persistence.Repositories
                         language_sv AS LanguageSv,
                         language_en AS LanguageEn
                    FROM language
-                   WHERE id = @LanguageId;
+                   WHERE id = @LanguageId
+                   AND user_id = @UserId;
                 ";
 
             using var conn = await connectDb(_connectionString);
             return await conn.QueryFirstOrDefaultAsync<Language>(query, new
             {
-                LanguageId = languageId
+                LanguageId = languageId,
+                UserId = userId
             });
         }
         
@@ -95,17 +99,19 @@ namespace Infrastructure.Persistence.Repositories
             });
         }
         
-        public async Task<string> DeleteUserLanguage(string languageId)
+        public async Task<string> DeleteUserLanguage(string languageId, string userId)
         {
             const string query = @"
                    DELETE FROM language
-                   WHERE id = @LanguageId 
+                   WHERE id = @LanguageId
+                   AND user_id = @UserId
                 ";
 
             using var conn = await connectDb(_connectionString);
             await conn.ExecuteScalarAsync(query, new
             {
-                LanguageId = languageId
+                LanguageId = languageId,
+                UserId = userId
             });
 
             return languageId;

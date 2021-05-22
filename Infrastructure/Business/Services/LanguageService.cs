@@ -41,12 +41,12 @@ namespace Infrastructure.Identity.Services
         
         
         public async Task<LanguageIdViewModel> UpdateUserLanguage
-            (string languageId, LanguageDto languageDto)
+            (string languageId, LanguageDto languageDto, string userId)
         {
             var language = _mapper.Map<Language>(languageDto);
             
             var retrievedLanguageId = await _languageRepository.UpdateUserLanguage
-                (languageId, language);
+                (languageId, language, userId);
 
             return new LanguageIdViewModel()
             {
@@ -55,10 +55,10 @@ namespace Infrastructure.Identity.Services
         }
         
         public async Task<UserLanguageViewModel> GetUserLanguage
-            (string languageId)
+            (string languageId, string userId)
         {
             var language = await _languageRepository.GetUserLanguage
-                (languageId);
+                (languageId, userId);
             
             var languageDto = _mapper.Map<LanguageDto>(language);
 
@@ -83,14 +83,14 @@ namespace Infrastructure.Identity.Services
         }
         
         public async Task<LanguageIdViewModel> DeleteUserLanguage
-            (string languageId)
+            (string languageId, string userId)
         {
             if (languageId == null) 
                 throw new HttpExceptionResponse(StatusCodes.Status404NotFound,
                     "No languageId was provided");
             
             var retrievedLanguageId = await _languageRepository.DeleteUserLanguage
-                (languageId);
+                (languageId, userId);
 
             return new LanguageIdViewModel()
             {

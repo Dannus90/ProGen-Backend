@@ -97,7 +97,7 @@ namespace Tests.IntegrationsTests.Repositories
 
             foreach (var languageId in languageIds)
             {
-                await _languageRepository.DeleteUserLanguage(languageId.ToString());
+                await _languageRepository.DeleteUserLanguage(languageId.ToString(), setupUserId.ToString());
             }
         }
 
@@ -119,7 +119,7 @@ namespace Tests.IntegrationsTests.Repositories
 
             var languageIdAsString = languageId.ToString();
 
-            var retrievedLanguage = await _languageRepository.GetUserLanguage(languageIdAsString);
+            var retrievedLanguage = await _languageRepository.GetUserLanguage(languageIdAsString, setupUserId.ToString());
 
             // Assert
             Assert.NotNull(retrievedLanguage);
@@ -128,7 +128,7 @@ namespace Tests.IntegrationsTests.Repositories
             
             // Cleanup
             await _languageRepository.DeleteUserLanguage
-                (languageIdAsString);
+                (languageIdAsString, setupUserId.ToString());
         }
         
         [Test]
@@ -155,9 +155,9 @@ namespace Tests.IntegrationsTests.Repositories
             
             var languageIdAsString = languageId.ToString();
 
-            await _languageRepository.UpdateUserLanguage(languageIdAsString, languageForUpdate);
+            await _languageRepository.UpdateUserLanguage(languageIdAsString, languageForUpdate, setupUserId.ToString());
 
-            var retrievedLanguage = await _languageRepository.GetUserLanguage(languageIdAsString);
+            var retrievedLanguage = await _languageRepository.GetUserLanguage(languageIdAsString, setupUserId.ToString());
 
             // Assert
             Assert.NotNull(retrievedLanguage);
@@ -166,7 +166,7 @@ namespace Tests.IntegrationsTests.Repositories
             
             // Cleanup
             await _languageRepository.DeleteUserLanguage
-                (languageIdAsString);
+                (languageIdAsString, setupUserId.ToString());
         }
         
         [Test]

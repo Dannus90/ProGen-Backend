@@ -10,15 +10,15 @@ namespace Infrastructure.Business.Services.Interfaces
             (string userId, LanguageDto languageDto);
 
         Task<UserLanguageViewModel> GetUserLanguage
-            (string languageId);
+            (string languageId, string userId);
 
         Task<LanguageIdViewModel> DeleteUserLanguage
-            (string languageId);
+            (string languageId, string userId);
 
         Task<UserLanguagesViewModel> GetUserLanguages
             (string userId);
 
         Task<LanguageIdViewModel> UpdateUserLanguage
-            (string languageId, LanguageDto languageDto);
+            (string languageId, LanguageDto languageDto, string userID);
     }
 }

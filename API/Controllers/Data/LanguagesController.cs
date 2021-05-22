@@ -32,7 +32,7 @@ namespace API.Controllers.Data
             
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
             
-            return Ok(await _languageService.GetUserLanguage(languageId));
+            return Ok(await _languageService.GetUserLanguage(languageId, userId));
         }
         
         [HttpGet] //api/v1/user/languages
@@ -59,7 +59,7 @@ namespace API.Controllers.Data
             
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
             
-            return Ok(await _languageService.UpdateUserLanguage(languageId, LanguageDto));
+            return Ok(await _languageService.UpdateUserLanguage(languageId, LanguageDto, userId));
         }
         
         [HttpPost] //api/v1/user/languages
@@ -85,7 +85,7 @@ namespace API.Controllers.Data
             
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
             
-            return Ok(await _languageService.DeleteUserLanguage(languageId));
+            return Ok(await _languageService.DeleteUserLanguage(languageId, userId));
         }
     }
 }
