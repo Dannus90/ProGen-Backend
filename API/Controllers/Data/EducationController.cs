@@ -63,7 +63,7 @@ namespace API.Controllers.Data
 
         [HttpPut] //api/v1/user/education/:educationId
         [Route("{educationId}")]
-        public async Task<ActionResult<CreateUpdateEducationViewModel>> UpdateEducation
+        public async Task<ActionResult<EducationViewModel>> UpdateEducation
             (string educationId, EducationDto educationDto)
         {
             var currentUser = HttpContext.User;

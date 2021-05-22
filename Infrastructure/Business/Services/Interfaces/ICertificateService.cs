@@ -8,10 +8,10 @@ namespace Infrastructure.Business.Services.Interfaces
     {
         Task<CreateUpdateCertificateViewModel> CreateCertificate
             (string userId, CertificateDto certificateDto);
-
         Task<CertificatesViewModel> GetAllCertificatesForUser(string userId);
         Task<CertificateViewModel> GetCertificateForUser(string certificateId, string userId);
-
         Task DeleteSingleCertificateForUser(string certificateId, string userId);
+        Task<CertificateViewModel> UpdateCertificateForUser
+            (string certificateId, CertificateDto certificateDto, string userId);
     }
 }

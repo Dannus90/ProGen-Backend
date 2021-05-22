@@ -11,5 +11,7 @@ namespace Infrastructure.Persistence.Repositories.Interfaces
         Task<IEnumerable<Certificate>> GetAllCertificatesForUser(string userId);
         Task<Certificate> GetCertificateForUser(string certificateId, string userId);
         Task DeleteSingleCertificateForUser(string certificateId, string userId);
+        Task<Certificate> UpdateCertificateForUser
+            (string certificateId, Certificate certificate, string userId);
     }
 }

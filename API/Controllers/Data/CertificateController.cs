@@ -64,6 +64,20 @@ namespace API.Controllers.Data
             return Ok(await _certificateService.GetCertificateForUser(certificateId, userId));
         }
         
+        [HttpPut] //api/v1/user/certificate/:certificateId
+        [Route("{certificateId}")]
+        public async Task<ActionResult<CreateUpdateCertificateViewModel>> UpdateCertificateForUser
+            (string certificateId, CertificateDto certificateDto)
+        {
+            var currentUser = HttpContext.User;
+            var userId = currentUser.Claims.FirstOrDefault(c =>
+                c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+            if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
+
+            return Ok(await _certificateService.UpdateCertificateForUser(certificateId, certificateDto, userId));
+        }
+        
         [HttpDelete] //api/v1/user/certificate/:certificateId
         [Route("{certificateId}")]
         public async Task<ActionResult> DeleteSingleCertificateForUser(string certificateId)

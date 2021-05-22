@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
 using Core.Application.Exceptions;
@@ -53,13 +54,32 @@ namespace Infrastructure.Identity.Services
             var certificate = await _certificateRepository.GetCertificateForUser(certificateId, userId);
             
             if (certificate == null) 
-                throw new HttpExceptionResponse(404, "No certificate with the provided id was found");
+                throw new HttpExceptionResponse((int) HttpStatusCode.NotFound, "No certificate with the provided id was found");
             
             var certificateDto = _mapper.Map<CertificateDto>(certificate);
 
             return new CertificateViewModel()
             {
                 CertificateDto = certificateDto
+            };
+        }
+        
+        public async Task<CertificateViewModel> UpdateCertificateForUser
+            (string certificateId, CertificateDto certificateDto, string userId)
+        {
+            var certificate = _mapper.Map<Certificate>(certificateDto);
+            
+            var updatedCertificate = await _certificateRepository.UpdateCertificateForUser
+                (certificateId, certificate, userId);
+            
+            if (updatedCertificate == null) 
+                throw new HttpExceptionResponse((int) HttpStatusCode.NotFound, "Not found");
+            
+            var updatedCertificateDto = _mapper.Map<CertificateDto>(updatedCertificate);
+
+            return new CertificateViewModel()
+            {
+                CertificateDto = updatedCertificateDto
             };
         }
         

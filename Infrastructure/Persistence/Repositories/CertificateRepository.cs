@@ -97,6 +97,50 @@ namespace Infrastructure.Persistence.Repositories
             });
         }
         
+        public async Task<Certificate> UpdateCertificateForUser
+            (string certificateId, Certificate certificate, string userId)
+        {
+            const string query = @"
+                    UPDATE certificate
+                    SET organisation = @Organisation,
+                        date_issued = @DateIssued,
+                        identification_id = @IdentificationId,
+                        reference_address = @ReferenceAddress,
+                        certificate_name_sv = @CertificateNameSv,
+                        certificate_name_en = @CertificateNameEn
+                    WHERE id = @Id
+                    AND user_id = @UserId;
+
+                   SELECT id AS IdString,
+                        user_id AS UserIdString,
+                        organisation AS Organisation,
+                        date_issued AS DateIssued,
+                        identification_id AS IdentificationId,
+                        reference_address AS ReferenceAddress,
+                        certificate_name_sv AS CertificateNameSv,
+                        certificate_name_en AS CertificateNameEn,
+                        created_at AS CreatedAt,
+                        updated_at AS UpdatedAt
+                   FROM certificate
+                   WHERE id = @Id
+                   AND user_id = @UserId;
+                ";
+            
+            using var conn = await connectDb(_connectionString);
+
+            return await conn.QueryFirstOrDefaultAsync<Certificate>(query, new
+            {
+                Id = certificateId,
+                certificate.Organisation,
+                certificate.DateIssued,
+                certificate.IdentificationId,
+                certificate.ReferenceAddress,
+                certificate.CertificateNameSv,
+                certificate.CertificateNameEn,
+                UserId = userId
+            });
+        }
+        
         public async Task DeleteSingleCertificateForUser(string certificateId, string userId)
         {
             const string query = @"
