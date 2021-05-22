@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210522140207_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20210522194512_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -309,7 +309,8 @@ namespace API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SkillName");
+                    b.HasIndex("SkillName")
+                        .IsUnique();
 
                     b.ToTable("skill");
                 });
@@ -490,14 +491,14 @@ namespace API.Migrations
                         .HasColumnType("CHAR(36)")
                         .HasColumnName("id");
 
-                    b.Property<short>("Level")
-                        .HasColumnType("SMALLINT")
-                        .HasColumnName("level");
-
                     b.Property<string>("SkillId")
                         .IsRequired()
                         .HasColumnType("Char(36)")
                         .HasColumnName("skill_id");
+
+                    b.Property<short>("SkillLevel")
+                        .HasColumnType("SMALLINT")
+                        .HasColumnName("skill_level");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -509,6 +510,9 @@ namespace API.Migrations
                     b.HasIndex("SkillId");
 
                     b.HasIndex("UserId");
+
+                    b.HasIndex("SkillId", "UserId")
+                        .IsUnique();
 
                     b.ToTable("user_skill");
                 });

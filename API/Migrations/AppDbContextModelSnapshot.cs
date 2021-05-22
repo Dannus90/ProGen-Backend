@@ -307,7 +307,8 @@ namespace API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SkillName");
+                    b.HasIndex("SkillName")
+                        .IsUnique();
 
                     b.ToTable("skill");
                 });
@@ -488,14 +489,14 @@ namespace API.Migrations
                         .HasColumnType("CHAR(36)")
                         .HasColumnName("id");
 
-                    b.Property<short>("Level")
-                        .HasColumnType("SMALLINT")
-                        .HasColumnName("level");
-
                     b.Property<string>("SkillId")
                         .IsRequired()
                         .HasColumnType("Char(36)")
                         .HasColumnName("skill_id");
+
+                    b.Property<short>("SkillLevel")
+                        .HasColumnType("SMALLINT")
+                        .HasColumnName("skill_level");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -507,6 +508,9 @@ namespace API.Migrations
                     b.HasIndex("SkillId");
 
                     b.HasIndex("UserId");
+
+                    b.HasIndex("SkillId", "UserId")
+                        .IsUnique();
 
                     b.ToTable("user_skill");
                 });

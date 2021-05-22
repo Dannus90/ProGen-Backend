@@ -38,10 +38,10 @@ namespace Core.Domain.DbModels
             set => SkillId = new Guid(value);
         }
         
-        [Column("level", TypeName = "SMALLINT")]
+        [Column("skill_level", TypeName = "SMALLINT")]
         [Required]
         [Range(1, 5)]
-        public int Level { get; set; }
+        public int SkillLevel { get; set; }
 
         /**
          * Model configurations.
@@ -61,6 +61,10 @@ namespace Core.Domain.DbModels
             
             modelBuilder.Entity<UserSkill>().HasOne<User>()
                 .WithMany();
+
+            modelBuilder.Entity<UserSkill>()
+                .HasIndex(x => new {x.SkillId, x.UserId})
+                .IsUnique();
             
             modelBuilder.Entity<UserSkill>()
                 .Ignore(u => u.IdString);

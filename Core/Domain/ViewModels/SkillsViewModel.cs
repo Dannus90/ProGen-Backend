@@ -5,6 +5,11 @@ namespace Core.Domain.ViewModels
 {
     public class SkillsViewModel
     {
-        public IEnumerable<SkillDto> Skills { get; set; }
+        public SkillsViewModel()
+        {
+            SkillDtos = new List<SkillDto>();
+        }
+        
+        public IEnumerable<SkillDto> SkillDtos { get; set; }
     }
 }

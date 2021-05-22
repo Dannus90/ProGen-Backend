@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace API.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -220,7 +220,7 @@ namespace API.Migrations
                     id = table.Column<string>(type: "CHAR(36)", nullable: false),
                     user_id = table.Column<string>(type: "Char(36)", nullable: false),
                     skill_id = table.Column<string>(type: "Char(36)", nullable: false),
-                    level = table.Column<short>(type: "SMALLINT", nullable: false)
+                    skill_level = table.Column<short>(type: "SMALLINT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -306,7 +306,8 @@ namespace API.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_skill_skill_name",
                 table: "skill",
-                column: "skill_name");
+                column: "skill_name",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_user_base_email",
@@ -330,6 +331,12 @@ namespace API.Migrations
                 name: "IX_user_skill_skill_id",
                 table: "user_skill",
                 column: "skill_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_user_skill_skill_id_user_id",
+                table: "user_skill",
+                columns: new[] { "skill_id", "user_id" },
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_user_skill_user_id",

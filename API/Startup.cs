@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -135,6 +136,7 @@ namespace API
 
             services.AddAutoMapper(GetType().Assembly);
             services.AddControllers(opt => opt.Filters.Add(new ExceptionFilter()));
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1",

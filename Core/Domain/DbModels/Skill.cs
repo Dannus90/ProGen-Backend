@@ -32,9 +32,12 @@ namespace Core.Domain.DbModels
             modelBuilder.Entity<Skill>()
                 .HasIndex(x => x.SkillName);
             
-                        
             modelBuilder.Entity<Skill>()
                 .Ignore(u => u.IdString);
+
+            modelBuilder.Entity<Skill>()
+                .HasIndex(x => x.SkillName)
+                .IsUnique();
         }
     }
 }

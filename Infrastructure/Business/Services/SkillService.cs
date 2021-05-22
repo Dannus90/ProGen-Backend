@@ -42,7 +42,7 @@ namespace Infrastructure.Identity.Services
 
             return new SkillsViewModel()
             {
-                Skills = skillsDtos
+                SkillDtos = skillsDtos
             };
         }
         
