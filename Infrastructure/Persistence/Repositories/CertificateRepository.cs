@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 using Core.Domain.DbModels;
@@ -44,6 +45,30 @@ namespace Infrastructure.Persistence.Repositories
             });
 
             return certificateId;
+        }
+
+        public async Task<IEnumerable<Certificate>> GetAllCertificatesForUser(string userId)
+        {
+            const string query = @"
+                   SELECT id AS IdString,
+                            user_id AS UserIdString,
+                            certificate_name_sv AS CertificateNameSv,
+                            certificate_name_en AS CertificateNameEn,
+                            organisation AS Organisation,
+                            identification_id AS IdentificationId,
+                            reference_address AS ReferenceAddress,
+                            date_issued AS DateIssued,
+                            created_at AS CreatedAt,
+                            updated_at AS UpdatedAt
+                    FROM certificate WHERE user_id = @UserId;
+                ";
+
+            using var conn = await connectDb(_connectionString);
+
+            return await conn.QueryAsync<Certificate>(query, new
+            {
+                UserId = userId
+            });
         }
         
         private static async Task<IDbConnection> connectDb(string connectionString)

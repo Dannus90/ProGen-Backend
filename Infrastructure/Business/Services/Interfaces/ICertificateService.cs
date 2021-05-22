@@ -8,5 +8,7 @@ namespace Infrastructure.Business.Services.Interfaces
     {
         Task<CreateUpdateCertificateViewModel> CreateCertificate
             (string userId, CertificateDto certificateDto);
+
+        Task<CertificatesViewModel> GetAllCertificatesForUser(string userId);
     }
 }

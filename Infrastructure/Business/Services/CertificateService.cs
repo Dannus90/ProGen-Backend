@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Core.Domain.DbModels;
@@ -31,6 +32,18 @@ namespace Infrastructure.Identity.Services
             return new CreateUpdateCertificateViewModel()
             {
                 CertificateId = certificateId
+            };
+        }
+
+        public async Task<CertificatesViewModel> GetAllCertificatesForUser(string userId)
+        {
+            var certificates = await _certificateRepository.GetAllCertificatesForUser(userId);
+            
+            var certificatesDtos = _mapper.Map<List<CertificateDto>>(certificates);
+
+            return new CertificatesViewModel()
+            {
+                CertificatesDto = certificatesDtos
             };
         }
     }

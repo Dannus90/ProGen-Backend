@@ -35,5 +35,18 @@ namespace API.Controllers.Data
 
             return Ok(await _certificateService.CreateCertificate(userId, certificateDto));
         }
+        
+        [HttpGet] //api/v1/user/certificate
+        [Route("")]
+        public async Task<ActionResult<CertificatesViewModel>> GetAllCertificatesForUser()
+        {
+            var currentUser = HttpContext.User;
+            var userId = currentUser.Claims.FirstOrDefault(c =>
+                c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+            if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
+
+            return Ok(await _certificateService.GetAllCertificatesForUser(userId));
+        }
     }
 }
