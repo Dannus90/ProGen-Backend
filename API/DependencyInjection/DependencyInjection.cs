@@ -29,6 +29,7 @@ namespace API
             services.AddScoped<ILanguageService, LanguageService>();
             services.AddScoped<IFullCvInformationService, FullCvInformationService>();
             services.AddScoped<ICertificateService, CertificateService>();
+            services.AddScoped<ISkillService, SkillService>();
             
             // Helpers
             services.AddScoped<IEmailHandler, EmailHandler>();
@@ -49,6 +50,7 @@ namespace API
             services.AddSingleton<IFullCvInformationRepository>(new FullCvInformationRepository
                 (connectionString, mapper));
             services.AddSingleton<ICertificateRepository>(new CertificateRepository(connectionString));
+            services.AddSingleton<ISkillRepository>(new SkillRepository(connectionString));
         }
 
         public void AddDependencyInjectionHandlers(IServiceCollection services)

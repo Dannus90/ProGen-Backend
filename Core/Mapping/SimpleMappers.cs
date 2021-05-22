@@ -54,6 +54,9 @@ namespace Core.Mapping
             
             // From CertificateDto -> Certificate -> CertificateDto.
             CreateMap<CertificateDto, Certificate>().ReverseMap();
+            
+            // From Skill -> SkillDto -> Skill.
+            CreateMap<Skill, SkillDto>().ReverseMap();
         }
     }
 }

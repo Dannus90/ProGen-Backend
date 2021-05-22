@@ -51,7 +51,8 @@ namespace API.Controllers.Data
         
         [HttpPost] //api/v1/user/workexperience
         [Route("")]
-        public async Task<ActionResult<CreateUpdateWorkExperienceViewModel>> CreateWorkExperience (WorkExperienceDto workExperienceDto)
+        public async Task<ActionResult<CreateUpdateWorkExperienceViewModel>> CreateWorkExperience 
+            (WorkExperienceDto workExperienceDto)
         {
             var currentUser = HttpContext.User;
             var userId = currentUser.Claims.FirstOrDefault(c =>
