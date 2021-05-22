@@ -159,7 +159,7 @@ namespace Tests.IntegrationsTests.Repositories
             await _userRepository.DeleteUserByUserId(setupUserId);
             foreach (var educationId in educationIds)
             {
-                await _educationRepository.DeleteEducation(educationId.ToString());
+                await _educationRepository.DeleteEducation(educationId.ToString(), setupUserId.ToString());
             }
         }
         
@@ -172,7 +172,7 @@ namespace Tests.IntegrationsTests.Repositories
                 (education, setupUserId.ToString());
 
             var retrievedEducation = 
-                await _educationRepository.GetEducation(educationId.ToString());
+                await _educationRepository.GetEducation(educationId.ToString(), setupUserId.ToString());
 
             // Assert
             Assert.IsNotNull(retrievedEducation);
@@ -180,10 +180,10 @@ namespace Tests.IntegrationsTests.Repositories
             Assert.AreEqual(retrievedEducation.CountryEn.Trim(), education.CountryEn);
             
             // Clean up
-            await _educationRepository.DeleteEducation(educationId.ToString());
+            await _educationRepository.DeleteEducation(educationId.ToString(), setupUserId.ToString());
             
             var retrievedEducationAfterDelete = 
-                await _educationRepository.GetEducation(educationId.ToString());
+                await _educationRepository.GetEducation(educationId.ToString(), setupUserId.ToString());
             
             Assert.IsNull(retrievedEducationAfterDelete);
         }
@@ -219,7 +219,8 @@ namespace Tests.IntegrationsTests.Repositories
             
             // Act
             var updatedEducation = 
-                await _educationRepository.UpdateEducation(educationId.ToString(), educationForUpdate);
+                await _educationRepository.UpdateEducation
+                    (educationId.ToString(), educationForUpdate, setupUserId.ToString());
 
             // Assert
             Assert.IsNotNull(updatedEducation);
@@ -227,10 +228,10 @@ namespace Tests.IntegrationsTests.Repositories
             Assert.AreEqual(updatedEducation.CountryEn.Trim(), educationForUpdate.CountryEn);
             
             // Clean up
-            await _educationRepository.DeleteEducation(educationId.ToString());
+            await _educationRepository.DeleteEducation(educationId.ToString(), setupUserId.ToString());
             
             var retrievedEducationAfterDelete = 
-                await _educationRepository.GetEducation(educationId.ToString());
+                await _educationRepository.GetEducation(educationId.ToString(), setupUserId.ToString());
             
             Assert.IsNull(retrievedEducationAfterDelete);
         }

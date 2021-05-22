@@ -8,11 +8,11 @@ namespace Infrastructure.Persistence.Repositories.Interfaces
     public interface IEducationRepository
     {
         Task<Guid> CreateEducation(Education education, string userId);
-        Task<Education> GetEducation(string educationId);
+        Task<Education> GetEducation(string educationId, string userId);
         Task<IEnumerable<Education>> GetEducations(string userId);
-        Task DeleteEducation(string educationId);
+        Task DeleteEducation(string educationId, string userId);
 
         Task<Education> UpdateEducation
-            (string educationId, Education education);
+            (string educationId, Education education, string userId);
     }
 }

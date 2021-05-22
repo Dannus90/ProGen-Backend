@@ -45,7 +45,7 @@ namespace API.Controllers.Data
 
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
 
-            return Ok(await _educationService.GetEducation(educationId));
+            return Ok(await _educationService.GetEducation(educationId, userId));
         }
 
         [HttpPost] //api/v1/user/education
@@ -72,7 +72,7 @@ namespace API.Controllers.Data
 
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
 
-            return Ok(await _educationService.UpdateEducation(educationId, educationDto));
+            return Ok(await _educationService.UpdateEducation(educationId, educationDto, userId));
         }
         
         [HttpDelete] //api/v1/user/education/:educationId
@@ -85,7 +85,7 @@ namespace API.Controllers.Data
 
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
 
-            await _educationService.DeleteEducation(educationId);
+            await _educationService.DeleteEducation(educationId, userId);
 
             return Ok();
         }

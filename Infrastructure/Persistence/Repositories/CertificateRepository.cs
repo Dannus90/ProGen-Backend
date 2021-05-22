@@ -71,7 +71,7 @@ namespace Infrastructure.Persistence.Repositories
             });
         }
         
-        public async Task<Certificate> GetCertificateForUser(string certificateId)
+        public async Task<Certificate> GetCertificateForUser(string certificateId, string userId)
         {
             const string query = @"
                    SELECT id AS IdString,
@@ -84,14 +84,16 @@ namespace Infrastructure.Persistence.Repositories
                             date_issued AS DateIssued,
                             created_at AS CreatedAt,
                             updated_at AS UpdatedAt
-                    FROM certificate WHERE id = @CertificateId;
+                    FROM certificate WHERE id = @CertificateId
+                    AND user_id = @UserId;
                 ";
 
             using var conn = await connectDb(_connectionString);
 
             return await conn.QueryFirstOrDefaultAsync<Certificate>(query, new
             {
-                CertificateId = certificateId
+                CertificateId = certificateId,
+                UserId = userId
             });
         }
         

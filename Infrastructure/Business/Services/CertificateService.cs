@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using Core.Application.Exceptions;
 using Core.Domain.DbModels;
 using Core.Domain.Dtos;
 using Core.Domain.ViewModels;
@@ -47,9 +48,12 @@ namespace Infrastructure.Identity.Services
             };
         }
         
-        public async Task<CertificateViewModel> GetCertificateForUser(string certificateId)
+        public async Task<CertificateViewModel> GetCertificateForUser(string certificateId, string userId)
         {
-            var certificate = await _certificateRepository.GetCertificateForUser(certificateId);
+            var certificate = await _certificateRepository.GetCertificateForUser(certificateId, userId);
+            
+            if (certificate == null) 
+                throw new HttpExceptionResponse(404, "No certificate with the provided id was found");
             
             var certificateDto = _mapper.Map<CertificateDto>(certificate);
 

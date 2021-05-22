@@ -10,7 +10,7 @@ namespace Infrastructure.Business.Services.Interfaces
             (string userId, CertificateDto certificateDto);
 
         Task<CertificatesViewModel> GetAllCertificatesForUser(string userId);
-        Task<CertificateViewModel> GetCertificateForUser(string certificateId);
+        Task<CertificateViewModel> GetCertificateForUser(string certificateId, string userId);
 
         Task DeleteSingleCertificateForUser(string certificateId, string userId);
     }

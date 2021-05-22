@@ -9,7 +9,7 @@ namespace Infrastructure.Persistence.Repositories.Interfaces
     {
         Task<Guid> CreateCertificate(Certificate certificate, string userId);
         Task<IEnumerable<Certificate>> GetAllCertificatesForUser(string userId);
-        Task<Certificate> GetCertificateForUser(string certificateId);
+        Task<Certificate> GetCertificateForUser(string certificateId, string userId);
         Task DeleteSingleCertificateForUser(string certificateId, string userId);
     }
 }

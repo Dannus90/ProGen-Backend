@@ -61,7 +61,7 @@ namespace API.Controllers.Data
             if (userId == null) 
                 throw new HttpExceptionResponse(401, "No userId provided");
 
-            return Ok(await _certificateService.GetCertificateForUser(certificateId));
+            return Ok(await _certificateService.GetCertificateForUser(certificateId, userId));
         }
         
         [HttpDelete] //api/v1/user/certificate/:certificateId

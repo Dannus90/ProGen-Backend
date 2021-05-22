@@ -37,12 +37,13 @@ namespace Infrastructure.Identity.Services
             };
         }
         
-        public async Task<EducationViewModel> UpdateEducation(string educationId, EducationDto educationDto)
+        public async Task<EducationViewModel> UpdateEducation
+            (string educationId, EducationDto educationDto, string userId)
         {
             var education = _mapper.Map<Education>(educationDto);
             
             var retrievedEducation = await _educationRepository.UpdateEducation
-                (educationId, education);
+                (educationId, education, userId);
             
             if (retrievedEducation == null) 
                 throw new HttpExceptionResponse((int) HttpStatusCode.NotFound, "Not found");
@@ -55,10 +56,10 @@ namespace Infrastructure.Identity.Services
             };
         }
 
-        public async Task<EducationViewModel> GetEducation(string educationId)
+        public async Task<EducationViewModel> GetEducation(string educationId, string userId)
         {
             var education = await _educationRepository.GetEducation
-                (educationId);
+                (educationId, userId);
 
             if (education == null) 
                 throw new HttpExceptionResponse(StatusCodes.Status404NotFound, "Not found");
@@ -84,9 +85,9 @@ namespace Infrastructure.Identity.Services
             };
         }
         
-        public async Task DeleteEducation(string educationId)
+        public async Task DeleteEducation(string educationId, string userId)
         {
-            await _educationRepository.DeleteEducation(educationId);
+            await _educationRepository.DeleteEducation(educationId, userId);
         }
     }
 }

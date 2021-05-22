@@ -62,7 +62,7 @@ namespace Infrastructure.Persistence.Repositories
         }
         
         public async Task<Education> UpdateEducation
-            (string educationId, Education education)
+            (string educationId, Education education, string userId)
         {
             const string query = @"
                     UPDATE education
@@ -81,7 +81,8 @@ namespace Infrastructure.Persistence.Repositories
                         exam_name_en = @ExamNameEn,
                         subject_area_sv = @SubjectAreaSv,
                         subject_area_en = @SubjectAreaEn
-                    WHERE id = @Id;
+                    WHERE id = @Id
+                    AND user_id = @UserId;
 
                    SELECT id AS IdString,
                         user_id AS UserIdString,
@@ -103,7 +104,8 @@ namespace Infrastructure.Persistence.Repositories
                         created_at AS CreatedAt,
                         updated_at AS UpdatedAt
                    FROM education
-                   WHERE id = @Id;
+                   WHERE id = @Id
+                   AND user_id = @UserId;
                 ";
             
             using var conn = await connectDb(_connectionString);
@@ -125,11 +127,12 @@ namespace Infrastructure.Persistence.Repositories
                 education.ExamNameSv,
                 education.ExamNameEn,
                 education.SubjectAreaSv,
-                education.SubjectAreaEn
+                education.SubjectAreaEn,
+                UserId = userId
             });
         }
         
-        public async Task<Education> GetEducation(string educationId)
+        public async Task<Education> GetEducation(string educationId, string userId)
         {
             const string query = @"
                    SELECT id AS IdString,
@@ -151,14 +154,16 @@ namespace Infrastructure.Persistence.Repositories
                             date_ended AS DateEnded,
                             created_at AS CreatedAt,
                             updated_at AS UpdatedAt
-                    FROM education WHERE id = @Id;  
+                    FROM education WHERE id = @Id
+                    AND user_id = @UserId;  
                 ";
             
             using var conn = await connectDb(_connectionString);
 
             return await conn.QueryFirstOrDefaultAsync<Education>(query, new
             {
-                Id = educationId
+                Id = educationId,
+                UserId = userId
             });
         }
         
@@ -195,18 +200,20 @@ namespace Infrastructure.Persistence.Repositories
             });
         }
         
-        public async Task DeleteEducation(string educationId)
+        public async Task DeleteEducation(string educationId, string userId)
         {
             const string query = @"
                    DELETE FROM education
-                   WHERE id = @Id 
+                   WHERE id = @Id
+                   AND user_id = @UserId
                 ";
             
             using var conn = await connectDb(_connectionString);
 
             await conn.ExecuteScalarAsync(query, new
             {
-                Id = educationId
+                Id = educationId,
+                UserId = userId
             });
         }
         
