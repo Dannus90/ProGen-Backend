@@ -3,10 +3,22 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace API.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "skill",
+                columns: table => new
+                {
+                    id = table.Column<string>(type: "CHAR(36)", nullable: false),
+                    skill_name = table.Column<string>(type: "CHAR(128)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_skill", x => x.id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "user_base",
                 columns: table => new
@@ -202,6 +214,32 @@ namespace API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "user_skill",
+                columns: table => new
+                {
+                    id = table.Column<string>(type: "CHAR(36)", nullable: false),
+                    user_id = table.Column<string>(type: "Char(36)", nullable: false),
+                    skill_id = table.Column<string>(type: "Char(36)", nullable: false),
+                    level = table.Column<short>(type: "SMALLINT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_user_skill", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_user_skill_skill_skill_id",
+                        column: x => x.skill_id,
+                        principalTable: "skill",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_user_skill_user_base_user_id",
+                        column: x => x.user_id,
+                        principalTable: "user_base",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "work_experience",
                 columns: table => new
                 {
@@ -266,6 +304,11 @@ namespace API.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_skill_skill_name",
+                table: "skill",
+                column: "skill_name");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_user_base_email",
                 table: "user_base",
                 column: "email",
@@ -282,6 +325,16 @@ namespace API.Migrations
                 table: "user_presentation",
                 column: "user_id",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_user_skill_skill_id",
+                table: "user_skill",
+                column: "skill_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_user_skill_user_id",
+                table: "user_skill",
+                column: "user_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_work_experience_user_id",
@@ -313,7 +366,13 @@ namespace API.Migrations
                 name: "user_presentation");
 
             migrationBuilder.DropTable(
+                name: "user_skill");
+
+            migrationBuilder.DropTable(
                 name: "work_experience");
+
+            migrationBuilder.DropTable(
+                name: "skill");
 
             migrationBuilder.DropTable(
                 name: "user_base");

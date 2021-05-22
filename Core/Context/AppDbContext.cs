@@ -19,6 +19,8 @@ namespace Core.Context
         public DbSet<OtherInformation> OtherInformation { get; set; } = null!;
         public DbSet<Language> Language { get; set; } = null!;
         public DbSet<Certificate> Certificate { get; set; } = null!;
+        public DbSet<Skill> Skill { get; set; } = null!;
+        public DbSet<UserSkill> UserSkill { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder dbModelBuilder)
         {
@@ -36,6 +38,8 @@ namespace Core.Context
             Domain.DbModels.OtherInformation.Configure(dbModelBuilder);
             Domain.DbModels.Language.Configure(dbModelBuilder);
             Domain.DbModels.Certificate.Configure(dbModelBuilder);
+            Domain.DbModels.Skill.Configure(dbModelBuilder);
+            Domain.DbModels.UserSkill.Configure(dbModelBuilder);
         }
     }
 }

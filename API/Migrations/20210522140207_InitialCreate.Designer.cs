@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210521203932_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20210522140207_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -295,6 +295,25 @@ namespace API.Migrations
                     b.ToTable("refresh_token");
                 });
 
+            modelBuilder.Entity("Core.Domain.DbModels.Skill", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("CHAR(36)")
+                        .HasColumnName("id");
+
+                    b.Property<string>("SkillName")
+                        .IsRequired()
+                        .HasColumnType("CHAR(128)")
+                        .HasColumnName("skill_name");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SkillName");
+
+                    b.ToTable("skill");
+                });
+
             modelBuilder.Entity("Core.Domain.DbModels.User", b =>
                 {
                     b.Property<string>("Id")
@@ -464,6 +483,36 @@ namespace API.Migrations
                     b.ToTable("user_presentation");
                 });
 
+            modelBuilder.Entity("Core.Domain.DbModels.UserSkill", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("CHAR(36)")
+                        .HasColumnName("id");
+
+                    b.Property<short>("Level")
+                        .HasColumnType("SMALLINT")
+                        .HasColumnName("level");
+
+                    b.Property<string>("SkillId")
+                        .IsRequired()
+                        .HasColumnType("Char(36)")
+                        .HasColumnName("skill_id");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("Char(36)")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SkillId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("user_skill");
+                });
+
             modelBuilder.Entity("Core.Domain.DbModels.WorkExperience", b =>
                 {
                     b.Property<string>("Id")
@@ -613,6 +662,21 @@ namespace API.Migrations
 
             modelBuilder.Entity("Core.Domain.DbModels.UserPresentation", b =>
                 {
+                    b.HasOne("Core.Domain.DbModels.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Core.Domain.DbModels.UserSkill", b =>
+                {
+                    b.HasOne("Core.Domain.DbModels.Skill", null)
+                        .WithMany()
+                        .HasForeignKey("SkillId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Core.Domain.DbModels.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
