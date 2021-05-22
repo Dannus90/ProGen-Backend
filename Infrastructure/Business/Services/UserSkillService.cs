@@ -47,5 +47,12 @@ namespace Infrastructure.Identity.Services
                 UserSkillAndSkillDtos = userSkillAndSkillDtos
             };
         }
+        
+        public async Task DeleteUserSkill
+            (string userId, string userSkillId)
+        {
+            await _userSkillRepository.DeleteUserSkill
+                (userId, userSkillId);
+        }
     }
 }

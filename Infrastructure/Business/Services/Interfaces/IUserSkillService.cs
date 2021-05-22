@@ -13,5 +13,8 @@ namespace Infrastructure.Business.Services.Interfaces
 
         Task<UserSkillViewModel> GetAllUserSkills
             (string userId);
+
+        Task DeleteUserSkill
+            (string userId, string userSkillId);
     }
 }

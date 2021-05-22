@@ -69,9 +69,24 @@ namespace Infrastructure.Persistence.Repositories
 
             return userSkillAndSkillDtos;
         }
+
+        public async Task DeleteUserSkill(string userId, string userSkillId)
+        {
+            const string query = @"
+                   DELETE FROM user_skill
+                   WHERE id = @Id
+                   AND user_id = @UserId
+                ";
+            
+            using var conn = await connectDb(_connectionString);
+
+            await conn.ExecuteScalarAsync(query, new
+            {
+                Id = userSkillId,
+                UserId = userId
+            });
+        }
         
-
-
         private static async Task<IDbConnection> connectDb(string connectionString)
         {
             var connection = new NpgsqlConnection(connectionString);
