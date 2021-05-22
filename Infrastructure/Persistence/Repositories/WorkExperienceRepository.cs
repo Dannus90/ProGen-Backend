@@ -76,7 +76,7 @@ namespace Infrastructure.Persistence.Repositories
                             date_ended AS DateEnded,
                             created_at AS CreatedAt,
                             updated_at AS UpdatedAt
-                    FROM work_experience WHERE user_id = @UserId;  
+                    FROM work_experience WHERE user_id = @UserId;
                 ";
 
             using var conn = await connectDb(_connectionString);
@@ -87,7 +87,7 @@ namespace Infrastructure.Persistence.Repositories
             });
         }
         
-        public async Task<WorkExperience> GetWorkExperience(string workExperienceId)
+        public async Task<WorkExperience> GetWorkExperience(string workExperienceId, string userId)
         {
             const string query = @"
                    SELECT id AS IdString,
@@ -106,34 +106,38 @@ namespace Infrastructure.Persistence.Repositories
                             date_ended AS DateEnded,
                             created_at AS CreatedAt,
                             updated_at AS UpdatedAt
-                    FROM work_experience WHERE id = @Id;  
+                    FROM work_experience WHERE id = @Id
+                    AND user_id = @UserId;
                 ";
             
             using var conn = await connectDb(_connectionString);
 
             return await conn.QueryFirstOrDefaultAsync<WorkExperience>(query, new
             {
-                Id = workExperienceId
+                Id = workExperienceId,
+                UserId = userId
             });
         }
         
-        public async Task DeleteWorkExperience(string workExperienceId)
+        public async Task DeleteWorkExperience(string workExperienceId, string userId)
         {
             const string query = @"
                    DELETE FROM work_experience
-                   WHERE id = @Id 
+                   WHERE id = @Id
+                   AND user_id = @UserId
                 ";
             
             using var conn = await connectDb(_connectionString);
 
             await conn.ExecuteScalarAsync(query, new
             {
-                Id = workExperienceId
+                Id = workExperienceId,
+                UserId = userId
             });
         }
         
         public async Task<WorkExperience> UpdateWorkExperience
-            (string workExperienceId, WorkExperience workExperience)
+            (string workExperienceId, WorkExperience workExperience, string userId)
         {
             const string query = @"
                     UPDATE work_experience
@@ -149,7 +153,8 @@ namespace Infrastructure.Persistence.Repositories
                         employment_rate = @EmploymentRate,
                         role_sv = @RoleSv,
                         role_en = @RoleEn
-                    WHERE id = @Id;
+                    WHERE id = @Id
+                    AND user_id = @UserId;
 
                    SELECT id AS IdString,
                         user_id AS UserIdString,
@@ -166,7 +171,8 @@ namespace Infrastructure.Persistence.Repositories
                         role_sv AS RoleSv,
                         role_en AS RoleEn
                    FROM work_experience
-                   WHERE id = @Id;
+                   WHERE id = @Id
+                   AND user_id = @UserId;
                 ";
             
             using var conn = await connectDb(_connectionString);
@@ -185,7 +191,8 @@ namespace Infrastructure.Persistence.Repositories
                 workExperience.DateEnded,
                 workExperience.EmploymentRate,
                 workExperience.RoleEn,
-                workExperience.RoleSv
+                workExperience.RoleSv,
+                UserId = userId
             });
         }
         

@@ -9,9 +9,9 @@ namespace Infrastructure.Persistence.Repositories.Interfaces
     {
         Task<Guid> CreateWorkExperience(WorkExperience workExperienceDto, string userId);
         Task<IEnumerable<WorkExperience>> GetWorkExperiences(string userId);
-        Task<WorkExperience> GetWorkExperience(string workExperienceId);
-        Task DeleteWorkExperience(string workExperienceId);
+        Task<WorkExperience> GetWorkExperience(string workExperienceId, string userId);
+        Task DeleteWorkExperience(string workExperienceId, string userId);
         Task<WorkExperience> UpdateWorkExperience
-            (string workExperienceId, WorkExperience workExperience);
+            (string workExperienceId, WorkExperience workExperience, string userId);
     }
 }

@@ -9,10 +9,10 @@ namespace Infrastructure.Business.Services.Interfaces
     {
         Task<CreateUpdateWorkExperienceViewModel> CreateWorkExperience (string userId, WorkExperienceDto workExperienceDto);
         Task<WorkExperiencesViewModel> GetWorkExperiences(string userId);
-        Task<WorkExperienceViewModel> GetWorkExperience(string workExperienceId);
-        Task DeleteWorkExperience(string workExperienceId);
+        Task<WorkExperienceViewModel> GetWorkExperience(string workExperienceId, string userId);
+        Task DeleteWorkExperience(string workExperienceId, string userId);
 
         Task<WorkExperienceViewModel> UpdateWorkExperience
-            (string workExperienceId, WorkExperienceDto workExperienceDto);
+            (string workExperienceId, WorkExperienceDto workExperienceDto, string userId);
     }
 }

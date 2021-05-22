@@ -46,7 +46,7 @@ namespace API.Controllers.Data
 
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
 
-            return Ok(await _workExperienceService.GetWorkExperience(workExperienceId));
+            return Ok(await _workExperienceService.GetWorkExperience(workExperienceId, userId));
         }
         
         [HttpPost] //api/v1/user/workexperience
@@ -73,7 +73,7 @@ namespace API.Controllers.Data
 
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
 
-            return Ok(await _workExperienceService.UpdateWorkExperience(workExperienceId, workExperienceDto));
+            return Ok(await _workExperienceService.UpdateWorkExperience(workExperienceId, workExperienceDto, userId));
         }
         
         [HttpDelete] //api/v1/user/workexperience/:workexperienceId
@@ -86,7 +86,7 @@ namespace API.Controllers.Data
 
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
 
-            await _workExperienceService.DeleteWorkExperience(workExperienceId);
+            await _workExperienceService.DeleteWorkExperience(workExperienceId, userId);
 
             return Ok();
         }

@@ -40,12 +40,12 @@ namespace Infrastructure.Identity.Services
         }
         
         public async Task<WorkExperienceViewModel> UpdateWorkExperience
-            (string workExperienceId, WorkExperienceDto workExperienceDto)
+            (string workExperienceId, WorkExperienceDto workExperienceDto, string userId)
         {
             var workExperience = _mapper.Map<WorkExperience>(workExperienceDto);
 
             var retrievedWorkExperience = await _workExperienceRepository.UpdateWorkExperience
-                (workExperienceId, workExperience);
+                (workExperienceId, workExperience, userId);
             
             var workExperienceDtoMapped = _mapper.Map<WorkExperienceDto>(retrievedWorkExperience);
 
@@ -70,10 +70,10 @@ namespace Infrastructure.Identity.Services
         }
         
         public async Task<WorkExperienceViewModel> GetWorkExperience
-            (string workExperienceId)
+            (string workExperienceId, string userId)
         {
             var workExperience = await _workExperienceRepository.GetWorkExperience
-                (workExperienceId);
+                (workExperienceId, userId);
             
             if (workExperience == null) 
                 throw new HttpExceptionResponse(StatusCodes.Status404NotFound, "Not found");
@@ -87,9 +87,9 @@ namespace Infrastructure.Identity.Services
         }
         
         public async Task DeleteWorkExperience
-            (string workExperienceId)
+            (string workExperienceId, string userId)
         {
-           await _workExperienceRepository.DeleteWorkExperience(workExperienceId);
+           await _workExperienceRepository.DeleteWorkExperience(workExperienceId, userId);
         }
     }
 }

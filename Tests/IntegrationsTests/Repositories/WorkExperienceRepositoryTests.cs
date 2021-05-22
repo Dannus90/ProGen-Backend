@@ -145,7 +145,7 @@ namespace Tests.IntegrationsTests.Repositories
             await _userRepository.DeleteUserByUserId(setupUserId);
             foreach (var workExperienceId in workExperienceIds)
             {
-                await _workExperienceRepository.DeleteWorkExperience(workExperienceId.ToString());
+                await _workExperienceRepository.DeleteWorkExperience(workExperienceId.ToString(), setupUserId.ToString());
             }
         }
         
@@ -158,7 +158,7 @@ namespace Tests.IntegrationsTests.Repositories
                 (workExperience, setupUserId.ToString());
 
             var retrievedWorkExperience = 
-                await _workExperienceRepository.GetWorkExperience(workExperienceId.ToString());
+                await _workExperienceRepository.GetWorkExperience(workExperienceId.ToString(), setupUserId.ToString());
 
             // Assert
             Assert.IsNotNull(retrievedWorkExperience);
@@ -166,10 +166,10 @@ namespace Tests.IntegrationsTests.Repositories
             Assert.AreEqual(retrievedWorkExperience.CountryEn.Trim(), workExperience.CountryEn);
             
             // Clean up
-            await _workExperienceRepository.DeleteWorkExperience(workExperienceId.ToString());
+            await _workExperienceRepository.DeleteWorkExperience(workExperienceId.ToString(), setupUserId.ToString());
             
             var retrievedWorkExperienceAfterDelete = 
-                await _workExperienceRepository.GetWorkExperience(workExperienceId.ToString());
+                await _workExperienceRepository.GetWorkExperience(workExperienceId.ToString(), setupUserId.ToString());
             
             Assert.IsNull(retrievedWorkExperienceAfterDelete);
         }
@@ -203,7 +203,7 @@ namespace Tests.IntegrationsTests.Repositories
             // Act
             var updatedWorkExperience = 
                 await _workExperienceRepository.UpdateWorkExperience
-                    (workExperienceId.ToString(), workExperienceForUpdate);
+                    (workExperienceId.ToString(), workExperienceForUpdate, setupUserId.ToString());
 
             // Assert
             Assert.IsNotNull(updatedWorkExperience);
@@ -211,10 +211,10 @@ namespace Tests.IntegrationsTests.Repositories
             Assert.AreEqual(updatedWorkExperience.CountryEn.Trim(), workExperienceForUpdate.CountryEn);
             
             // Clean up
-            await _workExperienceRepository.DeleteWorkExperience(workExperienceId.ToString());
+            await _workExperienceRepository.DeleteWorkExperience(workExperienceId.ToString(), setupUserId.ToString());
             
             var retrievedWorkExperienceAfterDelete = 
-                await _workExperienceRepository.GetWorkExperience(workExperienceId.ToString());
+                await _workExperienceRepository.GetWorkExperience(workExperienceId.ToString(), setupUserId.ToString());
             
             Assert.IsNull(retrievedWorkExperienceAfterDelete);
         }
