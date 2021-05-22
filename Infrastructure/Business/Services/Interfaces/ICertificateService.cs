@@ -11,5 +11,7 @@ namespace Infrastructure.Business.Services.Interfaces
 
         Task<CertificatesViewModel> GetAllCertificatesForUser(string userId);
         Task<CertificateViewModel> GetCertificateForUser(string certificateId);
+
+        Task DeleteSingleCertificateForUser(string certificateId, string userId);
     }
 }

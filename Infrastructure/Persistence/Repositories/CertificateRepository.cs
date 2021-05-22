@@ -95,6 +95,23 @@ namespace Infrastructure.Persistence.Repositories
             });
         }
         
+        public async Task DeleteSingleCertificateForUser(string certificateId, string userId)
+        {
+            const string query = @"
+                   DELETE FROM certificate
+                   WHERE id = @Id
+                   AND user_id = @UserId
+                ";
+            
+            using var conn = await connectDb(_connectionString);
+
+            await conn.ExecuteScalarAsync(query, new
+            {
+                Id = certificateId,
+                UserId = userId
+            });
+        }
+        
         private static async Task<IDbConnection> connectDb(string connectionString)
         {
             var connection = new NpgsqlConnection(connectionString);

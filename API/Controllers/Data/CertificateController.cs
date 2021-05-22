@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -57,9 +58,26 @@ namespace API.Controllers.Data
             var userId = currentUser.Claims.FirstOrDefault(c =>
                 c.Type == ClaimTypes.NameIdentifier)?.Value;
 
-            if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
+            if (userId == null) 
+                throw new HttpExceptionResponse(401, "No userId provided");
 
             return Ok(await _certificateService.GetCertificateForUser(certificateId));
+        }
+        
+        [HttpDelete] //api/v1/user/certificate/:certificateId
+        [Route("{certificateId}")]
+        public async Task<ActionResult> DeleteSingleCertificateForUser(string certificateId)
+        {
+            var currentUser = HttpContext.User;
+            var userId = currentUser.Claims.FirstOrDefault(c =>
+                c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+            if (userId == null) 
+                throw new HttpExceptionResponse(401, "No userId provided");
+
+            await _certificateService.DeleteSingleCertificateForUser(certificateId, userId);
+            
+            return NoContent();
         }
     }
 }

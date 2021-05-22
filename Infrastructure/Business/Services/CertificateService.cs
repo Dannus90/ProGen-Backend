@@ -58,5 +58,10 @@ namespace Infrastructure.Identity.Services
                 CertificateDto = certificateDto
             };
         }
+        
+        public async Task DeleteSingleCertificateForUser(string certificateId, string userId)
+        {
+            await _certificateRepository.DeleteSingleCertificateForUser(certificateId, userId);
+        }
     }
 }
