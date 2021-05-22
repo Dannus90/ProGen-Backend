@@ -1,15 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
-using AutoMapper.Configuration.Annotations;
 using Core.Domain.DbModels;
-using Core.Domain.Dtos;
 using Core.Domain.Models;
 using Dapper;
 using Infrastructure.Persistence.Repositories.Interfaces;
-using Newtonsoft.Json;
 using Npgsql;
 
 namespace Infrastructure.Persistence.Repositories
