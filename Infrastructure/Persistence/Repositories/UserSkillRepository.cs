@@ -87,6 +87,25 @@ namespace Infrastructure.Persistence.Repositories
             });
         }
         
+        public async Task<Guid> UpdateUserSkill(string userSkillId, int skillLevel)
+        {
+            const string query = @"
+                   UPDATE user_skill
+                   SET skill_level = @SkillLevel
+                   WHERE id = @Id
+                ";
+            
+            using var conn = await connectDb(_connectionString);
+
+            await conn.ExecuteScalarAsync(query, new
+            {
+                Id = userSkillId,
+                SkillLevel = skillLevel
+            });
+
+            return Guid.Parse(userSkillId);
+        }
+        
         private static async Task<IDbConnection> connectDb(string connectionString)
         {
             var connection = new NpgsqlConnection(connectionString);

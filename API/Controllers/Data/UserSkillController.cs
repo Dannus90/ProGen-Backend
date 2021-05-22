@@ -65,5 +65,19 @@ namespace API.Controllers.Data
 
             return NoContent();
         }
+        
+        [HttpPatch] //api/v1/general/userskill/:userSkillId
+        [Route("{userSkillId}")]
+        public async Task<ActionResult<CreateUpdateUserSkillViewModel>> UpdateUserSkill 
+            (string userSkillId, UserSkillDto userSkillDto)
+        {
+            var currentUser = HttpContext.User;
+            var userId = currentUser.Claims.FirstOrDefault(c =>
+                c.Type == ClaimTypes.NameIdentifier)?.Value;
+            
+            if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
+
+            return Ok(await _userSkillService.UpdateUserSkill(userSkillId, userSkillDto));
+        }
     }
 }

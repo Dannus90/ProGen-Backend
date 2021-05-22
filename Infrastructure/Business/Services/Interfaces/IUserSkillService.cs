@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Core.Domain.Dtos;
-using Core.Domain.Models;
 using Core.Domain.ViewModels;
 
 namespace Infrastructure.Business.Services.Interfaces
@@ -16,5 +14,8 @@ namespace Infrastructure.Business.Services.Interfaces
 
         Task DeleteUserSkill
             (string userId, string userSkillId);
+
+        Task<CreateUpdateUserSkillViewModel> UpdateUserSkill
+            (string userSkillId, UserSkillDto userSkillDto);
     }
 }

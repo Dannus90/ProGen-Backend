@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Core.Domain.Dtos;
-using Core.Domain.Models;
 using Core.Domain.ViewModels;
 using Infrastructure.Business.Services.Interfaces;
 using Infrastructure.Persistence.Repositories.Interfaces;
@@ -28,7 +26,7 @@ namespace Infrastructure.Identity.Services
             var userSkillId = await _userSkillRepository.CreateUserSkill
                 (userSkillDto.SkillId, userSkillDto.SkillLevel, userId);
 
-            return new CreateUpdateUserSkillViewModel()
+            return new CreateUpdateUserSkillViewModel
             {
                 UserSkillId = userSkillId
             };
@@ -45,6 +43,18 @@ namespace Infrastructure.Identity.Services
             return new UserSkillViewModel()
             {
                 UserSkillAndSkillDtos = userSkillAndSkillDtos
+            };
+        }
+        
+        public async Task<CreateUpdateUserSkillViewModel> UpdateUserSkill
+            (string userSkillId, UserSkillDto userSkillDto)
+        {
+            var skillIdAfterUpdate = await _userSkillRepository.UpdateUserSkill
+                (userSkillId, userSkillDto.SkillLevel);
+            
+            return new CreateUpdateUserSkillViewModel()
+            {
+                UserSkillId = skillIdAfterUpdate
             };
         }
         
