@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
 using API.Helpers.DbHelpers;
 using AutoMapper;
@@ -129,7 +130,13 @@ namespace API
                     };
                 });
 
-            var mapperConfig = new MapperConfiguration(mc => { mc.AddProfile(new SimpleMappers()); });
+            var mappers = new List<Profile>()
+            {
+                new SimpleMappers(),
+                new SkillsAndUserSkillsMapper(),
+            };
+
+            var mapperConfig = new MapperConfiguration(mc => { mc.AddProfiles(mappers); });
 
             var mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);

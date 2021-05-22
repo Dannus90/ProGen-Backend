@@ -1,10 +1,15 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
+using AutoMapper.Configuration.Annotations;
 using Core.Domain.DbModels;
+using Core.Domain.Dtos;
+using Core.Domain.Models;
 using Dapper;
 using Infrastructure.Persistence.Repositories.Interfaces;
+using Newtonsoft.Json;
 using Npgsql;
 
 namespace Infrastructure.Persistence.Repositories
@@ -38,6 +43,38 @@ namespace Infrastructure.Persistence.Repositories
 
             return userSkillId;
         }
+        
+        public async Task<IEnumerable<UserSkillAndSkillModel>> GetAllUserSkills(string userId)
+        {
+            const string query = @"
+                   SELECT user_skill.id AS IdString,
+                            user_skill.skill_id AS SkillIdString,
+                            user_skill.user_id AS UserIdString,
+                            user_skill.skill_level AS SkillLevel,
+                            skill.id AS IdString,
+                            skill.skill_name AS SkillName
+                    FROM user_skill
+                    INNER JOIN skill ON user_skill.skill_id = skill.id
+                    WHERE user_id = @UserId
+                ";
+
+            using var conn = await connectDb(_connectionString);
+            var userSkillAndSkillDtos = await
+                conn.QueryAsync<UserSkill, Skill, UserSkillAndSkillModel>
+                (query, (userSkill, Skill) => new UserSkillAndSkillModel
+                {
+                    UserSkill = userSkill,
+                    Skill = Skill
+                }, new
+                {
+                    UserId = userId
+                },
+                    splitOn: "IdString");
+
+            return userSkillAndSkillDtos;
+        }
+        
+
 
         private static async Task<IDbConnection> connectDb(string connectionString)
         {

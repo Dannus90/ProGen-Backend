@@ -30,9 +30,6 @@ namespace Core.Domain.DbModels
         public static void Configure(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Skill>()
-                .HasIndex(x => x.SkillName);
-            
-            modelBuilder.Entity<Skill>()
                 .Ignore(u => u.IdString);
 
             modelBuilder.Entity<Skill>()

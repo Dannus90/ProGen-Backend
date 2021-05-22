@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Core.Domain.Dtos;
+using Core.Domain.Models;
 using Core.Domain.ViewModels;
 
 namespace Infrastructure.Business.Services.Interfaces
@@ -8,5 +10,8 @@ namespace Infrastructure.Business.Services.Interfaces
     {
         Task<CreateUpdateUserSkillViewModel> CreateUserSkill
             (UserSkillDto userSkillDto, string userId);
+
+        Task<UserSkillViewModel> GetAllUserSkills
+            (string userId);
     }
 }
