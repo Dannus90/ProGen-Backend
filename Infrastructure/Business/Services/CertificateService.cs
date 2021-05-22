@@ -46,5 +46,17 @@ namespace Infrastructure.Identity.Services
                 CertificatesDto = certificatesDtos
             };
         }
+        
+        public async Task<CertificateViewModel> GetCertificateForUser(string certificateId)
+        {
+            var certificate = await _certificateRepository.GetCertificateForUser(certificateId);
+            
+            var certificateDto = _mapper.Map<CertificateDto>(certificate);
+
+            return new CertificateViewModel()
+            {
+                CertificateDto = certificateDto
+            };
+        }
     }
 }

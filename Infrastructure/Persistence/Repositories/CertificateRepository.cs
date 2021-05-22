@@ -71,6 +71,30 @@ namespace Infrastructure.Persistence.Repositories
             });
         }
         
+        public async Task<Certificate> GetCertificateForUser(string certificateId)
+        {
+            const string query = @"
+                   SELECT id AS IdString,
+                            user_id AS UserIdString,
+                            certificate_name_sv AS CertificateNameSv,
+                            certificate_name_en AS CertificateNameEn,
+                            organisation AS Organisation,
+                            identification_id AS IdentificationId,
+                            reference_address AS ReferenceAddress,
+                            date_issued AS DateIssued,
+                            created_at AS CreatedAt,
+                            updated_at AS UpdatedAt
+                    FROM certificate WHERE id = @CertificateId;
+                ";
+
+            using var conn = await connectDb(_connectionString);
+
+            return await conn.QueryFirstOrDefaultAsync<Certificate>(query, new
+            {
+                CertificateId = certificateId
+            });
+        }
+        
         private static async Task<IDbConnection> connectDb(string connectionString)
         {
             var connection = new NpgsqlConnection(connectionString);

@@ -9,5 +9,6 @@ namespace Infrastructure.Persistence.Repositories.Interfaces
     {
         Task<Guid> CreateCertificate(Certificate certificate, string userId);
         Task<IEnumerable<Certificate>> GetAllCertificatesForUser(string userId);
+        Task<Certificate> GetCertificateForUser(string certificateId);
     }
 }

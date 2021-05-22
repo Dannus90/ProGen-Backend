@@ -10,5 +10,6 @@ namespace Infrastructure.Business.Services.Interfaces
             (string userId, CertificateDto certificateDto);
 
         Task<CertificatesViewModel> GetAllCertificatesForUser(string userId);
+        Task<CertificateViewModel> GetCertificateForUser(string certificateId);
     }
 }
