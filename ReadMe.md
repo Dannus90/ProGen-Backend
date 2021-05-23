@@ -19,7 +19,8 @@ you will need to have a user configured with the username and password stated ab
 - [Make superuser](https://stackoverflow.com/questions/10757431/postgres-upgrade-a-user-to-be-a-superuser)
 
 ### Migrations
-**OBS ALWAYS ADD MIGRATIONS IN PROD ENVIRONMENT!** 
+**OBS ALWAYS ADD MIGRATIONS IN AN ENVIRONMENT THAT IS NOT DEVELOPMENT!**
+**IF YOU ADD ADDITIONAL ENVIRONMENTS TO SEED DON'T CREATE MIGRATIONS IN THEM EITHER.**
 * `ASPNETCORE_ENVIRONMENT=Prod dotnet ef migrations add NewMigration`
 * `dotnet ef database update`
 
