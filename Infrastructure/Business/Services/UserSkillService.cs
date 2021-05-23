@@ -32,7 +32,7 @@ namespace Infrastructure.Identity.Services
             };
         }
         
-        public async Task<UserSkillViewModel> GetAllUserSkills
+        public async Task<UserSkillsViewModel> GetAllUserSkills
             (string userId)
         {
             var userSkillAndSkillModels = await _userSkillRepository.GetAllUserSkills
@@ -40,9 +40,23 @@ namespace Infrastructure.Identity.Services
 
             var userSkillAndSkillDtos = _mapper.Map<List<UserSkillAndSkillDto>>(userSkillAndSkillModels);
 
-            return new UserSkillViewModel()
+            return new UserSkillsViewModel()
             {
                 UserSkillAndSkillDtos = userSkillAndSkillDtos
+            };
+        }
+        
+        public async Task<UserSkillViewModel> GetSingleUserSkill
+            (string userId, string userSkillId)
+        {
+            var userSkillAndSkillModel = await _userSkillRepository.GetSingleUserSkill
+                (userId, userSkillId);
+
+            var userSkillAndSkillDtos = _mapper.Map<UserSkillAndSkillDto>(userSkillAndSkillModel);
+
+            return new UserSkillViewModel
+            {
+                UserSkillAndSkillDto = userSkillAndSkillDtos
             };
         }
         

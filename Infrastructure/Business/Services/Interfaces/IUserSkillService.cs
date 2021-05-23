@@ -9,7 +9,7 @@ namespace Infrastructure.Business.Services.Interfaces
         Task<CreateUpdateUserSkillViewModel> CreateUserSkill
             (UserSkillDto userSkillDto, string userId);
 
-        Task<UserSkillViewModel> GetAllUserSkills
+        Task<UserSkillsViewModel> GetAllUserSkills
             (string userId);
 
         Task DeleteUserSkill
@@ -17,5 +17,8 @@ namespace Infrastructure.Business.Services.Interfaces
 
         Task<CreateUpdateUserSkillViewModel> UpdateUserSkill
             (string userSkillId, UserSkillDto userSkillDto);
+
+        Task<UserSkillViewModel> GetSingleUserSkill
+            (string userId, string userSkillId);
     }
 }

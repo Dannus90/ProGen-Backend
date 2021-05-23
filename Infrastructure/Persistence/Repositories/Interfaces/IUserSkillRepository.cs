@@ -13,5 +13,6 @@ namespace Infrastructure.Persistence.Repositories.Interfaces
 
         Task DeleteUserSkill(string userId, string userSkillId);
         Task<Guid> UpdateUserSkill(string userSkillId, int skillLevel);
+        Task<UserSkillAndSkillModel> GetSingleUserSkill(string userId, string userSkillId);
     }
 }

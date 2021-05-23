@@ -38,7 +38,7 @@ namespace API.Controllers.Data
         
         [HttpGet] //api/v1/general/userskill
         [Route("")]
-        public async Task<ActionResult<UserSkillViewModel>> GetAllUserSkills 
+        public async Task<ActionResult<UserSkillsViewModel>> GetAllUserSkills 
             ()
         {
             var currentUser = HttpContext.User;
@@ -48,6 +48,20 @@ namespace API.Controllers.Data
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
 
             return Ok(await _userSkillService.GetAllUserSkills(userId));
+        }
+        
+        [HttpGet] //api/v1/general/userskill/:userSkillId
+        [Route("{userSkillId}")]
+        public async Task<ActionResult<UserSkillViewModel>> GetSingleUserSkill 
+            (string userSkillId)
+        {
+            var currentUser = HttpContext.User;
+            var userId = currentUser.Claims.FirstOrDefault(c =>
+                c.Type == ClaimTypes.NameIdentifier)?.Value;
+            
+            if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
+
+            return Ok(await _userSkillService.GetSingleUserSkill(userId, userSkillId));
         }
         
         [HttpDelete] //api/v1/general/userskill/:userSkillId

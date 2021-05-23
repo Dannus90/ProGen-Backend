@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
 using Core.Domain.DbModels;
 using Core.Domain.Models;
@@ -68,6 +69,38 @@ namespace Infrastructure.Persistence.Repositories
                     splitOn: "IdString");
 
             return userSkillAndSkillDtos;
+        }
+        
+        public async Task<UserSkillAndSkillModel> GetSingleUserSkill(string userId, string userSkillId)
+        {
+            const string query = @"
+                   SELECT user_skill.id AS IdString,
+                            user_skill.skill_id AS SkillIdString,
+                            user_skill.user_id AS UserIdString,
+                            user_skill.skill_level AS SkillLevel,
+                            skill.id AS IdString,
+                            skill.skill_name AS SkillName
+                    FROM user_skill
+                    INNER JOIN skill ON user_skill.skill_id = skill.id
+                    WHERE user_id = @UserId
+                    AND user_skill.id = @UserSkillId
+                ";
+
+            using var conn = await connectDb(_connectionString);
+            var userSkillAndSkillDto = await
+                conn.QueryAsync<UserSkill, Skill, UserSkillAndSkillModel>
+                (query, (userSkill, Skill) => new UserSkillAndSkillModel
+                    {
+                        UserSkill = userSkill,
+                        Skill = Skill
+                    }, new
+                    {
+                        UserId = userId,
+                        UserSkillId = userSkillId
+                    },
+                    splitOn: "IdString");
+
+            return userSkillAndSkillDto.First();
         }
 
         public async Task DeleteUserSkill(string userId, string userSkillId)
