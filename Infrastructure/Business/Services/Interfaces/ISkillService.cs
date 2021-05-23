@@ -9,9 +9,11 @@ namespace Infrastructure.Business.Services.Interfaces
         Task<CreateSkillViewModel> CreateSkill
             (SkillDto skillDto);
 
-        Task<SkillsViewModel> GetSkillsBySearchQuery
-            (string searchQuery);
+        Task<SkillsViewModel> GetAllSkills();
 
         Task DeleteSkillById(string skillId);
+
+        Task<SkillViewModel> GetSkillBySkillId
+            (string skillId);
     }
 }

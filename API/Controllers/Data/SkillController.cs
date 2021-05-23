@@ -38,8 +38,8 @@ namespace API.Controllers.Data
         
         [HttpGet] //api/v1/general/skill
         [Route("")]
-        public async Task<ActionResult<SkillsViewModel>> GetSkillsBySearchQuery
-            ([FromQuery] string searchQuery)
+        public async Task<ActionResult<SkillsViewModel>> GetAllSkills
+            ()
         {
             var currentUser = HttpContext.User;
             var userId = currentUser.Claims.FirstOrDefault(c =>
@@ -47,7 +47,21 @@ namespace API.Controllers.Data
 
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
 
-            return Ok(await _skillService.GetSkillsBySearchQuery(searchQuery));
+            return Ok(await _skillService.GetAllSkills());
+        }
+        
+        [HttpGet] //api/v1/general/skill
+        [Route("{skillId}")]
+        public async Task<ActionResult<SkillViewModel>> GetSkillBySkillId
+            (string skillId)
+        {
+            var currentUser = HttpContext.User;
+            var userId = currentUser.Claims.FirstOrDefault(c =>
+                c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+            if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
+
+            return Ok(await _skillService.GetSkillBySkillId(skillId));
         }
         
         [HttpDelete] //api/v1/general/skill/:skillId

@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
+using Core.Application.Exceptions;
 using Core.Domain.Dtos;
 using Core.Domain.ViewModels;
 using Infrastructure.Business.Services.Interfaces;
@@ -32,17 +34,35 @@ namespace Infrastructure.Identity.Services
             };
         }
         
-        public async Task<SkillsViewModel> GetSkillsBySearchQuery
-            (string searchQuery)
+        public async Task<SkillsViewModel> GetAllSkills
+            ()
         {
-            var skills = await _skillRepository.GetSkillsBySearchQuery
-                (searchQuery);
+            var skills = await _skillRepository.GetAllSkills
+                ();
             
             var skillsDtos = _mapper.Map<List<SkillDto>>(skills);
 
             return new SkillsViewModel()
             {
                 SkillDtos = skillsDtos
+            };
+        }
+        
+        public async Task<SkillViewModel> GetSkillBySkillId
+            (string skillId)
+        {
+            var skill = await _skillRepository.GetSkillBySkillId
+                (skillId);
+
+            if (skill == null)
+                throw new HttpExceptionResponse
+                    ((int) HttpStatusCode.NotFound, "No skill with the provided id was found.");
+            
+            var skillDto = _mapper.Map<SkillDto>(skill);
+
+            return new SkillViewModel
+            {
+                SkillDto = skillDto
             };
         }
         

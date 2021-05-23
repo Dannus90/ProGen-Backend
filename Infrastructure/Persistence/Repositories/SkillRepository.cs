@@ -37,19 +37,31 @@ namespace Infrastructure.Persistence.Repositories
             return skillId;
         }
         
-        public async Task<IEnumerable<Skill>> GetSkillsBySearchQuery(string searchQuery)
+        public async Task<IEnumerable<Skill>> GetAllSkills()
         {
             const string query = @"
                    SELECT id AS IdString,
                         skill_name AS SkillName
                    FROM skill
-                   WHERE skill_name ILIKE '%' || @SearchQuery || '%';
                 ";
 
             using var conn = await connectDb(_connectionString);
-            return await conn.QueryAsync<Skill>(query, new
+            return await conn.QueryAsync<Skill>(query);
+        }
+
+        public async Task<Skill> GetSkillBySkillId(string skillId)
+        {
+            const string query = @"
+                   SELECT id AS IdString,
+                        skill_name AS SkillName
+                   FROM skill
+                   WHERE id = @Id;
+                ";
+            
+            using var conn = await connectDb(_connectionString);
+            return await conn.QueryFirstOrDefaultAsync<Skill>(query, new
             {
-                SearchQuery = searchQuery
+                Id = skillId
             });
         }
 

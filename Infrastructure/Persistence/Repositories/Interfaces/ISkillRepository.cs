@@ -8,7 +8,9 @@ namespace Infrastructure.Persistence.Repositories.Interfaces
     public interface ISkillRepository
     {
         Task<Guid> CreateSkill(string skillName);
-        Task<IEnumerable<Skill>> GetSkillsBySearchQuery(string searchQuery);
+        Task<IEnumerable<Skill>> GetAllSkills();
         Task DeleteSkillById(string skillId);
+
+        Task<Skill> GetSkillBySkillId(string skillId);
     }
 }
