@@ -115,7 +115,7 @@ namespace Tests.IntegrationsTests.Repositories
 
             educationIds = new List<Guid>();
             
-            educationIds.AddRange(new List<Guid>() 
+            educationIds.AddRange(new List<Guid> 
                 { educationIdFirst, educationIdSecondary, educationIdTertiary });
         }
 
