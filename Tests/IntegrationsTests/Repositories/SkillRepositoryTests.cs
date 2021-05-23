@@ -9,14 +9,12 @@ using NUnit.Framework;
 
 namespace Tests.IntegrationsTests.Repositories
 {
-    
     public class SkillRepositoryTests
     {
         private List<Skill> skills;
         private List<Guid> skillIds;
         private readonly ISkillRepository _skillRepository;
-
-
+        
         public SkillRepositoryTests()
         {
             _skillRepository = new SkillRepository
