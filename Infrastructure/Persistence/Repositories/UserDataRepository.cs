@@ -61,7 +61,8 @@ namespace Infrastructure.Persistence.Repositories
                 {
                     UserId = userId
                 }, splitOn: "IdString");
-            return result.ToList()[0];
+
+            return result.Any() ? result.ToList()[0] : new FullUserInformation();
         }
 
         public async Task<UserData> UpdateUserData(string userId, UserDataModel userData)

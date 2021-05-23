@@ -144,8 +144,10 @@ namespace Infrastructure.Persistence
                 {
                     UserId = userId
                 }, splitOn: "IdString");
-            
-            var fullUserInformation = fullUserInformations.ToList()[0];
+
+            var fullUserInformation =
+                fullUserInformations.Any() ? fullUserInformations.ToList()[0] : new FullUserInformation();
+                
 
             // SET FULL USER INFORMATION
             fullCvInformationViewModel.FullUserInformationDto = _mapper.Map<FullUserInformationDto>
@@ -186,7 +188,8 @@ namespace Infrastructure.Persistence
             // SET OTHER INFORMATION
             fullCvInformationViewModel.OtherInformationDto = _mapper.Map<OtherInformationDto>(otherInformation);
 
-            var userPresentation = await conn.QueryFirstOrDefaultAsync<UserPresentation>(userPresentationQuery, new
+            var userPresentation = await conn.QueryFirstOrDefaultAsync<UserPresentation>
+            (userPresentationQuery, new
             {
                 UserId = userId
             });

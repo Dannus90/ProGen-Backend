@@ -100,7 +100,7 @@ namespace Infrastructure.Persistence.Repositories
                     },
                     splitOn: "IdString");
 
-            return userSkillAndSkillDto.First();
+            return !userSkillAndSkillDto.Any() ? new UserSkillAndSkillModel() : userSkillAndSkillDto.First();
         }
 
         public async Task DeleteUserSkill(string userId, string userSkillId)
