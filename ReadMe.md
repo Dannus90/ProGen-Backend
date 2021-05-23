@@ -31,6 +31,9 @@ an appsettings file that has the connectionstring and other required environment
 It should look exactly as the other files but with production data. 
 The one I use locally I call appsettings.LocalProd.json.
 
+If you just use the Prod file for seeding you can temporarily give it the connectionstring
+of the development appsettings because it cannot be empty or the program won't start. 
+
 ### Seeding
 In order to successfully run the command down below you have to make progen to a 
 super user. See the link up above to make progen a superuser. 
