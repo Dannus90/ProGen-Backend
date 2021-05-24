@@ -5,6 +5,10 @@ namespace Core.Domain.ViewModels
 {
     public class UserSkillsViewModel
     {
+        public UserSkillsViewModel()
+        {
+            UserSkillAndSkillDtos = new List<UserSkillAndSkillDto>();
+        }
         public IEnumerable<UserSkillAndSkillDto> UserSkillAndSkillDtos { get; set; }
     }
 }
