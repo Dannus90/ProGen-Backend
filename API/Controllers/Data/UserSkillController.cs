@@ -12,7 +12,7 @@ namespace API.Controllers.Data
 {
     [ApiController]
     [Authorize]
-    [Route("api/v1/general/[controller]")]
+    [Route("api/v1/user/[controller]")]
     public class UserSkillController : ControllerBase
     {
         private readonly IUserSkillService _userSkillService;
@@ -22,7 +22,7 @@ namespace API.Controllers.Data
             _userSkillService = userSkillService;
         }
 
-        [HttpPost] //api/v1/general/userskill
+        [HttpPost] //api/v1/user/userskill
         [Route("")]
         public async Task<ActionResult<CreateUpdateUserSkillViewModel>> CreateUserSkill 
             (UserSkillDto userSkillDto)
@@ -36,7 +36,7 @@ namespace API.Controllers.Data
             return Ok(await _userSkillService.CreateUserSkill(userSkillDto, userId));
         }
         
-        [HttpGet] //api/v1/general/userskill
+        [HttpGet] //api/v1/user/userskill
         [Route("")]
         public async Task<ActionResult<UserSkillsViewModel>> GetAllUserSkills 
             ()
@@ -50,7 +50,7 @@ namespace API.Controllers.Data
             return Ok(await _userSkillService.GetAllUserSkills(userId));
         }
         
-        [HttpGet] //api/v1/general/userskill/:userSkillId
+        [HttpGet] //api/v1/user/userskill/:userSkillId
         [Route("{userSkillId}")]
         public async Task<ActionResult<UserSkillViewModel>> GetSingleUserSkill 
             (string userSkillId)
@@ -64,7 +64,7 @@ namespace API.Controllers.Data
             return Ok(await _userSkillService.GetSingleUserSkill(userId, userSkillId));
         }
         
-        [HttpDelete] //api/v1/general/userskill/:userSkillId
+        [HttpDelete] //api/v1/user/userskill/:userSkillId
         [Route("{userSkillId}")]
         public async Task<ActionResult<UserSkillViewModel>> DeleteUserSkill 
             (string userSkillId)
@@ -80,7 +80,7 @@ namespace API.Controllers.Data
             return NoContent();
         }
         
-        [HttpPatch] //api/v1/general/userskill/:userSkillId
+        [HttpPatch] //api/v1/user/userskill/:userSkillId
         [Route("{userSkillId}")]
         public async Task<ActionResult<CreateUpdateUserSkillViewModel>> UpdateUserSkill 
             (string userSkillId, UserSkillDto userSkillDto)

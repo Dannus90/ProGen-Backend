@@ -1,6 +1,9 @@
+using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
+using Core.Application.Exceptions;
 using Core.Domain.Dtos;
 using Core.Domain.ViewModels;
 using Infrastructure.Business.Services.Interfaces;
@@ -52,11 +55,14 @@ namespace Infrastructure.Identity.Services
             var userSkillAndSkillModel = await _userSkillRepository.GetSingleUserSkill
                 (userId, userSkillId);
 
-            var userSkillAndSkillDtos = _mapper.Map<UserSkillAndSkillDto>(userSkillAndSkillModel);
+            if (Guid.Empty == userSkillAndSkillModel.UserSkill.Id)
+                throw new HttpExceptionResponse((int) HttpStatusCode.NotFound, "Not Found");
+
+            var userSkillAndSkillDto = _mapper.Map<UserSkillAndSkillDto>(userSkillAndSkillModel);
 
             return new UserSkillViewModel
             {
-                UserSkillAndSkillDto = userSkillAndSkillDtos
+                UserSkillAndSkillDto = userSkillAndSkillDto
             };
         }
         

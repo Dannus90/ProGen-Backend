@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -65,7 +66,7 @@ namespace API.Controllers.Data
         
         [HttpPut] //api/v1/user/certificate/:certificateId
         [Route("{certificateId}")]
-        public async Task<ActionResult<CreateUpdateCertificateViewModel>> UpdateCertificateForUser
+        public async Task<ActionResult<CertificateViewModel>> UpdateCertificateForUser
             (string certificateId, CertificateDto certificateDto)
         {
             var currentUser = HttpContext.User;

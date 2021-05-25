@@ -30,7 +30,7 @@ namespace API.Controllers.Data
             var currentUser = HttpContext.User;
             var userId = currentUser.Claims.FirstOrDefault(c =>
                 c.Type == ClaimTypes.NameIdentifier)?.Value;
-
+            
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
 
             return Ok(await _skillService.CreateSkill(skillDto));
@@ -66,7 +66,7 @@ namespace API.Controllers.Data
         
         [HttpDelete] //api/v1/general/skill/:skillId
         [Route("{skillId}")]
-        public async Task<ActionResult<SkillsViewModel>> DeleteSkillById
+        public async Task<ActionResult> DeleteSkillById
             (string skillId)
         {
             var currentUser = HttpContext.User;
