@@ -322,6 +322,86 @@ namespace Core.Context
             };
             
             modelBuilder.Entity<Certificate>().HasData(certificates);
+            
+            //////////////////////////////////
+            ///         SEED Skills        ///
+            //////////////////////////////////
+            var skills = new List<Skill>()
+            {
+                new()
+                {
+                    Id = Guid.NewGuid(),
+                    SkillName = "Javascript"
+                },
+                new()
+                {
+                    Id = Guid.NewGuid(),
+                    SkillName = "React"
+                },
+                new()
+                {
+                    Id = Guid.NewGuid(),
+                    SkillName = "C#"
+                },
+                new()
+                {
+                    Id = Guid.NewGuid(),
+                    SkillName = "SQL"
+                },
+                new()
+                {
+                    Id = Guid.NewGuid(),
+                    SkillName = "CSS"
+                },
+            };
+            
+            modelBuilder.Entity<Skill>().HasData(skills);
+            
+            modelBuilder.Entity<Certificate>().HasData(certificates);
+            
+            //////////////////////////////////
+            ///         SEED Skills        ///
+            //////////////////////////////////
+            var userSkills = new List<UserSkill>()
+            {
+                new()
+                {
+                    Id = Guid.NewGuid(),
+                    SkillId = skills[0].Id,
+                    SkillLevel = 4,
+                    UserId = users[0].Id
+                },
+                new()
+                {
+                    Id = Guid.NewGuid(),
+                    SkillId = skills[1].Id,
+                    SkillLevel = 3,
+                    UserId = users[0].Id
+                },
+                new()
+                {
+                    Id = Guid.NewGuid(),
+                    SkillId = skills[2].Id,
+                    SkillLevel = 2,
+                    UserId = users[0].Id
+                },
+                new()
+                {
+                    Id = Guid.NewGuid(),
+                    SkillId = skills[3].Id,
+                    SkillLevel = 2,
+                    UserId = users[0].Id
+                },
+                new()
+                {
+                    Id = Guid.NewGuid(),
+                    SkillId = skills[4].Id,
+                    SkillLevel = 5,
+                    UserId = users[0].Id
+                },
+            };
+            
+            modelBuilder.Entity<UserSkill>().HasData(userSkills);
         }
     }
 }
