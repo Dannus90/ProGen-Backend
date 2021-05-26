@@ -280,6 +280,48 @@ namespace Core.Context
             };
             
             modelBuilder.Entity<Language>().HasData(languages);
+            
+            //////////////////////////////////
+            ///      SEED CERTIFICATES     ///
+            //////////////////////////////////
+            var certificates = new List<Certificate>()
+            {
+                new()
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = users[0].Id,
+                    Organisation = "Udemy",
+                    IdentificationId = "werg0wrg0wuerrg0whrg",
+                    ReferenceAddress = "www.google.com",
+                    CertificateNameEn = "Javascript for beginners",
+                    CertificateNameSv = "Javascript för nybörjare",
+                    DateIssued = DateTime.Now.AddDays(-100)
+                },
+                new()
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = users[0].Id,
+                    Organisation = "Udemy",
+                    IdentificationId = "werg0wrg0wuerrg0whrg2",
+                    ReferenceAddress = "www.google.com",
+                    CertificateNameEn = "Css for beginners",
+                    CertificateNameSv = "Css för nybörjare",
+                    DateIssued = DateTime.Now.AddDays(-150)
+                },
+                new()
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = users[0].Id,
+                    Organisation = "Udemy",
+                    IdentificationId = "werg0wrg0wuerrg0whrg",
+                    ReferenceAddress = "www.google.com",
+                    CertificateNameEn = "React for beginners",
+                    CertificateNameSv = "React för nybörjare",
+                    DateIssued = DateTime.Now.AddDays(-200)
+                }
+            };
+            
+            modelBuilder.Entity<Certificate>().HasData(certificates);
         }
     }
 }
