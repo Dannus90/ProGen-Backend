@@ -69,12 +69,12 @@ namespace Infrastructure.Identity.Services
         public async Task<CreateUpdateUserSkillViewModel> UpdateUserSkill
             (string userSkillId, UserSkillDto userSkillDto)
         {
-            var skillIdAfterUpdate = await _userSkillRepository.UpdateUserSkill
+            var userSkillIdAfterUpdate = await _userSkillRepository.UpdateUserSkill
                 (userSkillId, userSkillDto.SkillLevel);
             
-            return new CreateUpdateUserSkillViewModel()
+            return new CreateUpdateUserSkillViewModel
             {
-                UserSkillId = skillIdAfterUpdate
+                UserSkillId = userSkillIdAfterUpdate
             };
         }
         

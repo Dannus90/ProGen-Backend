@@ -25,6 +25,10 @@ namespace Infrastructure.Identity.Services
         public async Task<CreateSkillViewModel> CreateSkill
             (SkillDto skillDto)
         {
+            if (skillDto.SkillName.Length > 50 || skillDto.SkillName.Length < 2)
+                throw new HttpExceptionResponse((int )HttpStatusCode.BadRequest,
+                    "Invalid length. Max 50 and min 2 is accepted.");
+            
             var skillId = await _skillRepository.CreateSkill
                 (skillDto.SkillName);
 

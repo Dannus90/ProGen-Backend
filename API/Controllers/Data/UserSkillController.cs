@@ -1,4 +1,6 @@
+using System;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Core.Application.Exceptions;
@@ -27,6 +29,11 @@ namespace API.Controllers.Data
         public async Task<ActionResult<CreateUpdateUserSkillViewModel>> CreateUserSkill 
             (UserSkillDto userSkillDto)
         {
+            var isValid = Guid.TryParse(userSkillDto.SkillId.ToString(), out var guidOutput);
+            
+            if (!isValid)
+                throw new HttpExceptionResponse((int) HttpStatusCode.BadRequest, "Invalid skillId provided");
+            
             var currentUser = HttpContext.User;
             var userId = currentUser.Claims.FirstOrDefault(c =>
                 c.Type == ClaimTypes.NameIdentifier)?.Value;

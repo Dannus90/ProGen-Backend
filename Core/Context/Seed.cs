@@ -356,9 +356,7 @@ namespace Core.Context
             };
             
             modelBuilder.Entity<Skill>().HasData(skills);
-            
-            modelBuilder.Entity<Certificate>().HasData(certificates);
-            
+
             //////////////////////////////////
             ///         SEED Skills        ///
             //////////////////////////////////

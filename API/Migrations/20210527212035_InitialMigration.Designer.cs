@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210522211159_InitialMigration")]
+    [Migration("20210527212035_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -81,6 +81,47 @@ namespace API.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("certificate");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "2064cd05-e91c-4577-8bc0-a8ca05a42e1d",
+                            CertificateNameEn = "Javascript for beginners",
+                            CertificateNameSv = "Javascript för nybörjare",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateIssued = new DateTime(2021, 2, 16, 23, 20, 34, 669, DateTimeKind.Local).AddTicks(6590),
+                            IdentificationId = "werg0wrg0wuerrg0whrg",
+                            Organisation = "Udemy",
+                            ReferenceAddress = "www.google.com",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "d3b56b95-995c-4d77-906f-c51410f86a2e"
+                        },
+                        new
+                        {
+                            Id = "d02768a6-d9a1-4be9-84c8-e2bf83b6af1c",
+                            CertificateNameEn = "Css for beginners",
+                            CertificateNameSv = "Css för nybörjare",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateIssued = new DateTime(2020, 12, 28, 23, 20, 34, 669, DateTimeKind.Local).AddTicks(7050),
+                            IdentificationId = "werg0wrg0wuerrg0whrg2",
+                            Organisation = "Udemy",
+                            ReferenceAddress = "www.google.com",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "d3b56b95-995c-4d77-906f-c51410f86a2e"
+                        },
+                        new
+                        {
+                            Id = "2a491cbb-27bc-44b5-ac4d-0ae02026af24",
+                            CertificateNameEn = "React for beginners",
+                            CertificateNameSv = "React för nybörjare",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateIssued = new DateTime(2020, 11, 8, 23, 20, 34, 669, DateTimeKind.Local).AddTicks(7070),
+                            IdentificationId = "werg0wrg0wuerrg0whrg",
+                            Organisation = "Udemy",
+                            ReferenceAddress = "www.google.com",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "d3b56b95-995c-4d77-906f-c51410f86a2e"
+                        });
                 });
 
             modelBuilder.Entity("Core.Domain.DbModels.Education", b =>
@@ -189,6 +230,74 @@ namespace API.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("education");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "8884d084-b372-4751-bdb6-4d7c1d65c0e3",
+                            CityEn = "Gothenburg",
+                            CitySv = "Göteborg",
+                            CountryEn = "Sweden",
+                            CountrySv = "Sverige",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateEnded = new DateTime(2020, 9, 19, 23, 20, 34, 668, DateTimeKind.Local).AddTicks(1740),
+                            DateStarted = new DateTime(2020, 4, 22, 23, 20, 34, 662, DateTimeKind.Local).AddTicks(8010),
+                            DescriptionEn = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. ",
+                            DescriptionSv = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. ",
+                            EducationNameEn = "Social Sciences",
+                            EducationNameSv = "Social vetenskap",
+                            ExamNameEn = "Bacheclor with social science",
+                            ExamNameSv = "Kandidatexamen inom socialvetenskap",
+                            Grade = "VG",
+                            SubjectAreaEn = "Behavioral science",
+                            SubjectAreaSv = "Beteendevetenskap",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "d3b56b95-995c-4d77-906f-c51410f86a2e"
+                        },
+                        new
+                        {
+                            Id = "9fc5909c-9ef0-49e7-846a-ef7136fa7cf6",
+                            CityEn = "Gothenburg",
+                            CitySv = "Göteborg",
+                            CountryEn = "Sweden",
+                            CountrySv = "Sverige",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateEnded = new DateTime(2020, 4, 21, 23, 20, 34, 668, DateTimeKind.Local).AddTicks(2330),
+                            DateStarted = new DateTime(2019, 10, 5, 23, 20, 34, 668, DateTimeKind.Local).AddTicks(2320),
+                            DescriptionEn = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. ",
+                            DescriptionSv = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. ",
+                            EducationNameEn = "Social Sciences",
+                            EducationNameSv = "Social vetenskap",
+                            ExamNameEn = "Bacheclor with social science",
+                            ExamNameSv = "Kandidatexamen inom socialvetenskap",
+                            Grade = "VG",
+                            SubjectAreaEn = "Behavioral science",
+                            SubjectAreaSv = "Beteendevetenskap",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "d3b56b95-995c-4d77-906f-c51410f86a2e"
+                        },
+                        new
+                        {
+                            Id = "d65be854-e869-49eb-8e61-d9a1fa1e4ada",
+                            CityEn = "Gothenburg",
+                            CitySv = "Göteborg",
+                            CountryEn = "Sweden",
+                            CountrySv = "Sverige",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateEnded = new DateTime(2019, 10, 4, 23, 20, 34, 668, DateTimeKind.Local).AddTicks(2340),
+                            DateStarted = new DateTime(2019, 3, 19, 23, 20, 34, 668, DateTimeKind.Local).AddTicks(2340),
+                            DescriptionEn = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. ",
+                            DescriptionSv = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. ",
+                            EducationNameEn = "Social Sciences",
+                            EducationNameSv = "Social vetenskap",
+                            ExamNameEn = "Bacheclor with social science",
+                            ExamNameSv = "Kandidatexamen inom socialvetenskap",
+                            Grade = "VG",
+                            SubjectAreaEn = "Behavioral science",
+                            SubjectAreaSv = "Beteende vetenskap",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "d3b56b95-995c-4d77-906f-c51410f86a2e"
+                        });
                 });
 
             modelBuilder.Entity("Core.Domain.DbModels.Language", b =>
@@ -218,6 +327,36 @@ namespace API.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("language");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "09ea480a-8b82-4f0c-9772-51483e2c3686",
+                            LanguageEn = "Swedish",
+                            LanguageSv = "Svenska",
+                            UserId = "d3b56b95-995c-4d77-906f-c51410f86a2e"
+                        },
+                        new
+                        {
+                            Id = "231d53e5-d2c4-4c6a-98a7-0215eea69c49",
+                            LanguageEn = "English",
+                            LanguageSv = "Engelska",
+                            UserId = "d3b56b95-995c-4d77-906f-c51410f86a2e"
+                        },
+                        new
+                        {
+                            Id = "4a5986e9-7c95-4ea4-9fe7-e8d913a829b9",
+                            LanguageEn = "Spanish",
+                            LanguageSv = "Spanska",
+                            UserId = "d3b56b95-995c-4d77-906f-c51410f86a2e"
+                        },
+                        new
+                        {
+                            Id = "09bee2a4-eee9-4c32-a2d0-d240896ce464",
+                            LanguageEn = "French",
+                            LanguageSv = "Franska",
+                            UserId = "d3b56b95-995c-4d77-906f-c51410f86a2e"
+                        });
                 });
 
             modelBuilder.Entity("Core.Domain.DbModels.OtherInformation", b =>
@@ -260,6 +399,17 @@ namespace API.Migrations
                         .IsUnique();
 
                     b.ToTable("other_information");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "a4a24ca7-d011-40e0-9f00-c6641cf27688",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DrivingLicenseEn = "Driving license B",
+                            DrivingLicenseSv = "Körkort B",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "d3b56b95-995c-4d77-906f-c51410f86a2e"
+                        });
                 });
 
             modelBuilder.Entity("Core.Domain.DbModels.RefreshToken", b =>
@@ -313,6 +463,33 @@ namespace API.Migrations
                         .IsUnique();
 
                     b.ToTable("skill");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "ff0ad6f0-df3b-46e5-8930-bf76983fc8b4",
+                            SkillName = "Javascript"
+                        },
+                        new
+                        {
+                            Id = "3ed64509-7447-4961-a509-5d09581e79eb",
+                            SkillName = "React"
+                        },
+                        new
+                        {
+                            Id = "145b5b77-3da9-4d08-870a-be26a8a3b338",
+                            SkillName = "C#"
+                        },
+                        new
+                        {
+                            Id = "d545c804-64b9-47f2-9a14-448318981eb0",
+                            SkillName = "SQL"
+                        },
+                        new
+                        {
+                            Id = "8092fe80-6e34-426b-8775-2ee15acaa3b2",
+                            SkillName = "CSS"
+                        });
                 });
 
             modelBuilder.Entity("Core.Domain.DbModels.User", b =>
@@ -364,6 +541,18 @@ namespace API.Migrations
                         .IsUnique();
 
                     b.ToTable("user_base");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "d3b56b95-995c-4d77-906f-c51410f86a2e",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "testuser@gmail.com",
+                            FirstName = "Daniel",
+                            LastName = "Persson",
+                            Password = "$2a$10$lmiYrmWUDf7klCsGo0VP.uI9DcK.5fUy2Ld34ahg8lQnIanlzThcy",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("Core.Domain.DbModels.UserData", b =>
@@ -440,6 +629,25 @@ namespace API.Migrations
                         .IsUnique();
 
                     b.ToTable("user_data");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "8c5c0b6c-190f-4aec-97f0-f618f9a97115",
+                            AddressZipCode = "Ponnygatan 3, 43131",
+                            CityEn = "Gothenburg",
+                            CitySv = "Göteborg",
+                            CountryEn = "Sweden",
+                            CountrySv = "Sverige",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EmailCv = "persson.daniel.1990@gmail.com",
+                            PhoneNumber = "073-3249826",
+                            ProfileImage = "",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "d3b56b95-995c-4d77-906f-c51410f86a2e",
+                            WorkTitleEn = "Software developer",
+                            WorkTitleSv = "Mjukvaru utvecklare"
+                        });
                 });
 
             modelBuilder.Entity("Core.Domain.DbModels.UserPresentation", b =>
@@ -482,6 +690,17 @@ namespace API.Migrations
                         .IsUnique();
 
                     b.ToTable("user_presentation");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "d3caeae4-1435-4cf8-8602-d11df03d0cfa",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PresentationEn = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                            PresentationSv = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "d3b56b95-995c-4d77-906f-c51410f86a2e"
+                        });
                 });
 
             modelBuilder.Entity("Core.Domain.DbModels.UserSkill", b =>
@@ -515,6 +734,43 @@ namespace API.Migrations
                         .IsUnique();
 
                     b.ToTable("user_skill");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "a8f5fc7b-2ea0-4026-ae41-cc453701e95a",
+                            SkillId = "ff0ad6f0-df3b-46e5-8930-bf76983fc8b4",
+                            SkillLevel = (short)4,
+                            UserId = "d3b56b95-995c-4d77-906f-c51410f86a2e"
+                        },
+                        new
+                        {
+                            Id = "b6efd813-ab29-4478-bb35-4de1f91aa24f",
+                            SkillId = "3ed64509-7447-4961-a509-5d09581e79eb",
+                            SkillLevel = (short)3,
+                            UserId = "d3b56b95-995c-4d77-906f-c51410f86a2e"
+                        },
+                        new
+                        {
+                            Id = "fded5f09-ff13-4652-bbed-91d01ba87faa",
+                            SkillId = "145b5b77-3da9-4d08-870a-be26a8a3b338",
+                            SkillLevel = (short)2,
+                            UserId = "d3b56b95-995c-4d77-906f-c51410f86a2e"
+                        },
+                        new
+                        {
+                            Id = "577d52cd-a9a4-4e78-aaff-17c1c709b617",
+                            SkillId = "d545c804-64b9-47f2-9a14-448318981eb0",
+                            SkillLevel = (short)2,
+                            UserId = "d3b56b95-995c-4d77-906f-c51410f86a2e"
+                        },
+                        new
+                        {
+                            Id = "641e641b-d2ef-4d75-8f27-e5c10a128e31",
+                            SkillId = "8092fe80-6e34-426b-8775-2ee15acaa3b2",
+                            SkillLevel = (short)5,
+                            UserId = "d3b56b95-995c-4d77-906f-c51410f86a2e"
+                        });
                 });
 
             modelBuilder.Entity("Core.Domain.DbModels.WorkExperience", b =>
@@ -608,6 +864,65 @@ namespace API.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("work_experience");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "69794072-4bbe-46a6-88ec-4499828d75ab",
+                            CityEn = "GothenBurg",
+                            CitySv = "Göteborg",
+                            CompanyName = "FrontEdge IT",
+                            CountryEn = "Sweden",
+                            CountrySv = "Sverige",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateEnded = new DateTime(2020, 11, 7, 23, 20, 34, 668, DateTimeKind.Local).AddTicks(9240),
+                            DateStarted = new DateTime(2020, 4, 22, 23, 20, 34, 668, DateTimeKind.Local).AddTicks(8800),
+                            DescriptionEn = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
+                            DescriptionSv = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
+                            EmploymentRate = "FullTime",
+                            RoleEn = "Software Developer",
+                            RoleSv = "Mjukvaruutvecklare",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "d3b56b95-995c-4d77-906f-c51410f86a2e"
+                        },
+                        new
+                        {
+                            Id = "6f47bfea-5e88-4a08-9ec7-360e6ce1da8b",
+                            CityEn = "Gothenburg",
+                            CitySv = "Göteborg",
+                            CompanyName = "Stena Line",
+                            CountryEn = "Sweden",
+                            CountrySv = "Sverige",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateEnded = new DateTime(2021, 4, 7, 23, 20, 34, 668, DateTimeKind.Local).AddTicks(9700),
+                            DateStarted = new DateTime(2020, 11, 8, 23, 20, 34, 668, DateTimeKind.Local).AddTicks(9690),
+                            DescriptionEn = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
+                            DescriptionSv = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
+                            EmploymentRate = "PartTime",
+                            RoleEn = "Software developer",
+                            RoleSv = "Mjukvaruutvecklare",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "d3b56b95-995c-4d77-906f-c51410f86a2e"
+                        },
+                        new
+                        {
+                            Id = "27aa91c2-bdc7-4af2-82cc-b5666457ae3c",
+                            CityEn = "Gothenburg",
+                            CitySv = "Göteborg",
+                            CompanyName = "FrontEdge IT",
+                            CountryEn = "Sweden",
+                            CountrySv = "Sverige",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateEnded = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateStarted = new DateTime(2021, 4, 8, 23, 20, 34, 668, DateTimeKind.Local).AddTicks(9700),
+                            DescriptionEn = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
+                            DescriptionSv = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
+                            EmploymentRate = "Internship",
+                            RoleEn = "Software developer",
+                            RoleSv = "Mjukvaruutvecklare",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "d3b56b95-995c-4d77-906f-c51410f86a2e"
+                        });
                 });
 
             modelBuilder.Entity("Core.Domain.DbModels.Certificate", b =>
