@@ -127,6 +127,32 @@ namespace Infrastructure.Persistence
                     FROM user_presentation WHERE user_id = @UserId;  
                 ";
             
+            const string userSkillAndSkillQuery = @"
+                   SELECT user_skill.id AS IdString,
+                            user_skill.skill_id AS SkillIdString,
+                            user_skill.user_id AS UserIdString,
+                            user_skill.skill_level AS SkillLevel,
+                            skill.id AS IdString,
+                            skill.skill_name AS SkillName
+                    FROM user_skill
+                    INNER JOIN skill ON user_skill.skill_id = skill.id
+                    WHERE user_id = @UserId
+                ";
+            
+            const string certificatesQuery = @"
+                   SELECT id AS IdString,
+                            user_id AS UserIdString,
+                            certificate_name_sv AS CertificateNameSv,
+                            certificate_name_en AS CertificateNameEn,
+                            organisation AS Organisation,
+                            identification_id AS IdentificationId,
+                            reference_address AS ReferenceAddress,
+                            date_issued AS DateIssued,
+                            created_at AS CreatedAt,
+                            updated_at AS UpdatedAt
+                    FROM certificate WHERE user_id = @UserId;
+                ";
+            
             var fullCvInformationViewModel = new FullCvInformationViewModel();
 
             using var conn = await connectDb(_connectionString);
@@ -195,7 +221,32 @@ namespace Infrastructure.Persistence
             });
             
             // SET USER PRESENTATION
-            fullCvInformationViewModel.UserPresentationDto = _mapper.Map<UserPresentationDto>(userPresentation);
+            fullCvInformationViewModel.UserPresentationDto = _mapper
+                .Map<UserPresentationDto>(userPresentation);
+            
+            var userSkillAndSkillDtos = await
+                conn.QueryAsync<UserSkill, Skill, UserSkillAndSkillModel>
+                (userSkillAndSkillQuery, (userSkill, Skill) => new UserSkillAndSkillModel
+                    {
+                        UserSkill = userSkill,
+                        Skill = Skill
+                    }, new
+                    {
+                        UserId = userId
+                    },
+                    splitOn: "IdString");
+            
+            // SET USER SKILL AND USER SKILL DTOS
+            fullCvInformationViewModel.UserSkillAndSkillDtos = _mapper
+                .Map<List<UserSkillAndSkillDto>>(userSkillAndSkillDtos);
+            
+            var certificates = await conn.QueryAsync<Certificate>(certificatesQuery, new
+            {
+                UserId = userId
+            });
+            
+            fullCvInformationViewModel.CertificateDtos = _mapper
+                .Map<List<CertificateDto>>(certificates);
 
             transaction.Commit();
 
