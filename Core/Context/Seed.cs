@@ -353,6 +353,26 @@ namespace Core.Context
                     Id = Guid.NewGuid(),
                     SkillName = "CSS"
                 },
+                new()
+                {
+                    Id = Guid.NewGuid(),
+                    SkillName = "NextJS"
+                },
+                new()
+                {
+                    Id = Guid.NewGuid(),
+                    SkillName = "MySql"
+                },
+                new()
+                {
+                    Id = Guid.NewGuid(),
+                    SkillName = "Typescript"
+                },
+                new()
+                {
+                    Id = Guid.NewGuid(),
+                    SkillName = "Python"
+                }
             };
             
             modelBuilder.Entity<Skill>().HasData(skills);
@@ -395,6 +415,34 @@ namespace Core.Context
                     Id = Guid.NewGuid(),
                     SkillId = skills[4].Id,
                     SkillLevel = 5,
+                    UserId = users[0].Id
+                },
+                new()
+                {
+                    Id = Guid.NewGuid(),
+                    SkillId = skills[5].Id,
+                    SkillLevel = 1,
+                    UserId = users[0].Id
+                },
+                new()
+                {
+                    Id = Guid.NewGuid(),
+                    SkillId = skills[6].Id,
+                    SkillLevel = 1,
+                    UserId = users[0].Id
+                },
+                new()
+                {
+                    Id = Guid.NewGuid(),
+                    SkillId = skills[7].Id,
+                    SkillLevel = 2,
+                    UserId = users[0].Id
+                },
+                new()
+                {
+                    Id = Guid.NewGuid(),
+                    SkillId = skills[8].Id,
+                    SkillLevel = 3,
                     UserId = users[0].Id
                 },
             };
