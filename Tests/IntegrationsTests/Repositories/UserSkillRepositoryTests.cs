@@ -142,19 +142,21 @@ namespace Tests.IntegrationsTests.Repositories
             Assert.AreEqual(skillName, retrievedUserSkill.Skill.SkillName.Trim());
             
             // Clean up
-            await _userSkillRepository.DeleteUserSkill
-                (setupUserId.ToString(), retrievedUserSkillId.ToString());
+            var userSkillIdAfterDelete = await _userSkillRepository.DeleteUserSkill
+                (setupUserId.ToString(), retrievedUserSkillId.ToString().Trim());
             await _skillRepository.DeleteSkillById
                 (skillId.ToString());
             
+            
+
             // Assert clean up
             Assert.IsNull(await _skillRepository.GetSkillBySkillId
                 (skillId.ToString()));
 
             var userSkill = await _userSkillRepository.GetSingleUserSkill
-                (setupUserId.ToString(), retrievedUserSkillId.ToString());
-
-            Assert.IsNull(userSkill);
+                (setupUserId.ToString(), userSkillIdAfterDelete.ToString().Trim());
+            
+            Assert.IsNull(userSkill.Skill.SkillName);
         }
         
         [Test]
