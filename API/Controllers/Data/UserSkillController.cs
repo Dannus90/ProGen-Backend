@@ -26,7 +26,7 @@ namespace API.Controllers.Data
 
         [HttpPost] //api/v1/user/userskill
         [Route("")]
-        public async Task<ActionResult<CreateUpdateUserSkillViewModel>> CreateUserSkill 
+        public async Task<ActionResult<CreateUpdateDeleteUserSkillViewModel>> CreateUserSkill 
             (UserSkillDto userSkillDto)
         {
             var isValid = Guid.TryParse(userSkillDto.SkillId.ToString(), out var guidOutput);
@@ -73,7 +73,7 @@ namespace API.Controllers.Data
         
         [HttpDelete] //api/v1/user/userskill/:userSkillId
         [Route("{userSkillId}")]
-        public async Task<ActionResult<UserSkillViewModel>> DeleteUserSkill 
+        public async Task<ActionResult<CreateUpdateDeleteUserSkillViewModel>> DeleteUserSkill 
             (string userSkillId)
         {
             var currentUser = HttpContext.User;
@@ -82,14 +82,12 @@ namespace API.Controllers.Data
             
             if (userId == null) throw new HttpExceptionResponse(401, "No userId provided");
 
-            await _userSkillService.DeleteUserSkill(userId, userSkillId);
-
-            return NoContent();
+            return Ok(await _userSkillService.DeleteUserSkill(userId, userSkillId));
         }
         
         [HttpPatch] //api/v1/user/userskill/:userSkillId
         [Route("{userSkillId}")]
-        public async Task<ActionResult<CreateUpdateUserSkillViewModel>> UpdateUserSkill 
+        public async Task<ActionResult<CreateUpdateDeleteUserSkillViewModel>> UpdateUserSkill 
             (string userSkillId, UserSkillDto userSkillDto)
         {
             var currentUser = HttpContext.User;

@@ -154,7 +154,7 @@ namespace Tests.IntegrationsTests.Repositories
             var userSkill = await _userSkillRepository.GetSingleUserSkill
                 (setupUserId.ToString(), retrievedUserSkillId.ToString());
 
-            Assert.IsNull(userSkill.UserSkill);
+            Assert.IsNull(userSkill);
         }
         
         [Test]

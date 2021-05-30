@@ -6,16 +6,16 @@ namespace Infrastructure.Business.Services.Interfaces
 {
     public interface IUserSkillService
     {
-        Task<CreateUpdateUserSkillViewModel> CreateUserSkill
+        Task<CreateUpdateDeleteUserSkillViewModel> CreateUserSkill
             (UserSkillDto userSkillDto, string userId);
 
         Task<UserSkillsViewModel> GetAllUserSkills
             (string userId);
 
-        Task DeleteUserSkill
+        Task<CreateUpdateDeleteUserSkillViewModel> DeleteUserSkill
             (string userId, string userSkillId);
 
-        Task<CreateUpdateUserSkillViewModel> UpdateUserSkill
+        Task<CreateUpdateDeleteUserSkillViewModel> UpdateUserSkill
             (string userSkillId, UserSkillDto userSkillDto);
 
         Task<UserSkillViewModel> GetSingleUserSkill

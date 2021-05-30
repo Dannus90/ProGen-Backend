@@ -23,13 +23,13 @@ namespace Infrastructure.Identity.Services
             _mapper = mapper;
         }
 
-        public async Task<CreateUpdateUserSkillViewModel> CreateUserSkill
+        public async Task<CreateUpdateDeleteUserSkillViewModel> CreateUserSkill
             (UserSkillDto userSkillDto, string userId)
         {
             var userSkillId = await _userSkillRepository.CreateUserSkill
                 (userSkillDto.SkillId, userSkillDto.SkillLevel, userId);
 
-            return new CreateUpdateUserSkillViewModel
+            return new CreateUpdateDeleteUserSkillViewModel
             {
                 UserSkillId = userSkillId
             };
@@ -66,23 +66,28 @@ namespace Infrastructure.Identity.Services
             };
         }
         
-        public async Task<CreateUpdateUserSkillViewModel> UpdateUserSkill
+        public async Task<CreateUpdateDeleteUserSkillViewModel> UpdateUserSkill
             (string userSkillId, UserSkillDto userSkillDto)
         {
             var userSkillIdAfterUpdate = await _userSkillRepository.UpdateUserSkill
                 (userSkillId, userSkillDto.SkillLevel);
             
-            return new CreateUpdateUserSkillViewModel
+            return new CreateUpdateDeleteUserSkillViewModel
             {
                 UserSkillId = userSkillIdAfterUpdate
             };
         }
         
-        public async Task DeleteUserSkill
+        public async Task<CreateUpdateDeleteUserSkillViewModel> DeleteUserSkill
             (string userId, string userSkillId)
         {
-            await _userSkillRepository.DeleteUserSkill
+            var userSkillIdAfterDelete = await _userSkillRepository.DeleteUserSkill
                 (userId, userSkillId);
+            
+            return new CreateUpdateDeleteUserSkillViewModel
+            {
+                UserSkillId = userSkillIdAfterDelete
+            };
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Infrastructure.Persistence.Repositories.Interfaces
         Task<Guid> CreateUserSkill(Guid skillId, int level, string userId);
         Task<IEnumerable<UserSkillAndSkillModel>> GetAllUserSkills(string userId);
 
-        Task DeleteUserSkill(string userId, string userSkillId);
+        Task<Guid> DeleteUserSkill(string userId, string userSkillId);
         Task<Guid> UpdateUserSkill(string userSkillId, int skillLevel);
         Task<UserSkillAndSkillModel> GetSingleUserSkill(string userId, string userSkillId);
     }

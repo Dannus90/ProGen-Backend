@@ -103,7 +103,7 @@ namespace Infrastructure.Persistence.Repositories
             return !userSkillAndSkillDto.Any() ? new UserSkillAndSkillModel() : userSkillAndSkillDto.First();
         }
 
-        public async Task DeleteUserSkill(string userId, string userSkillId)
+        public async Task<Guid> DeleteUserSkill(string userId, string userSkillId)
         {
             const string query = @"
                    DELETE FROM user_skill
@@ -118,6 +118,8 @@ namespace Infrastructure.Persistence.Repositories
                 Id = userSkillId,
                 UserId = userId
             });
+
+            return Guid.Parse(userSkillId);
         }
         
         public async Task<Guid> UpdateUserSkill(string userSkillId, int skillLevel)
