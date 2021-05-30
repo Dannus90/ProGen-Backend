@@ -147,8 +147,6 @@ namespace Tests.IntegrationsTests.Repositories
             await _skillRepository.DeleteSkillById
                 (skillId.ToString());
             
-            
-
             // Assert clean up
             Assert.IsNull(await _skillRepository.GetSkillBySkillId
                 (skillId.ToString()));
