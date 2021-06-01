@@ -162,7 +162,8 @@ namespace Tests.IntegrationsTests.Repositories
             GetAllUserSkills_ByUserId_SuccessfullyGetsAllUserSkillsByUserId()
         {
             // Act
-            var userSkills = await _userSkillRepository.GetAllUserSkills(setupUserId.ToString());
+            var userSkills = await _userSkillRepository
+                .GetAllUserSkills(setupUserId.ToString());
             
             // Assert
             Assert.IsTrue(userSkills.Count() >= 3);

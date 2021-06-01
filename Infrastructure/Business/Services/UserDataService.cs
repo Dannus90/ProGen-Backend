@@ -1,5 +1,4 @@
 using System;
-using System.Net;
 using System.Threading.Tasks;
 using API.helpers.Cloudinary.Interfaces;
 using AutoMapper;
@@ -9,7 +8,6 @@ using Core.Domain.Models;
 using Core.Domain.ViewModels;
 using Infrastructure.Business.Services.Interfaces;
 using Infrastructure.Persistence.Repositories.Interfaces;
-using Infrastructure.Security;
 using Microsoft.AspNetCore.Http;
 
 namespace Infrastructure.Identity.Services
