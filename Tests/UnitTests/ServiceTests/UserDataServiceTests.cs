@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using API.helpers.Cloudinary.Interfaces;
 using AutoMapper;
 using Core.Application.Exceptions;
-using Core.Domain.Dtos;
 using Core.Domain.Models;
-using Core.Domain.ViewModels;
 using Core.Mapping;
-using Infrastructure.Business.Services.Interfaces;
 using Infrastructure.Identity.Services;
 using Infrastructure.Persistence.Repositories.Interfaces;
 using Moq;
 using NUnit.Framework;
+using Tests.UnitTests.ServiceTests.UserDataServiceMock;
 
 namespace Tests.UnitTests.ServiceTests
 {
@@ -25,41 +23,38 @@ namespace Tests.UnitTests.ServiceTests
             var userRepositoryMock = new Mock<IUserRepository>();
             var cloudinaryHelperMock = new Mock<ICloudinaryHelper>();
             var userId = Guid.NewGuid().ToString();
-            var returnMock = UserDataServiceMock
-                .UserDataServiceMockMethods.GetFullUserInformation(userId);
-            
+            var returnMock = UserDataServiceMockMethods.GetFullUserInformation(userId);
+
             var mappers = new List<Profile>
             {
                 new SimpleMappers(),
-                new SkillsAndUserSkillsMapper(),
+                new SkillsAndUserSkillsMapper()
             };
 
-            var mapperConfig = new MapperConfiguration(mc => 
-                { mc.AddProfiles(mappers); });
+            var mapperConfig = new MapperConfiguration(mc => { mc.AddProfiles(mappers); });
 
             var mapper = mapperConfig.CreateMapper();
-            
-            userDataRepositoryMock.Setup(x => x.
-                GetFullUserInformation(userId)).ReturnsAsync(returnMock);
+
+            userDataRepositoryMock.Setup(x => x.GetFullUserInformation(userId)).ReturnsAsync(returnMock);
 
             var userDataService = new UserDataService
-                (userDataRepositoryMock.Object,
+            (userDataRepositoryMock.Object,
                 userRepositoryMock.Object,
                 mapper,
                 cloudinaryHelperMock.Object);
-            
+
             // Act
-            var userInformationViewModel =  userDataService
+            var userInformationViewModel = userDataService
                 .GetFullUserData(userId).Result;
-            
+
             // Assert
             Assert.IsNotNull
                 (userInformationViewModel);
             Assert.AreEqual
-                (userInformationViewModel.FullUserInformationDto.User.Email,
+            (userInformationViewModel.FullUserInformationDto.User.Email,
                 "persson.daniel.1990@gmail.com");
         }
-        
+
         [TestCase]
         public void GetFullUserData_FailsToRetrieveUserDataAndExceptionIsThrown()
         {
@@ -72,16 +67,15 @@ namespace Tests.UnitTests.ServiceTests
             var mappers = new List<Profile>
             {
                 new SimpleMappers(),
-                new SkillsAndUserSkillsMapper(),
+                new SkillsAndUserSkillsMapper()
             };
 
-            var mapperConfig = new MapperConfiguration(mc => 
-                { mc.AddProfiles(mappers); });
+            var mapperConfig = new MapperConfiguration(mc => { mc.AddProfiles(mappers); });
 
             var mapper = mapperConfig.CreateMapper();
-            
-            userDataRepositoryMock.Setup(x => x.
-                GetFullUserInformation(userId)).ReturnsAsync((FullUserInformation) null);
+
+            userDataRepositoryMock.Setup(x => x.GetFullUserInformation(userId))
+                .ReturnsAsync((FullUserInformation) null);
 
             var userDataService = new UserDataService
             (userDataRepositoryMock.Object,
