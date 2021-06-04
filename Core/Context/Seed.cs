@@ -444,7 +444,7 @@ namespace Core.Context
                     SkillId = skills[8].Id,
                     SkillLevel = 3,
                     UserId = users[0].Id
-                },
+                }
             };
             
             modelBuilder.Entity<UserSkill>().HasData(userSkills);

@@ -4123,7 +4123,7 @@
     "Core/1.0.0": {
       "type": "project",
       "path": "../Core/Core.csproj",
-      "msbuildProject": "../Core/Core.csproj"
+      "msbuildProject": "../../../../../LinnéUniversitet/kurser/1DV613-Individuellt-Mjukvaruprojekt/ProGenBackend/Core/Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
